@@ -1,0 +1,932 @@
+<section class="form-wrap annual-application">
+  <div class="container">
+    <div class="row">
+
+      <div class="col-sm-12">
+        <div class="form-grid">
+          <div class="title">
+            <h2 class="text-capitalize">{{ dynamicUrl }} Application Form</h2>
+            <p>Your application will be processed within 24 hours</p>
+          </div><!--/ title -->
+
+          <div class="main-form">         
+            <form [formGroup]="myForm" #f="ngForm" (ngSubmit)="onSubmit(f)">						
+                <div class="form-steps form-group col-sm-12" id="step_1" *ngIf="dynamicUrl === 'annual'">
+                  <div class="row">
+                    <div class="form-group col-sm-12">
+                      <div class="step-no">Step 1 of 6</div>
+                      <h3>Personal Details</h3>
+                      <p class="annual-p text-center">Please complete required fields</p>
+                      <div class="form-bar">
+                        <div class="form-clearbar"></div>
+                        <div class="form-fillbar"></div>
+                      </div><!--/ form-bar -->
+                    </div>
+  
+                    <div class="form-group col-sm-4">
+                      <label>Title </label>
+                      <input type="text" placeholder="Mr" class="form-control" formControlName="title">
+                    </div>
+  
+                    <div class="form-group col-sm-4">
+                      <label>First name</label>
+                      <input class="form-control" placeholder="John" formControlName="first_name">
+                    </div>
+  
+                    <div class="form-group col-sm-4">
+                      <label>Last name</label>
+                      <input class="form-control" placeholder="Doe" value="" formControlName="last_name">
+                    </div>
+  
+                    <div class="form-group col-sm-6">
+                      <label>Date of Birth</label>
+                      <input type="date" class="form-control" formControlName="dob">
+                    </div>
+  
+                    <div class="form-group col-sm-6">
+                      <label>Identity / Passport Number</label>
+                      <input class="form-control" placeholder="000000-0000-000" type="phone" formControlName="passport">
+                    </div>
+  
+                    <div class="form-group col-sm-12">
+                      <h4 class="mrb-0"><b>Address</b></h4>
+                    </div>
+  
+                    <div class="form-group col-sm-6">
+                      <label>Street</label>
+                      <input class="form-control" placeholder="Oxford" type="text" formControlName="street">
+                    </div>
+  
+                    <div class="form-group col-sm-6">
+                      <label>City </label>
+                      <input class="form-control" placeholder="London" type="text" formControlName="city">
+                    </div>
+  
+                    <div class="form-group col-sm-6">
+                      <label>State / Province </label>
+                      <input class="form-control" placeholder="Greater London" type="text"  formControlName="state">
+                    </div>
+  
+                    <div class="form-group col-sm-6">
+                      <label>Postal / Zip code</label>
+                      <input class="form-control" placeholder="E1 6AN" type="text" formControlName="postal_code">
+                    </div>
+  
+                    <div class="form-group col-sm-6">
+                      <label>Home Phone</label>
+                      <input class="form-control" placeholder="+27-00-000-0000" type="text" formControlName="tel_home">
+                    </div>
+  
+                    <div class="form-group col-sm-6">
+                      <label>Work Phone</label>
+                      <input class="form-control" placeholder="+27-00-000-0000" type="text" value="" formControlName="tel_work">
+                    </div>
+                    <div class="form-group col-sm-6">
+                      <label>Mobile Phone </label>
+                      <input class="form-control" placeholder="+27-00-000-0000" type="text" formControlName="cell_phone">
+                    </div>
+  
+                    <div class="form-group col-sm-6">
+                      <label>Email address </label>
+                      <input class="form-control" placeholder="example@domain.com" type="email" formControlName="email_address">
+                    </div>
+                    <div class="form-group col-sm-12">
+                      <h4 class="mrb-0"><strong>Residency Details</strong></h4>
+                    </div>
+                    <div class="form-group col-sm-12">
+                      <label>Country of Residence </label>
+                      <input type="text" class="form-control" placeholder="Where are you living or working at present" formControlName="country">
+                    </div>
+                    <div class="form-group col-sm-12 steps-btn">
+                      <p class="heading_caption text-center"><a href="#" class="btn next-btn" data-id="1">Next</a></p>
+                    </div>
+                  </div><!--/ row -->
+                </div><!--/ form-steps -->
+  
+                <div class="form-steps form-group col-sm-12" id="step_2" *ngIf="dynamicUrl === 'annual'">
+                  <div class="row">
+  
+                    <div class="form-group col-sm-12">
+                      <div class="step-no">Step 2 of 6</div>
+                      <h3>Diving Details</h3>
+                      <p class="annual-p text-center">Please complete required fields</p>
+                      <div class="form-bar">
+                        <div class="form-clearbar"></div>
+                        <div class="form-fillbar"></div>
+                      </div><!--/ form-bar -->
+                    </div>
+  
+                    <div class="form-group col-sm-12">
+                      <h4 class="mrb-0"><b>Diving Qualification</b></h4>
+                    </div>
+                    <div class="form-group col-sm-6">
+                      <label>Diving Qualification </label>
+                      <input class="form-control" placeholder="Highest Qualification" formControlName="qualification">
+                    </div>
+                    <div class="form-group col-sm-6">
+                      <label>Dive Agency </label>
+                      <input class="form-control" placeholder="PADI - NAUI - RAID - SSI - IANTD" formControlName="agency">
+                    </div>
+                    <div class="form-group col-sm-12">
+                      <div class="input-group">
+                        <label class="label">Are you working as a Divemaster or Instructor?</label>
+                        <div class="input-inner row">
+                            <div class="col-sm-12 mrb-10 input-radio"><label class="radio-container mrb-r"><input type="radio" formControlName="working_as" value="Yes"><span class="checkmark"></span> Yes</label></div>
+                            <div class="col-sm-12 mrb-10 input-radio"><label class="radio-container mrb-r"><input type="radio" formControlName="working_as" value="No"><span class="checkmark"></span> No</label></div>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <div class="col-sm-12 form-group">
+                      <label class="label mrb-0">Type of Diver</label>
+                      <div class="annual-p">Select all that apply</div>
+  
+                      <div class="checkbox-custom mb-1" *ngFor="let diver_type of diver_typeTypeOptions">
+                        <label class="checkbox">{{ diver_type.label }}
+                          <input type="checkbox" formControlName="diver_type" [(ngModel)]="diver_typeCheckbox[diver_type.value]" >
+                          <span class="checkmark"></span>
+                        </label>
+                      </div>
+                    </div>
+  
+                    <div class="form-group col-sm-12">
+                      <h4 class="mrb-0"><b>Referral Details</b></h4>
+                      </div>
+  
+                    <div class="form-group col-sm-6">
+                      <label>Referral Dive Centre</label>
+                      <input class="form-control" placeholder="Dive Centre or Dive Resort" formControlName="ref_dive_centre">
+                      </div>
+                
+                    <div class="form-group col-sm-6">
+                      <label>Referral Dive Instructor</label>
+                      <input class="form-control" placeholder="Name of Dive Instructor" formControlName="ref_dive_instructor">
+                      </div>
+  
+                    <div class="form-group col-sm-12 steps-btn">
+                      <div class="row">
+                        <div class="col-sm-12"><a href="#" class="btn btn-lightgray back-btn" data-id="2">Back</a> <a href="#" class="btn next-btn" data-id="2">Next</a></div>
+                      </div>
+                    </div>
+  
+                  </div><!--/ row -->
+                </div><!--/ form-steps -->
+                
+                <div class="form-steps form-group col-sm-12" id="step_3" *ngIf="dynamicUrl === 'annual'">
+                  <div class="row">
+  
+                    <div class="form-group col-sm-12">
+                      <div class="step-no">Step 3 of 6</div>
+                      <h3>Medical Insurance Details</h3>
+                      <p class="annual-p text-center">Please complete required fields</p>
+                      <div class="form-bar">
+                        <div class="form-clearbar"></div>
+                        <div class="form-fillbar"></div>
+                      </div><!--/ form-bar -->
+                    </div>
+  
+                    <div class="form-group col-sm-6">
+                      <label>Medical Aid / Healthcare Insurance Name </label>
+                      <input class="form-control" placeholder="Discovery Health Medical Scheme" type="text" formControlName="aid">
+                    </div>
+                    <div class="form-group col-sm-6">
+                      <label>Medical Aid / Healthcare Insurance Number </label>
+                      <input class="form-control" placeholder="Policy Number" type="text" formControlName="aid_no">
+                    </div>
+                    <div class="form-group col-sm-12">
+                      <div class="input-group">
+                        <label class="label">Are you using any medication regularly?</label>
+                        <div class="input-inner row">
+                            <div class="col-sm-12 mrb-10 input-radio"><label class="radio-container mrb-r"><input type="radio" formControlName="medication" value="Yes"><span class="checkmark"></span> Yes</label></div>
+                            <div class="col-sm-12 mrb-10 input-radio"><label class="radio-container mrb-r"><input type="radio" formControlName="medication" value="No"><span class="checkmark"></span> No</label></div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-group col-sm-12">
+                      <div class="input-group">
+                        <label class="label">Do you suffer from any chronic illness?</label>
+                        <div class="input-inner row">
+                            <div class="col-sm-12 mrb-10 input-radio"><label class="radio-container mrb-r"><input type="radio" formControlName="chronic_ill" value="Yes"><span class="checkmark"></span> Yes</label></div>
+                            <div class="col-sm-12 mrb-10 input-radio"><label class="radio-container mrb-r"><input type="radio" formControlName="chronic_ill" value="No"><span class="checkmark"></span> No</label></div>
+                        </div>
+                      </div>
+                    </div>
+                   
+                    <div class="form-group col-sm-12 steps-btn">
+                      <div class="row">
+                        <div class="col-sm-12"><a href="#" class="btn btn-lightgray back-btn" data-id="3">Back</a> <a
+                            href="#" class="btn next-btn" data-id="3">Next</a></div>
+                      </div>
+                    </div>
+  
+                  </div><!--/ row -->
+                </div><!--/ form-steps -->
+  
+                <div class="form-steps form-group col-sm-12" id="step_4" *ngIf="dynamicUrl === 'annual'">
+                  <div class="row">
+  
+                    <div class="form-group col-sm-12">
+                      <div class="step-no">Step 4 of 6</div>
+                      <h3>Family Members</h3>
+                      <p class="annual-p text-center">If you have any diving or non-diving family members please list them below. Diving family members will carry a charge and non-diving family members have no charge.</p>
+                      <div class="form-bar">
+                        <div class="form-clearbar"></div>
+                        <div class="form-fillbar"></div>
+                      </div><!--/ form-bar -->
+                    </div>
+  
+                    <div class="form-group col-sm-12">
+                      <h4 class="mrb-0"><b>Family Member 1</b></h4>
+                    </div> 
+  
+                    <div class="form-group col-sm-4">
+                      <label>1. Family Member Title</label>
+                      <input class="form-control" placeholder="Mr" type="text" formControlName="family_title1">
+                    </div>
+  
+                    <div class="form-group col-sm-4">
+                      <label>1. First name</label>
+                      <input class="form-control" placeholder="John" type="text" formControlName="family_fname1">
+                    </div>
+  
+                    <div class="form-group col-sm-4">
+                      <label>1. Last name</label>
+                      <input class="form-control" placeholder="Doe" type="text" formControlName="family_sname1">
+                    </div>
+  
+                    <div class="form-group col-sm-6">
+                      <label>Date of Birth</label>
+                      <input class="form-control" placeholder="10-06-1990" type="date" formControlName="family_dob1">
+                    </div>
+  
+                    <div class="form-group col-sm-6">
+                      <label>Identity / Passport Number</label>
+                      <input class="form-control" placeholder="000000-0000-000" type="text" formControlName="family_passport1">
+                    </div>
+  
+                    <div class="form-group col-sm-6">
+                      <label>1. Email</label>
+                      <input class="form-control" placeholder="example@domain.com" type="email" formControlName="family_email1">
+                    </div>
+  
+                    <div class="form-group col-sm-6">
+                      <label>Mobile Phone</label>
+                      <input class="form-control" placeholder="+27-00-000-0000" type="text" formControlName="family_phone1">
+                    </div>
+  
+                    <div class="form-group col-sm-12">
+                      <div class="input-group">
+                        <label class="label">Diver</label>
+                        <div class="input-inner row">
+                            <div class="col-sm-12 mrb-10 input-radio"><label class="radio-container mrb-r"><input type="radio" formControlName="family_diver1" value="Yes"><span class="checkmark"></span> Yes</label></div>
+                            <div class="col-sm-12 mrb-10 input-radio"><label class="radio-container mrb-r"><input type="radio" formControlName="family_diver1" value="No"><span class="checkmark"></span> No</label></div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-sm-12 form-group">
+                      <label class="label mrb-10">Type of Diver</label>
+                      <div class="checkbox-custom mb-1" *ngFor="let diver_type1 of diver_type1TypeOptions">
+                        <label class="checkbox">{{ diver_type1.label }}
+                          <input type="checkbox" formControlName="diver_type1" [(ngModel)]="diver_type1Checkbox[diver_type1.value]"> <span class="checkmark"></span>
+                        </label>
+                      </div>
+                    </div>
+                    <div class="form-group col-sm-12">
+                      <div class="input-group">
+                        <label class="label">Is your family member working as a Divemaster or Instructor?</label>
+                        <div class="input-inner row">
+                            <div class="col-sm-12 mrb-10 input-radio"><label class="radio-container mrb-r"><input type="radio" formControlName="family_workingAs1" value="Yes"><span class="checkmark"></span> Yes</label></div>
+                            <div class="col-sm-12 mrb-10 input-radio"><label class="radio-container mrb-r"><input type="radio" formControlName="family_workingAs1" value="No"><span class="checkmark"></span> No</label></div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-group col-sm-12">
+                      <div class="input-group">
+                        <label class="label">Are you using any medication regularly?</label>
+                        <div class="input-inner row">
+                            <div class="col-sm-12 mrb-10 input-radio"><label class="radio-container mrb-r"><input type="radio" formControlName="family_medication1" value="Yes"><span class="checkmark"></span> Yes</label></div>
+                            <div class="col-sm-12 mrb-10 input-radio"><label class="radio-container mrb-r"><input type="radio" formControlName="family_medication1" value="No"><span class="checkmark"></span> No</label></div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-group col-sm-12">
+                      <div class="input-group">
+                        <label class="label">Do you suffer from any chronic illness?</label>
+                        <div class="input-inner row">
+                            <div class="col-sm-12 mrb-10 input-radio"><label class="radio-container mrb-r"><input type="radio" formControlName="family_chronic1" value="Yes"><span class="checkmark"></span> Yes</label></div>
+                            <div class="col-sm-12 mrb-10 input-radio"><label class="radio-container mrb-r"><input type="radio" formControlName="family_chronic1" value="No"><span class="checkmark"></span> No</label></div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-group col-sm-12">
+                      <h4 class="mrb-0"><b>Family Member 2</b></h4>
+                    </div>
+                    
+                    <div class="form-group col-sm-4">
+                      <label>2. Family Member Title</label>
+                      <input class="form-control" placeholder="Mr" type="text" formControlName="family_title2">
+                    </div>
+                    
+                    <div class="form-group col-sm-4">
+                      <label>2. First name</label>
+                      <input class="form-control" placeholder="John" type="text" formControlName="family_fname2">
+                    </div>
+                    
+                    <div class="form-group col-sm-4">
+                      <label>2. Last name</label>
+                      <input class="form-control" placeholder="Doe" type="text" formControlName="family_sname2">
+                    </div>
+                    
+                    <div class="form-group col-sm-6">
+                      <label>Date of Birth</label>
+                      <input class="form-control" placeholder="10-06-1990" type="date" formControlName="family_dob2">
+                    </div>
+                    
+                    <div class="form-group col-sm-6">
+                      <label>Identity / Passport Number</label>
+                      <input class="form-control" placeholder="000000-0000-000" type="text" formControlName="family_passport2">
+                    </div>
+                    
+                    <div class="form-group col-sm-6">
+                      <label>2. Email</label>
+                      <input class="form-control" placeholder="example@domain.com" type="email" formControlName="family_email2">
+                    </div>
+                    
+                    <div class="form-group col-sm-6">
+                      <label>Mobile Phone</label>
+                      <input class="form-control" placeholder="+27-00-000-0000" type="text" formControlName="family_phone2">
+                    </div>
+                    
+                    <div class="form-group col-sm-12">
+                      <div class="input-group">
+                        <label class="label">Diver</label>
+                        <div class="input-inner row">
+                          <div class="col-sm-12 mrb-10 input-radio"><label class="radio-container mrb-r"><input type="radio"
+                                formControlName="family_diver2" value="Yes"><span class="checkmark"></span> Yes</label></div>
+                          <div class="col-sm-12 mrb-10 input-radio"><label class="radio-container mrb-r"><input type="radio"
+                                formControlName="family_diver2" value="No"><span class="checkmark"></span> No</label></div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-sm-12 form-group">
+                      <label class="label mrb-10">Type of Diver</label>
+                      <div class="checkbox-custom mb-1" *ngFor="let diver_type2 of diver_type2TypeOptions">
+                        <label class="checkbox">{{ diver_type2.label }}
+                          <input type="checkbox" formControlName="diver_type2" [(ngModel)]="diver_type2Checkbox[diver_type2.value]"> <span
+                            class="checkmark"></span>
+                        </label>
+                      </div>
+                    </div>
+                    <div class="form-group col-sm-12">
+                      <div class="input-group">
+                        <label class="label">Is your family member working as a Divemaster or Instructor?</label>
+                        <div class="input-inner row">
+                          <div class="col-sm-12 mrb-10 input-radio"><label class="radio-container mrb-r"><input type="radio"
+                                formControlName="family_workingAs2" value="Yes"><span class="checkmark"></span> Yes</label></div>
+                          <div class="col-sm-12 mrb-10 input-radio"><label class="radio-container mrb-r"><input type="radio"
+                                formControlName="family_workingAs2" value="No"><span class="checkmark"></span> No</label></div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-group col-sm-12">
+                      <div class="input-group">
+                        <label class="label">Are you using any medication regularly?</label>
+                        <div class="input-inner row">
+                          <div class="col-sm-12 mrb-10 input-radio"><label class="radio-container mrb-r"><input type="radio"
+                                formControlName="family_medication2" value="Yes"><span class="checkmark"></span> Yes</label></div>
+                          <div class="col-sm-12 mrb-10 input-radio"><label class="radio-container mrb-r"><input type="radio"
+                                formControlName="family_medication2" value="No"><span class="checkmark"></span> No</label></div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-group col-sm-12">
+                      <div class="input-group">
+                        <label class="label">Do you suffer from any chronic illness?</label>
+                        <div class="input-inner row">
+                          <div class="col-sm-12 mrb-10 input-radio"><label class="radio-container mrb-r"><input type="radio"
+                                formControlName="family_chronic2" value="Yes"><span class="checkmark"></span> Yes</label></div>
+                          <div class="col-sm-12 mrb-10 input-radio"><label class="radio-container mrb-r"><input type="radio"
+                                formControlName="family_chronic2" value="No"><span class="checkmark"></span> No</label></div>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <div class="form-group col-sm-12">
+                      <h4 class="mrb-0"><b>Family Member 3</b></h4>
+                    </div> 
+                    
+                    <div class="form-group col-sm-4">
+                      <label>3. Family Member Title</label>
+                      <input class="form-control" placeholder="Mr" type="text" formControlName="family_title3">
+                    </div>
+                    
+                    <div class="form-group col-sm-4">
+                      <label>3. First name</label>
+                      <input class="form-control" placeholder="John" type="text" formControlName="family_fname3">
+                    </div>
+                    
+                    <div class="form-group col-sm-4">
+                      <label>3. Last name</label>
+                      <input class="form-control" placeholder="Doe" type="text" formControlName="family_sname3">
+                    </div>
+                    
+                    <div class="form-group col-sm-6">
+                      <label>Date of Birth</label>
+                      <input class="form-control" placeholder="10-06-1990" type="date" formControlName="family_dob3">
+                    </div>
+                    
+                    <div class="form-group col-sm-6">
+                      <label>Identity / Passport Number</label>
+                      <input class="form-control" placeholder="000000-0000-000" type="text" formControlName="family_passport3">
+                    </div>
+                    
+                    <div class="form-group col-sm-6">
+                      <label>3. Email</label>
+                      <input class="form-control" placeholder="example@domain.com" type="email" formControlName="family_email3">
+                    </div>
+                    
+                    <div class="form-group col-sm-6">
+                      <label>Mobile Phone</label>
+                      <input class="form-control" placeholder="+27-00-000-0000" type="text" formControlName="family_phone3">
+                    </div>
+                    
+                    <div class="form-group col-sm-12">
+                      <div class="input-group">
+                        <label class="label">Diver</label>
+                        <div class="input-inner row">
+                            <div class="col-sm-12 mrb-10 input-radio"><label class="radio-container mrb-r"><input type="radio" formControlName="family_diver3" value="Yes"><span class="checkmark"></span> Yes</label></div>
+                            <div class="col-sm-12 mrb-10 input-radio"><label class="radio-container mrb-r"><input type="radio" formControlName="family_diver3" value="No"><span class="checkmark"></span> No</label></div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-sm-12 form-group">
+                      <label class="label mrb-10">Type of Diver</label>
+                      <div class="checkbox-custom mb-1" *ngFor="let diver_type3 of diver_type3TypeOptions">
+                        <label class="checkbox">{{ diver_type3.label }}
+                          <input type="checkbox" formControlName="diver_type3" [(ngModel)]="diver_type3Checkbox[diver_type3.value]"> <span class="checkmark"></span>
+                        </label>
+                      </div>
+                    </div>
+                    <div class="form-group col-sm-12">
+                      <div class="input-group">
+                        <label class="label">Is your family member working as a Divemaster or Instructor?</label>
+                        <div class="input-inner row">
+                            <div class="col-sm-12 mrb-10 input-radio"><label class="radio-container mrb-r"><input type="radio" formControlName="family_workingAs3" value="Yes"><span class="checkmark"></span> Yes</label></div>
+                            <div class="col-sm-12 mrb-10 input-radio"><label class="radio-container mrb-r"><input type="radio" formControlName="family_workingAs3" value="No"><span class="checkmark"></span> No</label></div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-group col-sm-12">
+                      <div class="input-group">
+                        <label class="label">Are you using any medication regularly?</label>
+                        <div class="input-inner row">
+                            <div class="col-sm-12 mrb-10 input-radio"><label class="radio-container mrb-r"><input type="radio" formControlName="family_medication3" value="Yes"><span class="checkmark"></span> Yes</label></div>
+                            <div class="col-sm-12 mrb-10 input-radio"><label class="radio-container mrb-r"><input type="radio" formControlName="family_medication3" value="No"><span class="checkmark"></span> No</label></div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-group col-sm-12">
+                      <div class="input-group">
+                        <label class="label">Do you suffer from any chronic illness?</label>
+                        <div class="input-inner row">
+                            <div class="col-sm-12 mrb-10 input-radio"><label class="radio-container mrb-r"><input type="radio" formControlName="family_chronic3" value="Yes"><span class="checkmark"></span> Yes</label></div>
+                            <div class="col-sm-12 mrb-10 input-radio"><label class="radio-container mrb-r"><input type="radio" formControlName="family_chronic3" value="No"><span class="checkmark"></span> No</label></div>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <div class="form-group col-sm-12">
+                      <h4 class="mrb-0"><b>Family Member 4</b></h4>
+                    </div> 
+                    
+                    <div class="form-group col-sm-4">
+                      <label>4. Family Member Title</label>
+                      <input class="form-control" placeholder="Mr" type="text" formControlName="family_title4">
+                    </div>
+                    
+                    <div class="form-group col-sm-4">
+                      <label>4. First name</label>
+                      <input class="form-control" placeholder="John" type="text" formControlName="family_fname4">
+                    </div>
+                    
+                    <div class="form-group col-sm-4">
+                      <label>4. Last name</label>
+                      <input class="form-control" placeholder="Doe" type="text" formControlName="family_sname4">
+                    </div>
+                    
+                    <div class="form-group col-sm-6">
+                      <label>Date of Birth</label>
+                      <input class="form-control" placeholder="10-06-1990" type="date" formControlName="family_dob4">
+                    </div>
+                    
+                    <div class="form-group col-sm-6">
+                      <label>Identity / Passport Number</label>
+                      <input class="form-control" placeholder="000000-0000-000" type="text" formControlName="family_passport4">
+                    </div>
+                    
+                    <div class="form-group col-sm-6">
+                      <label>4. Email</label>
+                      <input class="form-control" placeholder="example@domain.com" type="email" formControlName="family_email4">
+                    </div>
+                    
+                    <div class="form-group col-sm-6">
+                      <label>Mobile Phone</label>
+                      <input class="form-control" placeholder="+27-00-000-0000" type="text" formControlName="family_phone4">
+                    </div>
+                    
+                    <div class="form-group col-sm-12">
+                      <div class="input-group">
+                        <label class="label">Diver</label>
+                        <div class="input-inner row">
+                            <div class="col-sm-12 mrb-10 input-radio"><label class="radio-container mrb-r"><input type="radio" formControlName="family_diver4" value="Yes"><span class="checkmark"></span> Yes</label></div>
+                            <div class="col-sm-12 mrb-10 input-radio"><label class="radio-container mrb-r"><input type="radio" formControlName="family_diver4" value="No"><span class="checkmark"></span> No</label></div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-sm-12 form-group">
+                      <label class="label mrb-10">Type of Diver</label>
+                      <div class="checkbox-custom mb-1" *ngFor="let diver_type4 of diver_type4TypeOptions">
+                        <label class="checkbox">{{ diver_type4.label }}
+                          <input type="checkbox" formControlName="diver_type4" [(ngModel)]="diver_type4Checkbox[diver_type4.value]"> <span class="checkmark"></span>
+                        </label>
+                      </div>
+                    </div>
+                    <div class="form-group col-sm-12">
+                      <div class="input-group">
+                        <label class="label">Is your family member working as a Divemaster or Instructor?</label>
+                        <div class="input-inner row">
+                            <div class="col-sm-12 mrb-10 input-radio"><label class="radio-container mrb-r"><input type="radio" formControlName="family_workingAs4" value="Yes"><span class="checkmark"></span> Yes</label></div>
+                            <div class="col-sm-12 mrb-10 input-radio"><label class="radio-container mrb-r"><input type="radio" formControlName="family_workingAs4" value="No"><span class="checkmark"></span> No</label></div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-group col-sm-12">
+                      <div class="input-group">
+                        <label class="label">Are you using any medication regularly?</label>
+                        <div class="input-inner row">
+                            <div class="col-sm-12 mrb-10 input-radio"><label class="radio-container mrb-r"><input type="radio" formControlName="family_medication4" value="Yes"><span class="checkmark"></span> Yes</label></div>
+                            <div class="col-sm-12 mrb-10 input-radio"><label class="radio-container mrb-r"><input type="radio" formControlName="family_medication4" value="No"><span class="checkmark"></span> No</label></div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-group col-sm-12">
+                      <div class="input-group">
+                        <label class="label">Do you suffer from any chronic illness?</label>
+                        <div class="input-inner row">
+                            <div class="col-sm-12 mrb-10 input-radio"><label class="radio-container mrb-r"><input type="radio" formControlName="family_chronic4" value="Yes"><span class="checkmark"></span> Yes</label></div>
+                            <div class="col-sm-12 mrb-10 input-radio"><label class="radio-container mrb-r"><input type="radio" formControlName="family_chronic4" value="No"><span class="checkmark"></span> No</label></div>
+                        </div>
+                      </div>
+                    </div>
+                
+                    <div class="form-group col-sm-12 steps-btn">
+                      <div class="row">
+                        <div class="col-sm-12"><a href="#" class="btn btn-lightgray back-btn" data-id="4">Back</a> <a
+                            href="#" class="btn next-btn" data-id="4">Next</a></div>
+                      </div>
+                    </div>
+  
+                  </div><!--/ row -->
+                </div><!--/ form-steps -->
+  
+                <div class="form-steps form-group col-sm-12" id="step_5" *ngIf="dynamicUrl === 'annual'">
+                  <div class="row">
+  
+                    <div class="form-group col-sm-12">
+                      <div class="step-no">Step 5 of 6</div>
+                      <h3>Next of Kin Details</h3>
+                      <p class="annual-p text-center">Please complete required fields</p>
+                      <div class="form-bar">
+                        <div class="form-clearbar"></div>
+                        <div class="form-fillbar"></div>
+                      </div><!--/ form-bar -->
+                    </div>
+  
+                    <div class="form-group col-sm-4">
+                      <label>N.O.K. Title </label>
+                      <input type="text" class="form-control" formControlName="kin_title" placeholder="Mr">
+                    </div>
+  
+                    <div class="form-group col-sm-4">
+                      <label>First name </label>
+                      <input class="form-control" placeholder="John" value="" formControlName="kin_fname">
+                    </div>
+  
+                    <div class="form-group col-sm-4">
+                      <label>Last name </label>
+                      <input class="form-control" placeholder="Doe" value="" formControlName="kin_sname">
+                    </div>
+  
+                    <div class="form-group col-sm-6">
+                      <label>Date of Birth </label>
+                      <input type="date" class="form-control" placeholder="10-06-1990" value="" formControlName="kin_dob">
+                    </div>
+  
+                    <div class="form-group col-sm-6">
+                      <label>Identity / Passport Number</label>
+                      <input class="form-control" placeholder="000000-0000-000" type="phone" formControlName="kin_passport">
+                    </div>
+  
+                    <div class="form-group col-sm-12">
+                      <h4 class="mrb-0"><b>Address</b></h4>
+                    </div>
+  
+                    <div class="form-group col-sm-6">
+                      <label>Street</label>
+                      <input class="form-control" placeholder="Oxford" type="text"  formControlName="kin_street">
+                    </div>
+  
+                    <div class="form-group col-sm-6">
+                      <label>City </label>
+                      <input class="form-control" placeholder="London" type="text" formControlName="kin_city">
+                    </div>
+  
+                    <div class="form-group col-sm-6">
+                      <label>State / Province </label>
+                      <input class="form-control" placeholder="Greater London" type="text"
+                        formControlName="kin_state">
+                    </div>
+  
+                    <div class="form-group col-sm-6">
+                      <label>Postal / Zip code </label>
+                      <input class="form-control" placeholder="E1 6AN" type="text" value=""
+                        formControlName="kin_postal_code">
+                    </div>
+                    <div class="form-group col-sm-6">
+                      <label>Home Phone</label>
+                      <input class="form-control" placeholder="+27-00-000-0000" type="text" formControlName="kin_home">
+                    </div>
+                    <div class="form-group col-sm-6">
+                      <label>Work Phone</label>
+                      <input class="form-control" placeholder="+27-00-000-0000" type="text" formControlName="kin_work">
+                    </div>
+  
+                    <div class="form-group col-sm-6">
+                      <label>Mobile Phone </label>
+                      <input class="form-control" placeholder="+27-00-000-0000" type="text"  formControlName="kin_mobile">
+                    </div>
+  
+                    <div class="form-group col-sm-6">
+                      <label>Email </label>
+                      <input class="form-control" placeholder="example@domain.com" type="text"
+                        formControlName="kin_email_address">
+                    </div>
+  
+                    <div class="form-group col-sm-12">
+                      <h4 class="mrb-0"><b>Relationship</b></h4>
+                    </div>
+  
+                    <div class="form-group col-sm-12">
+                      <div class="input-group">
+                        <label class="label">Relationship to main member</label>
+                        <div class="input-inner row">
+                          <div class="col-sm-12 input-radio mrb-10"><label class="radio-container mrb-r"><input
+                                type="radio" formControlName="kin_relation" value="Spouse"><span class="checkmark"></span>Spouse</label>
+                          </div>
+                          <div class="col-sm-12 input-radio mrb-10"><label class="radio-container mrb-r"><input
+                            type="radio" formControlName="kin_relation" value="Parent"><span class="checkmark"></span>Parent</label>
+                          </div>
+                          <div class="col-sm-12 input-radio mrb-10"><label class="radio-container mrb-r"><input
+                            type="radio" formControlName="kin_relation" value="Child"><span class="checkmark"></span>Child</label>
+                          </div>
+                          <div class="col-sm-12 input-radio mrb-10"><label class="radio-container mrb-r"><input
+                            type="radio" formControlName="kin_relation" value="Partner"><span class="checkmark"></span>Partner</label>
+                          </div>
+                          <div class="col-sm-12 input-radio mrb-10"><label class="radio-container mrb-r"><input
+                            type="radio" formControlName="kin_relation" value="Friend"><span class="checkmark"></span>Friend</label>
+                          </div>
+                          <div class="col-sm-12 input-radio mrb-10"><label class="radio-container mrb-r"><input
+                            type="radio" formControlName="kin_relation" value="Brother/Sister"><span class="checkmark"></span>Brother/Sister</label>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+  
+                    <div class="form-group col-sm-12">
+                      <label><i>Please note it remains your responsibility to notify DAN if your Next of Kin details change</i></label>
+                    </div>
+  
+                    <div class="form-group col-sm-12 steps-btn">
+                      <div class="row">
+                        <div class="col-sm-12"><a href="#" class="btn btn-lightgray back-btn" data-id="5">Back</a> <a
+                            href="#" class="btn next-btn" data-id="5">Next</a></div>
+                      </div>
+                    </div>
+  
+                  </div><!--/ row -->
+                </div><!--/ form-steps -->
+  
+                <div class="form-steps form-group col-sm-12" id="step_6" *ngIf="dynamicUrl === 'annual'">
+                  <div class="row">
+  
+                    <div class="form-group col-sm-12">
+                      <div class="step-no">Step 6 of 6</div>
+                      <h3>Choose your Package</h3>
+                      <p class="annual-p text-center">Please complete required fields</p>
+                      <div class="form-bar">
+                        <div class="form-clearbar"></div>
+                        <div class="form-fillbar"></div>
+                      </div><!--/ form-bar -->
+                    </div>
+  
+                    <div class="form-group col-sm-12">
+                      <label>Membership Start Date </label>
+                      <input class="form-control" placeholder="10-06-1990" type="date" value=""
+                        formControlName="start_date">
+                    </div>
+  
+                   
+                    <div class="form-group col-sm-12">
+                      <label>Select Membership Package </label>
+                      <select class="form-control mrb-10" formControlName="package_name">
+                        <option value="">Select Package</option>
+                        <option value="Standard">Standard Membership</option>
+                        <option value="Plus">Plus Membership</option>
+                        <option value="Master Dive Pro">Master Dive Pro Membership</option>
+                        <option value="Master Freediver Pro">Master Freediver Pro Membership</option>
+                        <option value="Master Tech">Master Tech Membership</option>
+                      </select>
+                      <p class="annual-p mrb-0">All the packages listed are annual membership packages</p>
+                    </div>
+                    <div class="form-group col-sm-12">
+                      <div class="input-group">
+                        <label class="label">How many diving family members do you want to add?</label>
+                        <div class="input-inner row">
+                          <div class="col-sm-12 input-radio mrb-10"><label class="radio-container mrb-r"><input
+                           formControlName="members_add" value="0 diving"><span class="checkmark"></span>None</label>
+                          </div>
+                    
+                          <div class="col-sm-12 input-radio mrb-10"><label class="radio-container"><input type="radio" formControlName="members_add" value="1 diving"><span class="checkmark"></span>1 diving family members</label></div>
+                    
+                          <div class="col-sm-12 input-radio mrb-10"><label class="radio-container"><input type="radio" formControlName="members_add" value="2 diving"><span class="checkmark"></span>2 diving family members</label></div>
+                    
+                          <div class="col-sm-12 input-radio mrb-10"><label class="radio-container"><input type="radio" formControlName="members_add" value="3 diving"><span class="checkmark"></span>3 diving family members</label></div>
+                    
+                          <div class="col-sm-12 input-radio"><label class="radio-container"><input type="radio" formControlName="members_add" value="4 diving"><span class="checkmark"></span>4 diving family members</label></div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-group col-sm-6">
+                      <label>Select Membership Package for Diving Family 1</label>
+                      <select class="form-control mrb-10" formControlName="family_packageName1">
+                        <option value="" disabled="">Select Package</option>
+                        <option value="Standard">Standard Membership</option>
+                        <option value="Plus">Plus Membership</option>
+                        <option value="Master Dive Pro">Master Dive Pro Membership</option>
+                        <option value="Master Freediver Pro">Master Freediver Pro Membership</option>
+                        <option value="Master Tech">Master Tech Membership</option>
+                      </select>
+                      <p class="annual-p mrb-0">All the packages listed are annual membership packages</p>
+                    </div>
+                    
+                    <div class="form-group col-sm-6">
+                      <label>Select Membership Package for Diving Family 2</label>
+                      <select class="form-control mrb-10" formControlName="family_packageName2">
+                        <option value="" disabled="">Select Package</option>
+                        <option value="Standard">Standard Membership</option>
+                        <option value="Plus">Plus Membership</option>
+                        <option value="Master Dive Pro">Master Dive Pro Membership</option>
+                        <option value="Master Freediver Pro">Master Freediver Pro Membership</option>
+                        <option value="Master Tech">Master Tech Membership</option>
+                      </select>
+                      <p class="annual-p mrb-0">All the packages listed are annual membership packages</p>
+                    </div>
+                    
+                    <div class="form-group col-sm-6">
+                      <label>Select Membership Package for Diving Family 3</label>
+                      <select class="form-control mrb-10" formControlName="family_packageName3">
+                        <option value="" disabled="">Select Package</option>
+                        <option value="Standard">Standard Membership</option>
+                        <option value="Plus">Plus Membership</option>
+                        <option value="Master Dive Pro">Master Dive Pro Membership</option>
+                        <option value="Master Freediver Pro">Master Freediver Pro Membership</option>
+                        <option value="Master Tech">Master Tech Membership</option>
+                      </select>
+                      <p class="annual-p mrb-0">All the packages listed are annual membership packages</p>
+                    </div>
+                    
+                    <div class="form-group col-sm-6">
+                      <label>Select Membership Package for Diving Family 4</label>
+                      <select class="form-control mrb-10" formControlName="family_packageName4">
+                        <option value="" disabled="">Select Package</option>
+                        <option value="Standard">Standard Membership</option>
+                        <option value="Plus">Plus Membership</option>
+                        <option value="Master Dive Pro">Master Dive Pro Membership</option>
+                        <option value="Master Freediver Pro">Master Freediver Pro Membership</option>
+                        <option value="Master Tech">Master Tech Membership</option>
+                      </select>
+                      <p class="annual-p mrb-0">All the packages listed are annual membership packages</p>
+                    </div>
+  
+                    <div class="form-group col-sm-12">
+                      <div class="input-group">
+                        <label class="label">Choose Your Payment Option </label>
+                        <div class="input-inner row">
+                          <div class="col-sm-12 mrb-10 input-radio"><label class="radio-container mrb-r"><input type="radio" formControlName="payment_opt" value="Debit Order"><span class="checkmark"></span> Monthly via Debit Order</label></div>
+                          <div class="col-sm-12 mrb-10 input-radio"><label class="radio-container mrb-r"><input type="radio" formControlName="payment_opt" value="Bank Transfer"><span class="checkmark"></span> Once Off via Bank Transfer</label></div>
+                          <div class="col-sm-12 input-radio"><label class="radio-container"><input type="radio" formControlName="payment_opt" value="Credit Card"><span class="checkmark"></span> Once Off via Credit Card</label></div>
+                        </div>				
+                      </div>
+                    </div>
+  
+                    <div class="form-group col-sm-12">
+                      <h4 class="mrb-30"><b>Membership Benefits & Costs</b></h4>
+                      <p class="mrb-0"><a href="images/Annual-Guide-2022.pdf" rel="noopener noreferrer" target="_blank">
+                          <strong>Click to Download the Annual Membership Benefits Guide</strong></a></p>
+                    </div>
+  
+                    <div class="form-group col-sm-6">
+                      <label>Standard Membership</label>
+                      <ul class="mrb-0">
+                        <li>R170 per month or R1940 annually per diver</li>
+                        <li>R500 000 Dive Cover</li>
+                        <li>Evacuation Assistance</li>
+                        <li>International Dive Cover</li>
+                        <li>R500 000 Personal Liability</li>
+                        <li>Add Additional Diving Members</li>
+                        <li>SCUBA &amp; Freediving Depth Limit 40 meters</li>
+                        <li>Includes Cover for Freedivers</li>
+                        <li>Includes Cover for Spear Fisherman</li>
+                      </ul>
+                    </div>
+  
+                    <div class="form-group col-sm-6">
+                      <label>Plus Membership</label>
+                      <ul class="mrb-0">
+                        <li>R210 per month or R2395 annually per diver</li>
+                        <li>R700 000 Dive Cover</li>
+                        <li>Evacuation Assistance</li>
+                        <li>International Dive Cover</li>
+                        <li>R1 000 000 Personal Liability</li>
+                        <li>Add Additional Diving Members</li>
+                        <li>SCUBA &amp; Freediving Depth Limit 40 meters</li>
+                        <li>International Non-Diving Cover</li>
+                        <li>Includes Cover for Freedivers</li>
+                        <li>Includes Cover for Spear Fisherman</li>
+                      </ul>
+                    </div>
+  
+                    <div class="form-group col-sm-6">
+                      <label>Master Dive Pro/Master Freediver Pro Membership</label>
+                      <ul class="mrb-0">
+                        <li>R225 per month or R2565 annually per diver</li>
+                        <li>R800 000 Dive Cover</li>
+                        <li>Evacuation Assistance</li>
+                        <li>International Dive Cover</li>
+                        <li>R2 000 000 Personal Liability</li>
+                        <li>Add Additional Diving Members</li>
+                        <li>SCUBA &amp; Freediving Depth Limit 40 meters</li>
+                        <li>International Non-Diving Cover</li>
+                        <li>Includes Cover for Freedivers</li>
+                        <li>Includes Cover for Spear Fisherman</li>
+                        <li>Suitable for instructors, active recreational divers &amp; competitive freedivers.</li>
+                        <li>Freedivers diving deeper that 40 meters need to submit a dive plan to the DAN Hotline team.
+                        </li>
+                      </ul>
+                    </div>
+  
+                    <div class="form-group col-sm-6">
+                      <label>Master Tech Membership</label>
+                      <ul class="mrb-0">
+                        <li>R240 per month or R2735 annually per diver</li>
+                        <li>R900 000 Dive Cover</li>
+                        <li>Evacuation Assistance</li>
+                        <li>International Dive Cover</li>
+                        <li>R2 000 000 Personal Liability</li>
+                        <li>Add Additional Diving Members</li>
+                        <li>TECH Depth Limit 100 meters</li>
+                        <li>International Non-Diving Cover</li>
+                        <li>For TECH dive expeditions deeper that 100 meters you need to submit a dive plan to the Hotline team. To learn more use this <a [routerLink] = "['/technical-diving']">link</a>.&nbsp;</li>
+                      </ul>
+                    </div>
+  
+  
+                    <div class="form-group col-sm-12">
+                      <div class="checkbox-custom">
+                        <label class="checkbox">I’ve read and agree with the&nbsp;<a [routerLink]="['/membership-terms-of-services']" rel="noopener noreferrer" target="_blank">Membership Terms of Services</a> | <a [routerLink]="['/privacy-policy']" rel="noopener noreferrer" target="_blank"><span> Privacy Policy</span></a> | <a [routerLink]="['/website-terms']" rel="noopener noreferrer" target="_blank"><span> Terms of Use</span></a>
+                          <input type="checkbox" formControlName="agree">
+                          <span class="checkmark"></span>
+                        </label>
+                      </div>
+                      <small class="text-danger" *ngIf="isNextButtonClickedLast && myForm.get('agree')?.hasError('required')"> This field is required. </small>
+                    </div>
+  
+                    <div class="form-group col-sm-12 steps-btn">
+                      <div class="row">
+                        <div class="col-sm-12"><a href="#" class="btn btn-lightgray back-btn" data-id="6">Back</a>
+                          <!--<a href="application-submit-success.html" class="btn">Submit</a>-->
+                          <input type="submit" class="btn" value="Submit" data-id="6">
+                        </div>
+                      </div>
+                    </div>
+  
+                  </div><!--/ row -->
+                </div><!--/ form-steps -->
+            </form>
+          </div>
+        </div><!--/ form-grid -->
+      </div>
+
+    </div><!--/ row -->
+  </div>
+</section><!--/ form-wrap -->

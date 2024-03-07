@@ -1,0 +1,159 @@
+<section class="dashboard-wrapper">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-3">
+                <member-sidebar></member-sidebar>
+            </div>
+            <div class="col-sm-9">
+                <form #f="ngForm" class="sky-form" [formGroup]="payForm" (ngSubmit)="onSave(f)">
+                    <input type="hidden" formControlName="user_id" [(ngModel)]="user_id" />
+                    <input type="hidden" formControlName="user_type" [(ngModel)]="user_type" />
+                    <div class="chalkbg">
+                        <img src="/assets/images/red-logo.png" style="height: 50px;">
+                        <span style="text-align: right">
+                            <br>
+                            <label class="chalktitle" style="color: white">DIVERS ALERT NETWORK PAYMENT DETAILS</label>
+                        </span>
+                    </div>
+                    <div class="row" style="padding: 0 15px;">
+                        <div id="levelarea" class="level_area">
+                            <div class="row">
+                                <label class="label-left col col-4">Level:</label>
+                                <div class="col col-8">
+                                    <section>
+                                        <label id="level" class="input label-left"
+                                            style="font-weight: normal">{{pack_name}}</label>
+                                    </section>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div style="background: white" class="level_area">
+                            <div class="row">
+                                <label class="label-left col col-4">Divers (Main &amp; Additional):</label>
+                                <div class="col col-8">
+                                    <section>
+                                        <label id="divers" class="input label-left"
+                                            style="font-weight: normal">1</label>
+                                    </section>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="level_area">
+                            <div class="row">
+                                <label class="label-left col col-4">Additional Costing Details:</label>
+                                <div class="col col-8">
+                                    <table style="font-size: 16px; color: #7f8080; width: 100%" cellpadding="0"
+                                        cellspacing="0" class="prices">
+                                        <tbody>
+                                            <tr>
+                                                <td style="font-weight: bold; padding-top: 0 !important">Product
+                                                </td>
+                                                <td style="font-weight: bold; padding-top: 0 !important">Cost</td>
+                                            </tr>
+                                            <tr style="display: none">
+                                                <td>Additional Bank charge (debit failure)</td>
+                                                <td id="priceFail">(R 35.00)</td>
+
+                                            </tr>
+                                            <tr>
+                                                <td>DAN Member Tag</td>
+                                                <td id="priceTag">(R 35.00)</td>
+
+                                            </tr>
+                                            <tr>
+                                                <td>Wrist Band</td>
+                                                <td id="priceBand">(R 10.00)</td>
+
+                                            </tr>
+                                            <tr>
+                                                <td>Membership Card</td>
+                                                <td id="priceCard">(R 25.00)</td>
+
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="level_area" style="background: white">
+                            <div class="row">
+                                <label class="label-left col col-4">Total Payable:</label>
+                                <div class="col col-8">
+                                    <section>
+                                        <label id="payable" class="input label-left"
+                                            style="font-weight: normal">R{{pack_price}}.00</label>
+                                    </section>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="level_area">
+                            <div class="row">
+                                <label class="label-left col col-4">Payment Type:</label>
+                                <div class="col col-8">
+                                    <select class="form-control" formControlName="pay_type" [(ngModel)]="pay_type">
+                                        <option value="CREDIT CARD">Credit Card</option>
+                                        <option value="EFT">EFT</option>
+                                        <option value="DEBIT ORDER">Debit Order</option>
+                                    </select>
+                                    <span *ngIf="formDataError.error_field === 'pay_type'" class="error-message">
+                                        {{ formDataError.msg }}
+                                    </span>
+                                    <span *ngIf="payForm.controls['pay_type'].hasError('required') && formSubmitted"
+                                        class="text-danger">Payment Type Required</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div style="background: white; border-top: 0px; display: none;" id="CreditCard"
+                            class="level_area">
+                            <div class="row">
+                                <label class="label-left col col-12">Once you click continue you will be redirected
+                                    to a payment gateway to complete your payment</label>
+                            </div>
+                        </div>
+
+                        <div id="BankingDetails" style="border-top: 0px;" class="level_area">
+                            <div class="row">
+                                <label class="label-left col col-4"></label>
+                                <label class="label-left col col-8">
+                                    <strong style="color:red">Important: </strong>Your membership can only be
+                                    activated after you make the EFT payment. Please email the proof of payment to
+                                    <a href="mailto:mail@dansa.org" target="_blank">mail@dansa.org</a>.
+                                    <br>
+                                    <br>
+                                </label>
+                            </div>
+                            <div class="row">
+                                <label class="label-left col col-4">
+                                </label>
+                                <label class="label-left col col-4">
+                                    <strong>Bank Details:</strong><br>
+                                    <br>
+                                    Divers Alert Network<br>
+                                    Nedbank<br>
+                                    Braamfontein Branch<br>
+                                    Branch Code: 195005<br>
+                                    Account Number: 1950508714<br>
+                                    Cheque Account<br>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" style="padding: 0 30px;">
+                        <div class="form-group col-sm-12">
+                            <input type="submit" class="btn" value="Submit">
+                        </div>
+                        <!-- <span *ngIf="successMsg != ''" class="success-message">
+                            {{ successMsg }}
+                        </span> -->
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</section>

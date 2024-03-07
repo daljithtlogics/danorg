@@ -1,0 +1,14 @@
+<div class="payment-redirect-page">
+<h2 class="text-center" style="">Processing...</h2>
+<p class="text-center">You will be redirected to the netcash wesbite. It might take few seconds.</p>
+<p class="text-center">Please do not refresh the page or click "Back" or "Close" button of the browser.</p>
+<form name="form" id="x1" method="POST" action="https://paynow.netcash.co.za/site/paynow.aspx" target="_top"> <!---Form POST **--->
+<input type="text" name="M1" value="5717d523-e4c7-4406-b7ab-7979ac6fa1d5"> <!--- YOUR PAY NOW SERVICE KEY GOES IN HERE --->
+<input type="text" name="M2" value="24ade73c-98cf-47b3-99be-cc7b867b3080"> <!--- SOFTWARE VENDOR KEY GOES IN HERE --->
+<input type="text" name="p2" value="ID:21322111"> <!---Unique ID for this / each transaction--->
+<input type="text" name="p3" value="Test / Demo goods"> <!---Description of goods being purchased--->
+<input type="text" name="p4" value="5.00"> <!---Amount to be settled / paid--->
+<input type="text" name="Budget" value="Y"> <!---Compulsory should be Y--->
+<input name="submit" type="submit" value="PAY"> <!---Submit button--->
+</form>
+</div>

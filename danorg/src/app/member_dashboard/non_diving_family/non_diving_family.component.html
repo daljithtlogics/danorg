@@ -1,0 +1,172 @@
+<section class="dashboard-wrapper">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-3">
+                <member-sidebar></member-sidebar>
+            </div>
+            <div class="col-sm-9">
+                <div id="" class="sky-form" *ngIf="userMembership === 'annual'">
+                    <div class="chalkbg">
+                        <img src="/assets/images/red-logo.png" style="height: 50px;">
+                        <span style="text-align: right">
+                            <br>
+                            <label class="chalktitle" style="color: white">DIVERS ALERT NETWORK SOUTHERN AFRICA</label>
+                        </span>
+                    </div>
+                    <div class="row" style="padding: 20px 30px;">
+                        <div class="col col-12">
+                            <p class="heading" style="color: #666666;">non diving family</p>
+                            <p class="dan-p">We offer a membership option tailored to meet your specific needs. To
+                                apply, please complete and submit the membership application form from below.
+                                <strong>This is an annual membership that can only be cancelled after one year.</strong>
+                            </p>
+                        </div>
+                    </div>
+                    <form [formGroup]="nonDiveForm" (ngSubmit)="onSubmit()">
+                    <div class="row" style="padding:0 30px;">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="control-label">Title <small class="text-danger">*</small></label>
+                                <select class="form-control" formControlName="title" [(ngModel)]="title">
+                                    <option value="UNKNOWN">UNKNOWN</option>
+                                    <option value="MR">MR</option>
+                                    <option value="MRS">MRS</option>
+                                    <option value="MISS">MISS</option>
+                                    <option value="MS">MS</option>
+                                    <option value="REV">REV</option>
+                                    <option value="DR">DR</option>
+                                    <option value="PROF">PROF</option>
+                                    <option value="DS">DS</option>
+                                    <option value="SIR">SIR</option>
+                                    <option value="MASTER">MASTER</option>
+                                    <option value="COMPANY">COMPANY:</option>
+                                </select>
+                                <span *ngIf="formDataError.error_field === 'title'" class="error-message">{{ formDataError.msg }}</span>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="control-label">First name/s <small class="text-danger">*</small></label>
+                                <input type="text" class="form-control" formControlName="fname" [(ngModel)]="fname">
+                                <span *ngIf="formDataError.error_field === 'fname'" class="error-message">{{ formDataError.msg }}</span>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="control-label">Surname <small class="text-danger">*</small></label>
+                                <input type="text" class="form-control" formControlName="sname" [(ngModel)]="sname">
+                                <span *ngIf="formDataError.error_field === 'sname'" class="error-message">{{ formDataError.msg }}</span>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label">Date of birth <small class="text-danger">*</small></label>
+                               <input type="date" class="form-control date-picker" name="dob" formControlName="dob" [(ngModel)]="dob">
+                                <span *ngIf="formDataError.error_field === 'dob'" class="error-message">{{ formDataError.msg }}</span>
+                            </div>
+                        </div>
+                    
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label">ID/Passport number</label>
+                                <input type="text" class="form-control" formControlName="passport" [(ngModel)]="passport">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label">Telephone (H)</label>
+                                <input type="tel" class="form-control" formControlName="phonehome" [(ngModel)]="phonehome">
+                            </div>
+                        </div>
+                            
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label">Telephone (W)</label>
+                                <input type="tel" class="form-control" formControlName="phonework" [(ngModel)]="phonework">
+                            </div>
+                        </div>
+                    
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label">Cell phone <small class="text-danger">*</small></label>
+                                <input type="tel" class="form-control" formControlName="cellphone" [(ngModel)]="cellphone">
+                                <span *ngIf="formDataError.error_field === 'cellphone'" class="error-message">{{ formDataError.msg }}</span>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label">Email <small class="text-danger">*</small></label>
+                                <input type="mail" class="form-control" formControlName="email" [(ngModel)]="email">
+                                <span *ngIf="formDataError.error_field === 'email'" class="error-message">{{ formDataError.msg }}</span>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label">Relationship to main member <small class="text-danger">*</small></label>
+                                    <select class="form-control" formControlName="relation" [(ngModel)]="relation">
+                                        <option value="CHILD">CHILD</option>
+                                        <option value="DAUGHTER">DAUGHTER</option>
+                                        <option value="DEPENDENT CHILD">DEPENDENT CHILD</option>
+                                        <option value="GUARDIAN">GUARDIAN</option>
+                                        <option value="HUSBAND">HUSBAND</option>
+                                        <option value="LIFE PARTNER" selected>LIFE PARTNER</option>
+                                        <option value="OTHER">OTHER</option>
+                                        <option value="SON">SON</option>
+                                        <option value="SPOUSE">SPOUSE</option>
+                                        <option value="WIFE">WIFE</option>
+                                    </select>
+                                <span *ngIf="formDataError.error_field === 'relation'" class="error-message">{{ formDataError.msg }}</span>
+                            </div>
+                        </div>
+                        <div class="form-group col-sm-12">
+                            <input type="submit" class="btn btn-suucess" style="padding: 7px 20px !important;" [value]="isEditMode ? 'Update' : 'Submit'">
+                        </div>
+                    </div>
+                    <div class="row" style="padding: 15px 30px;">
+                        <div class="col-sm-12">
+                            <div class="table-wrapper">
+                                <div class="table-scrollable">
+                                    <div class="row" style="padding-bottom: 11px;">
+                                        <div class="col-sm-7"><h4>Non-Diving Family List</h4></div>
+                                        <!-- <div class="col-sm-5"><button class="btn btn-primary btn-dfl" type="reset"><i class="fa fa-plus"></i>Add New</button></div> -->
+                                    </div>
+                                    <table class="table table-striped table-hover table-light" cellspacing="0"
+                                        width="100%" role="grid">
+                                        <thead>
+                                            <tr role="row">
+                                                <th>Member Name</th>
+                                                <th>Email</th>
+                                                <th>Cell Phone</th>
+                                                <th>Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <ng-container *ngIf="dives.length > 0; else noRecords">
+                                                <tr *ngFor="let dive of dives">
+                                                    <td>{{dive.fname1}}
+                                                        {{dive.sname1=='null'?'':dive.sname1}}</td>
+                                                    <td>{{dive.email1 }}</td>
+                                                    <td>{{dive.cellphone1 }}</td>
+                                                    <td>
+                                                        <a class="button-ghost" (click)="editDive(dive.id)"> <i class="fa fa-pencil"></i> </a> 
+                                                        <a class="button-ghost" (click)="deleteDive(dive.id)"> <i class="fa fa-trash"></i> </a> 
+                                                    </td>
+                                                </tr>
+                                            </ng-container>
+                                            <ng-template #noRecords>
+                                                <tr>
+                                                <td colspan="4" class="text-center">No records found.</td>
+                                                </tr>
+                                            </ng-template>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

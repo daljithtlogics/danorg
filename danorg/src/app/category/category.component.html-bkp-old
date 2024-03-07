@@ -1,0 +1,128 @@
+<!--<section class="breadcrumb">
+    <div class="container">
+		<ul *ngIf="collectionData">
+			<li class="breadcrumb-item">
+			  <a routerLink="/danshop"><i class="fa fa-home" aria-hidden="true"></i> Home</a>
+			</li>
+			<ng-container *ngFor="let breadcrumb of collectionData.breadcrumbs; let last = last">
+			  <li class="breadcrumb-item" *ngIf="!last && breadcrumb.name !== '__root_collection__'">
+				<a [routerLink]="['/danshop/category', breadcrumb.slug]">{{ breadcrumb.name }}</a>
+			  </li>
+			  <li class="breadcrumb-item active" *ngIf="last">{{ breadcrumb.name }}</li>
+			</ng-container>
+		</ul>
+    </div>
+</section>-->
+<section class="mid-inner">
+    <div class="container">
+        <div class="row">
+		    <div class="col-sm-12 full-wrap"  *ngIf="collectionData">
+				<h2 class="collection-title" style="line-height: 1;color: #000;font-size: 28px;margin-bottom: 35px;">{{ collectionData.name }}</h2>
+				<div class="row">
+					<div class="col-sm-2 collection-image" *ngIf="collectionData.featuredAsset != null"><img src="{{collectionData.featuredAsset.source}}" alt=""></div>
+					<div class="col-sm-10 collection-description" [innerHTML]="collectionData.description"></div>
+				</div>	
+			</div>
+            <div class="col-sm-12 full-wrap">
+                <div class="products-wrap">
+                    <div class="row" *ngIf="allProducts && allProducts.length > 0; else noProducts">
+                        <div class="col-sm-3 pw-coll" *ngFor="let prod of allProducts"> 
+                            <div class="item">
+                                <div class="image">
+                                    <ng-container *ngIf="prod.productAsset.preview; else noPreview">
+									  <a [routerLink]="['/danshop/product-details/', prod.slug]">
+										<img [src]="prod.productAsset.preview" alt="" width="100%">
+									  </a>
+									</ng-container>
+									<ng-template #noPreview>
+									  <a [routerLink]="['/danshop/product-details/', prod.slug]">
+										<img src="assets/images/no-image.jpg" alt="" width="100%">
+									  </a>
+									</ng-template>
+                                </div>
+                                <div class="caption">
+                                    <h4 style="min-height: 39px;">
+                                        <a [routerLink]="['/danshop/product-details/',prod.slug]" class="woocommerce-LoopProduct-link">{{prod.productName}}</a>
+                                    </h4>
+									<p>{{ prod.description | removeHtmlTags | slice:0:100}}...</p>
+                                    <!--<div class="star-rating">
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star-half-empty"></i>
+                                    </div>-->                                   
+                                    <!--<p class="price">
+                                        <ins>ZAR {{prod.variants[0].priceWithTaxFormatted}}</ins>
+                                        <small>Ex Tax:ZAR {{prod.variants[0].priceFormatted}}</small>
+                                    </p>-->
+									<ng-template [ngIf]="prod.priceWithTax.__typename === 'SinglePrice'">
+									  <!--if price is single-->
+										<p class="price">
+										    <ins>ZAR {{ prod.priceWithTax.value / 100 | number:'1.2-2' }}</ins>
+										    <small>Ex Tax: ZAR {{ prod.price.value / 100 | number:'1.2-2' }}</small>
+										</p>
+									</ng-template>
+									<ng-template [ngIf]="prod.priceWithTax.min === prod.priceWithTax.max" [ngIfElse]="range">
+									    <!--if price is same in range-->
+										<p class="price">
+										    <ins>ZAR {{ prod.priceWithTax.min / 100 | number:'1.2-2' }}</ins>
+										    <small>Ex Tax: ZAR {{ prod.price.min / 100 | number:'1.2-2' }}</small>
+										</p>
+									</ng-template>
+									<ng-template #range>
+									    <!--if price diffrent in range-->
+										<p class="price">
+											<ins>ZAR {{ prod.priceWithTax.min / 100 | number:'1.2-2' }}</ins>
+											<small>Ex Tax: ZAR {{ prod.price.min / 100 | number:'1.2-2' }}</small>
+										</p>
+									</ng-template>
+									<ng-template [ngIf]="prod.inStock == false">
+										<p class="price">
+											<ins>Out of stock</ins>
+										</p>
+									</ng-template>
+                                    <div class="button-group">
+									    <ng-template [ngIf]="prod.inStock == true">
+									    <ng-template [ngIf]="prod.priceWithTax.__typename === 'SinglePrice'">
+											<button type="button" data-toggle="tooltip" title="Add to Cart" [attr.data-productId]="prod.productId" [attr.data-productName]="prod.productName" [attr.data-productPrice]="prod.priceWithTax.min / 100 | replace" (click)="addToCart(prod.productVariantId, 1)">
+												<i class="fa fa-shopping-cart" aria-hidden="true" [attr.data-productId]="prod.productId" [attr.data-productName]="prod.productName" [attr.data-productPrice]="prod.priceWithTax.min / 100 | replace"></i>
+											</button>
+										</ng-template> 
+										<ng-template [ngIf]="prod.priceWithTax.min === prod.priceWithTax.max" [ngIfElse]="range2">
+											<!--if price is same in range-->
+											<button type="button" data-toggle="tooltip" title="Add to Cart" [attr.data-productId]="prod.productId" [attr.data-productName]="prod.productName" [attr.data-productPrice]="prod.priceWithTax.min / 100 | replace" [attr.data-productSlug]="prod.slug" (click)="navigateToRoute(prod.slug)">
+												<i class="fa fa-shopping-cart" aria-hidden="true" [attr.data-productId]="prod.productId" [attr.data-productName]="prod.productName" [attr.data-productPrice]="prod.priceWithTax.min / 100 | replace"></i>
+											</button>
+										</ng-template>	
+										<ng-template #range2>
+											<!--if price diffrent in range-->
+											<button type="button" data-toggle="tooltip" title="Add to Cart" [attr.data-productId]="prod.productId" [attr.data-productName]="prod.productName" [attr.data-productPrice]="prod.priceWithTax.min / 100 | replace" [attr.data-productSlug]="prod.slug" (click)="navigateToRoute(prod.slug)">
+												<i class="fa fa-shopping-cart" aria-hidden="true" [attr.data-productId]="prod.productId" [attr.data-productName]="prod.productName" [attr.data-productPrice]="prod.priceWithTax.min / 100 | replace"></i>
+											</button>
+										</ng-template>
+										</ng-template>
+                                        <button type="button" data-toggle="tooltip" title="Add to Wish List">
+                                            <i class="fa fa-heart" aria-hidden="true"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <!--/ caption -->
+							</div>						
+                            <!--/ item -->
+                        </div>
+                        <!--/ pw-coll -->
+                    </div>
+					<ng-template #noProducts>
+						<div class="no-product-found-text text-muted small">There are no products to list in this category.</div>
+					</ng-template>
+                    <!--/ row -->
+                </div>
+                <!--/ products-wrap -->
+            </div>
+        </div>
+        <!--/ row -->
+    </div>
+</section>
+<!--/ mid-inner -->
+<app-danshop-sub-footer></app-danshop-sub-footer>

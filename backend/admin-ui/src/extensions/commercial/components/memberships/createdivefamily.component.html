@@ -1,0 +1,379 @@
+<!DOCTYPE html>  
+<html lang="en">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>DAN Shop</title>
+    <!-- Bootstrap Core CSS -->
+    <!--<link href="css/bootstrap.min.css" rel="stylesheet">  	
+	<link rel="stylesheet" href="css/owl.carousel.min.css">
+    <link rel="stylesheet" href="css/owl.theme.default.min.css">--->
+
+    <!-- Custom CSS -->
+    <!--<link href="style.css" rel="stylesheet">-->  
+	<link href="https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">    	
+	
+    <!-- Custom Fonts -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" />  
+    <!--<link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">-->
+    <script src="https://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+	 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>    
+</head>
+<body>  
+
+<div class="container annual-member-form">
+  <h2 class="main-head">New Diver</h2>           
+  <br>   
+  <!-- Nav tabs -->
+  <ul class="nav nav-tabs nav-tabs-own" role="tablist">   
+    <li class="nav-item">       
+	   <button id="" class="nav-link active btn-own tablinks" (click)="handleClick('info')">Info</button>  	
+    </li>
+    <li class="nav-item">       
+	  <button id="" class="nav-link btn-own tablinks" (click)="handleClick('details')">Details</button>  	
+    </li>   
+  </ul>
+  
+  <form class="form-horizontal" [formGroup]="diveForm" #f="ngForm" (ngSubmit)="onSubmit(f)">        
+    <div class="annual-member-box">
+	
+	<input type="hidden" formControlName="tab_id" [(ngModel)]="tab_id" />      	  	
+  <!-- Tab panes -->
+  <div class="tab-content">
+    <div id="info" class="container-fluid tab-pane active tabcontent"><br>  
+	<div class="form-tab-heading">  
+      <h3> Personal Info</h3>
+	  </div>
+      <div class="row">
+ <div class="col-md-6">
+<div class="form-group">
+ <label class="control-label">Title</label>
+ <div class="input-group">
+<span class="input-group-addon">   
+ <i class="fa fa-id-badge"></i>				
+</span>
+ <select class="form-control" formControlName="title">      
+	<option value="UNKNOWN">UNKNOWN</option>
+	<option value="MR">MR</option>  
+	<option value="MRS">MRS</option>
+	<option value="MISS">MISS</option>
+	<option value="MS">MS</option>
+	<option value="REV">REV</option>
+	<option value="DR">DR</option>
+	<option value="PROF">PROF</option>
+	<option value="DS">DS</option>
+	<option value="SIR">SIR</option>
+	<option value="MASTER">MASTER</option>
+	<option value="COMPANY">COMPANY:</option>    
+</select>
+  </div>
+</div>
+ </div>
+<div class="col-md-6">
+<div class="form-group">
+ <label class="control-label">First name/s</label>
+ <div class="input-group">
+ <span class="input-group-addon">   
+ <i class="fa fa-user"></i>
+  </span>
+ <input type="text" class="form-control" formControlName="fname">  
+ </div>
+ <span *ngIf="formDataError.error_field === 'fname'" class="error-message">{{ formDataError.msg }}</span>  
+</div>
+</div>
+    </div>
+	  
+	  	
+ <div class="row">
+ <div class="col-md-6">
+<div class="form-group">
+     <label class="control-label">Surname</label>  
+<div class="input-group">
+<span class="input-group-addon">   
+ <i class="fa fa-user"></i>
+  </span>
+ <input type="text" class="form-control" formControlName="sname">      
+  </div>
+</div>
+  </div>
+ <div class="col-md-6">
+<div class="form-group">
+<label class="control-label">Date of birth</label>
+<div class="input-group">
+<span class="input-group-addon">   
+<i class="fa fa-calendar"></i>
+</span>
+<input type="date" class="form-control date-picker" formControlName="dob">    
+</div>
+<span *ngIf="formDataError.error_field === 'dob'" class="error-message">{{ formDataError.msg }}</span>  
+</div>
+</div>
+</div>
+<div class="row">
+
+<div class="col-md-6">
+<div class="form-group">
+<label class="control-label">ID/Passport number</label>
+<div class="input-group">
+<span class="input-group-addon">   
+<i class="fa fa-plus"></i>
+</span>
+<input type="text" class="form-control" formControlName="passport">  
+</div>
+</div>
+</div>
+
+
+<div class="col-md-6">
+<div class="form-group">
+<label class="control-label">Relationship</label>
+<div class="input-group">
+<span class="input-group-addon">   
+<i class="fa fa-life-ring"></i>
+</span>
+<select class="form-control" formControlName="relation">        
+	<option value="CHILD">CHILD</option>
+	<option value="DAUGHTER">DAUGHTER</option>
+	<option value="DEPENDENT CHILD">DEPENDENT CHILD</option>
+	<option value="GUARDIAN">GUARDIAN</option>  
+	<option value="HUSBAND">HUSBAND</option>
+	<option value="LIFE PARTNER">LIFE PARTNER</option>
+	<option value="OTHER">OTHER</option>
+	<option value="SON">SON</option>
+	<option value="SPOUSE">SPOUSE</option>
+	<option value="WIFE">WIFE</option>   
+</select>
+</div>
+<span *ngIf="formDataError.error_field === 'relation'" class="error-message">{{ formDataError.msg }}</span>   
+</div>
+</div>    
+</div>  
+
+<div class="form-tab-heading">
+      <h3> Contact Info</h3>		
+	  </div>
+<div class="row">
+<div class="col-md-6">
+<div class="form-group">
+<label class="control-label">Telephone (H)</label>
+<div class="input-group">
+<span class="input-group-addon">    
+<i class="fa fa-phone"></i>
+</span>
+<input type="tel" class="form-control" formControlName="phonehome">
+</div>
+</div>
+</div>
+<div class="col-md-6">
+<div class="form-group">
+<label class="control-label">Telephone (W)</label>
+<div class="input-group">
+<span class="input-group-addon">   
+<i class="fa fa-phone"></i>
+</span>
+<input type="tel" class="form-control" formControlName="phonework">		 
+</div>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col-md-6">
+<div class="form-group">
+<label class="control-label">Cell phone</label>
+<div class="input-group">
+<span class="input-group-addon">   
+<i class="fa fa-mobile-phone"></i>
+</span>
+<input type="tel" class="form-control" formControlName="cellphone">		 
+</div>
+<span *ngIf="formDataError.error_field === 'cellphone'" class="error-message">{{ formDataError.msg }}</span>    
+</div>
+</div>
+<div class="col-md-6">
+<div class="form-group">
+<label class="control-label">Email</label>
+<div class="input-group">
+<span class="input-group-addon">   
+<i class="fa fa-envelope"></i>   
+</span>
+<input type="mail" class="form-control" formControlName="email">		
+</div>
+<span *ngIf="formDataError.error_field === 'email'" class="error-message">{{ formDataError.msg }}</span>    
+</div>
+</div>   
+
+</div>
+
+
+
+    </div>  <!-- Tab 1 close -->
+    <div id="details" class="container-fluid tab-pane fade tabcontent"><br>
+      <div class="portlet-body">
+	  
+	  
+<div class="form-tab-heading">
+      <h3> Membership Info</h3>
+	  </div>   
+<div class="row">
+<div class="col-md-6">  
+<div class="form-group">
+<label class="control-label">Diving qualification</label>   
+<div class="input-group">
+<span class="input-group-addon">		
+<i class="fa fa-plus"></i>
+</span>
+<input type="text" class="form-control" formControlName="qualification">  
+</div>
+<span *ngIf="formDataError.error_field === 'qualification'" class="error-message">{{ formDataError.msg }}</span>    
+</div>
+</div>    
+<div class="col-md-6">
+<div class="form-group">
+<label class="control-label">Agency</label>
+<div class="input-group">
+<span class="input-group-addon">   
+<i class="fa fa-university"></i>
+</span>
+<select class="form-control" formControlName="agency">		
+	<option selected="selected" value=""></option>
+	<option value="UNKNOWN">UNKNOWN</option>
+	<option value="OTHER">OTHER</option>
+	<option value="CMAS">CMAS</option>
+	<option value="IANTD">IANTD</option>
+	<option value="NAUI">NAUI</option>
+	<option value="PADI">PADI</option>
+	<option value="SAUU">SAUU</option>
+	<option value="SSI">SSI</option>
+	<option value="TDI">TDI</option>
+	<option value="ANDI">ANDI</option>
+	<option value="SDI">SDI</option>
+	<option value="SAUFF">SAUFF</option>
+	<option value="RAID">RAID</option>
+	<option value="SAFF">SAFF</option>
+	<option value="PURE APNEA">PURE APNEA</option>    
+</select>
+
+</div>
+</div>
+</div>
+</div>
+<div class="row">
+
+<div class="col-md-6">
+<div class="form-group">
+<label class="control-label">Working Diver</label>
+<div class="input-group">
+<span class="input-group-addon">	
+<i class="fa fa-university"></i>
+</span>
+<div class="outerDivFull">		
+<div class="switchToggle">
+    <input type="checkbox" id="switch" formControlName="workdiver">  
+    <label for="switch">Toggle</label>
+</div>
+</div> 
+</div>
+</div>
+</div>
+
+<div class="col-md-6">
+<div class="form-group">
+<label class="control-label">Freediver/spear fisherman</label>
+<div class="input-group">
+<span class="input-group-addon">   
+ <i class="fa fa-book"></i>
+</span>
+<select class="form-control" formControlName="freediver">  
+	<option value=""></option>
+	<option value="Recreational">Recreational</option>
+	<option value="Competative">Competative</option>
+	<option value="Both">Both</option>
+	<option value="N/A">N/A</option>    
+</select>
+</div>
+
+</div>
+</div>  
+</div> 
+
+<div class="row">
+<div class="col-md-6">
+<div class="form-group">
+<label class="control-label">Status</label>
+<div class="input-group">    
+<span class="input-group-addon">  
+<i class="fa fa-wrench"></i>
+</span>
+<select class="form-control" formControlName="status">		
+	<option value="ON HOLD - HOLD MAIL">ON HOLD - HOLD MAIL</option>
+	<option value="INACTIVE">INACTIVE</option>  
+	<option value="ACTIVE">ACTIVE</option>
+	<option value="DELETE">DELETE</option>    
+</select> 
+</div>
+ <span *ngIf="formDataError.error_field === 'status'" class="error-message">{{ formDataError.msg }}</span>     
+</div>
+</div>  
+
+</div>
+<div class="row">
+<div class="col-md-6">
+<div class="form-group">
+<label class="control-label">Capture date</label>
+<div class="input-group">
+<span class="input-group-addon">   
+<i class="fa fa-calendar"></i>
+</span>
+<input type="date" class="form-control date-picker" formControlName="capturedate">
+</div>
+</div>
+</div>
+<div class="col-md-6">
+<div class="form-group">
+<label class="control-label">Updated date</label>  
+<div class="input-group">
+<span class="input-group-addon">   
+<i class="fa fa-calendar"></i>
+</span>
+<input type="date" class="form-control date-picker" formControlName="updatedate"> 
+</div>
+</div>
+</div>
+</div>  
+<div class="row margin-bottom-20">
+<div class="col-md-6">
+<div class="form-group">
+<label class="control-label">Paid</label>
+<div class="input-group">
+<span class="input-group-addon">  
+<i class="fa fa-bank"></i>
+</span>
+<div class="outerDivFull">   
+<div class="switchToggle">
+    <input type="checkbox" id="switch2" formControlName="paid">  
+    <label for="switch2">Toggle</label>
+</div>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+</div>
+    </div> <!-- Tab 2 close -->   
+  </div>
+</div>
+	<div class="form-group">
+		<button type="submit" class="btn btn-own">Submit</button>  
+		<span *ngIf="successMsg != ''" class="success-message">		    
+                {{ successMsg }}				  			
+        </span> 	  	  
+	</div>
+	</form>
+</div>	     
+</body>
+</html>   

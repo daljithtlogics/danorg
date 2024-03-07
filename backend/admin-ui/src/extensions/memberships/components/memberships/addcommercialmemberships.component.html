@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">    
+    <title>Add Commercial Member Form</title>		
+</head>
+<body>
+    <div class="form-container">
+        <h2>Add Commercial Member</h2>			
+        <form (ngSubmit)="onSubmit()">
+            <div class="form-group">
+                <label for="first-name">First Name:</label>
+                <input type="text" id="first-name" name="first-name" [(ngModel)]="formData.firstName" required>
+                <div *ngIf="formDataError.error_field === 'firstName'" class="error-message">
+                    {{ formDataError.msg }}
+                  </div>
+            </div>
+            <div class="form-group">
+                <label for="last-name">Last Name:</label>
+                <input type="text" id="last-name" name="last-name" [(ngModel)]="formData.lastName" required>
+                <div *ngIf="formDataError.error_field === 'lastName'" class="error-message">
+                    {{ formDataError.msg }}
+                  </div>
+            </div>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" [(ngModel)]="formData.email" required>
+                <div *ngIf="formDataError.error_field === 'email'" class="error-message">
+                    {{ formDataError.msg }}
+                  </div>
+            </div>
+            <div class="form-group">
+                <label for="mobile">Mobile Number:</label>
+                <input type="tel" id="mobile" name="mobile"[(ngModel)]="formData.mobile"  required>
+                <div *ngIf="formDataError.error_field === 'mobile'" class="error-message">
+                    {{ formDataError.msg }}
+                  </div>
+            </div>
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" [(ngModel)]="formData.password" required>
+                <div *ngIf="formDataError.error_field === 'password'" class="error-message">
+                    {{ formDataError.msg }}
+                  </div>
+            </div>
+            <div *ngIf="successMsg != ''" class="success-message">
+                {{ successMsg }}
+            </div>
+            <button type="submit">Register</button>		
+        </form>
+    </div>
+</body>
+</html>  

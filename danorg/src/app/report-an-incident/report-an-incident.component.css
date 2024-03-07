@@ -1,0 +1,117 @@
+.form-wrap.annual-application .title {
+    text-align: left !important;
+}
+.form-wrap.annual-application .step-no {
+    text-align: left !important;
+}
+.form-wrap.annual-application h3 {
+    text-align: left !important;
+}
+.form-wrap.annual-application .form-grid {
+    max-width: 780px !important;
+}
+.form-wrap .form-bar {
+    margin-bottom: 20px;
+}
+.heading_main {
+    font-size: 19px;
+    font-weight: bold;
+    font-style: normal;
+    color: rgb(17, 17, 17);
+}
+.heading_caption {
+    margin-top: 8px !important;
+    color: rgba(17, 17, 17, 0.6);
+    font-size: 14px;
+    margin-bottom: 0px !important;
+}
+.dan_mem{margin: 0 10px 0 0;}
+.font-light{font-weight: 300 !important;}
+#step_3 input[type="checkbox"] {
+    margin-right: 10px;
+}
+.step3 {
+    margin-bottom: 25px;
+}
+.step3 .form-group {
+    margin-bottom: 3px !important;
+}
+#step_4 input[type="checkbox"] {
+    margin-right: 10px;
+}
+
+.NumberScale__Numbers {
+    margin: 0px auto;
+    width: 100%;
+    display: flex;
+}
+.NumberScale__NumberContainer {
+    position: relative;
+    transition: all 0.1s ease 0s;
+    width: calc(10% - 3.6px);
+    color: rgb(17, 17, 17);
+    background: transparent;
+    border-radius: 4px;
+    border: 1px solid rgba(17, 17, 17, 0.2);
+}
+.NumberScale__NumberContainer:not(:last-child) {
+    margin-right: 4px;
+}
+.NumberScale__NumberContainer.selected{
+    position: relative;
+    transition: all 0.1s ease 0s;
+    width: calc(10% - 3.6px);
+    color: rgb(255, 255, 255);
+    background: rgb(25, 123, 255);
+    border-radius: 4px;
+    border: 1px solid rgb(25, 123, 255);
+}
+.NumberScale__NumberContainer:hover{
+    position: relative;
+    transition: all 0.1s ease 0s;
+    width: calc(10% - 3.6px);
+    color: rgb(17, 17, 17);
+    background: transparent;
+    border-radius: 4px;
+    border: 1px solid rgb(25, 123, 255);
+}
+input.NumberScale__Input {
+    position: absolute;
+    cursor: pointer;
+    margin: 0px;
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+}
+.NumberScale__NumberLabel {
+    width: 100%;
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    font-size: 15px;
+    font-weight: normal;
+    font-style: normal;
+    line-height: 20px;
+    padding: 15px 0px;
+}
+.NumberScale__Caption {
+    margin-top: 4px;
+    color: rgba(17, 17, 17, 0.5);
+    font-size: 14px;
+    line-height: 20px;
+}
+.NumberScale__LeftCaption {
+    float: left;
+}
+.NumberScale__RightCaption {
+    float: right;
+}
+.heading_para {
+    overflow-wrap: break-word;
+    font-size: 15px;
+    color: rgb(17, 17, 17);
+    line-height: 30px;
+    margin: 0 0 10px;
+}

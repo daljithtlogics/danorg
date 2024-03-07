@@ -1,0 +1,151 @@
+<section class="shop-box shop-box-white">
+
+    <section class="dans-shop-banner">
+        <div class="container">
+            <div class="row">
+                <div class="shop-logo"><img src="assets/images/shop-logo.png" alt=""></div>
+                <h1>DIVERS ALERT NETWORK SOUTHERN AFRICA</h1>
+            </div>
+        </div>
+    </section>
+
+    <div class="container">
+        
+
+        <section class="shop-info ">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-8 shop-info-left">
+                        <h2 class="text-capitalize">{{ userMembership }} Membership Homepage</h2>
+                        <p>DAN is your dive safety association. Join more than 7000 of your fellow scuba divers who have already decided to become members. DAN offers a variety of membership options so that every divers needs are fully catered for. Choose the membership packages best suited for your needs.</p>
+                    </div>
+                    <div class="col-sm-4 shop-info-right">
+                        <div class="box-btn">
+                            <a [routerLink]="['#']" target="_blank" class="btn">TUTORIALS</a>
+                            <p><a [routerLink]="['#']" target="_blank">Need support? Click Here</a></p>
+                        </div>
+                    </div>
+
+                </div>
+                <div class=" row">
+                    <div class="col-sm-12">
+                        <h3>Choose Membership Package</h3>
+                    </div>
+                   <div class="membership">
+                    <ng-container *ngIf="userMembership === 'student' || userMembership === 'annual' || userMembership === 'temporary'">
+                    <div class="col-sm-3 membership-box">
+                        <a routerLink="/personal-info">
+                            <i class="fa fa-user-plus"></i>
+                            <h5>Personal Info</h5>
+                            <p>For individual divers & diving families</p>
+                        </a>
+                    </div>
+                    <div class="col-sm-3 membership-box">
+                        <a routerLink="/membership-info">
+                            <i class="fa fa-user-plus"></i>
+                            <h5>Membership Info</h5>
+                            <p>For individual divers & diving families</p>
+                        </a>
+                    </div>
+                    </ng-container>
+
+                    <div class="col-sm-3 membership-box" *ngIf="(userMembership === 'annual' || userMembership === 'temporary')">
+                        <a routerLink="/kin-info">
+                            <i class="fa fa-user-plus"></i>
+                            <h5>Next of Kin Info</h5>
+                            <p>For trips outside your country of residence</p>
+                        </a>
+                    </div>
+
+                    <div class="col-sm-3 membership-box">
+                        <a href="">
+                            <i class="fa fa-user-plus"></i>
+                            <h5>Student Membership</h5>
+                            <p>For entry-level scuba students</p>
+                        </a>
+                    </div>
+
+                    <div class="col-sm-3 membership-box">
+                        <a href="">
+                            <i class="fa fa-user-plus"></i>
+                            <h5>Industry Partner</h5>
+                            <p>For dive businesses serious about safety</p>
+                        </a>
+                    </div>
+
+                    <div class="col-sm-3 membership-box">
+                        <a href="">
+                            <i class="fa fa-user-plus"></i>
+                            <h5>Commercial</h5>
+                            <p>For commercial companies</p>
+                        </a>
+                    </div>
+
+                    <div class="col-sm-3 membership-box">
+                        <a href="">
+                            <i class="fa fa-user-plus"></i>
+                            <h5>Commercial</h5>
+                            <p>For individual commercial divers</p>
+                        </a>
+                    </div>
+
+                    <div class="col-sm-3 membership-box">
+                        <a href="">
+                            <i class="fa fa-user-plus"></i>
+                            <h5>Commercial</h5>
+                            <p>For commercial student divers</p>
+                        </a>
+                    </div>
+
+                    <div class="col-sm-3 membership-box">
+                        <a href="">
+                            <i class="fa fa-user-plus"></i>
+                            <h5>Professional</h5>
+                            <p>For rescue, scientific & photographic divers</p>
+                        </a>
+                    </div>
+
+                    <div class="col-sm-3 membership-box">
+                        <a href="">
+                            <i class="fa fa-heartbeat"></i>
+                            <h5>Provider</h5>
+                            <p>DAN provider student online registration area</p>
+                        </a>
+                    </div>
+
+                    <div class="col-sm-3 membership-box">
+                        <a href="">
+                            <i class="fa fa-graduation-cap"></i>
+                            <h5>DAN Instructor</h5>
+                            <p>DAN instructor course online registration area</p>
+                        </a>
+                    </div>
+
+                    <div class="col-sm-3 membership-box">
+                        <a href="">
+                            <i class="fa fa-graduation-cap"></i>
+                            <h5>DAN Trainer Renewal</h5>
+                            <p>DAN Instructor & Trainer renewal area</p>
+                        </a>
+                    </div>
+
+                    <div class="col-sm-3 membership-box">
+                        <a href="">
+                            <i class="fa fa-cogs"></i>
+                            <h5>My Profile</h5>
+                            <p>Membership resources area & profile manager</p>
+                        </a>
+                    </div>
+
+                   </div>
+
+                </div>
+                
+            </div>
+
+        </section>
+   </div>
+   <div class="col-sm-12 shop-bottom">
+    <a (click)="logout()" class="btn">LOGOUT</a>
+</div>
+</section>

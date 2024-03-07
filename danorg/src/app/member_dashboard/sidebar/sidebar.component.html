@@ -1,0 +1,66 @@
+<div class="sidebar quixnav">
+    <div class="quixnav-scroll">
+        <ul>
+            <li routerLinkActive="active">    
+                 <a routerLink="/dashboard"><i class="fa fa-dashboard"></i> <span class="nav-text">Dashboard </span> </a>
+            </li>
+            <ng-container *ngIf="userMembership === 'student' || userMembership === 'annual' || userMembership === 'temporary'">
+            <li routerLinkActive="active" *ngIf="(userAccess | uppercase) == 'PAID' && userRenew === 'not_renew'">       
+               <a routerLink="/personal-info"><i class="fa fa-user"></i> <span class="nav-text">Personal Info</span></a>
+           </li>
+           <li routerLinkActive="active" *ngIf="(userAccess | uppercase) == 'PAID' && userRenew === 'not_renew'">
+               <a routerLink="/membership-info"><i class="fa fa-users"></i> <span class="nav-text">Membership Info</span></a>
+           </li>
+           </ng-container>
+            <!-- <li routerLinkActive="active" *ngIf="userMembership === 'student'">
+                 <a routerLink="/address-info"><i class="fa fa-envelope"></i> <span class="nav-text">Address Info</span></a>
+            </li> -->
+            <li routerLinkActive="active" *ngIf="(userMembership === 'annual' || userMembership === 'temporary') && (userAccess | uppercase) == 'PAID' && userRenew === 'not_renew'">
+               <a routerLink="/kin-info"><i class="fa fa-user"></i> <span class="nav-text">Next of Kin Info</span></a>
+            </li>
+			   <li routerLinkActive="active" *ngIf="(userMembership === 'annual') && (userAccess | uppercase) == 'PAID' && userRenew === 'not_renew'">   
+                <a routerLink="/student-membership"><i class="fa fa-graduation-cap"></i> <span class="nav-text">Student Membership</span></a>  
+            </li>   
+            <li routerLinkActive="active" *ngIf="userMembership === 'annual' && (userAccess | uppercase) == 'PAID' && userRenew === 'not_renew'">  
+               <a routerLink="/diving-family"><i class="fa fa-user-plus"></i> <span class="nav-text">Diving Family Info</span></a>
+            </li>
+            <li routerLinkActive="active" *ngIf="userMembership === 'annual' && (userAccess | uppercase) == 'PAID' && userRenew === 'not_renew'">
+               <a routerLink="/non-diving-family"><i class="fa fa-user-plus"></i> <span class="nav-text">Non-Diving Family Info</span></a>
+            </li>
+            <li routerLinkActive="active" *ngIf="userMembership === 'annual' && (userAccess | uppercase) == 'PAID' && userRenew === 'not_renew'">
+               <a routerLink="/bank-details"><i class="fa fa-university"></i> <span class="nav-text">Bank Details</span></a>
+            </li>
+            <li routerLinkActive="active" *ngIf="userMembership === 'annual' && (userAccess | uppercase) == 'PAID' && userRenew === 'not_renew'">
+               <a routerLink="/instructor"><i class="fa fa-user-circle"></i> <span class="nav-text">Instructors</span></a>
+            </li>
+            <li routerLinkActive="active" *ngIf="userMembership === 'annual' && (userAccess | uppercase) == 'PAID' && userRenew === 'not_renew'">
+               <a routerLink="/qualifications"><i class="fa fa-address-book"></i> <span class="nav-text">Qualifications</span></a>
+            </li>
+            <li routerLinkActive="active" *ngIf="userMembership === 'annual' && (userAccess | uppercase) == 'PAID' && userRenew === 'not_renew'">
+               <a routerLink="/provider"><i class="fa fa-bookmark"></i> <span class="nav-text">Provider</span></a>
+            </li>
+			<li routerLinkActive="active" *ngIf="userMembership === 'annual' && (userAccess | uppercase) == 'PAID' && userRenew === 'not_renew'">
+               <a routerLink="/industry-partner"><i class="fa fa-user-circle"></i> <span class="nav-text">Industry Partner</span></a>
+            </li>
+			<li routerLinkActive="active" *ngIf="userMembership === 'annual' && (userAccess | uppercase) == 'PAID' && userRenew === 'not_renew'">
+               <a routerLink="/dive-centre-partner"><i class="fa fa-tags"></i> <span class="nav-text">Dive Centre Partner</span></a>
+            </li>  						
+            <li routerLinkActive="active" *ngIf="userMembership === 'annual_instructor' && (userAccess | uppercase) == 'PAID' && userRenew === 'not_renew'">
+               <a routerLink="/instructor-students"><i class="fa fa-users"></i> <span class="nav-text">Instructor Students</span></a>
+            </li>
+            <li routerLinkActive="active" *ngIf="((userAccess | uppercase) == 'PAID' && userRenew === 'not_renew') && ((userPack | uppercase) == 'STANDARD' || (userPack | uppercase) == 'PLUS') || userMembership === 'instructor_student'">          
+            <!-- <li routerLinkActive="active" *ngIf="userMembership === 'annual' && (userAccess | uppercase) == 'PAID' && userRenew === 'not_renew'">  -->
+               <a routerLink="/upgrade-membership"><i class="fa fa-tasks"></i> <span class="nav-text">Upgrade Membership</span></a>  	  	
+            </li> 
+            <li routerLinkActive="active" *ngIf="(userAccess | uppercase) == 'PAID' && userRenew === 'not_renew'">   
+                <a routerLink="/profile"><i class="fa fa-cogs"></i> <span class="nav-text">My Profile</span></a>  
+            </li>  
+			  
+			  	
+            <li (click)="logout()">  
+                <a (click)="logout()"><i class="fa fa-sign-out"></i> <span class="nav-text">Logout</span></a>
+           </li>
+        </ul>
+    </div>
+</div>
+

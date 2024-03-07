@@ -1,0 +1,106 @@
+<section class="info-wrapper contact-wrapper">
+  <div class="container">
+    <div class="row">
+      
+	  <div class="col-sm-12">
+	    <div class="banner-text mrb-50">
+		  <h1 class="text-show"><b>Get in touch with us</b><span>FEEL FREE TO DROP US A LINE</span></h1>
+        </div>
+	  </div>
+	  
+	  <div class="col-sm-6">
+	    <div class="inner-text">
+		  <i class="fa fa-phone fa-fw"></i>
+		  <h3>GENERAL ENQUIRIES</h3>
+		  <p>+27 11 266 4900 (Int.)<br>+27 71 476 1138 (Int. and WhatsApp)</p>
+        </div>
+	  </div>
+	  
+	  <div class="col-sm-6">
+	    <div class="inner-text">
+		  <i class="fa fa-user-md fa-fw"></i>
+		  <h3>DAN HOTLINE</h3>
+		  <p>+27 828 10 60 10 (International)</p>
+        </div>
+	  </div>
+	
+    </div>
+  </div>
+</section><!--/ info-wrapper -->
+
+<section class="contact-form">
+  <div class="container">
+    <div class="row">
+      
+	  <div class="col-sm-12">
+	    <div class="title mrb-60">			
+	      <h1 class="mrb-30"><b>Send us a message</b></h1>
+		  <h3>We'd love to hear from you. Fill out the form below to get started.</h3>          
+        </div><!--/ title --> 
+		
+		<form class="form-horizontal" [formGroup]="contactForm" (ngSubmit)="onSubmit()">    
+			<input type="hidden" formControlName="captcha" [(ngModel)]="captcha" />   		     			 								     						    
+			<input type="hidden" formControlName="secret" [(ngModel)]="secret" />   				
+	      <div class="form-group col-sm-6">  
+		    <label class="sp-field-label">First Name</label>  
+			<input type="text" class="form-control" formControlName="first_name">
+			<span *ngIf="formDataError.error_field === 'first_name'" class="error-message" style="font-size:0.75em">  
+				{{ formDataError.msg }}    
+			</span>	    
+			<span *ngIf="contactForm.controls['first_name'].hasError('required') && formSubmitted" class="text-danger" style="font-size:0.75em">First Name Required</span>                      							
+		  </div>
+		  
+	      <div class="form-group col-sm-6">
+		    <label class="sp-field-label">Last Name</label>
+			<input type="text" class="form-control" formControlName="last_name">      	
+		  </div>
+		  
+	      <div class="form-group col-sm-12">
+		    <label class="sp-field-label">Email</label>
+			<input type="text" class="form-control" formControlName="contact_email">
+			<span *ngIf="formDataError.error_field === 'contact_email'" class="error-message" style="font-size:0.75em">  
+				{{ formDataError.msg }}		  
+			</span>        		
+			<span *ngIf="contactForm.controls['contact_email'].hasError('required') && formSubmitted" class="text-danger" style="font-size:0.75em">E-Mail Required</span> 
+			<span *ngIf="contactForm.controls['contact_email'].hasError('email') && formSubmitted" class="text-danger" style="font-size:0.75em">Invalid E-Mail</span>  
+							
+		  </div>	
+		  
+	      <div class="form-group col-sm-12">
+		    <label class="sp-field-label">Message</label>
+			<textarea class="form-control" formControlName="contact_enquiry"></textarea>
+			<span *ngIf="formDataError.error_field === 'contact_enquiry'" class="error-message" style="font-size:0.75em">    
+				{{ formDataError.msg }}        
+			</span>	    
+			<span *ngIf="contactForm.controls['contact_enquiry'].hasError('required') && formSubmitted" class="text-danger" style="font-size:0.75em">Message Required</span>                      
+                    
+		  </div>
+		  
+	      <div class="form-group col-sm-12">
+		    <input type="submit" class="btn" value="Send">         			  
+		  </div>		
+		</form>
+      </div><!--/ right -->  
+          
+    </div><!--/ row -->	
+  </div>
+</section><!--/ about-text  -->
+
+<section class="about-text light-blue">	    
+  <div class="container">
+    <div class="row row-flex">
+      
+	  <div class="col-sm-6 left">
+	    <h2>Our Physical Address</h2>
+		<p>DAN Building, Unit 4, Zandkloof House <br>15 New Street, Durbanville <br>Cape Town, South Africa <br>7550</p>
+		<p><a href="about:blank" target="_blank" class="btn"><i class="fa fa-map-marker fa-lg fa-fw"></i>Google Maps Directions</a></p>
+	  </div>
+	  
+	  <div class="col-sm-6 right mrb-30">		 
+		<iframe _ngcontent-wyv-c139="" src="https://www.google.com/maps/embed?key=AIzaSyAuFa4OnSTt1A3v21hI5eiHtpox3AyQtHI&amp;pb=!1m7!1m2!1m1!1d1128.4972200393677!3m3!1m2!1s0!2zLTMzLjgyNjAyOSwxOC42NDc5MjM=" frameborder="0" width="100%" height="450"></iframe>
+      </div><!--/ right -->  
+          
+    </div><!--/ row -->	
+  </div>
+</section><!--/ about-text  -->
+<app-sub-footer></app-sub-footer>

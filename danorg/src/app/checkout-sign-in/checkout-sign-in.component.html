@@ -1,0 +1,168 @@
+<!-- <section class="breadcrumb"> -->
+    <!-- <div class="container"> -->
+        <!-- <ul> -->
+            <!-- <li> -->
+                <!-- <a href="#"> -->
+                    <!-- <i class="fa fa-home" aria-hidden="true"></i>Home  -->
+				<!-- </a> -->
+            <!-- </li> -->
+            <!-- <li>Checkout</li> -->
+        <!-- </ul> -->
+    <!-- </div> -->
+<!-- </section> -->
+<section class="mid-inner">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 full-wrap">
+                <div class="product-checkout">
+                    <div class="row">
+                        <div class="col-sm-12 mb-3">
+                            <h2>Checkout Details</h2>
+                            <p>Please enter your details below to complete your purchase.</p>
+                        </div>
+                        <div class="col-sm-6 checkout-coll">                            
+                            <!--/ shipping -->
+                            <div id="sign-in">
+                                <div class="step-title">
+                                    <i class="fa fa-sign-in"></i> Login
+                                </div>
+								<!--/  (ngSubmit)="signIn()" -->
+                                <form [formGroup]="signInForm" (ngSubmit)="signIn()">
+                                    <div class="form-row row">
+                                        <div class="form-group col-sm-12">
+                                            <label class="label">Email Address</label>
+                                            <input class="form-control" type="email" id="emailAddress" name="emailAddress" formControlName="emailAddress">
+											<div *ngIf="submitted && f['emailAddress'].errors" class="error-message">
+												<div *ngIf="submitted && signInForm.get('emailAddress')?.hasError('required')">Email Address is invalid</div>
+												<div *ngIf="submitted && signInForm.get('emailAddress')?.hasError('email')">Email Address is invalid</div>
+											</div>
+                                        </div>
+                                        <div class="form-group col-sm-12">
+                                            <label class="label">Password</label>
+                                            <input class="form-control" type="password" id="password" name="password" formControlName="password">
+											<div *ngIf="submitted && f['password'].errors" class="error-message">
+												<div *ngIf="submitted && signInForm.get('password')?.hasError('required')">Password is Invalid</div>											
+											</div>
+                                        </div>
+                                        <div class="form-group col-sm-12">
+                                            <div class="custom-control custom-checkbox">
+                                                <label class="custom-control-label ml-2" for="remember">
+                                                    <input type="checkbox" class="custom-control-input" id="remember" formControlName="remember"> Remember Me </label>
+                                                <span class="ml-auto">
+                                                    <a routerLink="/danshop/account/forgot-password" >Forgot Password ?</a>
+                                                </span>
+                                            </div>
+                                        </div>										
+										<div class="form-group col-sm-12">
+											<button _ngcontent-pys-c29="" type="submit" name="sign-in" class="btn" [disabled]="signInForm.pristine || signInForm.invalid">Sign In</button>
+										</div>
+										<div class="form-group col-sm-12" *ngIf="successMessage">
+                                        	<div class="alert alert-success text-success checkout-submit-msg">{{ successMessage }}</div>
+										</div>
+										<div class="form-group col-sm-12" *ngIf="errorMessage">
+											<div class="alert alert-danger text-danger checkout-submit-msg">{{ errorMessage }}</div>
+										</div>
+                                        <div class="form-group col-sm-12">
+                                            <div class="text-line">
+                                                <span>Or</span>
+                                            </div>
+                                        </div>
+										<div class="form-group col-sm-12">
+											<a routerLink="/danshop/checkout/shipping" type="submit" name="continue-as-guest" class="btn">Continue As Guest</a>
+										</div>
+                                    </div>
+                                    <!--/ form-row -->
+                                </form>
+                            </div>
+                            <!--/ signin -->
+                        </div>
+                        <!--/ checkout-coll -->
+                        <div class="col-sm-6 checkout-coll">
+                            <div id="order-summary">
+                                <div class="step-title">
+                                    <i class="fa fa-check-square"></i> Order Summary
+                                </div>
+                                <div class="cart-totals">
+                                    <table class="table table-bordered">
+                                        <!--<thead>
+                                            <tr>
+                                                <th class="product-name">Product</th>
+                                                <th class="product-total">Subtotal</th>
+                                            </tr>
+                                        </thead>-->
+                                        <tbody *ngIf="activeOrder && activeOrder?.lines?.length ?? 0 > 0; else elseStatement">
+											<tr class="woocommerce-cart-form__cart-item cart_item" *ngFor="let item of activeOrder.lines; let index = index">
+												<td class="product-thumbnail">
+													<a [routerLink]="['/danshop/product-details/', item.productVariant.product.slug]">
+														<img src="{{item.featuredAsset.preview}}" alt="" class="rounded" style="max-width:80px">
+													</a>
+												</td>
+												<td class="product-name" data-title="Product">
+													<a [routerLink]="['/danshop/product-details/', item.productVariant.product.slug]">{{item.productVariant.name}}</a> <br>Qty: {{item.quantity}}
+												</td>
+												<td class="product-price" data-title="Price">
+													<span class="woocommerce-Price-amount amount">
+														<bdi>{{activeOrder.currencyCode}} {{ item.unitPriceWithTax / 100 | number:'1.2-2' }}</bdi>
+													</span>
+												</td>
+												<td class="product-subtotal" data-title="Subtotal">
+													<span class="woocommerce-Price-amount amount">
+														<bdi>{{activeOrder.currencyCode}} {{ (item.unitPriceWithTax * item.quantity) / 100 | number:'1.2-2' }}</bdi>
+													</span>
+												</td>
+											</tr>											
+											<tr *ngFor="let promotion of activeOrder.promotions; let index = index">
+												<td colspan="3" class="text-right"><strong>Discount Code</strong></td>
+												<td>
+												<span class="coupon-tag">{{promotion.couponCode}}</span>
+												</td>
+											</tr>											
+											<tr *ngFor="let discount of activeOrder.discounts; let index = index">
+												<td colspan="3" class="text-right"><strong>Discount Amount</strong></td>
+												<td>{{activeOrder.currencyCode}} {{discount.amountWithTax / 100  | number:'1.2-2'}}</td>
+											</tr>
+											
+											<tr>
+												<td colspan="3" class="text-right">
+													<strong>Sub-Total:</strong>
+												</td>
+												<td>{{activeOrder.currencyCode}} {{activeOrder.subTotalWithTax / 100 | number:'1.2-2'}}</td>
+											</tr>
+											<tr>
+												<td colspan="3" class="text-right">
+													<strong>Shipping (<span class="" *ngFor="let line of activeOrder.shippingLines">{{ line.shippingMethod.name }}</span>):</strong>
+												</td>
+												<td>{{activeOrder.currencyCode}} {{activeOrder.shippingWithTax / 100 | number:'1.2-2'}}</td>
+											</tr>
+											
+											<tr>
+												<td colspan="3" class="text-right">
+													<strong>Total:</strong>
+												</td>
+												<td>{{activeOrder.currencyCode}} {{activeOrder.totalWithTax / 100 | number:'1.2-2'}}</td>
+											</tr>
+										</tbody>
+										<ng-template #elseStatement>
+											<tbody>
+												<tr>
+													<td class="text-center" colspan="8">You have no items in your shopping cart</td>
+												</tr>
+											</tbody>
+										</ng-template>
+                                    </table>
+                                </div>
+                                <!--/ cart-totals -->
+                            </div>
+                            <!--/ order-summary -->
+                        </div>
+                        <!--/ checkout-coll -->
+                    </div>
+                    <!--/ row -->
+                </div>
+                <!--/ checkout-coll -->
+            </div>
+        </div>
+        <!--/ row -->
+    </div>
+</section>
+<!--/ mid-inner -->

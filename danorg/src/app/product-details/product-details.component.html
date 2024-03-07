@@ -1,0 +1,121 @@
+<!--<section class="breadcrumb">
+    <div class="container">
+        <ul>
+            <li>
+                <a [routerLink]="['/danshop']">
+					<i class="fa fa-home" aria-hidden="true"></i>Home 
+				</a>
+            </li>
+            <li>Product</li>
+        </ul>
+    </div>
+</section>-->
+<section class="mid-inner">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 full-wrap">
+                <!-- <div class="cart-notices"><div class="cart-message"><p>Success: You have added First Aid Backpack with Oxygen to your shopping cart!</p><p><a href="#" class="btn">View Cart</a></p></div></div> -->
+                <div class="product-single">
+                    <div class="row">
+                        <div class="col-sm-6 left">
+							<div id="carouselExampleDark" class="carousel carousel-dark slide">
+								<div class="carousel-inner">								
+
+                                    <div class="carousel-item" *ngFor="let asset of product.assets; let i = index" [class.active]="i === 0" data-bs-interval="2000">
+										<img src="{{asset.source}}" class="" alt="{{asset.name}}">
+									</div>
+									
+									<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev"><span class="carousel-control-prev-icon" aria-hidden="true"></span><span class="visually-hidden">Previous</span></button>
+									
+									<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next"><span class="carousel-control-next-icon" aria-hidden="true"></span><span class="visually-hidden">Next</span></button>
+									
+								</div>
+								<div class="carousel-indicators">
+								
+									<button type="button" *ngFor="let asset of product.assets; let i = index" data-bs-target="#carouselExampleDark" [attr.data-bs-slide-to]="i" [class.active]="i === 0" aria-current="true" [attr.aria-label]="'Slide ' + (i + 1)" style="max-width: 77px;">
+										<img src="{{ asset.source }}" class="d-block w-100" alt="{{ asset.name }}">
+									</button>
+									
+								</div>
+							</div>
+                        </div>
+                        <!--/ left -->
+                        <div class="col-sm-6 right">
+                            <h2>{{ selectedVariant?.name }}</h2>
+                            <ul class="list-unstyled">
+                                <li>Category: <a *ngFor="let collection of product.collections" [routerLink]="['/danshop/category', collection.slug]">{{collection.name}} </a>
+                                </li>
+                                <li>Product Code: {{selectedVariant?.sku}}</li>
+								<ng-template [ngIf]="selectedVariant?.stockLevel === 'OUT_OF_STOCK'">
+									<li>Availability: OUT OF STOCK</li>
+								</ng-template>
+								<ng-template [ngIf]="selectedVariant?.stockLevel === 'IN_STOCK'">
+									<li>Availability: IN STOCK</li>
+								</ng-template>
+                            </ul>
+                            <p class="price">
+							    <ng-container *ngIf="selectedVariant">
+									<ins>{{ selectedVariant.currencyCode }} {{ selectedVariant.priceWithTax / 100 | number:'1.2-2' }}</ins>
+								    <small>Ex Tax:{{ selectedVariant.currencyCode }} {{ selectedVariant.price / 100 | number:'1.2-2' }}</small>
+								</ng-container>
+								<ng-container *ngIf="!selectedVariant">
+								  N/A
+								</ng-container>
+                            </p>
+							<div class="mt-4 selected-variant" *ngIf="product.variants.length > 1">
+									<label htmlFor="option"	class="selected-variant-option-label block">
+										Select Variant
+									</label>
+									<select [(ngModel)]="selectedVariant" class="selected-variant-option">
+										<option *ngFor="let variant of product?.variants"
+												[ngValue]="variant">{{ variant.name }}</option>
+									</select>
+							</div>
+                            <div class="cart quantity">								
+                                <div class="quantity-input">
+                                    <input type='button' value='-' class='qtyminus minus' field='quantity' (click)="dencreaseQuant($event)"/>
+									<input type="number" name="quantity" [(ngModel)]="quantity" class="qty" />
+                                    <input type='button' value='+' class='qtyplus plus' (click)="increaseQuant($event)" />
+                                </div>
+								<!--<button type="submit" name="add-to-cart" value="838" class="btn" [attr.data-productId]="product.id" [attr.data-productName]="product.name" [attr.data-productPrice]="product.variants[0].price" (click)="myFunction($event)">Add to cart</button>-->
+								<ng-template [ngIf]="selectedVariant?.stockLevel === 'IN_STOCK'" || [ngIf]="selectedVariant?.stockLevel === 'LOW_STOCK'">
+									<button type="submit" name="add-to-cart" value="838" class="btn" [attr.data-productId]="product.id" [attr.data-productName]="product.name" [attr.data-variant]="95" [attr.data-productPrice]="product.variants[0].price" (click)="addToCart(selectedVariant?.id || 0, quantity)">Add to cart</button>
+								</ng-template>
+								<ng-template [ngIf]="selectedVariant?.stockLevel === 'OUT_OF_STOCK'">
+									<button type="submit" name="add-to-cart" value="838" class="btn" [attr.data-productId]="product.id" [attr.data-productName]="product.name" disabled>Out of stock</button>
+								</ng-template>
+                            </div>
+                        </div>
+                        <!--/ right -->
+                        <div class="col-sm-12 full-area">
+                            <ul class="nav nav-pills" id="pills-tab" role="tablist">
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link active" id="pills-description-tab" data-bs-toggle="pill" data-bs-target="#pills-description" type="button" role="tab" aria-controls="pills-description" aria-selected="true">Description</button>
+                                </li>
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link" id="pills-reviews-tab" data-bs-toggle="pill" data-bs-target="#pills-reviews" type="button" role="tab" aria-controls="pills-reviews" aria-selected="false">Reviews (0)</button>
+                                </li>
+                            </ul>
+                            <div class="tab-content" id="pills-tabContent">
+                                <div class="tab-pane fade show active" id="pills-description" role="tabpanel" aria-labelledby="pills-description-tab" tabindex="0">
+                                    <h3>{{product.name}}</h3>
+                                    <div [innerHTML]="product.description"></div>
+                                </div>
+                                <!--/ tab-pane -->
+                                <div class="tab-pane fade" id="pills-reviews" role="tabpanel" aria-labelledby="pills-reviews-tab" tabindex="0">
+                                    <p>There are no reviews for this product. .</p>
+                                </div>
+                                <!--/ tab-pane -->
+                            </div>
+                        </div>
+                        <!--/ full-area -->
+                    </div>
+                    <!--/ row -->
+                </div>
+                <!--/ products-wrap -->
+            </div>
+        </div>
+        <!--/ row -->
+    </div>
+</section>
+<!--/ mid-inner -->

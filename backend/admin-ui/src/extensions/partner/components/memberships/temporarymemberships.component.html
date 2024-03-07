@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>  
+<body>   
+<div class="table-wrapper">
+  <div class="row mrb-30 mb-4">  
+	<div class="btn-group">
+		 <a href="/admin//extensions/memberships/addtemporary" class="btn btn-own">Add New <i class="fa fa-plus"></i></a> 	
+		 <input type="text" class="form-control" style="float:right;" [(ngModel)]="inputName" (keyup)="onSearch($event)"/> 			 
+	</div> 	
+  </div> 						
+  <div class="table-scrollable mb-4">
+    <table class="table table-striped table-hover table-light" cellspacing="0" width="100%" role="grid">
+      <thead>
+	    <tr role="row">
+	      <th>Name</th>
+		  <th>Email</th> 		  
+		  <th>Start Date</th> 		    		 
+		  <th>Status</th>  
+	    </tr>
+	  </thead>
+	
+	  <tbody>
+	      <tr *ngFor="let item of data">              
+			<td>
+			<a class="button-ghost" [routerLink]="['/extensions/memberships/edittemporary/',item.id]">  
+				<span>{{ item.fname1 }} {{ item.sname1 }}</span>    		                      
+            </a>    
+			</td>	
+			<td>{{ item.email1 }}</td>  	
+            <td>{{item.startdate|date:'dd/MM/yyyy'}}</td>				
+            <td>{{ item.status1 }}</td>     
+          </tr> 	   
+	  </tbody>
+    </table>
+  </div>
+  
+  <div class="btn-toolbar" role="toolbar" *ngIf="showMsg">    			
+	<div class="btn-group pull-right">
+		<ul class="pagination justify-content-center">	
+            <li [ngClass]="{'disabled':pager.currentPage === 1}">
+                <a (click)="setPage(1)" class="page-link">&laquo;</a>   
+            </li>
+            <li [ngClass]="{'disabled page-item':pager.currentPage === 1}">
+                <a (click)="setPage(pager.currentPage - 1)" class="page-link">&lt;</a>  
+            </li>
+            <li *ngFor="let page of pager.pages" [ngClass]="{'active page-item':pager.currentPage === page}">
+                <a (click)="setPage(page)" class="page-link">{{page}}</a>
+            </li>
+            <li [ngClass]="{'disabled page-item':pager.currentPage === pager.totalPages}">
+                <a (click)="setPage(pager.currentPage + 1)" class="page-link">&gt;</a>     
+            </li>
+            <li [ngClass]="{'disabled':pager.currentPage === pager.totalPages}">
+                <a (click)="setPage(pager.totalPages)" class="page-link">&raquo;</a>        
+            </li>		   
+        </ul>											
+	</div>  
+ </div>     
+ <div *ngIf="!showMsg">No result found</div>    		
+</div> 		  
+</body>  
+</html>		

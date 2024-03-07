@@ -1,0 +1,53 @@
+<section class="account-inner mid-inner">
+    <div class="container">
+        <div class="row">
+		    <div class="col-sm-3 full-wrap">
+				<app-account-sidebar></app-account-sidebar>
+			</div>
+            <div class="col-sm-9 full-wrap">
+			    <div class="col-sm-12">
+					<h2>Order List</h2>
+				</div>
+				<div *ngIf="orders$ | async as orders; else loading">
+				    <div class="orders-total pb-3">Total order placed: {{orders.orders.totalItems}}</div>
+					<div class="table-responsive">
+						<table class="table table-bordered">						    
+							<thead>
+								<tr>
+								  <th>Code</th>
+								  <th>State</th>
+								  <th>Total</th>
+								  <th>Last updated</th>
+								  <th>Action</th>
+								</tr>
+							</thead>
+							<tbody>
+							<tr *ngFor="let order of orders?.orders?.items">
+								<th scope="row">
+									<a [routerLink]="['/danshop/account/order-details', order.code]">
+										{{ order.code }}
+									</a>
+								</th>
+								<td>{{ order.state | formatOrderState }}</td>
+								<td>{{ order.currencyCode }} {{ order.totalWithTax / 100 | number:'1.2-2' }}</td>
+								<td>{{ order.updatedAt | date: 'medium' }}</td>
+								<td><a [routerLink]="['/danshop/account/order-details', order.code]" class="btn btn-sm btn-small"><i class="fa fa-eye"></i> View</a></td>
+							</tr>
+							</tbody>
+						</table>
+					</div>					
+					<div *ngIf="!orders?.orders?.items || orders.orders.items.length === 0">
+						No orders found.
+					</div>
+					<div class="pagination orders">
+						<a *ngIf="pageNumber > 1" [routerLink]="['/danshop/account/orders', pageNumber - 1]"><i class="fa fa-angle-double-left"></i> Prev</a>
+						<a *ngIf="orders && orders.orders && orders.orders.totalItems > pageNumber * itemsPerPage" [routerLink]="['/danshop/account/orders', pageNumber + 1]">Next <i class="fa fa-angle-double-right"></i></a>
+					</div>
+				</div>
+				<ng-template #loading>Loading...</ng-template>	
+            </div>
+        </div>
+        <!--/ row -->
+    </div>
+</section>
+<!--/ mid-inner -->

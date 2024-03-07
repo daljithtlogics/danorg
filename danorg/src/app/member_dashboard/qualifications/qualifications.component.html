@@ -1,0 +1,87 @@
+<section class="dashboard-wrapper">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-3">
+                <member-sidebar></member-sidebar>
+            </div>
+            <div class="col-sm-9">
+                <form class="sky-form" *ngIf="userMembership === 'annual'" [formGroup]="qualifyForm" (ngSubmit)="onSave()">
+					<input type="hidden" formControlName="row_id" [(ngModel)]="row_id" />     
+                    <div class="chalkbg">
+                        <img src="/assets/images/red-logo.png" style="height: 50px;">  
+                        <span style="text-align: right">
+                            <br>
+                            <label class="chalktitle" style="color: white">DIVERS ALERT NETWORK SOUTHERN AFRICA</label>
+                        </span>
+                    </div>
+                    <div class="row" style="padding: 20px 30px;">
+                        <div class="col col-12">
+                            <p class="heading" style="color: #666666;">Qualifications - Instructor Trainer</p>
+                            <p class="dan-p">We offer a membership option tailored to meet your specific needs. To
+                                apply, please complete and submit the membership application form from below.
+                                <strong>This is an annual membership that can only be cancelled after one year.</strong>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="row" style="padding: 0 30px;">                          
+                        <div class="col-sm-7">
+                            <div class="form-group">
+                                <label class="control-label">Course <small class="text-danger">*</small></label>
+                                <select class="form-control" name="course_id" formControlName="course_id">  
+                                    <option value="">--Select--</option>
+                                    <option *ngFor="let opt of courses" [value]="opt.id">   
+                                        {{opt.title}}</option>
+                                </select>
+                                <span *ngIf="formDataError.error_field === 'course_id'" class="error-message">  
+									{{ formDataError.msg }}   
+							    </span>
+								<span *ngIf="qualifyForm.controls['course_id'].hasError('required') && formSubmitted" class="text-danger">Course Required</span>  	
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <div class="btn-group">
+                                    <button type="submit" class="btn btn-sm btn-default" style="padding: 6px 11px !important;">Add Trainer</button>                                     
+                                </div>  								
+                            </div>
+							<!-- <span *ngIf="successMsg != ''" class="success-message">		
+								{{ successMsg }}						  			
+							</span>      -->
+							<span *ngIf="formError" class="text-danger">		
+								{{ 'Please fill all the required fields' }}																  			
+							</span> 
+                        </div>  
+                        <div class="table-wrapper">
+                            <div class="table-scrollable">
+                                <h4>Qualifications</h4>
+                                <table class="table table-striped table-hover table-light" cellspacing="0" width="100%"
+                                    role="grid">
+                                    <thead>
+                                        <tr role="row">
+                                            <th>Course</th>
+                                            <th>Date Created</th>
+                                            <th>Active Date</th>
+                                            <th>Trained By</th>
+                                            <th>Course Type</th>
+                                            <th>Course Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let qualify of qualifications">  						
+										  <td>{{qualify.title}}</td> 	  
+										  <td>{{qualify.created_at | date:'yyyy/MM/dd hh:mm:ss a'}}</td>   	  		
+										  <td>{{qualify.active_at | date:'yyyy/MM/dd'}}</td>     		  		  
+										  <td>{{qualify.trained_by}}</td> 
+										  <td>{{qualify.type}}</td>    
+										  <td>{{qualify.status}}</td>      
+										</tr>  	 
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,151 @@
+<section class="breadcrumb">
+  <div class="container">
+    <ul>
+      <li>
+        <a href="#">
+          <i class="fa fa-home" aria-hidden="true"></i>Home </a>
+      </li>
+      <li>Checkout</li>
+    </ul>
+  </div>
+</section>
+<section class="mid-inner">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12 full-wrap">
+        <div class="product-checkout">
+          <div class="row">
+            <div class="col-sm-12 mb-3">
+              <h2>Checkout Details</h2>
+              <p>Please confirm your details below to complete your purchase.</p>
+            </div>
+            <div class="col-sm-5 checkout-coll">
+              <!--/ shipping -->
+              <div id="sign-in">
+                <div class="step-title">
+                  <i class="fa fa-credit-card"></i> Payment Method
+                </div>
+                <div *ngIf="activeOrder && activeOrder.shippingAddress">
+                  <div class="border rounded bg-white p-3 text-sm">
+                    <h5 class="font-medium text-gray-600">Shipping address</h5>
+                    {{ activeOrder.shippingAddress.fullName }} <br>
+                    {{ activeOrder.shippingAddress.streetLine1 }} <br>
+                    {{ activeOrder.shippingAddress.streetLine2 }} <br>
+                    {{ activeOrder.shippingAddress.city }} <br> 
+                    {{ activeOrder.shippingAddress.postalCode }} <br>
+                    {{ activeOrder.shippingAddress.province }} <br>
+                    {{ activeOrder.shippingAddress.country }} <br>
+                    <br>
+                    <h5 class="font-medium text-gray-600">Contact number</h5>
+                    {{ activeOrder.shippingAddress.phoneNumber }} <br>
+                    <br>
+                    <!-- Button container with flexbox -->
+                    <div class="button-container" style="display: flex; justify-content: space-between; margin-top: 5px;">
+                      <button class="border px-2 py-1 mt-2 rounded text-sm" 
+                        (click)="modifyOrder()" [disabled]="isOrderConfirmed">
+                          Modify order
+                      </button>
+                      <button class="border px-2 py-1 mt-2 rounded text-sm" style="margin-left: 50px" 
+                        (click)="confirmPayment()" [disabled]="isOrderConfirmed">
+                          Pay with Netcash
+                      </button>
+                    </div>
+                  </div>
+                </div>
+
+                <br>
+                
+                <!-- PAYMENT METHODS -->
+                <ng-container *ngFor="let paymentMethod of paymentMethods$ | async"> </ng-container>
+                <!--// PAYMENT METHODS -->
+
+              </div>
+              <!--/ signin -->
+            </div>
+            <!--/ checkout-coll -->
+            <div class="col-sm-7 checkout-coll">
+              <div id="order-summary">
+                <div class="step-title">
+                  <i class="fa fa-check-square"></i> Order Summary
+                </div>
+                <div class="cart-totals">
+                  <table class="table table-bordered">
+                    <tbody *ngIf="activeOrder && activeOrder?.lines?.length ?? 0 > 0; else elseStatement">
+                      <tr class="woocommerce-cart-form__cart-item cart_item" *ngFor="let item of activeOrder.lines; let index = index">
+                        <td class="product-thumbnail">
+                          <a [routerLink]="['/danshop/product-details/', item.productVariant.product.slug]">
+                            <img src="{{item.featuredAsset.preview}}" alt="" class="rounded" style="max-width:80px">
+                          </a>
+                        </td>
+                        <td class="product-name" data-title="Product">
+                          <a [routerLink]="['/danshop/product-details/', item.productVariant.product.slug]">{{item.productVariant.name}}</a>
+                          <br>Qty: {{item.quantity}}
+                        </td>
+                        <td class="product-price" data-title="Price">
+                          <span class="woocommerce-Price-amount amount">
+                            <bdi>{{activeOrder.currencyCode}} {{ item.unitPriceWithTax / 100 | number:'1.2-2' }}</bdi>
+                          </span>
+                        </td>
+                        <td class="product-subtotal" data-title="Subtotal">
+                          <span class="woocommerce-Price-amount amount">
+                            <bdi>{{activeOrder.currencyCode}} {{ (item.unitPriceWithTax * item.quantity) / 100 | number:'1.2-2' }}</bdi>
+                          </span>
+                        </td>
+                      </tr>
+                      <tr *ngFor="let promotion of activeOrder.promotions; let index = index">
+                        <td colspan="3" class="text-right">
+                          <strong>Discount Code</strong>
+                        </td>
+                        <td>
+                          <span class="coupon-tag">{{promotion.couponCode}}</span>
+                        </td>
+                      </tr>
+                      <tr *ngFor="let discount of activeOrder.discounts; let index = index">
+                        <td colspan="3" class="text-right">
+                          <strong>Discount Amount</strong>
+                        </td>
+                        <td>{{activeOrder.currencyCode}} {{discount.amountWithTax / 100  | number:'1.2-2'}}</td>
+                      </tr>
+                      <tr>
+                        <td colspan="3" class="text-right">
+                          <strong>Sub-Total:</strong>
+                        </td>
+                        <td>{{activeOrder.currencyCode}} {{activeOrder.subTotalWithTax / 100 | number:'1.2-2'}}</td>
+                      </tr>
+                      <tr>
+                        <td colspan="3" class="text-right">
+                          <strong>Shipping (<span class="" *ngFor="let line of activeOrder.shippingLines">{{ line.shippingMethod.name }}</span>): </strong>
+                        </td>
+                        <td>{{activeOrder.currencyCode}} {{activeOrder.shippingWithTax / 100 | number:'1.2-2'}}</td>
+                      </tr>
+                      <tr>
+                        <td colspan="3" class="text-right">
+                          <strong>Total:</strong>
+                        </td>
+                        <td>{{activeOrder.currencyCode}} {{activeOrder.totalWithTax / 100 | number:'1.2-2'}}</td>
+                      </tr>
+                    </tbody>
+                    <ng-template #elseStatement>
+                      <tbody>
+                        <tr>
+                          <td class="text-center" colspan="8">You have no items in your shopping cart</td>
+                        </tr>
+                      </tbody>
+                    </ng-template>
+                  </table>
+                </div>
+                <!-- cart-totals -->
+              </div>
+              <!--/ order-summary -->
+            </div>
+            <!--/ checkout-coll -->
+          </div>
+          <!--/ row -->
+        </div>
+        <!--/ checkout-coll -->
+      </div>
+    </div>
+    <!--/ row -->
+  </div>
+</section>
+<!--/ mid-inner -->

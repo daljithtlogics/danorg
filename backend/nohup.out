@@ -1,0 +1,394 @@
+yarn run v1.22.19
+warning ../package.json: No license field
+$ concurrently yarn:dev:*
+[worker] warning ../package.json: No license field
+[server] warning ../package.json: No license field
+[server] $ ts-node ./src/index.ts
+[worker] $ ts-node ./src/index-worker.ts
+[worker] info 11/1/23, 10:43 AM - [Vendure Worker] Bootstrapping Vendure Worker (pid: 28834)... 
+[server] info 11/1/23, 10:43 AM - [Vendure Server] Bootstrapping Vendure Server (pid: 28827)... 
+[worker] info 11/1/23, 10:43 AM - [Vendure Worker] Vendure Worker is ready 
+[worker] info 11/1/23, 10:43 AM - [JobQueue] Starting queue: apply-collection-filters 
+[worker] info 11/1/23, 10:43 AM - [JobQueue] Starting queue: update-search-index 
+[worker] info 11/1/23, 10:43 AM - [JobQueue] Starting queue: send-email 
+[server] info 11/1/23, 10:43 AM - [AdminUiPlugin] Creating admin ui middleware (prod mode) 
+[server] info 11/1/23, 10:43 AM - [AssetServerPlugin] Creating asset server middleware 
+[server] info 11/1/23, 10:43 AM - [EmailPlugin] Creating dev mailbox middleware 
+[server] info 11/1/23, 10:43 AM - [AdminUiPlugin] Compiling Admin UI app in production mode... 
+[server] info 11/1/23, 10:43 AM - [RoutesResolver] HealthController {/health}: 
+[server] info 11/1/23, 10:43 AM - [RouterExplorer] Mapped {/health, GET} route 
+[server] Running yarn run build
+[server] warning ../../package.json: No license field
+[server] $ ng build --configuration production
+[server] info 11/1/23, 10:43 AM - [GraphQLModule] Mapped {/shop-api, POST} route 
+[server] info 11/1/23, 10:43 AM - [GraphQLModule] Mapped {/admin-api, POST} route 
+[server] info 11/1/23, 10:43 AM - [NestApplication] Nest application successfully started 
+[server] info 11/1/23, 10:43 AM - [Vendure Server] ================================================ 
+[server] info 11/1/23, 10:43 AM - [Vendure Server] Vendure server (v2.1.0) now running on port 3000 
+[server] info 11/1/23, 10:43 AM - [Vendure Server] ------------------------------------------------ 
+[server] info 11/1/23, 10:43 AM - [Vendure Server] Shop API:     http://localhost:3000/shop-api 
+[server] info 11/1/23, 10:43 AM - [Vendure Server] Admin API:    http://localhost:3000/admin-api 
+[server] info 11/1/23, 10:43 AM - [Vendure Server] Asset server: http://localhost:3000/assets 
+[server] info 11/1/23, 10:43 AM - [Vendure Server] Dev mailbox:  http://localhost:3000/mailbox 
+[server] info 11/1/23, 10:43 AM - [Vendure Server] Admin UI:     http://localhost:3000/admin 
+[server] info 11/1/23, 10:43 AM - [Vendure Server] ================================================ 
+[server] - Generating browser application bundles (phase: setup)...
+[server]     Components styles sourcemaps are not generated when styles optimization is enabled.
+[server] ✔ Browser application bundle generation complete.
+[server] ✔ Browser application bundle generation complete.
+[server] - Copying assets...
+[server] ✔ Copying assets complete.
+[server] - Generating index html...
+[server] ✔ Index html generation complete.
+[server] 
+[server] Initial Chunk Files           | Names                         |  Raw Size | Estimated Transfer Size
+[server] main.14a20c1bcbc18779.js      | main                          |   3.30 MB |               649.94 kB
+[server] styles.563e0d783dc640b9.css   | styles                        | 514.29 kB |                49.14 kB
+[server] polyfills.31b425ece4abb2fb.js | polyfills                     |  53.40 kB |                17.07 kB
+[server] runtime.ff0ee0d4f5eb5a38.js   | runtime                       |   3.20 kB |                 1.57 kB
+[server] 
+[server] | Initial Total                 |   3.85 MB |               717.73 kB
+[server] 
+[server] Lazy Chunk Files              | Names                         |  Raw Size | Estimated Transfer Size
+[server] 357.fdc01ab17813e595.js       | extensions-commercial-routes  | 408.32 kB |                42.93 kB
+[server] 399.ef66cf431dfc3e2d.js       | extensions-student-routes     | 408.32 kB |                42.85 kB
+[server] 542.8e8d2d74f5475f77.js       | extensions-annual-routes      | 408.32 kB |                42.95 kB
+[server] 651.b4f6044ba2b44d83.js       | extensions-partner-routes     | 408.32 kB |                42.87 kB
+[server] 955.bc284523603d9631.js       | extensions-temporary-routes   | 408.32 kB |                42.87 kB
+[server] 2.5985251cfac075ee.js         | extensions-memberships-routes | 408.31 kB |                42.88 kB
+[server] 752.ec5b56f3a1736edf.js       | vendure-admin-ui-catalog      | 274.22 kB |                44.90 kB
+[server] 646.ccc36dd0b8719860.js       | vendure-admin-ui-order        | 226.70 kB |                37.27 kB
+[server] 69.25ab8bc4f6264046.js        | vendure-admin-ui-settings     | 218.01 kB |                25.36 kB
+[server] 865.9e48d02a5be3e361.js       | vendure-admin-ui-customer     |  80.28 kB |                14.58 kB
+[server] 730.a670d8f6f26958b0.js       | vendure-admin-ui-marketing    |  25.29 kB |                 6.04 kB
+[server] 830.5dd92e51efc12b04.js       | vendure-admin-ui-dashboard    |  22.55 kB |                 5.85 kB
+[server] 4.d5cb77ae43959881.js         | vendure-admin-ui-system       |  15.26 kB |                 4.05 kB
+[server] 277.161f3419329463fd.js       | vendure-admin-ui-login        |  11.91 kB |                 3.03 kB
+[server] common.648e3f2f3c1ff1c5.js    | common                        | 485 bytes |               342 bytes
+[server] 
+[server] Build at: 2023-11-01T10:45:19.975Z - Hash: fd13c0fbf3dcf435 - Time: 83768ms
+[server] info 11/1/23, 10:45 AM - [AdminUiPlugin] Admin UI successfully compiled 
+[worker] info 11/1/23, 10:48 AM - [Vendure Worker] Received shutdown signal:SIGHUP 
+[server] info 11/1/23, 10:48 AM - [Vendure Server] Received shutdown signal:SIGHUP 
+[worker] yarn run dev:worker exited with code SIGHUP
+[server] yarn run dev:server exited with code SIGHUP
+yarn run v1.22.19
+warning ../package.json: No license field
+$ concurrently yarn:dev:*
+[server] warning ../package.json: No license field
+[server] $ ts-node ./src/index.ts
+[worker] warning ../package.json: No license field
+[worker] $ ts-node ./src/index-worker.ts
+[worker] info 11/3/23, 11:00 AM - [Vendure Worker] Bootstrapping Vendure Worker (pid: 9432)... 
+[worker] info 11/3/23, 11:00 AM - [Vendure Worker] Vendure Worker is ready 
+[worker] info 11/3/23, 11:00 AM - [JobQueue] Starting queue: apply-collection-filters 
+[worker] info 11/3/23, 11:00 AM - [JobQueue] Starting queue: update-search-index 
+[worker] info 11/3/23, 11:00 AM - [JobQueue] Starting queue: send-email 
+[server] info 11/3/23, 11:00 AM - [Vendure Server] Bootstrapping Vendure Server (pid: 9425)... 
+[server] info 11/3/23, 11:00 AM - [AdminUiPlugin] Creating admin ui middleware (prod mode) 
+[server] info 11/3/23, 11:00 AM - [AssetServerPlugin] Creating asset server middleware 
+[server] info 11/3/23, 11:00 AM - [EmailPlugin] Creating dev mailbox middleware 
+[server] info 11/3/23, 11:00 AM - [AdminUiPlugin] Compiling Admin UI app in production mode... 
+[server] info 11/3/23, 11:00 AM - [RoutesResolver] HealthController {/health}: 
+[server] info 11/3/23, 11:00 AM - [RouterExplorer] Mapped {/health, GET} route 
+[server] Running yarn run build
+[server] warning ../../package.json: No license field
+[server] $ ng build --configuration production
+[server] info 11/3/23, 11:00 AM - [GraphQLModule] Mapped {/shop-api, POST} route 
+[server] info 11/3/23, 11:00 AM - [GraphQLModule] Mapped {/admin-api, POST} route 
+[server] ---------------------------------------------
+[server]  Connected to Bobgo Order API successfully 
+[server] ---------------------------------------------
+[server] info 11/3/23, 11:00 AM - [NestApplication] Nest application successfully started 
+[server] info 11/3/23, 11:00 AM - [Vendure Server] ================================================ 
+[server] info 11/3/23, 11:00 AM - [Vendure Server] Vendure server (v2.1.0) now running on port 3000 
+[server] info 11/3/23, 11:00 AM - [Vendure Server] ------------------------------------------------ 
+[server] info 11/3/23, 11:00 AM - [Vendure Server] Shop API:     http://localhost:3000/shop-api 
+[server] info 11/3/23, 11:00 AM - [Vendure Server] Admin API:    http://localhost:3000/admin-api 
+[server] info 11/3/23, 11:00 AM - [Vendure Server] Asset server: http://localhost:3000/assets 
+[server] info 11/3/23, 11:00 AM - [Vendure Server] Dev mailbox:  http://localhost:3000/mailbox 
+[server] info 11/3/23, 11:00 AM - [Vendure Server] Admin UI:     http://localhost:3000/admin 
+[server] info 11/3/23, 11:00 AM - [Vendure Server] ================================================ 
+[server] - Generating browser application bundles (phase: setup)...
+[server]     Components styles sourcemaps are not generated when styles optimization is enabled.
+[server] error 11/3/23, 11:00 AM - [Vendure Server] ENOENT: no such file or directory, stat '/var/www/html/backend/admin-ui/dist/index.html'
+[server] Error: ENOENT: no such file or directory, stat '/var/www/html/backend/admin-ui/dist/index.html' 
+[server] error 11/3/23, 11:00 AM - [Vendure Server] ENOENT: no such file or directory, stat '/var/www/html/backend/admin-ui/dist/index.html'
+[server] Error: ENOENT: no such file or directory, stat '/var/www/html/backend/admin-ui/dist/index.html' 
+[server] error 11/3/23, 11:00 AM - [Vendure Server] ENOENT: no such file or directory, stat '/var/www/html/backend/admin-ui/dist/index.html'
+[server] Error: ENOENT: no such file or directory, stat '/var/www/html/backend/admin-ui/dist/index.html' 
+[server] error 11/3/23, 11:00 AM - [Vendure Server] ENOENT: no such file or directory, stat '/var/www/html/backend/admin-ui/dist/index.html'
+[server] Error: ENOENT: no such file or directory, stat '/var/www/html/backend/admin-ui/dist/index.html' 
+[server] error 11/3/23, 11:01 AM - [Vendure Server] ENOENT: no such file or directory, stat '/var/www/html/backend/admin-ui/dist/index.html'
+[server] Error: ENOENT: no such file or directory, stat '/var/www/html/backend/admin-ui/dist/index.html' 
+[server] error 11/3/23, 11:01 AM - [Vendure Server] ENOENT: no such file or directory, stat '/var/www/html/backend/admin-ui/dist/index.html'
+[server] Error: ENOENT: no such file or directory, stat '/var/www/html/backend/admin-ui/dist/index.html' 
+[server] error 11/3/23, 11:01 AM - [Vendure Server] ENOENT: no such file or directory, stat '/var/www/html/backend/admin-ui/dist/index.html'
+[server] Error: ENOENT: no such file or directory, stat '/var/www/html/backend/admin-ui/dist/index.html' 
+[server] error 11/3/23, 11:01 AM - [Vendure Server] ENOENT: no such file or directory, stat '/var/www/html/backend/admin-ui/dist/index.html'
+[server] Error: ENOENT: no such file or directory, stat '/var/www/html/backend/admin-ui/dist/index.html' 
+[server] error 11/3/23, 11:01 AM - [Vendure Server] ENOENT: no such file or directory, stat '/var/www/html/backend/admin-ui/dist/index.html'
+[server] Error: ENOENT: no such file or directory, stat '/var/www/html/backend/admin-ui/dist/index.html' 
+[server] error 11/3/23, 11:01 AM - [Vendure Server] ENOENT: no such file or directory, stat '/var/www/html/backend/admin-ui/dist/index.html'
+[server] Error: ENOENT: no such file or directory, stat '/var/www/html/backend/admin-ui/dist/index.html' 
+[server] error 11/3/23, 11:01 AM - [Vendure Server] ENOENT: no such file or directory, stat '/var/www/html/backend/admin-ui/dist/index.html'
+[server] Error: ENOENT: no such file or directory, stat '/var/www/html/backend/admin-ui/dist/index.html' 
+[server] error 11/3/23, 11:01 AM - [Vendure Server] ENOENT: no such file or directory, stat '/var/www/html/backend/admin-ui/dist/index.html'
+[server] Error: ENOENT: no such file or directory, stat '/var/www/html/backend/admin-ui/dist/index.html' 
+[server] error 11/3/23, 11:01 AM - [Vendure Server] ENOENT: no such file or directory, stat '/var/www/html/backend/admin-ui/dist/index.html'
+[server] Error: ENOENT: no such file or directory, stat '/var/www/html/backend/admin-ui/dist/index.html' 
+[server] error 11/3/23, 11:01 AM - [Vendure Server] ENOENT: no such file or directory, stat '/var/www/html/backend/admin-ui/dist/index.html'
+[server] Error: ENOENT: no such file or directory, stat '/var/www/html/backend/admin-ui/dist/index.html' 
+[server] error 11/3/23, 11:01 AM - [Vendure Server] ENOENT: no such file or directory, stat '/var/www/html/backend/admin-ui/dist/index.html'
+[server] Error: ENOENT: no such file or directory, stat '/var/www/html/backend/admin-ui/dist/index.html' 
+[server] error 11/3/23, 11:01 AM - [Vendure Server] ENOENT: no such file or directory, stat '/var/www/html/backend/admin-ui/dist/index.html'
+[server] Error: ENOENT: no such file or directory, stat '/var/www/html/backend/admin-ui/dist/index.html' 
+[server] ✔ Browser application bundle generation complete.
+[server] ✔ Browser application bundle generation complete.
+[server] - Copying assets...
+[server] ✔ Copying assets complete.
+[server] - Generating index html...
+[server] ✔ Index html generation complete.
+[server] 
+[server] Initial Chunk Files           | Names                         |  Raw Size | Estimated Transfer Size
+[server] main.0eea901d0adfd17c.js      | main                          |   3.30 MB |               650.12 kB
+[server] styles.563e0d783dc640b9.css   | styles                        | 514.29 kB |                49.14 kB
+[server] polyfills.31b425ece4abb2fb.js | polyfills                     |  53.40 kB |                17.07 kB
+[server] runtime.6b762ce5d10c8691.js   | runtime                       |   3.20 kB |                 1.57 kB
+[server] 
+[server] | Initial Total                 |   3.85 MB |               717.90 kB
+[server] 
+[server] Lazy Chunk Files              | Names                         |  Raw Size | Estimated Transfer Size
+[server] 272.0e743fe254bf6720.js       | extensions-partner-routes     | 540.38 kB |                47.07 kB
+[server] 344.4f86038d1f31a438.js       | extensions-commercial-routes  | 540.38 kB |                47.10 kB
+[server] 392.5baece3274ec629b.js       | extensions-memberships-routes | 540.38 kB |                47.08 kB
+[server] 737.feef7226922c0f99.js       | extensions-annual-routes      | 540.38 kB |                46.99 kB
+[server] 769.c2a8e1efae37632a.js       | extensions-temporary-routes   | 540.38 kB |                47.06 kB
+[server] 114.b55e9604c7fb290b.js       | extensions-student-routes     | 540.38 kB |                46.95 kB
+[server] 752.ec5b56f3a1736edf.js       | vendure-admin-ui-catalog      | 274.22 kB |                44.90 kB
+[server] 646.ccc36dd0b8719860.js       | vendure-admin-ui-order        | 226.70 kB |                37.27 kB
+[server] 69.25ab8bc4f6264046.js        | vendure-admin-ui-settings     | 218.01 kB |                25.36 kB
+[server] 865.9e48d02a5be3e361.js       | vendure-admin-ui-customer     |  80.28 kB |                14.58 kB
+[server] 730.a670d8f6f26958b0.js       | vendure-admin-ui-marketing    |  25.29 kB |                 6.04 kB
+[server] 830.5dd92e51efc12b04.js       | vendure-admin-ui-dashboard    |  22.55 kB |                 5.85 kB
+[server] 4.d5cb77ae43959881.js         | vendure-admin-ui-system       |  15.26 kB |                 4.05 kB
+[server] 277.161f3419329463fd.js       | vendure-admin-ui-login        |  11.91 kB |                 3.03 kB
+[server] common.648e3f2f3c1ff1c5.js    | common                        | 485 bytes |               342 bytes
+[server] 
+[server] Build at: 2023-11-03T11:02:04.964Z - Hash: 8c962309af6fb321 - Time: 85730ms
+[server] info 11/3/23, 11:02 AM - [AdminUiPlugin] Admin UI successfully compiled 
+[worker] info 11/3/23, 11:05 AM - [Vendure Worker] Received shutdown signal:SIGHUP 
+[worker] yarn run dev:worker exited with code SIGHUP
+[server] info 11/3/23, 11:05 AM - [Vendure Server] Received shutdown signal:SIGHUP 
+[server] yarn run dev:server exited with code SIGHUP
+yarn run v1.22.19
+warning ../package.json: No license field
+$ concurrently yarn:dev:*
+[server] warning ../package.json: No license field
+[worker] warning ../package.json: No license field
+[server] $ ts-node ./src/index.ts
+[worker] $ ts-node ./src/index-worker.ts
+[worker] info 12/13/23, 12:06 PM - [Vendure Worker] Bootstrapping Vendure Worker (pid: 501175)... 
+[worker] info 12/13/23, 12:06 PM - [Vendure Worker] Vendure Worker is ready 
+[worker] info 12/13/23, 12:06 PM - [JobQueue] Starting queue: apply-collection-filters 
+[worker] info 12/13/23, 12:06 PM - [JobQueue] Starting queue: update-search-index 
+[worker] info 12/13/23, 12:06 PM - [JobQueue] Starting queue: send-email 
+[server] info 12/13/23, 12:06 PM - [Vendure Server] Bootstrapping Vendure Server (pid: 501173)... 
+[server] info 12/13/23, 12:06 PM - [AdminUiPlugin] Creating admin ui middleware (prod mode) 
+[server] info 12/13/23, 12:06 PM - [AssetServerPlugin] Creating asset server middleware 
+[server] info 12/13/23, 12:06 PM - [EmailPlugin] Creating dev mailbox middleware 
+[server] info 12/13/23, 12:06 PM - [AdminUiPlugin] Compiling Admin UI app in production mode... 
+[server] info 12/13/23, 12:06 PM - [RoutesResolver] HealthController {/health}: 
+[server] info 12/13/23, 12:06 PM - [RouterExplorer] Mapped {/health, GET} route 
+[server] Running yarn run build
+[server] warning ../../package.json: No license field
+[server] $ ng build --configuration production
+[server] info 12/13/23, 12:06 PM - [GraphQLModule] Mapped {/shop-api, POST} route 
+[server] info 12/13/23, 12:06 PM - [GraphQLModule] Mapped {/admin-api, POST} route 
+[server] info 12/13/23, 12:06 PM - [NestApplication] Nest application successfully started 
+[server] info 12/13/23, 12:06 PM - [Vendure Server] ================================================ 
+[server] info 12/13/23, 12:06 PM - [Vendure Server] Vendure server (v2.1.0) now running on port 3000 
+[server] info 12/13/23, 12:06 PM - [Vendure Server] ------------------------------------------------ 
+[server] info 12/13/23, 12:06 PM - [Vendure Server] Shop API:     http://localhost:3000/shop-api 
+[server] info 12/13/23, 12:06 PM - [Vendure Server] Admin API:    http://localhost:3000/admin-api 
+[server] info 12/13/23, 12:06 PM - [Vendure Server] Asset server: http://localhost:3000/assets 
+[server] info 12/13/23, 12:06 PM - [Vendure Server] Dev mailbox:  http://localhost:3000/mailbox 
+[server] info 12/13/23, 12:06 PM - [Vendure Server] Admin UI:     http://localhost:3000/admin 
+[server] info 12/13/23, 12:06 PM - [Vendure Server] ================================================ 
+[server] ---------------------------------------------
+[server]  Connected to Bobgo Order API successfully 
+[server] ---------------------------------------------
+[server] - Generating browser application bundles (phase: setup)...
+[server]     Components styles sourcemaps are not generated when styles optimization is enabled.
+[server] ✔ Browser application bundle generation complete.
+[server] ✔ Browser application bundle generation complete.
+[server] - Copying assets...
+[server] ✔ Copying assets complete.
+[server] - Generating index html...
+[server] ✔ Index html generation complete.
+[server] 
+[server] Initial Chunk Files           | Names                         |  Raw Size | Estimated Transfer Size
+[server] main.4c85628413883c92.js      | main                          |   3.30 MB |               649.91 kB
+[server] styles.563e0d783dc640b9.css   | styles                        | 514.29 kB |                49.14 kB
+[server] polyfills.31b425ece4abb2fb.js | polyfills                     |  53.40 kB |                17.07 kB
+[server] runtime.04fe76e232275d31.js   | runtime                       |   3.20 kB |                 1.56 kB
+[server] 
+[server] | Initial Total                 |   3.85 MB |               717.68 kB
+[server] 
+[server] Lazy Chunk Files              | Names                         |  Raw Size | Estimated Transfer Size
+[server] 295.895110a199c4f9c7.js       | extensions-student-routes     | 873.25 kB |                68.35 kB
+[server] 670.fc601c8c8a2c6bd9.js       | extensions-annual-routes      | 873.25 kB |                68.53 kB
+[server] 882.d72e276ef804a2db.js       | extensions-temporary-routes   | 873.25 kB |                68.43 kB
+[server] 595.6f681d57cb14eda1.js       | extensions-memberships-routes | 873.25 kB |                68.45 kB
+[server] 809.bbac7035ad2fbfa9.js       | extensions-commercial-routes  | 873.25 kB |                68.44 kB
+[server] 28.0593b4b25292df72.js        | extensions-partner-routes     | 873.25 kB |                68.36 kB
+[server] 752.ec5b56f3a1736edf.js       | vendure-admin-ui-catalog      | 274.22 kB |                44.90 kB
+[server] 646.ccc36dd0b8719860.js       | vendure-admin-ui-order        | 226.70 kB |                37.27 kB
+[server] 69.25ab8bc4f6264046.js        | vendure-admin-ui-settings     | 218.01 kB |                25.36 kB
+[server] 865.9e48d02a5be3e361.js       | vendure-admin-ui-customer     |  80.28 kB |                14.58 kB
+[server] 730.a670d8f6f26958b0.js       | vendure-admin-ui-marketing    |  25.29 kB |                 6.04 kB
+[server] 830.5dd92e51efc12b04.js       | vendure-admin-ui-dashboard    |  22.55 kB |                 5.85 kB
+[server] 4.d5cb77ae43959881.js         | vendure-admin-ui-system       |  15.26 kB |                 4.05 kB
+[server] 277.161f3419329463fd.js       | vendure-admin-ui-login        |  11.91 kB |                 3.03 kB
+[server] common.648e3f2f3c1ff1c5.js    | common                        | 485 bytes |               342 bytes
+[server] 
+[server] Build at: 2023-12-13T12:08:45.411Z - Hash: e7f65d12c7d30b8f - Time: 123852ms
+[server] info 12/13/23, 12:08 PM - [AdminUiPlugin] Admin UI successfully compiled 
+[worker] info 12/13/23, 12:13 PM - [Vendure Worker] Received shutdown signal:SIGINT 
+[server] info 12/13/23, 12:13 PM - [Vendure Server] Received shutdown signal:SIGINT 
+[worker] yarn run dev:worker exited with code SIGINT
+[server] yarn run dev:server exited with code SIGINT
+yarn run v1.22.19
+warning ../package.json: No license field
+$ concurrently yarn:dev:*
+[server] warning ../package.json: No license field
+[worker] warning ../package.json: No license field
+[server] $ ts-node ./src/index.ts
+[worker] $ ts-node ./src/index-worker.ts
+[worker] info 12/14/23, 7:13 AM - [Vendure Worker] Bootstrapping Vendure Worker (pid: 16111)... 
+[worker] info 12/14/23, 7:13 AM - [Vendure Worker] Vendure Worker is ready 
+[worker] info 12/14/23, 7:13 AM - [JobQueue] Starting queue: apply-collection-filters 
+[worker] info 12/14/23, 7:13 AM - [JobQueue] Starting queue: update-search-index 
+[worker] info 12/14/23, 7:13 AM - [JobQueue] Starting queue: send-email 
+[server] info 12/14/23, 7:13 AM - [Vendure Server] Bootstrapping Vendure Server (pid: 16112)... 
+[server] info 12/14/23, 7:13 AM - [AdminUiPlugin] Creating admin ui middleware (prod mode) 
+[server] info 12/14/23, 7:13 AM - [AssetServerPlugin] Creating asset server middleware 
+[server] info 12/14/23, 7:13 AM - [EmailPlugin] Creating dev mailbox middleware 
+[server] info 12/14/23, 7:13 AM - [AdminUiPlugin] Compiling Admin UI app in production mode... 
+[server] info 12/14/23, 7:13 AM - [RoutesResolver] HealthController {/health}: 
+[server] info 12/14/23, 7:13 AM - [RouterExplorer] Mapped {/health, GET} route 
+[server] Running yarn run build
+[server] warning ../../package.json: No license field
+[server] $ ng build --configuration production
+[server] info 12/14/23, 7:13 AM - [GraphQLModule] Mapped {/shop-api, POST} route 
+[server] info 12/14/23, 7:13 AM - [GraphQLModule] Mapped {/admin-api, POST} route 
+[server] info 12/14/23, 7:13 AM - [NestApplication] Nest application successfully started 
+[server] info 12/14/23, 7:13 AM - [Vendure Server] ================================================ 
+[server] info 12/14/23, 7:13 AM - [Vendure Server] Vendure server (v2.1.0) now running on port 3000 
+[server] info 12/14/23, 7:13 AM - [Vendure Server] ------------------------------------------------ 
+[server] info 12/14/23, 7:13 AM - [Vendure Server] Shop API:     http://localhost:3000/shop-api 
+[server] info 12/14/23, 7:13 AM - [Vendure Server] Admin API:    http://localhost:3000/admin-api 
+[server] info 12/14/23, 7:13 AM - [Vendure Server] Asset server: http://localhost:3000/assets 
+[server] info 12/14/23, 7:13 AM - [Vendure Server] Dev mailbox:  http://localhost:3000/mailbox 
+[server] info 12/14/23, 7:13 AM - [Vendure Server] Admin UI:     http://localhost:3000/admin 
+[server] info 12/14/23, 7:13 AM - [Vendure Server] ================================================ 
+[server] ---------------------------------------------
+[server]  Connected to Bobgo Order API successfully 
+[server] ---------------------------------------------
+[server] - Generating browser application bundles (phase: setup)...
+[server]     Components styles sourcemaps are not generated when styles optimization is enabled.
+[server] Killed
+[server] error Command failed with exit code 137.
+[server] info Visit https://yarnpkg.com/en/docs/cli/run for documentation about this command.
+[server] error 12/14/23, 7:15 AM - [AdminUiPlugin] Failed to compile: 137 
+[server] error 12/14/23, 8:05 AM - [Vendure Server] ENOENT: no such file or directory, stat '/var/www/html/backend/admin-ui/dist/index.html'
+[server] Error: ENOENT: no such file or directory, stat '/var/www/html/backend/admin-ui/dist/index.html' 
+[server] error 12/14/23, 8:09 AM - [Vendure Server] ENOENT: no such file or directory, stat '/var/www/html/backend/admin-ui/dist/index.html'
+[server] Error: ENOENT: no such file or directory, stat '/var/www/html/backend/admin-ui/dist/index.html' 
+[worker] error 12/14/23, 8:09 AM - [Vendure Worker] Job queue "apply-collection-filters" encountered an error (set log level to Debug for trace): "ER_LOCK_WAIT_TIMEOUT: Lock wait timeout exceeded; try restarting transaction" 
+[worker] error 12/14/23, 8:09 AM - [Vendure Worker] Job queue "update-search-index" encountered an error (set log level to Debug for trace): "ER_LOCK_WAIT_TIMEOUT: Lock wait timeout exceeded; try restarting transaction" 
+[server] error 12/14/23, 8:17 AM - [Vendure Server] ENOENT: no such file or directory, stat '/var/www/html/backend/admin-ui/dist/index.html'
+[server] Error: ENOENT: no such file or directory, stat '/var/www/html/backend/admin-ui/dist/index.html' 
+[server] Killed
+[server] error Command failed with exit code 137.
+[server] info Visit https://yarnpkg.com/en/docs/cli/run for documentation about this command.
+[server] yarn run dev:server exited with code 137
+[worker] info 12/14/23, 9:59 AM - [Vendure Worker] Received shutdown signal:SIGHUP 
+[worker] yarn run dev:worker exited with code SIGHUP
+yarn run v1.22.19
+warning ../package.json: No license field
+$ concurrently yarn:dev:*
+[worker] warning ../package.json: No license field
+[worker] $ ts-node ./src/index-worker.ts
+[server] warning ../package.json: No license field
+[server] $ ts-node ./src/index.ts
+[worker] info 12/14/23, 11:23 AM - [Vendure Worker] Bootstrapping Vendure Worker (pid: 92095)... 
+[worker] info 12/14/23, 11:23 AM - [Vendure Worker] Vendure Worker is ready 
+[worker] info 12/14/23, 11:23 AM - [JobQueue] Starting queue: apply-collection-filters 
+[worker] info 12/14/23, 11:23 AM - [JobQueue] Starting queue: update-search-index 
+[worker] info 12/14/23, 11:23 AM - [JobQueue] Starting queue: send-email 
+[server] info 12/14/23, 11:23 AM - [Vendure Server] Bootstrapping Vendure Server (pid: 92103)... 
+[server] info 12/14/23, 11:23 AM - [AdminUiPlugin] Creating admin ui middleware (prod mode) 
+[server] info 12/14/23, 11:23 AM - [AssetServerPlugin] Creating asset server middleware 
+[server] info 12/14/23, 11:23 AM - [EmailPlugin] Creating dev mailbox middleware 
+[server] info 12/14/23, 11:23 AM - [AdminUiPlugin] Compiling Admin UI app in production mode... 
+[server] info 12/14/23, 11:23 AM - [RoutesResolver] HealthController {/health}: 
+[server] info 12/14/23, 11:23 AM - [RouterExplorer] Mapped {/health, GET} route 
+[server] Running yarn run build
+[server] warning ../../package.json: No license field
+[server] $ ng build --configuration production
+[server] info 12/14/23, 11:23 AM - [GraphQLModule] Mapped {/shop-api, POST} route 
+[server] info 12/14/23, 11:23 AM - [GraphQLModule] Mapped {/admin-api, POST} route 
+[server] ---------------------------------------------
+[server]  Connected to Bobgo Order API successfully 
+[server] ---------------------------------------------
+[server] info 12/14/23, 11:23 AM - [NestApplication] Nest application successfully started 
+[server] info 12/14/23, 11:23 AM - [Vendure Server] ================================================ 
+[server] info 12/14/23, 11:23 AM - [Vendure Server] Vendure server (v2.1.0) now running on port 3000 
+[server] info 12/14/23, 11:23 AM - [Vendure Server] ------------------------------------------------ 
+[server] info 12/14/23, 11:23 AM - [Vendure Server] Shop API:     http://localhost:3000/shop-api 
+[server] info 12/14/23, 11:23 AM - [Vendure Server] Admin API:    http://localhost:3000/admin-api 
+[server] info 12/14/23, 11:23 AM - [Vendure Server] Asset server: http://localhost:3000/assets 
+[server] info 12/14/23, 11:23 AM - [Vendure Server] Dev mailbox:  http://localhost:3000/mailbox 
+[server] info 12/14/23, 11:23 AM - [Vendure Server] Admin UI:     http://localhost:3000/admin 
+[server] info 12/14/23, 11:23 AM - [Vendure Server] ================================================ 
+[server] - Generating browser application bundles (phase: setup)...
+[server]     Components styles sourcemaps are not generated when styles optimization is enabled.
+[server] ✔ Browser application bundle generation complete.
+[server] ✔ Browser application bundle generation complete.
+[server] - Copying assets...
+[server] ✔ Copying assets complete.
+[server] - Generating index html...
+[server] ✔ Index html generation complete.
+[server] 
+[server] Initial Chunk Files           | Names                         |  Raw Size | Estimated Transfer Size
+[server] main.4c85628413883c92.js      | main                          |   3.30 MB |               649.91 kB
+[server] styles.563e0d783dc640b9.css   | styles                        | 514.29 kB |                49.14 kB
+[server] polyfills.31b425ece4abb2fb.js | polyfills                     |  53.40 kB |                17.07 kB
+[server] runtime.04fe76e232275d31.js   | runtime                       |   3.20 kB |                 1.56 kB
+[server] 
+[server] | Initial Total                 |   3.85 MB |               717.68 kB
+[server] 
+[server] Lazy Chunk Files              | Names                         |  Raw Size | Estimated Transfer Size
+[server] 295.895110a199c4f9c7.js       | extensions-student-routes     | 873.25 kB |                68.35 kB
+[server] 670.fc601c8c8a2c6bd9.js       | extensions-annual-routes      | 873.25 kB |                68.53 kB
+[server] 882.d72e276ef804a2db.js       | extensions-temporary-routes   | 873.25 kB |                68.43 kB
+[server] 595.6f681d57cb14eda1.js       | extensions-memberships-routes | 873.25 kB |                68.45 kB
+[server] 809.bbac7035ad2fbfa9.js       | extensions-commercial-routes  | 873.25 kB |                68.44 kB
+[server] 28.0593b4b25292df72.js        | extensions-partner-routes     | 873.25 kB |                68.36 kB
+[server] 752.ec5b56f3a1736edf.js       | vendure-admin-ui-catalog      | 274.22 kB |                44.90 kB
+[server] 646.ccc36dd0b8719860.js       | vendure-admin-ui-order        | 226.70 kB |                37.27 kB
+[server] 69.25ab8bc4f6264046.js        | vendure-admin-ui-settings     | 218.01 kB |                25.36 kB
+[server] 865.9e48d02a5be3e361.js       | vendure-admin-ui-customer     |  80.28 kB |                14.58 kB
+[server] 730.a670d8f6f26958b0.js       | vendure-admin-ui-marketing    |  25.29 kB |                 6.04 kB
+[server] 830.5dd92e51efc12b04.js       | vendure-admin-ui-dashboard    |  22.55 kB |                 5.85 kB
+[server] 4.d5cb77ae43959881.js         | vendure-admin-ui-system       |  15.26 kB |                 4.05 kB
+[server] 277.161f3419329463fd.js       | vendure-admin-ui-login        |  11.91 kB |                 3.03 kB
+[server] common.648e3f2f3c1ff1c5.js    | common                        | 485 bytes |               342 bytes
+[server] 
+[server] Build at: 2023-12-14T11:26:27.313Z - Hash: e7f65d12c7d30b8f - Time: 148533ms
+[server] info 12/14/23, 11:26 AM - [AdminUiPlugin] Admin UI successfully compiled 
+[worker] info 12/14/23, 11:28 AM - [Vendure Worker] Received shutdown signal:SIGHUP 
+[server] info 12/14/23, 11:28 AM - [Vendure Server] Received shutdown signal:SIGHUP 
+[worker] yarn run dev:worker exited with code SIGHUP
+[server] yarn run dev:server exited with code SIGHUP

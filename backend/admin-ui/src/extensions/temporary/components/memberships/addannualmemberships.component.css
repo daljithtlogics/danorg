@@ -1,0 +1,91 @@
+ .container {
+  max-width: 95%;
+  }
+  
+  .annual-member-box {
+    /* border: 2px solid red; */
+}
+
+.annual-member-box h4 {
+    color: #fff;
+    background-color: #e73439;
+    padding: 10px;
+    font-size: 22px;
+    font-weight: 600;
+}
+
+.input-group .input-group-addon {
+    background: #000;
+    border: 0;
+    width: 38px;
+    border-radius: 4px 0 0 4px; text-align: center;
+}
+
+.input-group .input-group-addon i {
+    color: #fff;
+       padding: 11px;
+}
+    .annual-member-box .form-group {
+    /* display: flex; */
+    margin-bottom: 20px;
+}
+
+.form-tab-heading h3 {
+    font-size: 20px;
+    font-weight: 700;
+    color: #000;
+    /* border-bottom: 1px solid #0000001c;	 */
+    margin-bottom: 22px; text-transform: uppercase;
+}
+.annual-member-form a.nav-link.active {
+    border-top: 3px solid #e73439 !important;
+    border-left: 0;
+    border-right: 0;
+}
+.annual-member-form button.nav-link.active {
+    border-top: 3px solid #e73439 !important;		
+    border-left: 0;
+    border-right: 0;
+}
+.annual-member-form input.btn {
+    color: #fff;
+    background-color: #1BA39C;
+    margin: 24px 0px;
+    padding: 12px;
+}
+
+.annual-member-form input.btn:hover {
+    /* background-color: #fff !important;
+    color: #000 !important; */
+}
+.annual-member-form a.nav-link {
+    color: #000;
+}
+.annual-member-form button.nav-link {
+    color: #000;
+}
+ 
+
+.switchToggle input[type=checkbox]{height: 0; width: 0; visibility: hidden; position: absolute; }
+
+.switchToggle label {margin: 3px 16px; cursor: pointer; text-indent: -9999px; width: 85px; max-width: 85px; height: 30px; background: #d1d1d1; display: block; border-radius: 9px !important; position: relative; }
+.switchToggle label:after {content: ''; position: absolute; top: 2px; left: 2px; width: 30px; height: 27px; background: #fff; border-radius: 9px !important; transition: 0.3s; }
+.switchToggle input:checked + label, .switchToggle input:checked + input + label  {background: #3e98d3; }
+.switchToggle input + label:before, .switchToggle input + input + label:before {content: 'No'; position: absolute; top: 3px; left: 50px; width: 26px; height: 26px; border-radius: 90px; transition: 0.3s; text-indent: 0; color: #fff; }
+.switchToggle input:checked + label:before, .switchToggle input:checked + input + label:before {content: 'Yes'; position: absolute; top: 3px; left: 10px; width: 26px; height: 26px; border-radius: 90px; transition: 0.3s; text-indent: 0; color: #fff; }
+.switchToggle input:checked + label:after, .switchToggle input:checked + input + label:after {left: calc(100% - 2px); transform: translateX(-100%); }
+.switchToggle label:active:after {width: 60px; } 
+.toggle-switchArea { margin: 10px 0 10px 0; }
+
+.nav-tabs-own { gap: 6px !important; border-bottom: transparent !important; box-shadow: none !important;}
+.nav-tabs-own .nav-item { border-radius: 5px; padding: 0 3px; }
+.nav-tabs-own .nav-item .tablinks { color: #fff; background: #000 !important; padding: 0 8px; }
+.nav-tabs-own .nav-item .active.tablinks { background: #dd1717 !important; border-color: transparent !important; }
+.nav-tabs-own .nav-link:hover:before, .nav-tabs-own .nav-link.active:before { border-bottom-style: none !important;}
+.btn-own { background: #dd1717 !important; border: 0; text-decoration: none; -webkit-border-radius: 4px; -moz-border-radius: 4px; border-radius: 4px; position: relative; z-index: 1; display: inline-block; text-align: center; font-size: 15px; color: #fff !important; margin: 0; padding: 0.375rem 0.75rem; text-shadow: none; text-transform: capitalize; }
+.btn-own:hover{background: #000 !important; border: 0; color:#fff; -webkit-transition: all .3s; -moz-transition: all .3s;-o-transition: all .3s; transition: all .3s;}
+.main-head{font-weight: 700;}
+.annual-member-box .form-group:hover .input-group-addon{background: #dd1717 !important;}
+.tabcontent { padding: 0; margin: 0;}
+.annual-member-form .control-label { padding-top: 1px 0 7px 0; margin-bottom: 0; text-align: left;	 font-weight: 500; color: #606060; } 
+.annual-member-box .container, .annual-member-box .container-fluid { padding: 0; margin: 0; }

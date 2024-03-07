@@ -1,0 +1,67 @@
+<section class="form-wrap">
+  <div class="container">
+    <div class="row">
+      
+	  <div class="col-sm-12">
+	    <div class="form-grid">
+	      <div class="title">
+	        <h2>Membership Cancellation Request</h2>		
+		    <p>Leave your message and we'll get back to you shortly.</p>
+	      </div><!--/ title -->
+		  
+		  <form [formGroup]="cancelForm" (ngSubmit)="onSubmit()">
+		    <div class="form-group col-sm-6">
+			  <label>Name<small class="text-danger">*</small></label>
+			  <input class="form-control" formControlName="fname" placeholder="John">
+			  <small class="text-danger" *ngIf="isNextButtonClicked && cancelForm.get('fname')?.hasError('required')"> First Name is required. </small>
+		    </div>
+			
+			<div class="form-group col-sm-6">
+			  <label>Surname<small class="text-danger">*</small> </label>
+			  <input class="form-control" formControlName="sname" placeholder="Doe">
+			  <small class="text-danger" *ngIf="isNextButtonClicked && cancelForm.get('sname')?.hasError('required')"> Surname is required. </small>
+		    </div>
+			
+			<div class="form-group col-sm-6">
+			  <label>Phone<small class="text-danger">*</small> </label>
+			  <input class="form-control" type="phone" formControlName="phone" placeholder="000000-0000">
+			  <small class="text-danger" *ngIf="isNextButtonClicked && cancelForm.get('phone')?.hasError('required')"> Phone is required. </small>
+		    </div>
+			
+			<div class="form-group col-sm-6">
+			  <label>Email address<small class="text-danger">*</small> </label>
+			  <input class="form-control" type="email" formControlName="email_address" placeholder="example@gmail.com">
+			  <small class="text-danger" *ngIf="isNextButtonClicked && (cancelForm.get('email_address')?.hasError('required') || cancelForm.get('email_address')?.hasError('email'))">
+				<ng-container *ngIf="cancelForm.get('email_address')?.hasError('required')">Email address is required.</ng-container>
+				<ng-container *ngIf="cancelForm.get('email_address')?.hasError('email') && !cancelForm.get('email_address')?.hasError('required')">Invalid email address.</ng-container>
+			</small>
+		    </div>
+			
+			<div class="form-group col-sm-6">
+			  <label>DAN Membership Number<small class="text-danger">*</small> </label>
+			  <input class="form-control" placeholder="DANM 000000" type="text" value="" formControlName="member_no">
+			  <small class="text-danger" *ngIf="isNextButtonClicked && cancelForm.get('member_no')?.hasError('required')"> Membership No. is required. </small>
+		    </div>
+			
+			<div class="form-group col-sm-6">
+			  <label>Identification/Passport Number </label>
+			  <input class="form-control" type="text" value="" formControlName="passport" placeholder="00-0000-00000">
+		    </div>
+			
+			<div class="form-group col-sm-12">
+			  <label>Additional Information </label>
+			  <textarea class="form-control" placeholder="Tell us briefly about your needs" formControlName="more_info"></textarea>
+		    </div>
+			
+			<div class="form-group col-sm-12 text-center">
+			  <input class="btn" value="Submit" type="submit">
+		    </div>
+		  </form>
+		  
+	    </div><!--/ form-grid -->
+	  </div>
+          
+    </div><!--/ row -->	
+  </div>
+</section><!--/ form-wrap -->
+<app-sub-footer></app-sub-footer>

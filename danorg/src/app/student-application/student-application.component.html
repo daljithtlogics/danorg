@@ -1,0 +1,482 @@
+<section class="form-wrap annual-application">
+  <div class="container">
+    <div class="row">
+      
+	  <div class="col-sm-12">
+	    <div class="form-grid">
+	      <div class="title">
+	        <h2>Application Form</h2>
+		    <p>Your application will be processed within 24 hours</p>
+	      </div><!--/ title -->
+		  
+			<form [formGroup]="studentAppForm" (ngSubmit)="onSubmit()">
+			<div class="form-steps form-group col-sm-12" id="step_1">
+			  <div class="row">
+			    
+				<div class="form-group col-sm-12">
+				  <div class="step-no">Step 1 of 3</div>
+				  <h3>PERSONAL DETAILS</h3>
+				  <p class="annual-p text-center">Please complete required fields</p>
+				  <div class="form-bar">
+					<div class="form-clearbar"></div>
+					<div class="form-fillbar"></div>
+				  </div><!--/ form-bar -->
+				</div>
+			
+		        <div class="form-group col-sm-4">
+			      <label>Title <span class="text-danger">*</span></label>
+				  	<select id="" class="form-control" formControlName="title">
+						<option value="" selected>UNKNOWN</option>
+						<option value="MR">MR</option>
+						<option value="MRS">MRS</option>
+						<option value="MISS">MISS</option>
+						<option value="MS">MS</option>
+						<option value="REV">REV</option>
+						<option value="DR">DR</option>
+						<option value="PROF">PROF</option>
+						<option value="DS">DS</option>
+						<option value="SIR">SIR</option>
+						<option value="MASTER">MASTER</option>
+						<option value="COMPANY">COMPANY</option>
+					</select>
+					<small class="text-danger" *ngIf="isNextButtonClicked && studentAppForm.get('title')?.hasError('required')"> Title is required. </small>
+		        </div>
+			
+			    <div class="form-group col-sm-4">
+			      <label>First name <span class="text-danger">*</span></label>
+			      <input class="form-control" placeholder="john" value="" formControlName="first_name">
+				  	<small class="text-danger" *ngIf="isNextButtonClicked && studentAppForm.get('first_name')?.hasError('required')"> First Name is required. </small>
+		        </div>
+			
+			    <div class="form-group col-sm-4">
+			      <label>Last name <span class="text-danger">*</span></label>
+			      <input class="form-control" placeholder="Doe" value="" formControlName="last_name">
+				  <small class="text-danger" *ngIf="isNextButtonClicked && studentAppForm.get('last_name')?.hasError('required')"> Last Name is required. </small>
+		        </div>
+			
+			    <div class="form-group col-sm-6">
+			      <label>Date of Birth <span class="text-danger">*</span></label>
+			      <input type="date" class="form-control" placeholder="10-06-1990" value="" formControlName="dob">
+				  <small class="text-danger" *ngIf="isNextButtonClicked && studentAppForm.get('dob')?.hasError('required')"> Date of Birth is required. </small>
+		        </div>
+			
+			    <div class="form-group col-sm-6">
+			      <label>ID/Passport Number</label>
+			      <input class="form-control" placeholder="000000-0000-000" type="phone" value="" name="passport_no">
+		        </div>
+			
+			    <div class="form-group col-sm-12">
+			      <h4 class="mrb-0"><b>Address</b></h4>
+		        </div>
+				
+			    <div class="form-group col-sm-6">
+			      <label>Postal Address 1 <span class="text-danger">*</span></label>
+			      <input class="form-control" placeholder="P O BOX 3159" type="text" value="" formControlName="address1">
+				  <small class="text-danger" *ngIf="isNextButtonClicked && studentAppForm.get('address1')?.hasError('required')"> Postal Address 1 is required. </small>
+		        </div>
+
+				<div class="form-group col-sm-6">
+					<label>Postal Address 2</label>
+					<input class="form-control" placeholder="PO BOX 3198" type="text" value="" name="address2">
+				</div>
+			
+			    <div class="form-group col-sm-6">
+			      <label>City <span class="text-danger">*</span></label>
+			      <input class="form-control" placeholder="London" type="text" value="" formControlName="city">
+				  <small class="text-danger" *ngIf="isNextButtonClicked && studentAppForm.get('city')?.hasError('required')"> City is required. </small>
+		        </div>
+			
+			    <div class="form-group col-sm-6">
+			      <label>State/Region/Province <span class="text-danger">*</span></label>
+			      <input class="form-control" placeholder="Greater London" type="text" value="" formControlName="state">
+				  <small class="text-danger" *ngIf="isNextButtonClicked && studentAppForm.get('state')?.hasError('required')"> State is required. </small>
+		        </div>
+			
+			    <div class="form-group col-sm-6">
+			      <label>Postal/Zip code <span class="text-danger">*</span></label>
+			      <input class="form-control" placeholder="E1 6AN" type="text" value="" formControlName="postal_code">
+				  <small class="text-danger" *ngIf="isNextButtonClicked && studentAppForm.get('postal_code')?.hasError('required')"> Postal/Zip Code is required. </small>
+		        </div>
+
+				<div class="form-group col-sm-6">
+					<label>Country <span class="text-danger">*</span></label>
+					<select id="" class="form-control" formControlName="country">
+						<option selected="selected" value="">UNKNOWN</option>
+                        <option value="AFGHANISTAN">AFGHANISTAN</option>
+                        <option value="ALBANIA">ALBANIA</option>
+                        <option value="ALGERIA">ALGERIA</option>
+                        <option value="AMERICAN SAMOA">AMERICAN SAMOA</option>
+                        <option value="ANDORRA">ANDORRA</option>
+                        <option value="ANGOLA">ANGOLA</option>
+                        <option value="ANGUILLA">ANGUILLA</option>
+                        <option value="ANTARCTICA">ANTARCTICA</option>
+                        <option value="ANTIGUA AND BARBUDA">ANTIGUA AND BARBUDA</option>
+                        <option value="ARGENTINA">ARGENTINA</option>
+                        <option value="ARMENIA">ARMENIA</option>
+                        <option value="ARUBA">ARUBA</option>
+                        <option value="AUSTRALIA">AUSTRALIA</option>
+                        <option value="AUSTRIA">AUSTRIA</option>
+                        <option value="AZERBAIJAN">AZERBAIJAN</option>
+                        <option value="BAHAMAS">BAHAMAS</option>
+                        <option value="BAHRAIN">BAHRAIN</option>
+                        <option value="BANGLADESH">BANGLADESH</option>
+                        <option value="BARBADOS">BARBADOS</option>
+                        <option value="BELARUS">BELARUS</option>
+                        <option value="BELGIUM">BELGIUM</option>
+                        <option value="BELIZE">BELIZE</option>
+                        <option value="BENIN">BENIN</option>
+                        <option value="BERMUDA">BERMUDA</option>
+                        <option value="BHUTAN">BHUTAN</option>
+                        <option value="BOLIVIA">BOLIVIA</option>
+                        <option value="BOSNIA AND HERZEGOVINA">BOSNIA AND HERZEGOVINA</option>
+                        <option value="BOTSWANA">BOTSWANA</option>
+                        <option value="BOUVET ISLAND">BOUVET ISLAND</option>
+                        <option value="BRAZIL">BRAZIL</option>
+                        <option value="BRITISH INDIAN OCEAN TERRITORY">BRITISH INDIAN OCEAN
+                                                TERRITORY</option>
+                        <option value="BRUNEI DARUSSALAM">BRUNEI DARUSSALAM</option>
+                        <option value="BULGARIA">BULGARIA</option>
+                        <option value="BURKINA FASO">BURKINA FASO</option>
+                        <option value="BURUNDI">BURUNDI</option>
+                        <option value="CAMBODIA">CAMBODIA</option>
+                        <option value="CAMEROON">CAMEROON</option>
+                        <option value="CANADA">CANADA</option>
+                        <option value="CAPE VERDE">CAPE VERDE</option>
+                        <option value="CAYMAN ISLANDS">CAYMAN ISLANDS</option>
+                        <option value="CENTRAL AFRICAN REPUBLIC">CENTRAL AFRICAN REPUBLIC</option>
+                        <option value="CHAD">CHAD</option>
+                        <option value="CHILE">CHILE</option>
+                        <option value="CHINA">CHINA</option>
+                        <option value="CHRISTMAS ISLAND">CHRISTMAS ISLAND</option>
+                        <option value="COCOS (KEELING) ISLANDS">COCOS (KEELING) ISLANDS</option>
+                        <option value="COLOMBIA">COLOMBIA</option>
+                        <option value="COMOROS">COMOROS</option>
+                        <option value="CONGO REPUBLIC (BRAZZAVILLE)">CONGO REPUBLIC (BRAZZAVILLE)
+                                            </option>
+                        <option value="COOK ISLANDS">COOK ISLANDS</option>
+                        <option value="COSTA RICA">COSTA RICA</option>
+                        <option value="CROATIA">CROATIA</option>
+                        <option value="CUBA">CUBA</option>
+                        <option value="CYPRUS">CYPRUS</option>
+                        <option value="CZECH REPUBLIC">CZECH REPUBLIC</option>
+                        <option value="DEMOCRATIC REPUBLIC OF CONGO (KINSHASA)">DEMOCRATIC REPUBLIC
+                                                OF CONGO (KINSHASA)</option>
+                        <option value="DENMARK">DENMARK</option>
+                        <option value="DJIBOUTI">DJIBOUTI</option>
+                        <option value="DOMINICA">DOMINICA</option>
+                        <option value="DOMINICAN REPUBLIC">DOMINICAN REPUBLIC</option>
+                        <option value="EAST TIMOR (TIMOR-LESTE)">EAST TIMOR (TIMOR-LESTE)</option>
+                        <option value="ECUADOR">ECUADOR</option>
+                        <option value="EGYPT">EGYPT</option>
+                        <option value="EL SALVADOR">EL SALVADOR</option>
+                        <option value="ENGLAND">ENGLAND</option>
+                        <option value="EQUATORIAL GUINEA">EQUATORIAL GUINEA</option>
+                        <option value="ERITREA">ERITREA</option>
+                        <option value="ESTONIA">ESTONIA</option>
+                        <option value="ETHIOPIA">ETHIOPIA</option>
+                        <option value="FALKLAND ISLANDS">FALKLAND ISLANDS</option>
+                        <option value="FAROE ISLANDS">FAROE ISLANDS</option>
+                        <option value="FIJI">FIJI</option>
+                        <option value="FINLAND">FINLAND</option>
+                        <option value="FRANCE">FRANCE</option>
+                        <option value="FRENCH GUIANA">FRENCH GUIANA</option>
+                        <option value="FRENCH POLYNESIA">FRENCH POLYNESIA</option>
+                        <option value="FRENCH SOUTHERN TERRITORIES">FRENCH SOUTHERN TERRITORIES
+                                            </option>
+                        <option value="GABON">GABON</option>
+                        <option value="GAMBIA">GAMBIA</option>
+                        <option value="GEORGIA">GEORGIA</option>
+                        <option value="GERMANY">GERMANY</option>
+                        <option value="GHANA">GHANA</option>
+                        <option value="GIBRALTAR">GIBRALTAR</option>
+                        <option value="GREECE">GREECE</option>
+                        <option value="GREENLAND">GREENLAND</option>
+                        <option value="GRENADA">GRENADA</option>
+                        <option value="GUADELOUPE">GUADELOUPE</option>
+                        <option value="GUAM">GUAM</option>
+                        <option value="GUATEMALA">GUATEMALA</option>
+                        <option value="GUINEA">GUINEA</option>
+                        <option value="GUINEA-BISSAU">GUINEA-BISSAU</option>
+                        <option value="GUYANA">GUYANA</option>
+                        <option value="HAITI">HAITI</option>
+                        <option value="HOLY SEE">HOLY SEE</option>
+                        <option value="HONDURAS">HONDURAS</option>
+                        <option value="HONG KONG">HONG KONG</option>
+                        <option value="HUNGARY">HUNGARY</option>
+                        <option value="ICELAND">ICELAND</option>
+                        <option value="INDIA">INDIA</option>
+                        <option value="INDONESIA">INDONESIA</option>
+                        <option value="IRAN (ISLAMIC REPUBLIC OF)">IRAN (ISLAMIC REPUBLIC OF)
+                                            </option>
+                        <option value="IRAQ">IRAQ</option>
+                        <option value="IRELAND">IRELAND</option>
+                        <option value="ISRAEL">ISRAEL</option>
+                        <option value="ITALY">ITALY</option>
+                        <option value="IVORY COAST">IVORY COAST</option>
+                        <option value="JAMAICA">JAMAICA</option>
+                        <option value="JAPAN">JAPAN</option>
+                        <option value="JORDAN">JORDAN</option>
+                        <option value="KAZAKHSTAN">KAZAKHSTAN</option>
+                        <option value="KENYA">KENYA</option>
+                        <option value="KIRIBATI">KIRIBATI</option>
+                        <option value="KOREAN DEMOCRATIC PEOPLE'S REPUBLIC (NORTH KOREA)">KOREAN
+                                                DEMOCRATIC PEOPLE'S REPUBLIC (NORTH KOREA)</option>
+                        <option value="KOREAN REPUBLIC (SOUTH KOREA)">KOREAN REPUBLIC (SOUTH KOREA)
+                                            </option>
+                        <option value="KOSOVO">KOSOVO</option>
+                        <option value="KUWAIT">KUWAIT</option>
+                        <option value="KYRGYZSTAN">KYRGYZSTAN</option>
+                        <option value="LAO PEOPLE'S DEMOCRATIC REPUBLIC">LAO PEOPLE'S DEMOCRATIC
+                                                REPUBLIC</option>
+                        <option value="LATVIA">LATVIA</option>
+                        <option value="LEBANON">LEBANON</option>
+                        <option value="LESOTHO">LESOTHO</option>
+                        <option value="LIBERIA">LIBERIA</option>
+                        <option value="LIBYA">LIBYA</option>
+                        <option value="LIECHTENSTEIN">LIECHTENSTEIN</option>
+                        <option value="LITHUANIA">LITHUANIA</option>
+                        <option value="LUXEMBOURG">LUXEMBOURG</option>
+                        <option value="MACAU">MACAU</option>
+                        <option value="MACEDONIA REPUBLIC">MACEDONIA REPUBLIC</option>
+                        <option value="MADAGASCAR">MADAGASCAR</option>
+                        <option value="MALAWI">MALAWI</option>
+                        <option value="MALAYSIA">MALAYSIA</option>
+                        <option value="MALDIVES">MALDIVES</option>
+                        <option value="MALI">MALI</option>
+                        <option value="MALTA">MALTA</option>
+                        <option value="MARSHALL ISLANDS">MARSHALL ISLANDS</option>
+                        <option value="MARTINIQUE">MARTINIQUE</option>
+                        <option value="MAURITANIA">MAURITANIA</option>
+                        <option value="MAURITIUS">MAURITIUS</option>
+                        <option value="MAYOTTE">MAYOTTE</option>
+                        <option value="MEXICO">MEXICO</option>
+                        <option value="MICRONESIA FEDERAL STATES">MICRONESIA FEDERAL STATES</option>
+                        <option value="MOLDOVA REPUBLIC">MOLDOVA REPUBLIC</option>
+                        <option value="MONACO">MONACO</option>
+                        <option value="MONGOLIA">MONGOLIA</option>
+                        <option value="MONTENEGRO">MONTENEGRO</option>
+                        <option value="MONTSERRAT">MONTSERRAT</option>
+                        <option value="MOROCCO">MOROCCO</option>
+                        <option value="MOZAMBIQUE">MOZAMBIQUE</option>
+                        <option value="MYANMAR BURMA">MYANMAR BURMA</option>
+                        <option value="NAMIBIA">NAMIBIA</option>
+                        <option value="NAURU">NAURU</option>
+                        <option value="NEPAL">NEPAL</option>
+                        <option value="NETHERLANDS">NETHERLANDS</option>
+                        <option value="NETHERLANDS ANTILLES">NETHERLANDS ANTILLES</option>
+                        <option value="NEW CALEDONIA">NEW CALEDONIA</option>
+                        <option value="NEW ZEALAND">NEW ZEALAND</option>
+                        <option value="NICARAGUA">NICARAGUA</option>
+                        <option value="NIGER">NIGER</option>
+                        <option value="NIGERIA">NIGERIA</option>
+                        <option value="NIUE">NIUE</option>
+                        <option value="NORTHERN MARIANA ISLANDS">NORTHERN MARIANA ISLANDS</option>
+                        <option value="NORWAY">NORWAY</option>
+                        <option value="OMAN">OMAN</option>
+                        <option value="PAKISTAN">PAKISTAN</option>
+                        <option value="PALAU">PALAU</option>
+                        <option value="PALESTINIAN TERRITORIES">PALESTINIAN TERRITORIES</option>
+                        <option value="PANAMA">PANAMA</option>
+                        <option value="PAPUA NEW GUINEA">PAPUA NEW GUINEA</option>
+                        <option value="PARAGUAY">PARAGUAY</option>
+                        <option value="PERU">PERU</option>
+                        <option value="PHILIPPINES">PHILIPPINES</option>
+                        <option value="PITCAIRN ISLAND">PITCAIRN ISLAND</option>
+                        <option value="POLAND">POLAND</option>
+                        <option value="PORTUGAL">PORTUGAL</option>
+                        <option value="PUERTO RICO">PUERTO RICO</option>
+                        <option value="QATAR">QATAR</option>
+                        <option value="REUNION ISLAND">REUNION ISLAND</option>
+                        <option value="ROMANIA">ROMANIA</option>
+                        <option value="RUSSIAN FEDERATION">RUSSIAN FEDERATION</option>
+                        <option value="RWANDA">RWANDA</option>
+                        <option value="SAINT HELENA">SAINT HELENA</option>
+                        <option value="SAINT KITTS AND NEVIS">SAINT KITTS AND NEVIS</option>
+                        <option value="SAINT LUCIA">SAINT LUCIA</option>
+                        <option value="SAINT VINCENT AND THE GRENADINES">SAINT VINCENT AND THE
+                                                GRENADINES</option>
+                        <option value="SAMOA">SAMOA</option>
+                        <option value="SAN MARINO">SAN MARINO</option>
+                        <option value="SAO TOME AND PRINCIPE">SAO TOME AND PRINCIPE</option>
+                        <option value="SAUDI ARABIA">SAUDI ARABIA</option>
+                        <option value="SCOTLAND">SCOTLAND</option>
+                        <option value="SENEGAL">SENEGAL</option>
+                        <option value="SERBIA">SERBIA</option>
+                        <option value="SEYCHELLES">SEYCHELLES</option>
+                        <option value="SIERRA LEONE">SIERRA LEONE</option>
+                        <option value="SINGAPORE">SINGAPORE</option>
+                        <option value="SLOVAKIA (SLOVAK REPUBLIC)">SLOVAKIA (SLOVAK REPUBLIC)
+                                            </option>
+                        <option value="SLOVENIA">SLOVENIA</option>
+                        <option value="SOLOMON ISLANDS">SOLOMON ISLANDS</option>
+                        <option value="SOMALIA">SOMALIA</option>
+                        <option value="SOUTH AFRICA">SOUTH AFRICA</option>
+                        <option value="SOUTH SUDAN">SOUTH SUDAN</option>
+                        <option value="SPAIN">SPAIN</option>
+                        <option value="SRI LANKA">SRI LANKA</option>
+                        <option value="SUDAN">SUDAN</option>
+                        <option value="SURINAME">SURINAME</option>
+                        <option value="SWAZILAND">SWAZILAND</option>
+                        <option value="SWEDEN">SWEDEN</option>
+                        <option value="SWITZERLAND">SWITZERLAND</option>
+                        <option value="SYRIAN ARAB REPUBLIC">SYRIAN ARAB REPUBLIC</option>
+                        <option value="TAJIKISTAN">TAJIKISTAN</option>
+                        <option value="TANZANIA">TANZANIA</option>
+                        <option value="THAILAND">THAILAND</option>
+                        <option value="TIBET">TIBET</option>
+                        <option value="TIMOR-LESTE (EAST TIMOR)">TIMOR-LESTE (EAST TIMOR)</option>
+                        <option value="TOGO">TOGO</option>
+                        <option value="TOKELAU">TOKELAU</option>
+                        <option value="TONGA">TONGA</option>
+                        <option value="TRINIDAD AND TOBAGO">TRINIDAD AND TOBAGO</option>
+                        <option value="TUNISIA">TUNISIA</option>
+                        <option value="TURKEY">TURKEY</option>
+                        <option value="TURKMENISTAN">TURKMENISTAN</option>
+                        <option value="TURKS AND CAICOS ISLANDS">TURKS AND CAICOS ISLANDS</option>
+                        <option value="TUVALU">TUVALU</option>
+                        <option value="UGANDA">UGANDA</option>
+                        <option value="UKRAINE">UKRAINE</option>
+                        <option value="UNITED ARAB EMIRATES">UNITED ARAB EMIRATES</option>
+                        <option value="UNITED KINGDOM">UNITED KINGDOM</option>
+                        <option value="UNITED STATES">UNITED STATES</option>
+                        <option value="URUGUAY">URUGUAY</option>
+                        <option value="UZBEKISTAN">UZBEKISTAN</option>
+                        <option value="VANUATU">VANUATU</option>
+                        <option value="VATICAN CITY STATE (HOLY SEE)">VATICAN CITY STATE (HOLY SEE)
+                                            </option>
+                        <option value="VENEZUELA">VENEZUELA</option>
+                        <option value="VIETNAM">VIETNAM</option>
+                        <option value="VIRGIN ISLANDS (BRITISH)">VIRGIN ISLANDS (BRITISH)</option>
+                        <option value="VIRGIN ISLANDS (U.S.)">VIRGIN ISLANDS (U.S.)</option>
+                        <option value="WALES">WALES</option>
+                        <option value="WALLIS AND FUTUNA ISLANDS">WALLIS AND FUTUNA ISLANDS</option>
+                        <option value="WESTERN SAHARA">WESTERN SAHARA</option>
+                        <option value="YEMEN">YEMEN</option>
+                        <option value="ZAMBIA">ZAMBIA</option>
+                        <option value="ZIMBABWE">ZIMBABWE</option>
+					</select>
+					<small class="text-danger" *ngIf="isNextButtonClicked && studentAppForm.get('country')?.hasError('required')"> Country is required. </small>
+				</div>
+				
+			    <div class="form-group col-sm-4">
+			      <label>Telephone (Home)</label>
+			      <input class="form-control" placeholder="+27-00-000-0000" type="text" value="" name="tel_home">
+		        </div>
+			
+			    <div class="form-group col-sm-4">
+			      <label>Telephone (Work)</label>
+			      <input class="form-control" placeholder="+27-00-000-0000" type="text" value="" name="tel_work">
+		        </div>
+			
+			    <div class="form-group col-sm-4">
+			      <label>Cell Phone <span class="text-danger">*</span></label>
+			      <input class="form-control" placeholder="+27-00-000-0000" type="text" value="" formControlName="cell_phone">
+				  <small class="text-danger" *ngIf="isNextButtonClicked && studentAppForm.get('cell_phone')?.hasError('required')"> Cell Phone is required. </small>
+		        </div>
+
+				<div class="form-group col-sm-6">
+					<label>Fax</label>
+					<input class="form-control" placeholder="+27-00-000-0000" type="text" value="" name="fax">
+				  </div>
+			
+			    <div class="form-group col-sm-6">
+			      <label>Email <span class="text-danger">*</span> </label>
+			      <input class="form-control" placeholder="example@domain.com" type="email" value="" formControlName="email_address">
+				    <small class="text-danger" *ngIf="isNextButtonClicked && studentAppForm.get('email_address')?.hasError('required')"> Email is required. </small>
+		      </div>
+
+			    <div class="form-group col-sm-12 steps-btn">
+			      <a href="#" class="btn next-btn" data-id="1">Next</a>
+            <!-- <input type="submit" value="Next" class="btn"> -->
+		        </div>
+		      </div><!--/ row -->
+		    </div><!--/ form-steps -->
+			
+			
+			<div class="form-steps form-group col-sm-12" id="step_2">
+			  <div class="row">
+				<div class="form-group col-sm-12">
+				  <div class="step-no">Step 2 of 3</div>
+				  <h3>Membership Details</h3>
+				  <p class="annual-p text-center">Please complete required fields</p>
+				  <div class="form-bar">
+					<div class="form-clearbar"></div>
+					<div class="form-fillbar"></div>
+				  </div><!--/ form-bar -->
+				</div>
+				
+				<div class="form-group col-sm-6">
+					<label>Instructor <span class="text-danger">*</span> </label>
+					<input class="form-control" placeholder="Instructor" type="text" value="" formControlName="instructor">
+					<small class="text-danger" *ngIf="isNextButtonClicked2 && studentAppForm.get('instructor')?.hasError('required')"> Instructor Name is required. </small>
+				</div>
+				<div class="form-group col-sm-6">
+					<label>Start Date <span class="text-danger">*</span></label>
+					<input class="form-control" placeholder="10-06-1990" type="date" value="" formControlName="start_date">
+					<small class="text-danger" *ngIf="isNextButtonClicked2 && studentAppForm.get('start_date')?.hasError('required')"> Start Date is required. </small>
+				</div>
+				<div class="form-group col-sm-6">
+					<label>Medical Aid <span class="text-danger">*</span> </label>
+					<input class="form-control" placeholder="Baraloworld Medical Scheme" type="text" value="" formControlName="aid">
+					<small class="text-danger" *ngIf="isNextButtonClicked2 && studentAppForm.get('aid')?.hasError('required')"> Medical Aid is required. </small>
+				</div>
+				<div class="form-group col-sm-6">
+					<label>Medical Aid number <span class="text-danger">*</span> </label>
+					<input class="form-control" placeholder="05050912727" type="text" value="" formControlName="aid_no">
+					<small class="text-danger" *ngIf="isNextButtonClicked2 && studentAppForm.get('aid_no')?.hasError('required')"> Medical Aid No. is required. </small>
+				</div>
+
+			    <div class="form-group col-sm-12 steps-btn">
+			      <div class="row">
+				    <div class="col-sm-12"><a href="#" class="btn btn-lightgray back-btn" data-id="2">Back</a> <a href="#" class="btn next-btn" data-id="2">Next</a></div>
+		          </div>
+		        </div>
+			
+		      </div><!--/ row -->
+		    </div><!--/ form-steps -->
+		
+			
+			<div class="form-steps form-group col-sm-12" id="step_3">
+			  <div class="row">
+			    
+				<div class="form-group col-sm-12">
+				  <div class="step-no">Step 3 of 3</div>
+				  <h3>Terms and Conditions</h3>
+				  <div class="form-bar">
+					<div class="form-clearbar"></div>
+					<div class="form-fillbar"></div>
+				  </div><!--/ form-bar -->
+				</div>
+				
+				
+				<div class="form-group col-sm-12">
+			      <h4 class="mrb-30"><b>Membership Benefits & Costs</b></h4>
+				  <p class="mrb-0">DAN Student Membership offers entry-level divers in the DAN region limited emergency medical benefits for the duration of their entry-level training. It provides up to R300 000 emergency medical service benefits at no cost to the diver or the instructor who teaches them. It is about providing peace of mind to students and instructors alike. <a href="images/Annual-Guide-2022.pdf" rel="noopener noreferrer" target="_blank"> <strong>Click to Download the Student Membership Benefits Guide</strong></a></p>
+		        </div>
+				
+				<div class="form-group col-sm-12">
+				  <div class="checkbox-custom">
+				    <label class="checkbox">I’ve read and agree with the&nbsp;<a href="images/Annual-Guide-2022.pdf" rel="noopener noreferrer" target="_blank">Terms of the Student Membership Benefits</a> and the <a href="privacy-policy.html" rel="noopener noreferrer" target="_blank"><span>DAN Privacy Policy</span></a>
+			          <input type="checkbox" name="Scuba" value="Bike">
+					  <span class="checkmark"></span>
+			        </label>
+		          </div>
+		        </div>
+				
+			    <div class="form-group col-sm-12 steps-btn">
+			      <div class="row">
+				    <div class="col-sm-12"><a href="#" class="btn btn-lightgray back-btn" data-id="3">Back</a> <!--<a href="application-submit-success.html" class="btn">Submit</a>--> 
+						<input type="submit" class="btn" value="Submit" data-id="3"></div>
+		          </div>
+		        </div>
+			
+		      </div><!--/ row -->
+		    </div><!--/ form-steps -->
+		  </form>
+		  
+	    </div><!--/ form-grid -->
+	  </div>
+          
+    </div><!--/ row -->	
+  </div>
+</section><!--/ form-wrap -->

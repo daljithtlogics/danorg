@@ -1,0 +1,178 @@
+.dashboard-wrapper {
+    padding: 90px 0;
+    text-align: center;
+    background: #f0f0f0;
+}
+.sky-form{padding-bottom: 60px;}
+.sky-form, .sidebar {
+    margin: 0;
+    outline: none;
+    box-shadow: 0 0 20px rgba(0, 0, 0, .3);
+    color: #666;
+    max-width: 900px;
+    margin: 0 auto;
+    box-sizing: content-box;
+    text-align: left;
+    font: 13px/1.55 '';
+    background-color: #fff;
+}
+
+.sky-form .chalkbg {
+    background-color: black;
+    background-image: url(../../../assets/images/chalkboard.png);
+    padding: 30px;
+    border-bottom: 0;
+    display: block;
+    font-size: 25px;
+    font-weight: 300;
+    color: #232323;
+}
+
+.sky-form .chalktitle {
+    font-size: 32px;
+    font-weight: normal;
+}
+
+.heading {
+    color: #666666;
+    font-size: 28px;
+    font-weight: 600;
+    padding: 0;
+    text-transform: capitalize;
+}
+
+.sky-form .button {
+    height: 39px;
+    overflow: hidden;
+    margin: 10px 0 0 20px;
+    padding: 0 25px;
+    outline: none;
+    border: 0;
+    font: 300 15px/39px '';
+    text-decoration: none;
+    color: #fff;
+    cursor: pointer;
+    background-color: #e4292f;
+    opacity: 0.8;
+    -ms-transition: opacity 0.2s;
+    -moz-transition: opacity 0.2s;
+    -webkit-transition: opacity 0.2s;
+}
+
+.dan-p {
+    line-height: 18px !important;
+}
+
+.sidebar ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.quixnav .quixnav-scroll {
+    position: relative;
+    height: 100%;
+    padding-bottom: 60px;
+}
+
+.quixnav li {
+    border-bottom: 1px solid #e334393d;
+    flex-direction: column;
+    padding: 0.7125rem 1rem;
+}
+
+.quixnav a {
+    position: relative;
+    padding: 0.8125rem 0 !important;
+    outline-width: 0;
+    text-decoration: none;
+    color: #141212;
+}
+
+.quixnav li.active a {
+    color: #fff;
+}
+
+.quixnav li a i {
+    font-size: 1.125rem;
+    display: inline-block;
+    vertical-align: middle;
+    padding: 0 0.4375rem 0 0;
+    font-weight: 700;
+    position: relative;
+    top: 0 !important;
+    width: 15%;
+    color: #8e8f93;
+}
+
+.quixnav li a span {
+    display: inline-block;
+    width: 85%;
+    font-size: 0.875rem;
+}
+
+.quixnav li:hover, .quixnav li:focus, .quixnav li.active {
+    background-color: #e33439;
+}
+
+.quixnav li:hover a, .quixnav li:focus a, .quixnav li.active a, .quixnav li:hover a i, .quixnav li:focus a i, .quixnav li.active a i {
+    color: #fff !important;
+}
+
+.fixed-size-square {
+    width: 100%;
+    color: #666666;
+    background: #eaeaea;
+    margin: 15px 0 0 0;
+    padding: 10px;
+    height: 155px;
+    text-align: center;
+    vertical-align: middle;
+}
+.fixed-size-square p {line-height: 20px !important;}
+
+.Orangeicon{
+    font-size: 35px;
+    margin: 20px 0 10px 0;
+    color: orange;
+}
+.Tempicon{
+    font-size:35px;margin:20px 0 10px 0;color:#FF5252;
+}
+.Greenicon{font-size:35px;margin:20px 0 10px 0;color:#00C853;}
+.sky-form .form-group {
+    margin: 7px 0px;
+}
+.sky-form label{
+    font-weight: 600;
+    font-size: 14px;
+}
+.sky-form .radio{padding: 0 10px 0 2px;}
+.sky-form .btn-dfl{padding: 6px 11px; font-size: 14px; float: right;}
+.error-message{color: red; font-size: 13px;}
+.button-ghost {
+    background: #e33439;
+    color: #fff;
+    padding: 5px 9px;
+    margin: 0 2px;
+}
+.modal-footer .btn {
+    padding: 7px 10px;
+    margin: 0 7px;
+}
+#btnOK {
+    background: #198754;
+}
+#btnClose {
+    background: #dc3545;
+}
+.switchToggle input[type=checkbox]{height: 0; width: 0; visibility: hidden; position: absolute; }
+
+.switchToggle label {margin: 3px 0px; cursor: pointer; text-indent: -9999px; width: 85px; max-width: 85px; height: 30px; background: #d1d1d1; display: block; border-radius: 9px !important; position: relative; }
+.switchToggle label:after {content: ''; position: absolute; top: 2px; left: 2px; width: 30px; height: 27px; background: #fff; border-radius: 9px !important; transition: 0.3s; }
+.switchToggle input:checked + label, .switchToggle input:checked + input + label  {background: #3e98d3; }
+.switchToggle input + label:before, .switchToggle input + input + label:before {content: 'No'; position: absolute; top: 3px; left: 50px; width: 26px; height: 26px; border-radius: 90px; transition: 0.3s; text-indent: 0; color: #fff; }
+.switchToggle input:checked + label:before, .switchToggle input:checked + input + label:before {content: 'Yes'; position: absolute; top: 3px; left: 10px; width: 26px; height: 26px; border-radius: 90px; transition: 0.3s; text-indent: 0; color: #fff; }
+.switchToggle input:checked + label:after, .switchToggle input:checked + input + label:after {left: calc(100% - 2px); transform: translateX(-100%); }
+.switchToggle label:active:after {width: 60px; } 
+.toggle-switchArea { margin: 10px 0 10px 0; }

@@ -1,0 +1,58 @@
+<div class="menu-head">             
+    <div class="container">	  
+      
+	  <nav class="navbar navbar-expand-lg">
+	    <div class="container-fluid">
+		  <a class="navbar-brand" [routerLink]="['/']"><img src="../assets/danshop/images/logo.png" alt=""></a>
+		  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+		  
+		  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+		    <ul class="navbar-nav ms-xxl-auto">
+				<li><a routerLink="/danshop/category/safety-gear">Safety Gear</a>
+				<ul class="sub-menu">
+					<li><a routerLink="/danshop/category/oxygen-units">Oxygen Units</a></li>
+					<li><a routerLink="/danshop/category/oxygen-accessories">Oxygen Accessories</a></li>
+					<li><a routerLink="/danshop/category/first-aid-kits">First Aid Kits</a></li>
+					<li><a routerLink="/danshop/category/first-aid-accessories">First Aid Accessories</a></li>
+					<li><a routerLink="/danshop/category/dive-safety">Dive Safety</a></li>
+				</ul>
+				</li>    
+
+				<li><a routerLink="/danshop/category/clothing">Clothing</a>
+				<ul class="sub-menu">
+					<li><a routerLink="/danshop/category/dan-t-shirts">DAN T-Shirts</a></li>
+					<li><a routerLink="/danshop/category/dan-stay-salty-t-shirts">DAN Stay Salty T-Shirts</a></li>
+					<li><a routerLink="/danshop/category/frogfish-t-shirt">Frogfish T-Shirt</a></li>
+					<li><a routerLink="/danshop/category/octopus-t-shirt">Octopus T-Shirt</a></li>
+					<li><a routerLink="/danshop/category/rash-vests">Rash Vests</a></li>
+				</ul>
+				</li>  
+
+				<li><a routerLink="/danshop/category/jewellery">Jewellery</a></li>
+				<li><a routerLink="/danshop/category/promotional">Promotional</a></li>
+				<li><a routerLink="/danshop/category/training">Training</a>
+				<ul class="sub-menu">
+				  <li><a routerLink="/danshop/category/trainer-aids">Trainer Aids</a></li>
+				</ul>        
+				</li> 
+				<li><a routerLink="/danshop/category/tags">Tags</a></li>
+				<li><a routerLink="#">Membership</a>
+				<ul class="sub-menu">
+				  <li><a routerLink="#">Recreational Divers</a></li>
+				  <li><a routerLink="#">Professional Divers</a></li>
+				  <li><a routerLink="#">Commercial Divers</a></li>
+				  <li><a routerLink="#">Commercial Companies</a></li>
+				  <li><a routerLink="#">Commercial Dive Schools</a></li>
+				  <li><a routerLink="#">Temporary Membership</a></li>
+				  <li><a routerLink="#">Show AllMembership</a></li>
+				</ul>
+				</li>
+			</ul> 			
+		  </div>
+	    </div>
+	  </nav>
+	  
+	    
+    </div><!--/ menu-head -->           
+</div><!--/ container -->
+

@@ -1,0 +1,46 @@
+<section class="featured-products">
+	<div class="container">
+		<div class="row" *ngIf="allProducts && allProducts.length > 0; else noProducts">
+
+		  <div class="col-sm-12 title mrb-35">
+			<div class="info-tag">
+			  <h2>Search Results</h2>			 
+			</div>
+		  </div>
+		  
+		  <div class="col-sm-4 featured-col mrb-30" *ngFor="let prod of allProducts">	    
+			<div class="info">
+				<figure><img src="{{prod.productAsset.preview}}" alt="image"></figure>
+				<h4>{{prod.productName}}
+				<ng-template [ngIf]="prod.priceWithTax.__typename === 'SinglePrice'">
+					<!--if price is single-->				
+					<span>ZAR {{ prod.priceWithTax.value / 100 | number:'1.2-2' }}</span>
+				</ng-template>
+				<ng-template [ngIf]="prod.priceWithTax.min === prod.priceWithTax.max" [ngIfElse]="range">
+					<!--if price is same in range-->
+					<span>ZAR {{ prod.priceWithTax.min / 100 | number:'1.2-2' }}</span>				
+				</ng-template>
+				<ng-template #range>
+					<!--if price diffrent in range-->
+					<span>ZAR {{ prod.priceWithTax.min / 100 | number:'1.2-2' }}</span>
+				</ng-template>
+				</h4>
+				<ng-template [ngIf]="prod.inStock == false" [ngIfElse]="shopNow">
+					<a [routerLink]="['/danshop/product-details/',prod.slug]" class="btn"><i class="fa fa-check-circle" aria-hidden="true"></i> 
+						Out of stock
+					</a>
+				</ng-template>
+				<ng-template #shopNow>
+					<a [routerLink]="['/danshop/product-details/',prod.slug]" class="btn"><i class="fa fa-check-circle" aria-hidden="true"></i> 
+						Shop Now
+					</a>
+				</ng-template>
+			</div>
+		  </div>
+		</div><!--/ row -->
+		<ng-template #noProducts>
+			<h2 class="collection-title" style="line-height: 1;color: #000;font-size: 28px;">Search Result</h2>
+			<div style="min-height: 400px;color: grey;">Your search did not match any products. Please try again.</div>
+		</ng-template>
+	</div>
+</section><!--/ featured-products  -->

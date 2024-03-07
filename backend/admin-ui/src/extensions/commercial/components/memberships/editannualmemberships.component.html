@@ -1,0 +1,2799 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>DAN Shop</title>
+	<!-- Bootstrap Core CSS -->
+	<!--<link href="css/bootstrap.min.css" rel="stylesheet">  	
+	<link rel="stylesheet" href="css/owl.carousel.min.css">
+    <link rel="stylesheet" href="css/owl.theme.default.min.css">--->
+
+	<!-- Custom CSS -->
+	<!--<link href="style.css" rel="stylesheet">-->
+	<link href="https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&display=swap"
+		rel="stylesheet">
+	<!-- Custom Fonts -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" />
+	<!--<link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">-->
+	<script src="https://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+	<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.slim.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+
+<body>
+	<div class="container student-member-form">
+		<h2 class="main-head">{{ f_name }} {{ sur_name==null?'':sur_name }} ( {{member_no}} )</h2>
+		<br>
+		<!-- Nav tabs -->
+		<ul class="nav nav-tabs nav-tabs-own" role="tablist">
+			<li class="nav-item">
+				<button class="nav-link active tablinks btn-own" (click)="handleClick('info')">Info</button>
+			</li>
+			<li class="nav-item">
+				<button class="nav-link tablinks btn-own" (click)="handleClick('details')">Details</button>
+			</li>
+			<li class="nav-item">
+				<button class="nav-link tablinks btn-own" (click)="handleClick('kin')">Next Of Kin</button>
+			</li>
+			<li class="nav-item">
+				<button class="nav-link tablinks btn-own" (click)="handleClick('divein')">Diving family</button>
+			</li>
+			<li class="nav-item">
+				<button class="nav-link tablinks btn-own" (click)="handleClick('nondivein')">Non-Diving family</button>
+			</li>
+			<li class="nav-item">
+				<button class="nav-link tablinks btn-own" (click)="handleClick('bank')">Bank</button>
+			</li>
+			<li class="nav-item">
+				<button class="nav-link tablinks btn-own" (click)="handleClick('qualify')">Qualifications</button>
+			</li>
+			<li class="nav-item">
+				<button class="nav-link tablinks btn-own" (click)="handleClick('instructor')">Instructors</button>
+			</li>
+			<li class="nav-item">
+				<button class="nav-link tablinks btn-own" (click)="handleClick('provider')">Providers</button>
+			</li>
+			<li class="nav-item">
+				<button class="nav-link tablinks btn-own" (click)="handleClick('comment')">Comment</button>
+			</li>
+		</ul>
+		<form class="form-horizontal" [formGroup]="anualForm" (ngSubmit)="onSubmit()">
+			<div class="annual-member-box">
+
+				<!-- Tab panes -->
+				<div class="tab-content tab-content-own">
+					<div id="info" class="container-fluid tab-pane active tabcontent">
+						<div class="form-tab-heading">
+							<h3> Personal Info</h3>
+						</div>
+						<div class="row">
+							<div class="col-md-6">
+								<div class="form-group">
+									<label class="control-label">Title</label>
+									<div class="input-group">
+										<span class="input-group-addon ">
+											<i class="fa fa-group"></i>
+										</span>
+										<select class="form-control" formControlName="info_title"
+											[(ngModel)]="info_title">
+											<option value="UNKNOWN">UNKNOWN</option>
+											<option value="MR">MR</option>
+											<option value="MRS">MRS</option>
+											<option value="MISS">MISS</option>
+											<option value="MS">MS</option>
+											<option value="REV">REV</option>
+											<option value="DR">DR</option>
+											<option value="PROF">PROF</option>
+											<option value="DS">DS</option>
+											<option value="SIR">SIR</option>
+											<option value="MASTER">MASTER</option>
+											<option value="COMPANY">COMPANY</option>
+										</select>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="form-group">
+									<label class="control-label">First name/s</label>
+									<div class="input-group">
+										<span class="input-group-addon ">
+											<i class="fa fa-user"></i>
+										</span>
+										<input type="text" class="form-control" formControlName="f_name"
+											[(ngModel)]="f_name">
+									</div>
+									<span *ngIf="formDataError.error_field === 'f_name'" class="error-message">{{
+										formDataError.msg }}</span>
+								</div>
+							</div>
+						</div>
+
+
+						<div class="row">
+							<div class="col-md-6">
+								<div class="form-group">
+									<label class="control-label">Surname</label>
+									<div class="input-group">
+										<span class="input-group-addon ">
+											<i class="fa fa-user"></i>
+										</span>
+										<input type="text" class="form-control" formControlName="sur_name"
+											[(ngModel)]="sur_name">
+									</div>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="form-group">
+									<label class="control-label">Date of birth</label>
+									<div class="input-group">
+										<span class="input-group-addon ">
+											<i class="fa fa-calendar"></i>
+										</span>
+										<input type="date" class="form-control date-picker" formControlName="info_dob"
+											[(ngModel)]="info_dob">
+									</div>
+									<span *ngIf="formDataError.error_field === 'info_dob'" class="error-message">
+										{{ formDataError.msg }}
+									</span>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-6">
+								<div class="form-group">
+									<label class="control-label">ID/Passport number</label>
+									<div class="input-group">
+										<span class="input-group-addon">
+											<i class="fa fa-plus"></i>
+										</span>
+										<input type="text" class="form-control" formControlName="info_passport"
+											[(ngModel)]="info_passport">
+									</div>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="form-group">
+									<label class="control-label">Membership Level</label>
+									<div class="input-group">
+										<span class="input-group-addon ">
+											<i class="fa fa-plus"></i>
+										</span>
+										<select id="" class="form-control" formControlName="member_level"
+											[(ngModel)]="member_level">
+											<option value="STANDARD">STANDARD</option>
+											<option value="MASTER">MASTER</option>
+											<option value="PLUS">PLUS</option>
+											<option value="NON MEMBER">NON MEMBER</option>
+											<option value="RESCUE DIVER">RESCUE DIVER</option>
+										</select>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="form-tab-heading">
+							<h3> Address Info</h3>
+						</div>
+						<div class="row">
+							<div class="col-md-6">
+								<div class="form-group">
+									<label class="control-label">Postal address 1</label>
+									<div class="input-group">
+										<span class="input-group-addon">
+											<i class="fa fa-home"></i>
+										</span>
+										<input type="text" class="form-control" formControlName="info_address1"
+											[(ngModel)]="info_address1">
+									</div>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="form-group">
+									<label class="control-label">Postal address 2</label>
+									<div class="input-group">
+										<span class="input-group-addon ">
+											<i class="fa fa-home"></i>
+										</span>
+										<input type="text" class="form-control" formControlName="info_address2"
+											[(ngModel)]="info_address2">
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-6">
+								<div class="form-group">
+									<label class="control-label">City</label>
+									<div class="input-group">
+										<span class="input-group-addon ">
+											<i class="fa fa-home"></i>
+										</span>
+										<input type="text" class="form-control" formControlName="info_city"
+											[(ngModel)]="info_city">
+
+									</div>
+									<span *ngIf="formDataError.error_field === 'info_city'" class="error-message">
+										{{ formDataError.msg }}
+									</span>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="form-group">
+									<label class="control-label">Province</label>
+									<div class="input-group">
+										<span class="input-group-addon ">
+											<i class="fa fa-home"></i>
+										</span>
+										<input type="text" class="form-control" formControlName="info_province"
+											[(ngModel)]="info_province">
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-6">
+								<div class="form-group">
+									<label class="control-label">Postal code</label>
+									<div class="input-group">
+										<span class="input-group-addon ">
+											<i class="fa fa-home"></i>
+										</span>
+										<input type="text" class="form-control" formControlName="post_code"
+											[(ngModel)]="post_code">
+									</div>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="form-group">
+									<label class="control-label">Country</label>
+									<div class="input-group">
+										<span class="input-group-addon ">
+											<i class="fa fa-flag"></i>
+										</span>
+										<select class="form-control" formControlName="info_country"
+											[(ngModel)]="info_country">
+											<option selected="selected" value="UNKNOWN">UNKNOWN</option>
+											<option value="AFGHANISTAN">AFGHANISTAN</option>
+											<option value="ALBANIA">ALBANIA</option>
+											<option value="ALGERIA">ALGERIA</option>
+											<option value="AMERICAN SAMOA">AMERICAN SAMOA</option>
+											<option value="ANDORRA">ANDORRA</option>
+											<option value="ANGOLA">ANGOLA</option>
+											<option value="ANGUILLA">ANGUILLA</option>
+											<option value="ANTARCTICA">ANTARCTICA</option>
+											<option value="ANTIGUA AND BARBUDA">ANTIGUA AND BARBUDA</option>
+											<option value="ARGENTINA">ARGENTINA</option>
+											<option value="ARMENIA">ARMENIA</option>
+											<option value="ARUBA">ARUBA</option>
+											<option value="AUSTRALIA">AUSTRALIA</option>
+											<option value="AUSTRIA">AUSTRIA</option>
+											<option value="AZERBAIJAN">AZERBAIJAN</option>
+											<option value="BAHAMAS">BAHAMAS</option>
+											<option value="BAHRAIN">BAHRAIN</option>
+											<option value="BANGLADESH">BANGLADESH</option>
+											<option value="BARBADOS">BARBADOS</option>
+											<option value="BELARUS">BELARUS</option>
+											<option value="BELGIUM">BELGIUM</option>
+											<option value="BELIZE">BELIZE</option>
+											<option value="BENIN">BENIN</option>
+											<option value="BERMUDA">BERMUDA</option>
+											<option value="BHUTAN">BHUTAN</option>
+											<option value="BOLIVIA">BOLIVIA</option>
+											<option value="BOSNIA AND HERZEGOVINA">BOSNIA AND HERZEGOVINA</option>
+											<option value="BOTSWANA">BOTSWANA</option>
+											<option value="BOUVET ISLAND">BOUVET ISLAND</option>
+											<option value="BRAZIL">BRAZIL</option>
+											<option value="BRITISH INDIAN OCEAN TERRITORY">BRITISH INDIAN OCEAN
+												TERRITORY</option>
+											<option value="BRUNEI DARUSSALAM">BRUNEI DARUSSALAM</option>
+											<option value="BULGARIA">BULGARIA</option>
+											<option value="BURKINA FASO">BURKINA FASO</option>
+											<option value="BURUNDI">BURUNDI</option>
+											<option value="CAMBODIA">CAMBODIA</option>
+											<option value="CAMEROON">CAMEROON</option>
+											<option value="CANADA">CANADA</option>
+											<option value="CAPE VERDE">CAPE VERDE</option>
+											<option value="CAYMAN ISLANDS">CAYMAN ISLANDS</option>
+											<option value="CENTRAL AFRICAN REPUBLIC">CENTRAL AFRICAN REPUBLIC</option>
+											<option value="CHAD">CHAD</option>
+											<option value="CHILE">CHILE</option>
+											<option value="CHINA">CHINA</option>
+											<option value="CHRISTMAS ISLAND">CHRISTMAS ISLAND</option>
+											<option value="COCOS (KEELING) ISLANDS">COCOS (KEELING) ISLANDS</option>
+											<option value="COLOMBIA">COLOMBIA</option>
+											<option value="COMOROS">COMOROS</option>
+											<option value="CONGO REPUBLIC (BRAZZAVILLE)">CONGO REPUBLIC (BRAZZAVILLE)
+											</option>
+											<option value="COOK ISLANDS">COOK ISLANDS</option>
+											<option value="COSTA RICA">COSTA RICA</option>
+											<option value="CROATIA">CROATIA</option>
+											<option value="CUBA">CUBA</option>
+											<option value="CYPRUS">CYPRUS</option>
+											<option value="CZECH REPUBLIC">CZECH REPUBLIC</option>
+											<option value="DEMOCRATIC REPUBLIC OF CONGO (KINSHASA)">DEMOCRATIC REPUBLIC
+												OF CONGO (KINSHASA)</option>
+											<option value="DENMARK">DENMARK</option>
+											<option value="DJIBOUTI">DJIBOUTI</option>
+											<option value="DOMINICA">DOMINICA</option>
+											<option value="DOMINICAN REPUBLIC">DOMINICAN REPUBLIC</option>
+											<option value="EAST TIMOR (TIMOR-LESTE)">EAST TIMOR (TIMOR-LESTE)</option>
+											<option value="ECUADOR">ECUADOR</option>
+											<option value="EGYPT">EGYPT</option>
+											<option value="EL SALVADOR">EL SALVADOR</option>
+											<option value="ENGLAND">ENGLAND</option>
+											<option value="EQUATORIAL GUINEA">EQUATORIAL GUINEA</option>
+											<option value="ERITREA">ERITREA</option>
+											<option value="ESTONIA">ESTONIA</option>
+											<option value="ETHIOPIA">ETHIOPIA</option>
+											<option value="FALKLAND ISLANDS">FALKLAND ISLANDS</option>
+											<option value="FAROE ISLANDS">FAROE ISLANDS</option>
+											<option value="FIJI">FIJI</option>
+											<option value="FINLAND">FINLAND</option>
+											<option value="FRANCE">FRANCE</option>
+											<option value="FRENCH GUIANA">FRENCH GUIANA</option>
+											<option value="FRENCH POLYNESIA">FRENCH POLYNESIA</option>
+											<option value="FRENCH SOUTHERN TERRITORIES">FRENCH SOUTHERN TERRITORIES
+											</option>
+											<option value="GABON">GABON</option>
+											<option value="GAMBIA">GAMBIA</option>
+											<option value="GEORGIA">GEORGIA</option>
+											<option value="GERMANY">GERMANY</option>
+											<option value="GHANA">GHANA</option>
+											<option value="GIBRALTAR">GIBRALTAR</option>
+											<option value="GREECE">GREECE</option>
+											<option value="GREENLAND">GREENLAND</option>
+											<option value="GRENADA">GRENADA</option>
+											<option value="GUADELOUPE">GUADELOUPE</option>
+											<option value="GUAM">GUAM</option>
+											<option value="GUATEMALA">GUATEMALA</option>
+											<option value="GUINEA">GUINEA</option>
+											<option value="GUINEA-BISSAU">GUINEA-BISSAU</option>
+											<option value="GUYANA">GUYANA</option>
+											<option value="HAITI">HAITI</option>
+											<option value="HOLY SEE">HOLY SEE</option>
+											<option value="HONDURAS">HONDURAS</option>
+											<option value="HONG KONG">HONG KONG</option>
+											<option value="HUNGARY">HUNGARY</option>
+											<option value="ICELAND">ICELAND</option>
+											<option value="INDIA">INDIA</option>
+											<option value="INDONESIA">INDONESIA</option>
+											<option value="IRAN (ISLAMIC REPUBLIC OF)">IRAN (ISLAMIC REPUBLIC OF)
+											</option>
+											<option value="IRAQ">IRAQ</option>
+											<option value="IRELAND">IRELAND</option>
+											<option value="ISRAEL">ISRAEL</option>
+											<option value="ITALY">ITALY</option>
+											<option value="IVORY COAST">IVORY COAST</option>
+											<option value="JAMAICA">JAMAICA</option>
+											<option value="JAPAN">JAPAN</option>
+											<option value="JORDAN">JORDAN</option>
+											<option value="KAZAKHSTAN">KAZAKHSTAN</option>
+											<option value="KENYA">KENYA</option>
+											<option value="KIRIBATI">KIRIBATI</option>
+											<option value="KOREAN DEMOCRATIC PEOPLE'S REPUBLIC (NORTH KOREA)">KOREAN
+												DEMOCRATIC PEOPLE'S REPUBLIC (NORTH KOREA)</option>
+											<option value="KOREAN REPUBLIC (SOUTH KOREA)">KOREAN REPUBLIC (SOUTH KOREA)
+											</option>
+											<option value="KOSOVO">KOSOVO</option>
+											<option value="KUWAIT">KUWAIT</option>
+											<option value="KYRGYZSTAN">KYRGYZSTAN</option>
+											<option value="LAO PEOPLE'S DEMOCRATIC REPUBLIC">LAO PEOPLE'S DEMOCRATIC
+												REPUBLIC</option>
+											<option value="LATVIA">LATVIA</option>
+											<option value="LEBANON">LEBANON</option>
+											<option value="LESOTHO">LESOTHO</option>
+											<option value="LIBERIA">LIBERIA</option>
+											<option value="LIBYA">LIBYA</option>
+											<option value="LIECHTENSTEIN">LIECHTENSTEIN</option>
+											<option value="LITHUANIA">LITHUANIA</option>
+											<option value="LUXEMBOURG">LUXEMBOURG</option>
+											<option value="MACAU">MACAU</option>
+											<option value="MACEDONIA REPUBLIC">MACEDONIA REPUBLIC</option>
+											<option value="MADAGASCAR">MADAGASCAR</option>
+											<option value="MALAWI">MALAWI</option>
+											<option value="MALAYSIA">MALAYSIA</option>
+											<option value="MALDIVES">MALDIVES</option>
+											<option value="MALI">MALI</option>
+											<option value="MALTA">MALTA</option>
+											<option value="MARSHALL ISLANDS">MARSHALL ISLANDS</option>
+											<option value="MARTINIQUE">MARTINIQUE</option>
+											<option value="MAURITANIA">MAURITANIA</option>
+											<option value="MAURITIUS">MAURITIUS</option>
+											<option value="MAYOTTE">MAYOTTE</option>
+											<option value="MEXICO">MEXICO</option>
+											<option value="MICRONESIA FEDERAL STATES">MICRONESIA FEDERAL STATES</option>
+											<option value="MOLDOVA REPUBLIC">MOLDOVA REPUBLIC</option>
+											<option value="MONACO">MONACO</option>
+											<option value="MONGOLIA">MONGOLIA</option>
+											<option value="MONTENEGRO">MONTENEGRO</option>
+											<option value="MONTSERRAT">MONTSERRAT</option>
+											<option value="MOROCCO">MOROCCO</option>
+											<option value="MOZAMBIQUE">MOZAMBIQUE</option>
+											<option value="MYANMAR BURMA">MYANMAR BURMA</option>
+											<option value="NAMIBIA">NAMIBIA</option>
+											<option value="NAURU">NAURU</option>
+											<option value="NEPAL">NEPAL</option>
+											<option value="NETHERLANDS">NETHERLANDS</option>
+											<option value="NETHERLANDS ANTILLES">NETHERLANDS ANTILLES</option>
+											<option value="NEW CALEDONIA">NEW CALEDONIA</option>
+											<option value="NEW ZEALAND">NEW ZEALAND</option>
+											<option value="NICARAGUA">NICARAGUA</option>
+											<option value="NIGER">NIGER</option>
+											<option value="NIGERIA">NIGERIA</option>
+											<option value="NIUE">NIUE</option>
+											<option value="NORTHERN MARIANA ISLANDS">NORTHERN MARIANA ISLANDS</option>
+											<option value="NORWAY">NORWAY</option>
+											<option value="OMAN">OMAN</option>
+											<option value="PAKISTAN">PAKISTAN</option>
+											<option value="PALAU">PALAU</option>
+											<option value="PALESTINIAN TERRITORIES">PALESTINIAN TERRITORIES</option>
+											<option value="PANAMA">PANAMA</option>
+											<option value="PAPUA NEW GUINEA">PAPUA NEW GUINEA</option>
+											<option value="PARAGUAY">PARAGUAY</option>
+											<option value="PERU">PERU</option>
+											<option value="PHILIPPINES">PHILIPPINES</option>
+											<option value="PITCAIRN ISLAND">PITCAIRN ISLAND</option>
+											<option value="POLAND">POLAND</option>
+											<option value="PORTUGAL">PORTUGAL</option>
+											<option value="PUERTO RICO">PUERTO RICO</option>
+											<option value="QATAR">QATAR</option>
+											<option value="REUNION ISLAND">REUNION ISLAND</option>
+											<option value="ROMANIA">ROMANIA</option>
+											<option value="RUSSIAN FEDERATION">RUSSIAN FEDERATION</option>
+											<option value="RWANDA">RWANDA</option>
+											<option value="SAINT HELENA">SAINT HELENA</option>
+											<option value="SAINT KITTS AND NEVIS">SAINT KITTS AND NEVIS</option>
+											<option value="SAINT LUCIA">SAINT LUCIA</option>
+											<option value="SAINT VINCENT AND THE GRENADINES">SAINT VINCENT AND THE
+												GRENADINES</option>
+											<option value="SAMOA">SAMOA</option>
+											<option value="SAN MARINO">SAN MARINO</option>
+											<option value="SAO TOME AND PRINCIPE">SAO TOME AND PRINCIPE</option>
+											<option value="SAUDI ARABIA">SAUDI ARABIA</option>
+											<option value="SCOTLAND">SCOTLAND</option>
+											<option value="SENEGAL">SENEGAL</option>
+											<option value="SERBIA">SERBIA</option>
+											<option value="SEYCHELLES">SEYCHELLES</option>
+											<option value="SIERRA LEONE">SIERRA LEONE</option>
+											<option value="SINGAPORE">SINGAPORE</option>
+											<option value="SLOVAKIA (SLOVAK REPUBLIC)">SLOVAKIA (SLOVAK REPUBLIC)
+											</option>
+											<option value="SLOVENIA">SLOVENIA</option>
+											<option value="SOLOMON ISLANDS">SOLOMON ISLANDS</option>
+											<option value="SOMALIA">SOMALIA</option>
+											<option value="SOUTH AFRICA">SOUTH AFRICA</option>
+											<option value="SOUTH SUDAN">SOUTH SUDAN</option>
+											<option value="SPAIN">SPAIN</option>
+											<option value="SRI LANKA">SRI LANKA</option>
+											<option value="SUDAN">SUDAN</option>
+											<option value="SURINAME">SURINAME</option>
+											<option value="SWAZILAND">SWAZILAND</option>
+											<option value="SWEDEN">SWEDEN</option>
+											<option value="SWITZERLAND">SWITZERLAND</option>
+											<option value="SYRIAN ARAB REPUBLIC">SYRIAN ARAB REPUBLIC</option>
+											<option value="TAJIKISTAN">TAJIKISTAN</option>
+											<option value="TANZANIA">TANZANIA</option>
+											<option value="THAILAND">THAILAND</option>
+											<option value="TIBET">TIBET</option>
+											<option value="TIMOR-LESTE (EAST TIMOR)">TIMOR-LESTE (EAST TIMOR)</option>
+											<option value="TOGO">TOGO</option>
+											<option value="TOKELAU">TOKELAU</option>
+											<option value="TONGA">TONGA</option>
+											<option value="TRINIDAD AND TOBAGO">TRINIDAD AND TOBAGO</option>
+											<option value="TUNISIA">TUNISIA</option>
+											<option value="TURKEY">TURKEY</option>
+											<option value="TURKMENISTAN">TURKMENISTAN</option>
+											<option value="TURKS AND CAICOS ISLANDS">TURKS AND CAICOS ISLANDS</option>
+											<option value="TUVALU">TUVALU</option>
+											<option value="UGANDA">UGANDA</option>
+											<option value="UKRAINE">UKRAINE</option>
+											<option value="UNITED ARAB EMIRATES">UNITED ARAB EMIRATES</option>
+											<option value="UNITED KINGDOM">UNITED KINGDOM</option>
+											<option value="UNITED STATES">UNITED STATES</option>
+											<option value="URUGUAY">URUGUAY</option>
+											<option value="UZBEKISTAN">UZBEKISTAN</option>
+											<option value="VANUATU">VANUATU</option>
+											<option value="VATICAN CITY STATE (HOLY SEE)">VATICAN CITY STATE (HOLY SEE)
+											</option>
+											<option value="VENEZUELA">VENEZUELA</option>
+											<option value="VIETNAM">VIETNAM</option>
+											<option value="VIRGIN ISLANDS (BRITISH)">VIRGIN ISLANDS (BRITISH)</option>
+											<option value="VIRGIN ISLANDS (U.S.)">VIRGIN ISLANDS (U.S.)</option>
+											<option value="WALES">WALES</option>
+											<option value="WALLIS AND FUTUNA ISLANDS">WALLIS AND FUTUNA ISLANDS</option>
+											<option value="WESTERN SAHARA">WESTERN SAHARA</option>
+											<option value="YEMEN">YEMEN</option>
+											<option value="ZAMBIA">ZAMBIA</option>
+											<option value="ZIMBABWE">ZIMBABWE</option>
+										</select>
+
+									</div>
+									<span *ngIf="formDataError.error_field === 'info_country'" class="error-message">
+										{{ formDataError.msg }}
+									</span>
+								</div>
+							</div>
+						</div>
+						<div class="form-tab-heading">
+							<h3> Contact Info</h3>
+						</div>
+						<div class="row">
+							<div class="col-md-6">
+								<div class="form-group">
+									<label class="control-label">Telephone (H)</label>
+									<div class="input-group">
+										<span class="input-group-addon ">
+											<i class="fa fa-phone"></i>
+										</span>
+										<input type="tel" class="form-control" formControlName="tel_home"
+											[(ngModel)]="tel_home">
+									</div>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="form-group">
+									<label class="control-label">Telephone (W)</label>
+									<div class="input-group">
+										<span class="input-group-addon ">
+											<i class="fa fa-phone"></i>
+										</span>
+										<input type="tel" class="form-control" formControlName="tel_work"
+											[(ngModel)]="tel_work">
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-6">
+								<div class="form-group">
+									<label class="control-label">Cell phone</label>
+									<div class="input-group">
+										<span class="input-group-addon ">
+											<i class="fa fa-mobile-phone"></i>
+										</span>
+										<input type="tel" class="form-control" formControlName="cell_phone"
+											[(ngModel)]="cell_phone">
+
+									</div>
+									<span *ngIf="formDataError.error_field === 'cell_phone'" class="error-message">
+										{{ formDataError.msg }}
+									</span>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="form-group">
+									<label class="control-label">Fax</label>
+									<div class="input-group">
+										<span class="input-group-addon">
+											<i class="fa fa-fax"></i>
+										</span>
+										<input type="text" class="form-control" formControlName="fax" [(ngModel)]="fax">
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-6">
+								<div class="form-group">
+									<label class="control-label">Email</label>
+									<div class="input-group">
+										<span class="input-group-addon ">
+											<i class="fa fa-envelope"></i>
+										</span>
+										<input type="mail" class="form-control" formControlName="info_email"
+											[(ngModel)]="info_email">
+
+									</div>
+									<span *ngIf="formDataError.error_field === 'info_email'" class="error-message">
+										{{ formDataError.msg }}
+									</span>
+								</div>
+							</div>
+						</div>
+
+
+					</div> <!-- Tab 1 close -->
+					<div id="details" class="container tab-pane fade tabcontent"><br>
+						<div class="portlet-body">
+
+
+							<div class="form-tab-heading">
+								<h3> Membership Info</h3>
+							</div>
+							<div class="row">
+								<div class="col-md-6">
+									<div class="form-group">
+										<label class="control-label">Member Type</label>
+										<div class="input-group">
+											<span class="input-group-addon ">
+												<i class="fa fa-wrench"></i>
+											</span>
+											<select class="form-control" formControlName="member_type"
+												[(ngModel)]="member_type">
+												<option value="UNKNOWN">UNKNOWN</option>
+												<option value="INDIVIDUAL">INDIVIDUAL</option>
+												<option value="FAMILY">FAMILY</option>
+												<option value="DIVING FAMILY">DIVING FAMILY</option>
+												<option value="NON MEMBER">NON MEMBER</option>
+												<option value="HONORARY">HONORARY</option>
+												<option value="INTERNATIONAL">INTERNATIONAL</option>
+												<option value="COMPANY">COMPANY</option>
+												<option value="COMMERCIAL INDIVIDUAL">COMMERCIAL INDIVIDUAL</option>
+												<option value="PROFESSIONAL">PROFESSIONAL</option>
+												<option value="RESCUE">RESCUE</option>
+												<option value="INSTRUCTOR">INSTRUCTOR</option>
+												<option value="COMMERCIAL SCHOOL">COMMERCIAL SCHOOL</option>
+												<option value="INDUSTRY PARTNER">INDUSTRY PARTNER</option>
+											</select>
+
+										</div>
+										<span *ngIf="formDataError.error_field === 'member_type'" class="error-message">
+											{{ formDataError.msg }}
+										</span>
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="form-group">
+										<label class="control-label">Rejoined</label>
+										<div class="input-group">
+											<span class="input-group-addon ">
+												<i class="fa fa-wrench"></i>
+											</span>
+											<select class="form-control" formControlName="rejoin" [(ngModel)]="rejoin">
+												<option value="No">No</option>
+												<option value="Yes">Yes</option>
+											</select>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-6">
+									<div class="form-group">
+										<label class="control-label">Broker</label>
+										<div class="input-group">
+											<span class="input-group-addon ">
+												<i class="fa fa-user"></i>
+											</span>
+											<select class="form-control" formControlName="broker" [(ngModel)]="broker">
+												<option value="0">UNKNOWN</option>
+												<option *ngFor="let broker of brokers" value={{broker.id}}>
+													{{broker.bname}}</option>
+											</select>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="form-group">
+										<label class="control-label">Agency</label>
+										<div class="input-group">
+											<span class="input-group-addon ">
+												<i class="fa fa-university"></i>
+											</span>
+											<select class="form-control" formControlName="agency" [(ngModel)]="agency">
+												<option selected="selected" value=""></option>
+												<option value="UNKNOWN">UNKNOWN</option>
+												<option value="OTHER">OTHER</option>
+												<option value="CMAS">CMAS</option>
+												<option value="IANTD">IANTD</option>
+												<option value="NAUI">NAUI</option>
+												<option value="PADI">PADI</option>
+												<option value="SAUU">SAUU</option>
+												<option value="SSI">SSI</option>
+												<option value="TDI">TDI</option>
+												<option value="ANDI">ANDI</option>
+												<option value="SDI">SDI</option>
+												<option value="SAUFF">SAUFF</option>
+												<option value="RAID">RAID</option>
+												<option value="SAFF">SAFF</option>
+												<option value="PURE APNEA">PURE APNEA</option>
+											</select>
+
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="row ">
+								<div class="col-md-6">
+									<div class="form-group">
+										<label class="control-label">Professional</label>
+										<div class="input-group">
+											<span class="input-group-addon ">
+												<i class="fa fa-book"></i>
+											</span>
+											<select class="form-control" formControlName="professional"
+												[(ngModel)]="professional">
+												<option value="No">No</option>
+												<option value="Yes">Yes</option>
+
+											</select>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="form-group">
+										<label class="control-label">Life Time Member</label>
+										<div class="input-group">
+											<span class="input-group-addon ">
+												<i class="fa fa-university"></i>
+											</span>
+											<div class="outerDivFull">
+												<div class="switchToggle">
+													<input type="checkbox" id="switch" formControlName="full_time"
+														[(ngModel)]="full_time" [checked]="full_time == '1'">
+													<label for="switch">Toggle</label>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-6">
+									<div class="form-group">
+										<label class="control-label">Medical Aid</label>
+										<div class="input-group">
+											<span class="input-group-addon ">
+												<i class="fa fa-plus"></i>
+											</span>
+											<input type="text" class="form-control" formControlName="medical_aid"
+												[(ngModel)]="medical_aid">
+										</div>
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="form-group">
+										<label class="control-label">Medical Aid No</label>
+										<div class="input-group">
+											<span class="input-group-addon ">
+												<i class="fa fa-plus"></i>
+											</span>
+											<input type="text" class="form-control" formControlName="medical_no"
+												[(ngModel)]="medical_no">
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-6">
+									<div class="form-group">
+										<label class="control-label">Start date</label>
+										<div class="input-group">
+											<span class="input-group-addon ">
+												<i class="fa fa-calendar"></i>
+											</span>
+											<input type="date" class="form-control date-picker"
+												formControlName="start_date" [(ngModel)]="start_date">
+										</div>
+										<span *ngIf="formDataError.error_field === 'start_date'" class="error-message">
+											{{ formDataError.msg }}
+										</span>
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="form-group">
+										<label class="control-label">Capture date</label>
+										<div class="input-group">
+											<span class="input-group-addon ">
+												<i class="fa fa-calendar"></i>
+											</span>
+											<input type="datetime-local" class="form-control date-picker"
+												formControlName="capture_date" [(ngModel)]="capture_date">
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-6">
+									<div class="form-group">
+										<label class="control-label">Join date</label>
+										<div class="input-group">
+											<span class="input-group-addon ">
+												<i class="fa fa-calendar"></i>
+											</span>
+											<input type="date" class="form-control date-picker"
+												formControlName="join_date" [(ngModel)]="join_date">
+										</div>
+										<span *ngIf="formDataError.error_field === 'join_date'" class="error-message">
+											{{ formDataError.msg }}
+										</span>
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="form-group">
+										<label class="control-label">Updated date</label>
+										<div class="input-group">
+											<span class="input-group-addon ">
+												<i class="fa fa-calendar"></i>
+											</span>
+											<input type="datetime-local" class="form-control date-picker"
+												formControlName="update_date" [(ngModel)]="update_date">
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-6">
+									<div class="form-group">
+										<label class="control-label">Working Diver</label>
+										<div class="input-group">
+											<span class="input-group-addon ">
+												<i class="fa fa-group"></i>
+											</span>
+											<select class="form-control" formControlName="work_diver"
+												[(ngModel)]="work_diver">
+												<option value="NA">N/A</option>
+												<option value="DiveMaster">Dive Master</option>
+												<option value="Instructor">Instructor</option>
+											</select>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="form-group">
+										<label class="control-label">Qualification</label>
+										<div class="input-group">
+											<span class="input-group-addon ">
+												<i class="fa fa-user"></i>
+											</span>
+											<input type="text" class="form-control" formControlName="qualification"
+												[(ngModel)]="qualification">
+										</div>
+
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-6">
+									<div class="form-group">
+										<label class="control-label">Researcher</label>
+										<div class="input-group">
+											<span class="input-group-addon ">
+												<i class="fa fa-university"></i>
+											</span>
+											<div class="outerDivFull">
+												<div class="switchToggle">
+													<input type="checkbox" id="switch1" formControlName="researcher"
+														[(ngModel)]="researcher" [checked]="researcher == '1'">
+													<label for="switch1">Toggle</label>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="form-group">
+										<label class="control-label">Instructor Status</label>
+										<div class="input-group">
+											<span class="input-group-addon ">
+												<i class="fa fa-wrench"></i>
+											</span>
+											<select class="form-control" formControlName="instructor_state"
+												[(ngModel)]="instructor_state">
+												<option value="UNKNOWN">UNKNOWN</option>
+												<option value="ON HOLD">ON HOLD</option>
+												<option value="CANCELLED - DIVING FAMILY">CANCELLED - DIVING FAMILY
+												</option>
+												<option value="CANCELLED">CANCELLED</option>
+												<option value="CANCELLED - HOLD MAIL">CANCELLED - HOLD MAIL</option>
+												<option value="ON HOLD - HOLD MAIL">ON HOLD - HOLD MAIL</option>
+												<option value="NEW BROKER">NEW BROKER</option>
+												<option value="INACTIVE">INACTIVE</option>
+												<option value="CANCELLED - UNPAID">CANCELLED - UNPAID</option>
+												<option value="NON MEMBER">NON MEMBER</option>
+												<option value="CANCELLED ON REQUEST">CANCELLED ON REQUEST</option>
+												<option value="CANCELLED - EMIGRATED">CANCELLED - EMIGRATED</option>
+												<option value="CANCELLED - DECEASED">CANCELLED - DECEASED</option>
+												<option value="CANCELLED BY PAYEE">CANCELLED BY PAYEE</option>
+												<option value="CANCELLED - DUPLICATE">CANCELLED - DUPLICATE</option>
+												<option value="ACTIVE - UNMAILABLE">ACTIVE - UNMAILABLE</option>
+												<option value="LAPSED - NOT RENEWED">LAPSED - NOT RENEWED</option>
+												<option value="CANCELLED - ACB REJECT">CANCELLED - ACB REJECT</option>
+												<option value="ACTIVE">ACTIVE</option>
+												<option value="OPEN CLAIM">OPEN CLAIM</option>
+												<option value="CLOSED CLAIM">CLOSED CLAIM</option>
+												<option value="ACTIVE - REINSTATED">ACTIVE - REINSTATED</option>
+												<option value="BM NOT RENEWED">BM NOT RENEWED</option>
+												<option value="DELETE">DELETE</option>
+												<option value="INCOMPLETE APPLICATION">INCOMPLETE APPLICATION</option>
+											</select>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-6">
+									<div class="form-group">
+										<label class="control-label">Status</label>
+										<div class="input-group">
+											<span class="input-group-addon ">
+												<i class="fa fa-wrench"></i>
+											</span>
+											<select class="form-control" formControlName="status" [(ngModel)]="status">
+												<option value="UNKNOWN">UNKNOWN</option>
+												<option value="ON HOLD">ON HOLD</option>
+												<option value="CANCELLED - DIVING FAMILY">CANCELLED - DIVING FAMILY
+												</option>
+												<option value="CANCELLED">CANCELLED</option>
+												<option value="CANCELLED - HOLD MAIL">CANCELLED - HOLD MAIL</option>
+												<option value="ON HOLD - HOLD MAIL">ON HOLD - HOLD MAIL</option>
+												<option value="NEW BROKER">NEW BROKER</option>
+												<option value="INACTIVE">INACTIVE</option>
+												<option value="CANCELLED - UNPAID">CANCELLED - UNPAID</option>
+												<option value="NON MEMBER">NON MEMBER</option>
+												<option value="CANCELLED ON REQUEST">CANCELLED ON REQUEST</option>
+												<option value="CANCELLED - EMIGRATED">CANCELLED - EMIGRATED</option>
+												<option value="CANCELLED - DECEASED">CANCELLED - DECEASED</option>
+												<option value="CANCELLED BY PAYEE">CANCELLED BY PAYEE</option>
+												<option value="CANCELLED - DUPLICATE">CANCELLED - DUPLICATE</option>
+												<option value="ACTIVE - UNMAILABLE">ACTIVE - UNMAILABLE</option>
+												<option value="LAPSED - NOT RENEWED">LAPSED - NOT RENEWED</option>
+												<option value="CANCELLED - ACB REJECT">CANCELLED - ACB REJECT</option>
+												<option value="ACTIVE">ACTIVE</option>
+												<option value="OPEN CLAIM">OPEN CLAIM</option>
+												<option value="CLOSED CLAIM">CLOSED CLAIM</option>
+												<option value="ACTIVE - REINSTATED">ACTIVE - REINSTATED</option>
+												<option value="BM NOT RENEWED">BM NOT RENEWED</option>
+												<option value="DELETE">DELETE</option>
+												<option value="INCOMPLETE APPLICATION">INCOMPLETE APPLICATION</option>
+											</select>
+
+										</div>
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="form-group">
+										<label class="control-label">Paid</label>
+										<div class="input-group">
+											<span class="input-group-addon ">
+												<i class="fa fa-bank"></i>
+											</span>
+											<div class="outerDivFull">
+												<div class="switchToggle">
+													<input type="checkbox" id="switch2" formControlName="paid"
+														[(ngModel)]="paid" [checked]="paid == '1'">
+													<label for="switch2">Toggle</label>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div> <!-- Tab 2 close -->
+					<div id="kin" class="container tab-pane fade tabcontent"><br>
+						<div class="portlet-body">
+							<div class="form-tab-heading">
+								<h3> Next of Kin Info</h3>
+							</div>
+							<div class="row">
+								<div class="col-md-6">
+									<div class="form-group">
+										<label class="control-label">Title</label>
+										<div class="input-group">
+											<span class="input-group-addon ">
+												<i class="fa fa-group"></i>
+											</span>
+											<select class="form-control" formControlName="kin_title"
+												[(ngModel)]="kin_title">
+												<option value="UNKNOWN">UNKNOWN</option>
+												<option value="MR">MR</option>
+												<option value="MRS">MRS</option>
+												<option value="MISS">MISS</option>
+												<option value="MS">MS</option>
+												<option value="REV">REV</option>
+												<option value="DR">DR</option>
+												<option value="PROF">PROF</option>
+												<option value="DS">DS</option>
+												<option value="SIR">SIR</option>
+												<option value="MASTER">MASTER</option>
+												<option value="COMPANY">COMPANY:</option>
+											</select>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="form-group">
+										<label class="control-label">First name/s</label>
+										<div class="input-group">
+											<span class="input-group-addon ">
+												<i class="fa fa-user"></i>
+											</span>
+											<input type="text" class="form-control" formControlName="kin_fname"
+												[(ngModel)]="kin_fname">
+
+										</div>
+										<span *ngIf="formDataError.error_field === 'kin_fname'" class="error-message">
+											{{ formDataError.msg }}
+										</span>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-6">
+									<div class="form-group">
+										<label class="control-label">Surname</label>
+										<div class="input-group">
+											<span class="input-group-addon ">
+												<i class="fa fa-user"></i>
+											</span>
+											<input type="text" class="form-control" formControlName="kin_sname"
+												[(ngModel)]="kin_sname">
+										</div>
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="form-group">
+										<label class="control-label">Date of birth</label>
+										<div class="input-group">
+											<span class="input-group-addon ">
+												<i class="fa fa-calendar"></i>
+											</span>
+											<input type="date" class="form-control date-picker"
+												formControlName="kin_dob" [(ngModel)]="kin_dob">
+
+										</div>
+										<span *ngIf="formDataError.error_field === 'kin_dob'" class="error-message">
+											{{ formDataError.msg }}
+										</span>
+									</div>
+								</div>
+							</div>
+
+							<div class="row">
+								<div class="col-md-6">
+									<div class="form-group">
+										<label class="control-label">ID/Passport number</label>
+										<div class="input-group">
+											<span class="input-group-addon ">
+												<i class="fa fa-plus"></i>
+											</span>
+											<input type="text" class="form-control" formControlName="kin_passport"
+												[(ngModel)]="kin_passport">
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="form-tab-heading">
+								<h3> Address Info</h3>
+							</div>
+							<div class="row">
+								<div class="col-md-6">
+									<div class="form-group">
+										<label class="control-label">Postal address 1</label>
+										<div class="input-group">
+											<span class="input-group-addon ">
+												<i class="fa fa-home"></i>
+											</span>
+											<input type="text" class="form-control" formControlName="kin_address1"
+												[(ngModel)]="kin_address1">
+										</div>
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="form-group">
+										<label class="control-label">Postal address 2</label>
+										<div class="input-group">
+											<span class="input-group-addon ">
+												<i class="fa fa-home"></i>
+											</span>
+											<input type="text" class="form-control" formControlName="kin_address2"
+												[(ngModel)]="kin_address2">
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-6">
+									<div class="form-group">
+										<label class="control-label">City</label>
+										<div class="input-group">
+											<span class="input-group-addon ">
+												<i class="fa fa-home"></i>
+											</span>
+											<input type="text" class="form-control" formControlName="kin_city"
+												[(ngModel)]="kin_city">
+
+										</div>
+										<span *ngIf="formDataError.error_field === 'kin_city'" class="error-message">
+											{{ formDataError.msg }}
+										</span>
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="form-group">
+										<label class="control-label">Province</label>
+										<div class="input-group">
+											<span class="input-group-addon ">
+												<i class="fa fa-home"></i>
+											</span>
+											<input type="text" class="form-control" formControlName="kin_province"
+												[(ngModel)]="kin_province">
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-6">
+									<div class="form-group">
+										<label class="control-label">Postal code</label>
+										<div class="input-group">
+											<span class="input-group-addon ">
+												<i class="fa fa-home"></i>
+											</span>
+											<input type="text" class="form-control" formControlName="kin_post"
+												[(ngModel)]="kin_post">
+										</div>
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="form-group">
+										<label class="control-label">Country</label>
+										<div class="input-group">
+											<span class="input-group-addon ">
+												<i class="fa fa-home"></i>
+											</span>
+											<select class="form-control" formControlName="kin_country"
+												[(ngModel)]="kin_country">
+												<option selected="selected" value="UNKNOWN">UNKNOWN</option>
+												<option value="AFGHANISTAN">AFGHANISTAN</option>
+												<option value="ALBANIA">ALBANIA</option>
+												<option value="ALGERIA">ALGERIA</option>
+												<option value="AMERICAN SAMOA">AMERICAN SAMOA</option>
+												<option value="ANDORRA">ANDORRA</option>
+												<option value="ANGOLA">ANGOLA</option>
+												<option value="ANGUILLA">ANGUILLA</option>
+												<option value="ANTARCTICA">ANTARCTICA</option>
+												<option value="ANTIGUA AND BARBUDA">ANTIGUA AND BARBUDA</option>
+												<option value="ARGENTINA">ARGENTINA</option>
+												<option value="ARMENIA">ARMENIA</option>
+												<option value="ARUBA">ARUBA</option>
+												<option value="AUSTRALIA">AUSTRALIA</option>
+												<option value="AUSTRIA">AUSTRIA</option>
+												<option value="AZERBAIJAN">AZERBAIJAN</option>
+												<option value="BAHAMAS">BAHAMAS</option>
+												<option value="BAHRAIN">BAHRAIN</option>
+												<option value="BANGLADESH">BANGLADESH</option>
+												<option value="BARBADOS">BARBADOS</option>
+												<option value="BELARUS">BELARUS</option>
+												<option value="BELGIUM">BELGIUM</option>
+												<option value="BELIZE">BELIZE</option>
+												<option value="BENIN">BENIN</option>
+												<option value="BERMUDA">BERMUDA</option>
+												<option value="BHUTAN">BHUTAN</option>
+												<option value="BOLIVIA">BOLIVIA</option>
+												<option value="BOSNIA AND HERZEGOVINA">BOSNIA AND HERZEGOVINA</option>
+												<option value="BOTSWANA">BOTSWANA</option>
+												<option value="BOUVET ISLAND">BOUVET ISLAND</option>
+												<option value="BRAZIL">BRAZIL</option>
+												<option value="BRITISH INDIAN OCEAN TERRITORY">BRITISH INDIAN OCEAN
+													TERRITORY</option>
+												<option value="BRUNEI DARUSSALAM">BRUNEI DARUSSALAM</option>
+												<option value="BULGARIA">BULGARIA</option>
+												<option value="BURKINA FASO">BURKINA FASO</option>
+												<option value="BURUNDI">BURUNDI</option>
+												<option value="CAMBODIA">CAMBODIA</option>
+												<option value="CAMEROON">CAMEROON</option>
+												<option value="CANADA">CANADA</option>
+												<option value="CAPE VERDE">CAPE VERDE</option>
+												<option value="CAYMAN ISLANDS">CAYMAN ISLANDS</option>
+												<option value="CENTRAL AFRICAN REPUBLIC">CENTRAL AFRICAN REPUBLIC
+												</option>
+												<option value="CHAD">CHAD</option>
+												<option value="CHILE">CHILE</option>
+												<option value="CHINA">CHINA</option>
+												<option value="CHRISTMAS ISLAND">CHRISTMAS ISLAND</option>
+												<option value="COCOS (KEELING) ISLANDS">COCOS (KEELING) ISLANDS</option>
+												<option value="COLOMBIA">COLOMBIA</option>
+												<option value="COMOROS">COMOROS</option>
+												<option value="CONGO REPUBLIC (BRAZZAVILLE)">CONGO REPUBLIC
+													(BRAZZAVILLE)</option>
+												<option value="COOK ISLANDS">COOK ISLANDS</option>
+												<option value="COSTA RICA">COSTA RICA</option>
+												<option value="CROATIA">CROATIA</option>
+												<option value="CUBA">CUBA</option>
+												<option value="CYPRUS">CYPRUS</option>
+												<option value="CZECH REPUBLIC">CZECH REPUBLIC</option>
+												<option value="DEMOCRATIC REPUBLIC OF CONGO (KINSHASA)">DEMOCRATIC
+													REPUBLIC OF CONGO (KINSHASA)</option>
+												<option value="DENMARK">DENMARK</option>
+												<option value="DJIBOUTI">DJIBOUTI</option>
+												<option value="DOMINICA">DOMINICA</option>
+												<option value="DOMINICAN REPUBLIC">DOMINICAN REPUBLIC</option>
+												<option value="EAST TIMOR (TIMOR-LESTE)">EAST TIMOR (TIMOR-LESTE)
+												</option>
+												<option value="ECUADOR">ECUADOR</option>
+												<option value="EGYPT">EGYPT</option>
+												<option value="EL SALVADOR">EL SALVADOR</option>
+												<option value="ENGLAND">ENGLAND</option>
+												<option value="EQUATORIAL GUINEA">EQUATORIAL GUINEA</option>
+												<option value="ERITREA">ERITREA</option>
+												<option value="ESTONIA">ESTONIA</option>
+												<option value="ETHIOPIA">ETHIOPIA</option>
+												<option value="FALKLAND ISLANDS">FALKLAND ISLANDS</option>
+												<option value="FAROE ISLANDS">FAROE ISLANDS</option>
+												<option value="FIJI">FIJI</option>
+												<option value="FINLAND">FINLAND</option>
+												<option value="FRANCE">FRANCE</option>
+												<option value="FRENCH GUIANA">FRENCH GUIANA</option>
+												<option value="FRENCH POLYNESIA">FRENCH POLYNESIA</option>
+												<option value="FRENCH SOUTHERN TERRITORIES">FRENCH SOUTHERN TERRITORIES
+												</option>
+												<option value="GABON">GABON</option>
+												<option value="GAMBIA">GAMBIA</option>
+												<option value="GEORGIA">GEORGIA</option>
+												<option value="GERMANY">GERMANY</option>
+												<option value="GHANA">GHANA</option>
+												<option value="GIBRALTAR">GIBRALTAR</option>
+												<option value="GREECE">GREECE</option>
+												<option value="GREENLAND">GREENLAND</option>
+												<option value="GRENADA">GRENADA</option>
+												<option value="GUADELOUPE">GUADELOUPE</option>
+												<option value="GUAM">GUAM</option>
+												<option value="GUATEMALA">GUATEMALA</option>
+												<option value="GUINEA">GUINEA</option>
+												<option value="GUINEA-BISSAU">GUINEA-BISSAU</option>
+												<option value="GUYANA">GUYANA</option>
+												<option value="HAITI">HAITI</option>
+												<option value="HOLY SEE">HOLY SEE</option>
+												<option value="HONDURAS">HONDURAS</option>
+												<option value="HONG KONG">HONG KONG</option>
+												<option value="HUNGARY">HUNGARY</option>
+												<option value="ICELAND">ICELAND</option>
+												<option value="INDIA">INDIA</option>
+												<option value="INDONESIA">INDONESIA</option>
+												<option value="IRAN (ISLAMIC REPUBLIC OF)">IRAN (ISLAMIC REPUBLIC OF)
+												</option>
+												<option value="IRAQ">IRAQ</option>
+												<option value="IRELAND">IRELAND</option>
+												<option value="ISRAEL">ISRAEL</option>
+												<option value="ITALY">ITALY</option>
+												<option value="IVORY COAST">IVORY COAST</option>
+												<option value="JAMAICA">JAMAICA</option>
+												<option value="JAPAN">JAPAN</option>
+												<option value="JORDAN">JORDAN</option>
+												<option value="KAZAKHSTAN">KAZAKHSTAN</option>
+												<option value="KENYA">KENYA</option>
+												<option value="KIRIBATI">KIRIBATI</option>
+												<option value="KOREAN DEMOCRATIC PEOPLE'S REPUBLIC (NORTH KOREA)">KOREAN
+													DEMOCRATIC PEOPLE'S REPUBLIC (NORTH KOREA)</option>
+												<option value="KOREAN REPUBLIC (SOUTH KOREA)">KOREAN REPUBLIC (SOUTH
+													KOREA)</option>
+												<option value="KOSOVO">KOSOVO</option>
+												<option value="KUWAIT">KUWAIT</option>
+												<option value="KYRGYZSTAN">KYRGYZSTAN</option>
+												<option value="LAO PEOPLE'S DEMOCRATIC REPUBLIC">LAO PEOPLE'S DEMOCRATIC
+													REPUBLIC</option>
+												<option value="LATVIA">LATVIA</option>
+												<option value="LEBANON">LEBANON</option>
+												<option value="LESOTHO">LESOTHO</option>
+												<option value="LIBERIA">LIBERIA</option>
+												<option value="LIBYA">LIBYA</option>
+												<option value="LIECHTENSTEIN">LIECHTENSTEIN</option>
+												<option value="LITHUANIA">LITHUANIA</option>
+												<option value="LUXEMBOURG">LUXEMBOURG</option>
+												<option value="MACAU">MACAU</option>
+												<option value="MACEDONIA REPUBLIC">MACEDONIA REPUBLIC</option>
+												<option value="MADAGASCAR">MADAGASCAR</option>
+												<option value="MALAWI">MALAWI</option>
+												<option value="MALAYSIA">MALAYSIA</option>
+												<option value="MALDIVES">MALDIVES</option>
+												<option value="MALI">MALI</option>
+												<option value="MALTA">MALTA</option>
+												<option value="MARSHALL ISLANDS">MARSHALL ISLANDS</option>
+												<option value="MARTINIQUE">MARTINIQUE</option>
+												<option value="MAURITANIA">MAURITANIA</option>
+												<option value="MAURITIUS">MAURITIUS</option>
+												<option value="MAYOTTE">MAYOTTE</option>
+												<option value="MEXICO">MEXICO</option>
+												<option value="MICRONESIA FEDERAL STATES">MICRONESIA FEDERAL STATES
+												</option>
+												<option value="MOLDOVA REPUBLIC">MOLDOVA REPUBLIC</option>
+												<option value="MONACO">MONACO</option>
+												<option value="MONGOLIA">MONGOLIA</option>
+												<option value="MONTENEGRO">MONTENEGRO</option>
+												<option value="MONTSERRAT">MONTSERRAT</option>
+												<option value="MOROCCO">MOROCCO</option>
+												<option value="MOZAMBIQUE">MOZAMBIQUE</option>
+												<option value="MYANMAR BURMA">MYANMAR BURMA</option>
+												<option value="NAMIBIA">NAMIBIA</option>
+												<option value="NAURU">NAURU</option>
+												<option value="NEPAL">NEPAL</option>
+												<option value="NETHERLANDS">NETHERLANDS</option>
+												<option value="NETHERLANDS ANTILLES">NETHERLANDS ANTILLES</option>
+												<option value="NEW CALEDONIA">NEW CALEDONIA</option>
+												<option value="NEW ZEALAND">NEW ZEALAND</option>
+												<option value="NICARAGUA">NICARAGUA</option>
+												<option value="NIGER">NIGER</option>
+												<option value="NIGERIA">NIGERIA</option>
+												<option value="NIUE">NIUE</option>
+												<option value="NORTHERN MARIANA ISLANDS">NORTHERN MARIANA ISLANDS
+												</option>
+												<option value="NORWAY">NORWAY</option>
+												<option value="OMAN">OMAN</option>
+												<option value="PAKISTAN">PAKISTAN</option>
+												<option value="PALAU">PALAU</option>
+												<option value="PALESTINIAN TERRITORIES">PALESTINIAN TERRITORIES</option>
+												<option value="PANAMA">PANAMA</option>
+												<option value="PAPUA NEW GUINEA">PAPUA NEW GUINEA</option>
+												<option value="PARAGUAY">PARAGUAY</option>
+												<option value="PERU">PERU</option>
+												<option value="PHILIPPINES">PHILIPPINES</option>
+												<option value="PITCAIRN ISLAND">PITCAIRN ISLAND</option>
+												<option value="POLAND">POLAND</option>
+												<option value="PORTUGAL">PORTUGAL</option>
+												<option value="PUERTO RICO">PUERTO RICO</option>
+												<option value="QATAR">QATAR</option>
+												<option value="REUNION ISLAND">REUNION ISLAND</option>
+												<option value="ROMANIA">ROMANIA</option>
+												<option value="RUSSIAN FEDERATION">RUSSIAN FEDERATION</option>
+												<option value="RWANDA">RWANDA</option>
+												<option value="SAINT HELENA">SAINT HELENA</option>
+												<option value="SAINT KITTS AND NEVIS">SAINT KITTS AND NEVIS</option>
+												<option value="SAINT LUCIA">SAINT LUCIA</option>
+												<option value="SAINT VINCENT AND THE GRENADINES">SAINT VINCENT AND THE
+													GRENADINES</option>
+												<option value="SAMOA">SAMOA</option>
+												<option value="SAN MARINO">SAN MARINO</option>
+												<option value="SAO TOME AND PRINCIPE">SAO TOME AND PRINCIPE</option>
+												<option value="SAUDI ARABIA">SAUDI ARABIA</option>
+												<option value="SCOTLAND">SCOTLAND</option>
+												<option value="SENEGAL">SENEGAL</option>
+												<option value="SERBIA">SERBIA</option>
+												<option value="SEYCHELLES">SEYCHELLES</option>
+												<option value="SIERRA LEONE">SIERRA LEONE</option>
+												<option value="SINGAPORE">SINGAPORE</option>
+												<option value="SLOVAKIA (SLOVAK REPUBLIC)">SLOVAKIA (SLOVAK REPUBLIC)
+												</option>
+												<option value="SLOVENIA">SLOVENIA</option>
+												<option value="SOLOMON ISLANDS">SOLOMON ISLANDS</option>
+												<option value="SOMALIA">SOMALIA</option>
+												<option value="SOUTH AFRICA">SOUTH AFRICA</option>
+												<option value="SOUTH SUDAN">SOUTH SUDAN</option>
+												<option value="SPAIN">SPAIN</option>
+												<option value="SRI LANKA">SRI LANKA</option>
+												<option value="SUDAN">SUDAN</option>
+												<option value="SURINAME">SURINAME</option>
+												<option value="SWAZILAND">SWAZILAND</option>
+												<option value="SWEDEN">SWEDEN</option>
+												<option value="SWITZERLAND">SWITZERLAND</option>
+												<option value="SYRIAN ARAB REPUBLIC">SYRIAN ARAB REPUBLIC</option>
+												<option value="TAJIKISTAN">TAJIKISTAN</option>
+												<option value="TANZANIA">TANZANIA</option>
+												<option value="THAILAND">THAILAND</option>
+												<option value="TIBET">TIBET</option>
+												<option value="TIMOR-LESTE (EAST TIMOR)">TIMOR-LESTE (EAST TIMOR)
+												</option>
+												<option value="TOGO">TOGO</option>
+												<option value="TOKELAU">TOKELAU</option>
+												<option value="TONGA">TONGA</option>
+												<option value="TRINIDAD AND TOBAGO">TRINIDAD AND TOBAGO</option>
+												<option value="TUNISIA">TUNISIA</option>
+												<option value="TURKEY">TURKEY</option>
+												<option value="TURKMENISTAN">TURKMENISTAN</option>
+												<option value="TURKS AND CAICOS ISLANDS">TURKS AND CAICOS ISLANDS
+												</option>
+												<option value="TUVALU">TUVALU</option>
+												<option value="UGANDA">UGANDA</option>
+												<option value="UKRAINE">UKRAINE</option>
+												<option value="UNITED ARAB EMIRATES">UNITED ARAB EMIRATES</option>
+												<option value="UNITED KINGDOM">UNITED KINGDOM</option>
+												<option value="UNITED STATES">UNITED STATES</option>
+												<option value="URUGUAY">URUGUAY</option>
+												<option value="UZBEKISTAN">UZBEKISTAN</option>
+												<option value="VANUATU">VANUATU</option>
+												<option value="VATICAN CITY STATE (HOLY SEE)">VATICAN CITY STATE (HOLY
+													SEE)</option>
+												<option value="VENEZUELA">VENEZUELA</option>
+												<option value="VIETNAM">VIETNAM</option>
+												<option value="VIRGIN ISLANDS (BRITISH)">VIRGIN ISLANDS (BRITISH)
+												</option>
+												<option value="VIRGIN ISLANDS (U.S.)">VIRGIN ISLANDS (U.S.)</option>
+												<option value="WALES">WALES</option>
+												<option value="WALLIS AND FUTUNA ISLANDS">WALLIS AND FUTUNA ISLANDS
+												</option>
+												<option value="WESTERN SAHARA">WESTERN SAHARA</option>
+												<option value="YEMEN">YEMEN</option>
+												<option value="ZAMBIA">ZAMBIA</option>
+												<option value="ZIMBABWE">ZIMBABWE</option>
+											</select>
+
+										</div>
+										<span *ngIf="formDataError.error_field === 'kin_country'" class="error-message">
+											{{ formDataError.msg }}
+										</span>
+									</div>
+								</div>
+							</div>
+							<div class="form-tab-heading">
+								<h3> Contact Info</h3>
+							</div>
+							<div class="row">
+								<div class="col-md-6">
+									<div class="form-group">
+										<label class="control-label">Telephone (H)</label>
+										<div class="input-group">
+											<span class="input-group-addon ">
+												<i class="fa fa-phone"></i>
+											</span>
+											<input type="text" class="form-control" formControlName="kin_tel"
+												[(ngModel)]="kin_tel">
+										</div>
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="form-group">
+										<label class="control-label">Telephone (W)</label>
+										<div class="input-group">
+											<span class="input-group-addon ">
+												<i class="fa fa-phone"></i>
+											</span>
+											<input type="text" class="form-control" formControlName="kin_num"
+												[(ngModel)]="kin_num">
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-6">
+									<div class="form-group">
+										<label class="control-label">Cell phone</label>
+										<div class="input-group">
+											<span class="input-group-addon ">
+												<i class="fa fa-mobile"></i>
+											</span>
+											<input type="text" class="form-control" formControlName="kin_phone"
+												[(ngModel)]="kin_phone">
+
+										</div>
+										<span *ngIf="formDataError.error_field === 'kin_phone'" class="error-message">
+											{{ formDataError.msg }}
+										</span>
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="form-group">
+										<label class="control-label">Email</label>
+										<div class="input-group">
+											<span class="input-group-addon ">
+												<i class="fa fa-envelope"></i>
+											</span>
+											<input type="text" class="form-control" formControlName="kin_email"
+												[(ngModel)]="kin_email">
+
+										</div>
+										<span *ngIf="formDataError.error_field === 'kin_email'" class="error-message">
+											{{ formDataError.msg }}
+										</span>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-6">
+									<div class="form-group">
+										<label class="control-label">Relationship</label>
+										<div class="input-group">
+											<span class="input-group-addon ">
+												<i class="fa fa-life-ring"></i>
+											</span>
+											<select class="form-control" formControlName="kin_relation"
+												[(ngModel)]="kin_relation">
+												<option value="AUNT">AUNT</option>
+												<option value="BROTHER">BROTHER</option>
+												<option value="BROTHER IN LAW">BROTHER IN LAW</option>
+												<option value="BUSINESS PARTNER">BUSINESS PARTNER</option>
+												<option value="CHILD">CHILD</option>
+												<option value="COLLEAGUE">COLLEAGUE</option>
+												<option value="COUSIN">COUSIN</option>
+												<option value="DAUGHTER">DAUGHTER</option>
+												<option value="DAUGHTER IN LAW">DAUGHTER IN LAW</option>
+												<option value="DAUGTHER">DAUGTHER</option>
+												<option value="ESTATE">ESTATE</option>
+												<option value="FAMILY">FAMILY</option>
+												<option value="FATHER">FATHER</option>
+												<option value="FATHER IN LAW">FATHER IN LAW</option>
+												<option value="FIANCE">FIANCE</option>
+												<option value="FRIEND">FRIEND</option>
+												<option value="GRAND FATHER">GRAND FATHER</option>
+												<option value="GRAND MOTHER">GRAND MOTHER</option>
+												<option value="GRAND SON">GRAND SON</option>
+												<option value="GUARDIAN">GUARDIAN</option>
+												<option value="HUSBAND">HUSBAND</option>
+												<option value="LAWYER">LAWYER</option>
+												<option value="LIFE PARTNER">LIFE PARTNER</option>
+												<option value="MOTHER">MOTHER</option>
+												<option value="MOTHER IN LAW">MOTHER IN LAW</option>
+												<option value="NEPHEW">NEPHEW</option>
+												<option value="NIECE">NIECE</option>
+												<option value="PARENT">PARENT</option>
+												<option value="PARENTS IN LAW">PARENTS IN LAW</option>
+												<option value="SIBLING">SIBLING</option>
+												<option value="SISTER">SISTER</option>
+												<option value="SISTER IN LAW">SISTER IN LAW</option>
+												<option value="SON">SON</option>
+												<option value="SON IN LAW">SON IN LAW</option>
+												<option value="SPONSOR">SPONSOR</option>
+												<option value="SPOUSE">SPOUSE</option>
+												<option value="UNCLE">UNCLE</option>
+												<option value="WIFE">WIFE</option>
+											</select>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+					</div> <!-- Tab 3 close -->
+
+					<div id="divein" class="container tab-pane fade tabcontent"><br>
+						<div class="portlet-body">
+							<div class="form-tab-heading">
+								<h3>Diving Family Info</h3>
+							</div>
+							<div class="row">
+								<div class="col-md-12">
+									<div class="table-wrapper">
+										<div class="table-scrollable">
+											<table class="table table-striped table-hover table-light" cellspacing="0"
+												width="100%" role="grid">
+												<thead>
+													<tr role="row">
+														<th>Name</th>
+														<th>Email</th>
+														<th>Date of Birth</th>
+														<th></th>
+														<th></th>
+													</tr>
+												</thead>
+
+												<tbody>
+
+													<tr *ngFor="let dive of dives">
+														<td>
+															<a class="button-ghost"
+																[routerLink]="['/extensions/memberships/editdivefamily/',dive.id]">
+																<span>{{dive.fname1}}
+																	{{dive.sname1=='null'?'':dive.sname1}}</span>
+															</a>
+														</td>
+														<td>{{dive.email1 }}</td>
+														<td>{{dive.dob1 | date:'yyyy-MM-dd'}}</td>
+														<td></td>
+														<td></td>   
+													</tr>
+
+												</tbody>
+											</table>
+										</div>
+										<div class="row mrb-30">
+											<div class="col-md-6">
+												<div class="btn-group">
+													<a class="button primary"
+														[routerLink]="['/extensions/memberships/createdivefamily',id]"
+														class="btn btn-sm btn-green">Add New <i
+															class="fa fa-plus"></i></a>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div> <!-- Tab 4 close -->
+
+					<div id="nondivein" class="container tab-pane fade tabcontent"><br>
+						<div class="portlet-body">
+							<div class="form-tab-heading">
+								<h3>Non Diving Family Info</h3>
+							</div>
+							<div class="row">
+								<div class="col-md-12">
+									<div class="table-wrapper">
+
+										<div class="table-scrollable">
+											<table class="table table-striped table-hover table-light" cellspacing="0"
+												width="100%" role="grid">
+												<thead>
+													<tr role="row">
+														<th>Name</th>
+														<th>Email</th>
+														<th>Date of Birth</th>
+														<th></th>
+														<th></th>
+													</tr>
+												</thead>
+
+												<tbody>
+													<tr *ngFor="let dive of nondives">
+														<td>
+															<a class="button-ghost"
+																[routerLink]="['/extensions/memberships/editnondivefamily/',dive.id]">
+																<span>{{dive.fname1}}
+																	{{dive.sname1=='null'?'':dive.sname1}}</span>
+															</a>
+														</td>
+														<td>{{dive.email1 }}</td>
+														<td>{{dive.dob1 | date:'yyyy-MM-dd'}}</td>
+														<td></td>
+														<td></td>   
+													</tr>
+												</tbody>
+											</table>
+										</div>
+										<div class="row mrb-30">
+											<div class="col-md-6">
+												<div class="btn-group">
+													<a [routerLink]="['/extensions/memberships/createnondivefamily',id]"
+														class="btn btn-sm btn-link">Add New <i
+															class="fa fa-plus"></i></a>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div> <!-- Tab 5 close -->
+
+					<div id="bank" class="container tab-pane fade tabcontent"><br>
+						<div class="portlet-body">
+
+
+							<div class="form-tab-heading">
+								<h3> Membership Info</h3>
+							</div>
+							<div class="row">
+								<div class="col-md-6">
+									<div class="form-group">
+										<label class="control-label">Payment Method</label>
+										<div class="input-group">
+											<span class="input-group-addon ">
+												<i class="fa fa-wrench"></i>
+											</span>
+											<select class="form-control" formControlName="pay_method"
+												[(ngModel)]="pay_method">
+												<option value="EFT">EFT</option>
+												<option value="CREDIT CARD">CREDIT CARD</option>
+												<option value="DEBIT ORDER">DEBIT ORDER</option>
+												<option value="UNKNOWN">UNKNOWN</option>
+												<option value="DEPOSIT">DEPOSIT</option>
+											</select>
+
+										</div>
+										<span *ngIf="formDataError.error_field === 'pay_method'" class="error-message">
+											{{ formDataError.msg }}
+										</span>
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="form-group">
+										<label class="control-label">Payment Period</label>
+										<div class="input-group">
+											<span class="input-group-addon ">
+												<i class="fa fa-wrench"></i>
+											</span>
+											<select class="form-control" formControlName="pay_period"
+												[(ngModel)]="pay_period">
+												<option value="1">1</option>
+												<option value="2">15</option>
+												<option value="3">25</option>
+											</select>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-6">
+									<div class="form-group">
+										<label class="control-label">Account Holder</label>
+										<div class="input-group">
+											<span class="input-group-addon ">
+												<i class="fa fa-university"></i>
+											</span>
+											<input type="text" class="form-control" formControlName="account_holder"
+												[(ngModel)]="account_holder">
+										</div>
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="form-group">
+										<label class="control-label">Institution</label>
+										<div class="input-group">
+											<span class="input-group-addon ">
+												<i class="fa fa-user"></i>
+											</span>
+											<select class="form-control" formControlName="institute"
+												[(ngModel)]="institute">
+												<option value="UNKNOWN">UNKNOWN</option>
+												<option value="ABN AMRO">ABN AMRO</option>
+												<option value="ABSA">ABSA</option>
+												<option value="ALLIED">ALLIED</option>
+												<option value="RAND MERCHANT BANK">RAND MERCHANT BANK</option>
+												<option value="BANQUE DE LA REUNION">BANQUE DE LA REUNION</option>
+												<option value="BANK OF WINDHOEK">BANK OF WINDHOEK</option>
+												<option value="BARCLAYS">BARCLAYS</option>
+												<option value="BARCLAYS CONNECT VISA">BARCLAYS CONNECT VISA</option>
+												<option value="BOLAND">BOLAND</option>
+												<option value="CAPITAL ONE USA VISA">CAPITAL ONE USA VISA</option>
+												<option value="COMMERCIAL">COMMERCIAL</option>
+												<option value="COMMERCIAL BANK OF NAMIBIA">COMMERCIAL BANK OF NAMIBIA
+												</option>
+												<option value="DEN DANKE BANK">DEN DANKE BANK</option>
+												<option value="DINERS CLUB INTERNATIONAL">DINERS CLUB INTERNATIONAL
+												</option>
+												<option value="FIRST CARD">FIRST CARD</option>
+												<option value="FIRST NATIONAL BANK">FIRST NATIONAL BANK</option>
+												<option value="FIRST NATIONAL  VISA">FIRST NATIONAL VISA</option>
+												<option value="BANK OF ATHENS">BANK OF ATHENS</option>
+												<option value="STANDARD CHARTERED">STANDARD CHARTERED</option>
+												<option value="CAPITEC">CAPITEC</option>
+												<option value="INVESTEC">INVESTEC</option>
+												<option value="AMEX">AMEX</option>
+												<option value="LISBON">LISBON</option>
+												<option value="LLOYDS">LLOYDS</option>
+												<option value="LLOYDS  VISA">LLOYDS VISA</option>
+												<option value="MASTER CARD">MASTER CARD</option>
+												<option value="MERCANTILE LISBON">MERCANTILE LISBON</option>
+												<option value="NATWEST">NATWEST</option>
+												<option value="NBS">NBS</option>
+												<option value="NEDBANK">NEDBANK</option>
+												<option value="NEDBANK GOLD">NEDBANK GOLD</option>
+												<option value="NEDBANK MASTER CARD">NEDBANK MASTER CARD</option>
+												<option value="NEDBANK VISA">NEDBANK VISA</option>
+												<option value="OTHER">OTHER</option>
+												<option value="PERM">PERM</option>
+												<option value="PREMIER">PREMIER</option>
+												<option value="SAAMBOU">SAAMBOU</option>
+												<option value="STANDARD BANK">STANDARD BANK</option>
+												<option value="STANDARD BANK GOLD MASTER CARD">STANDARD BANK GOLD MASTER
+													CARD</option>
+												<option value="STANDARD BANK MASTER CARD">STANDARD BANK MASTER CARD
+												</option>
+												<option value="TRUST BANK">TRUST BANK</option>
+												<option value="TRUST BANK VISA">TRUST BANK VISA</option>
+												<option value="UNITED">UNITED</option>
+												<option value="UNITED MASTER CARD">UNITED MASTER CARD</option>
+												<option value="VISA">VISA</option>
+												<option value="VOLKSKAS">VOLKSKAS</option>
+												<option value="VOLKSKAS VISA">VOLKSKAS VISA</option>
+												<option value="WINDHOEK">WINDHOEK</option>
+												<option value="VOLKSKAS MASTER CARD">VOLKSKAS MASTER CARD</option>
+												<option value="20TWENTY">20TWENTY</option>
+											</select>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<div class="row">
+								<div class="col-md-6">
+									<div class="form-group">
+										<label class="control-label">Branch</label>
+										<div class="input-group">
+											<span class="input-group-addon ">
+												<i class="fa fa-user"></i>
+											</span>
+											<input type="text" class="form-control" formControlName="branch"
+												[(ngModel)]="branch">
+										</div>
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="form-group">
+										<label class="control-label">Branch code</label>
+										<div class="input-group">
+											<span class="input-group-addon ">
+												<i class="fa fa-calendar"></i>
+											</span>
+											<input type="text" class="form-control date-picker"
+												formControlName="branch_code" [(ngModel)]="branch_code">
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-6">
+									<div class="form-group">
+										<label class="control-label">Account Type</label>
+										<div class="input-group">
+											<span class="input-group-addon ">
+												<i class="fa fa-group"></i>
+											</span>
+											<select class="form-control" formControlName="account_type"
+												[(ngModel)]="account_type">
+												<option value="UNKNOWN">UNKNOWN</option>
+												<option value="CHEQUE">CHEQUE</option>
+												<option value="SAVINGS">SAVINGS</option>
+												<option value="TRANSMISSION">TRANSMISSION</option>
+												<option value="CREDIT CARD">CREDIT CARD</option>
+												<option value="DEBIT CARD">DEBIT CARD</option>
+												<option value="CURRENT">CURRENT</option>
+												<option value="EFT">EFT</option>
+											</select>
+										</div>
+										<span *ngIf="formDataError.error_field === 'account_type'"
+											class="error-message">
+											{{ formDataError.msg }}
+										</span>
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="form-group">
+										<label class="control-label">Account No</label>
+										<div class="input-group">
+											<span class="input-group-addon">
+												<i class="fa fa-user"></i>
+											</span>
+											<input type="text" class="form-control" formControlName="account_no"
+												[(ngModel)]="account_no">
+										</div>
+										<span *ngIf="formDataError.error_field === 'account_no'"
+											class="error-message">{{ formDataError.msg }}</span>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-6">
+									<div class="form-group">
+										<label class="control-label">Card Expiry</label>
+										<div class="input-group">
+											<span class="input-group-addon ">
+												<i class="fa fa-wrench"></i>
+											</span>
+											<input type="date" class="form-control" formControlName="card_expiry"
+												[(ngModel)]="card_expiry">
+										</div>
+										<span *ngIf="formDataError.error_field === 'card_expiry'" class="error-message">
+											{{ formDataError.msg }}
+										</span>
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="form-group">
+										<label class="control-label">Authorised Sign</label>
+										<div class="input-group">
+											<span class="input-group-addon ">
+												<i class="fa fa-university"></i>
+											</span>
+											<div class="outerDivFull">
+												<div class="switchToggle">
+													<input type="checkbox" name="sign" id="switch_1"
+														formControlName="authorise_sign" [(ngModel)]="authorise_sign"
+														[checked]="authorise_sign == '1'">
+													<label for="switch_1">Toggle</label>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-6">
+									<div class="form-group">
+										<label class="control-label">Bad Debt</label>
+										<div class="input-group">
+											<span class="input-group-addon ">
+												<i class="fa fa-bank"></i>
+											</span>
+											<div class="outerDivFull">
+												<div class="switchToggle">
+													<input type="checkbox" name="debt" id="switch_2"
+														formControlName="debt" [(ngModel)]="debt"
+														[checked]="debt == '1'">
+													<label for="switch_2">Toggle</label>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div> <!-- Tab 6 close -->
+
+					<div id="qualify" class="container tab-pane fade tabcontent"><br>
+						<div class="portlet-body">
+							<div class="form-tab-heading">
+								<h3>Instructor Trainer</h3>
+							</div>
+							<div class="row">
+								<div class="col-md-12">
+									<form class="form-inline" [formGroup]="qualifyForm" (ngSubmit)="onAdd()">
+										<input type="hidden" formControlName="row_id" [(ngModel)]="row_id" />
+										<div class="row mrb-30">
+											<div class="col-md-7">
+												<div class="form-group">
+													<label class="control-label">Course</label>
+													<div class="input-group">
+														<span class="input-group-addon">
+															<i class="fa fa-group"></i>
+														</span>
+														<select class="form-control" formControlName="course_id">
+															<option value="">--Select--</option>
+															<option *ngFor="let opt of courses" [value]="opt.id">
+																{{opt.title}}</option>
+														</select>
+													</div>
+													<span *ngIf="formDataError.error_field === 'course_id'"
+														class="error-message">
+														{{ formDataError.msg }}
+													</span>
+												</div>
+											</div>
+											<div class="col-md-5">
+												<div class="form-group">
+													<div class="btn-group">
+														<button type="button" class="btn btn-sm btn-own"
+															(click)="showModal(true)">Add Trainer</button>
+														<button #new_tram type="submit" hidden>Submit form</button>
+													</div>
+												</div>
+											</div>
+										</div>
+									</form>
+									<div class="table-wrapper">
+										<div class="table-scrollable">
+											<h3>Qualifications</h3>
+											<!---<button type="button" id="btnOpen" class="btn btn-primary" (click)="openModal(true)">Click</button>--->
+											<table class="table table-striped table-hover table-light" cellspacing="0"
+												width="100%" role="grid">
+												<thead>
+													<tr role="row">
+														<th>Course</th>
+														<th>Date Created</th>
+														<th>Active Date</th>
+														<th>Trained By</th>
+														<th>Course Type</th>
+														<th>Course Status</th>
+														<th></th>
+													</tr>
+												</thead>
+
+												<tbody>
+
+													<tr *ngFor="let qualify of qualifications">
+														<td>{{qualify.title}}</td>
+														<td>{{qualify.created_at | date:'yyyy/MM/dd hh:mm:ss a'}}</td>
+														<td>{{qualify.active_at | date:'yyyy/MM/dd'}}</td>
+														<td>{{qualify.trained_by}}</td>
+														<td>{{qualify.type}}</td>
+														<td>{{qualify.status}}</td>
+														<td></td>
+													</tr>
+
+												</tbody>
+											</table>
+										</div>
+
+									</div>
+								</div>
+							</div>
+
+							<div class="modal fade" role="dialog"
+								[ngStyle]="{'display': openMode ? 'block' : 'none', 'opacity': 1}">
+								<div class="modal-dialog modal-lg">
+									<div class="modal-content">
+										<div class="modal-header">
+											<h6 class="modal-title">Confirm</h6>
+										</div>
+										<div class="modal-body">Are you sure you would like to add the instructor
+											trainer?</div>
+										<div class="modal-footer" align="right">
+											<button type="button" id="btnOK" class="btn btn-success"
+												(click)="trainerClick(new_tram)"><i class="fa fa-check fa-fw"></i>
+												Yes</button>
+											<button type="button" id="btnClose" class="btn btn-warning"
+												(click)="showModal(false)"><i class="fa fa-times fa-fw"></i>
+												Cancel</button>
+										</div>
+									</div>
+								</div>
+							</div>
+
+						</div>
+					</div> <!-- Tab 7 close -->
+
+
+					<div id="instructor" class="container tab-pane fade tabcontent"><br>
+						<div class="portlet-body">
+							<div class="form-tab-heading">
+								<h3>Instructor</h3>
+							</div>
+							<div class="row">
+								<div class="col-md-12">
+									<form class="form-horizontal" [formGroup]="instructForm" (ngSubmit)="onSave()">
+										<input type="hidden" formControlName="row_id" [(ngModel)]="row_id" />
+										<div class="row mrb-30">
+											<div class="col-md-6">
+												<div class="form-group">
+													<label class="control-label">Course</label>
+													<div class="input-group">
+														<span class="input-group-addon">
+															<i class="fa fa-group"></i>
+														</span>
+														<select class="form-control" formControlName="instruct_course">
+															<option value="">--Select--</option>
+															<option *ngFor="let opt of courses" [value]="opt.id">
+																{{opt.title}}</option>
+														</select>
+													</div>
+													<span *ngIf="formDataError.error_field === 'instruct_course'"
+														class="error-message">
+														{{ formDataError.msg }}
+													</span>
+												</div>
+											</div>
+											<div class="col-md-6">
+												<div class="form-group">
+													<label class="control-label">Student</label>
+													<div class="input-group">
+														<span class="input-group-addon">
+															<i class="fa fa-group"></i>
+														</span>
+														<select class="form-control" formControlName="student_id">
+															<option *ngFor="let student of students"
+																value={{student.id}}>
+																{{student.sname1==null?'':student.sname1}}
+																{{student.member_no}}</option>
+														</select>
+													</div>
+													<span *ngIf="formDataError.error_field === 'student_id'"
+														class="error-message">
+														{{ formDataError.msg }}
+													</span>
+												</div>
+											</div>
+										</div>
+										<div class="row mrb-30">
+											<div class="col-md-6">
+												<div class="form-group">
+													<label class="control-label">Pack Number</label>
+													<div class="input-group">
+														<span class="input-group-addon">
+															<i class="fa fa-group"></i>
+														</span>
+														<input type="text" class="form-control"
+															formControlName="pack_number">
+													</div>
+												</div>
+											</div>
+											<div class="col-md-6">
+												<div class="btn-group">
+													<button type="button" class="btn btn-sm btn-own"
+														(click)="openModal(true)">Add Instructor</button>
+													<button #new_instruc type="submit" hidden>Submit form</button>
+												</div>
+												<span *ngIf="formDataError.error_field === 'record_id'"
+													class="error-message">
+													{{ formDataError.msg }}
+												</span>
+											</div>
+										</div>
+									</form>
+									<div class="table-wrapper">
+										<div class="table-scrollable">
+											<h3>Instructors Trained</h3>
+											<table class="table table-striped table-hover table-light" cellspacing="0"
+												width="100%" role="grid">
+												<thead>
+													<tr role="row">
+														<th>Member</th>
+														<th>Member No</th>
+														<th>Course</th>
+														<th>Active Date</th>
+														<th>Course Status</th>
+													</tr>
+												</thead>
+
+												<tbody>
+
+													<tr *ngFor="let instructor of instructors">
+														<td>
+															<a class="button-ghost"
+																[routerLink]="['/extensions/memberships/editannual/',instructor.student_id]">
+																<span>{{instructor.fname1}}
+																	{{instructor.sname1==""?'':instructor.sname1}}</span>
+															</a>
+														</td>
+														<td>{{instructor.member_no}}</td>
+														<td>{{instructor.title}}</td>
+														<td>{{instructor.active_at | date:'yyyy-MM-dd'}}</td>
+														<td>{{instructor.status}}</td>
+													</tr>
+
+												</tbody>
+											</table>
+										</div>
+
+									</div>
+								</div>
+							</div>
+
+							<div class="modal fade" role="dialog"
+								[ngStyle]="{'display': IsOpen ? 'block' : 'none', 'opacity': 1}">
+								<div class="modal-dialog modal-lg">
+									<div class="modal-content">
+										<div class="modal-header">
+											<h6 class="modal-title">Confirm</h6>
+										</div>
+										<div class="modal-body">Are you sure you would like to add the instructor?</div>
+										<div class="modal-footer" align="right">
+											<button type="button" id="btnOK" class="btn btn-success"
+												(click)="insrtructClick(new_instruc)"><i class="fa fa-check fa-fw"></i>
+												Yes</button>
+											<button type="button" id="btnClose" class="btn btn-warning"
+												(click)="openModal(false)"><i class="fa fa-times fa-fw"></i>
+												Cancel</button>
+										</div>
+									</div>
+								</div>
+							</div>
+
+						</div>
+					</div> <!-- Tab 8 close -->
+
+
+					<div id="provider" class="container tab-pane fade tabcontent"><br>
+						<div class="portlet-body">
+							<div class="form-tab-heading">
+								<h3>Provider</h3>
+							</div>
+							<form class="form-horizontal" [formGroup]="provideForm" (ngSubmit)="onCreate()">
+								<input type="hidden" formControlName="row_id" [(ngModel)]="row_id" />
+								<div class="row">
+									<div class="col-md-12">
+										<div class="row mrb-30">
+											<div class="col-md-6">
+												<div class="form-group">
+													<label class="control-label">Title</label>
+													<div class="input-group">
+														<span class="input-group-addon">
+															<i class="fa fa-group"></i>
+														</span>
+														<select class="form-control" formControlName="title">
+															<option value="UNKNOWN">UNKNOWN</option>
+															<option value="MR">MR</option>
+															<option value="MRS">MRS</option>
+															<option value="MISS">MISS</option>
+															<option value="MS">MS</option>
+															<option value="REV">REV</option>
+															<option value="DR">DR</option>
+															<option value="PROF">PROF</option>
+															<option value="DS">DS</option>
+															<option value="SIR">SIR</option>
+															<option value="MASTER">MASTER</option>
+															<option value="COMPANY">COMPANY</option>
+														</select>
+													</div>
+												</div>
+											</div>
+											<div class="col-md-6">
+												<div class="form-group">
+													<label class="control-label">First name/s</label>
+													<div class="input-group">
+														<span class="input-group-addon">
+															<i class="fa fa-group"></i>
+														</span>
+														<input type="text" class="form-control"
+															formControlName="first_name">
+													</div>
+													<span *ngIf="formDataError.error_field === 'first_name'"
+														class="error-message">
+														{{ formDataError.msg }}
+													</span>
+												</div>
+											</div>
+										</div>
+										<div class="row mrb-30">
+											<div class="col-md-6">
+												<div class="form-group">
+													<label class="control-label">Surname</label>
+													<div class="input-group">
+														<span class="input-group-addon">
+															<i class="fa fa-group"></i>
+														</span>
+														<input type="text" class="form-control"
+															formControlName="s_name">
+													</div>
+												</div>
+											</div>
+											<div class="col-md-6">
+												<div class="form-group">
+													<label class="control-label">ID/Passport number</label>
+													<div class="input-group">
+														<span class="input-group-addon">
+															<i class="fa fa-group"></i>
+														</span>
+														<input type="text" class="form-control"
+															formControlName="passport_no">
+													</div>
+													<span *ngIf="formDataError.error_field === 'passport_no'"
+														class="error-message">
+														{{ formDataError.msg }}
+													</span>
+												</div>
+											</div>
+										</div>
+
+									</div>
+								</div>
+								<div class="form-tab-heading">
+									<h3>Address Info</h3>
+								</div>
+								<div class="row">
+									<div class="col-md-12">
+										<div class="row mrb-30">
+											<div class="col-md-6">
+												<div class="form-group">
+													<label class="control-label">Postal address 1</label>
+													<div class="input-group">
+														<span class="input-group-addon">
+															<i class="fa fa-group"></i>
+														</span>
+														<input type="text" class="form-control"
+															formControlName="postaddr1">
+													</div>
+												</div>
+											</div>
+											<div class="col-md-6">
+												<div class="form-group">
+													<label class="control-label">Postal address 2</label>
+													<div class="input-group">
+														<span class="input-group-addon">
+															<i class="fa fa-group"></i>
+														</span>
+														<input type="text" class="form-control"
+															formControlName="postaddr2">
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="row mrb-30">
+											<div class="col-md-6">
+												<div class="form-group">
+													<label class="control-label">City</label>
+													<div class="input-group">
+														<span class="input-group-addon">
+															<i class="fa fa-group"></i>
+														</span>
+														<input type="text" class="form-control" formControlName="city">
+													</div>
+													<span *ngIf="formDataError.error_field === 'city'"
+														class="error-message">
+														{{ formDataError.msg }}
+													</span>
+												</div>
+											</div>
+											<div class="col-md-6">
+												<div class="form-group">
+													<label class="control-label">Province</label>
+													<div class="input-group">
+														<span class="input-group-addon">
+															<i class="fa fa-group"></i>
+														</span>
+														<input type="text" class="form-control"
+															formControlName="province">
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="row mrb-30">
+											<div class="col-md-6">
+												<div class="form-group">
+													<label class="control-label">Postal code</label>
+													<div class="input-group">
+														<span class="input-group-addon">
+															<i class="fa fa-group"></i>
+														</span>
+														<input type="text" class="form-control"
+															formControlName="postcode">
+													</div>
+													<span *ngIf="formDataError.error_field === 'postcode'"
+														class="error-message">
+														{{ formDataError.msg }}
+													</span>
+												</div>
+											</div>
+											<div class="col-md-6">
+												<div class="form-group">
+													<label class="control-label">Country</label>
+													<div class="input-group">
+														<span class="input-group-addon">
+															<i class="fa fa-group"></i>
+														</span>
+
+														<select class="form-control" formControlName="provider_country">
+															<option selected="selected" value="UNKNOWN">UNKNOWN</option>
+															<option value="AFGHANISTAN">AFGHANISTAN</option>
+															<option value="ALBANIA">ALBANIA</option>
+															<option value="ALGERIA">ALGERIA</option>
+															<option value="AMERICAN SAMOA">AMERICAN SAMOA</option>
+															<option value="ANDORRA">ANDORRA</option>
+															<option value="ANGOLA">ANGOLA</option>
+															<option value="ANGUILLA">ANGUILLA</option>
+															<option value="ANTARCTICA">ANTARCTICA</option>
+															<option value="ANTIGUA AND BARBUDA">ANTIGUA AND BARBUDA
+															</option>
+															<option value="ARGENTINA">ARGENTINA</option>
+															<option value="ARMENIA">ARMENIA</option>
+															<option value="ARUBA">ARUBA</option>
+															<option value="AUSTRALIA">AUSTRALIA</option>
+															<option value="AUSTRIA">AUSTRIA</option>
+															<option value="AZERBAIJAN">AZERBAIJAN</option>
+															<option value="BAHAMAS">BAHAMAS</option>
+															<option value="BAHRAIN">BAHRAIN</option>
+															<option value="BANGLADESH">BANGLADESH</option>
+															<option value="BARBADOS">BARBADOS</option>
+															<option value="BELARUS">BELARUS</option>
+															<option value="BELGIUM">BELGIUM</option>
+															<option value="BELIZE">BELIZE</option>
+															<option value="BENIN">BENIN</option>
+															<option value="BERMUDA">BERMUDA</option>
+															<option value="BHUTAN">BHUTAN</option>
+															<option value="BOLIVIA">BOLIVIA</option>
+															<option value="BOSNIA AND HERZEGOVINA">BOSNIA AND
+																HERZEGOVINA</option>
+															<option value="BOTSWANA">BOTSWANA</option>
+															<option value="BOUVET ISLAND">BOUVET ISLAND</option>
+															<option value="BRAZIL">BRAZIL</option>
+															<option value="BRITISH INDIAN OCEAN TERRITORY">BRITISH
+																INDIAN OCEAN TERRITORY</option>
+															<option value="BRUNEI DARUSSALAM">BRUNEI DARUSSALAM</option>
+															<option value="BULGARIA">BULGARIA</option>
+															<option value="BURKINA FASO">BURKINA FASO</option>
+															<option value="BURUNDI">BURUNDI</option>
+															<option value="CAMBODIA">CAMBODIA</option>
+															<option value="CAMEROON">CAMEROON</option>
+															<option value="CANADA">CANADA</option>
+															<option value="CAPE VERDE">CAPE VERDE</option>
+															<option value="CAYMAN ISLANDS">CAYMAN ISLANDS</option>
+															<option value="CENTRAL AFRICAN REPUBLIC">CENTRAL AFRICAN
+																REPUBLIC</option>
+															<option value="CHAD">CHAD</option>
+															<option value="CHILE">CHILE</option>
+															<option value="CHINA">CHINA</option>
+															<option value="CHRISTMAS ISLAND">CHRISTMAS ISLAND</option>
+															<option value="COCOS (KEELING) ISLANDS">COCOS (KEELING)
+																ISLANDS</option>
+															<option value="COLOMBIA">COLOMBIA</option>
+															<option value="COMOROS">COMOROS</option>
+															<option value="CONGO REPUBLIC (BRAZZAVILLE)">CONGO REPUBLIC
+																(BRAZZAVILLE)</option>
+															<option value="COOK ISLANDS">COOK ISLANDS</option>
+															<option value="COSTA RICA">COSTA RICA</option>
+															<option value="CROATIA">CROATIA</option>
+															<option value="CUBA">CUBA</option>
+															<option value="CYPRUS">CYPRUS</option>
+															<option value="CZECH REPUBLIC">CZECH REPUBLIC</option>
+															<option value="DEMOCRATIC REPUBLIC OF CONGO (KINSHASA)">
+																DEMOCRATIC REPUBLIC OF CONGO (KINSHASA)</option>
+															<option value="DENMARK">DENMARK</option>
+															<option value="DJIBOUTI">DJIBOUTI</option>
+															<option value="DOMINICA">DOMINICA</option>
+															<option value="DOMINICAN REPUBLIC">DOMINICAN REPUBLIC
+															</option>
+															<option value="EAST TIMOR (TIMOR-LESTE)">EAST TIMOR
+																(TIMOR-LESTE)</option>
+															<option value="ECUADOR">ECUADOR</option>
+															<option value="EGYPT">EGYPT</option>
+															<option value="EL SALVADOR">EL SALVADOR</option>
+															<option value="ENGLAND">ENGLAND</option>
+															<option value="EQUATORIAL GUINEA">EQUATORIAL GUINEA</option>
+															<option value="ERITREA">ERITREA</option>
+															<option value="ESTONIA">ESTONIA</option>
+															<option value="ETHIOPIA">ETHIOPIA</option>
+															<option value="FALKLAND ISLANDS">FALKLAND ISLANDS</option>
+															<option value="FAROE ISLANDS">FAROE ISLANDS</option>
+															<option value="FIJI">FIJI</option>
+															<option value="FINLAND">FINLAND</option>
+															<option value="FRANCE">FRANCE</option>
+															<option value="FRENCH GUIANA">FRENCH GUIANA</option>
+															<option value="FRENCH POLYNESIA">FRENCH POLYNESIA</option>
+															<option value="FRENCH SOUTHERN TERRITORIES">FRENCH SOUTHERN
+																TERRITORIES</option>
+															<option value="GABON">GABON</option>
+															<option value="GAMBIA">GAMBIA</option>
+															<option value="GEORGIA">GEORGIA</option>
+															<option value="GERMANY">GERMANY</option>
+															<option value="GHANA">GHANA</option>
+															<option value="GIBRALTAR">GIBRALTAR</option>
+															<option value="GREECE">GREECE</option>
+															<option value="GREENLAND">GREENLAND</option>
+															<option value="GRENADA">GRENADA</option>
+															<option value="GUADELOUPE">GUADELOUPE</option>
+															<option value="GUAM">GUAM</option>
+															<option value="GUATEMALA">GUATEMALA</option>
+															<option value="GUINEA">GUINEA</option>
+															<option value="GUINEA-BISSAU">GUINEA-BISSAU</option>
+															<option value="GUYANA">GUYANA</option>
+															<option value="HAITI">HAITI</option>
+															<option value="HOLY SEE">HOLY SEE</option>
+															<option value="HONDURAS">HONDURAS</option>
+															<option value="HONG KONG">HONG KONG</option>
+															<option value="HUNGARY">HUNGARY</option>
+															<option value="ICELAND">ICELAND</option>
+															<option value="INDIA">INDIA</option>
+															<option value="INDONESIA">INDONESIA</option>
+															<option value="IRAN (ISLAMIC REPUBLIC OF)">IRAN (ISLAMIC
+																REPUBLIC OF)</option>
+															<option value="IRAQ">IRAQ</option>
+															<option value="IRELAND">IRELAND</option>
+															<option value="ISRAEL">ISRAEL</option>
+															<option value="ITALY">ITALY</option>
+															<option value="IVORY COAST">IVORY COAST</option>
+															<option value="JAMAICA">JAMAICA</option>
+															<option value="JAPAN">JAPAN</option>
+															<option value="JORDAN">JORDAN</option>
+															<option value="KAZAKHSTAN">KAZAKHSTAN</option>
+															<option value="KENYA">KENYA</option>
+															<option value="KIRIBATI">KIRIBATI</option>
+															<option
+																value="KOREAN DEMOCRATIC PEOPLE'S REPUBLIC (NORTH KOREA)">
+																KOREAN DEMOCRATIC PEOPLE'S REPUBLIC (NORTH KOREA)
+															</option>
+															<option value="KOREAN REPUBLIC (SOUTH KOREA)">KOREAN
+																REPUBLIC (SOUTH KOREA)</option>
+															<option value="KOSOVO">KOSOVO</option>
+															<option value="KUWAIT">KUWAIT</option>
+															<option value="KYRGYZSTAN">KYRGYZSTAN</option>
+															<option value="LAO PEOPLE'S DEMOCRATIC REPUBLIC">LAO
+																PEOPLE'S DEMOCRATIC REPUBLIC</option>
+															<option value="LATVIA">LATVIA</option>
+															<option value="LEBANON">LEBANON</option>
+															<option value="LESOTHO">LESOTHO</option>
+															<option value="LIBERIA">LIBERIA</option>
+															<option value="LIBYA">LIBYA</option>
+															<option value="LIECHTENSTEIN">LIECHTENSTEIN</option>
+															<option value="LITHUANIA">LITHUANIA</option>
+															<option value="LUXEMBOURG">LUXEMBOURG</option>
+															<option value="MACAU">MACAU</option>
+															<option value="MACEDONIA REPUBLIC">MACEDONIA REPUBLIC
+															</option>
+															<option value="MADAGASCAR">MADAGASCAR</option>
+															<option value="MALAWI">MALAWI</option>
+															<option value="MALAYSIA">MALAYSIA</option>
+															<option value="MALDIVES">MALDIVES</option>
+															<option value="MALI">MALI</option>
+															<option value="MALTA">MALTA</option>
+															<option value="MARSHALL ISLANDS">MARSHALL ISLANDS</option>
+															<option value="MARTINIQUE">MARTINIQUE</option>
+															<option value="MAURITANIA">MAURITANIA</option>
+															<option value="MAURITIUS">MAURITIUS</option>
+															<option value="MAYOTTE">MAYOTTE</option>
+															<option value="MEXICO">MEXICO</option>
+															<option value="MICRONESIA FEDERAL STATES">MICRONESIA FEDERAL
+																STATES</option>
+															<option value="MOLDOVA REPUBLIC">MOLDOVA REPUBLIC</option>
+															<option value="MONACO">MONACO</option>
+															<option value="MONGOLIA">MONGOLIA</option>
+															<option value="MONTENEGRO">MONTENEGRO</option>
+															<option value="MONTSERRAT">MONTSERRAT</option>
+															<option value="MOROCCO">MOROCCO</option>
+															<option value="MOZAMBIQUE">MOZAMBIQUE</option>
+															<option value="MYANMAR BURMA">MYANMAR BURMA</option>
+															<option value="NAMIBIA">NAMIBIA</option>
+															<option value="NAURU">NAURU</option>
+															<option value="NEPAL">NEPAL</option>
+															<option value="NETHERLANDS">NETHERLANDS</option>
+															<option value="NETHERLANDS ANTILLES">NETHERLANDS ANTILLES
+															</option>
+															<option value="NEW CALEDONIA">NEW CALEDONIA</option>
+															<option value="NEW ZEALAND">NEW ZEALAND</option>
+															<option value="NICARAGUA">NICARAGUA</option>
+															<option value="NIGER">NIGER</option>
+															<option value="NIGERIA">NIGERIA</option>
+															<option value="NIUE">NIUE</option>
+															<option value="NORTHERN MARIANA ISLANDS">NORTHERN MARIANA
+																ISLANDS</option>
+															<option value="NORWAY">NORWAY</option>
+															<option value="OMAN">OMAN</option>
+															<option value="PAKISTAN">PAKISTAN</option>
+															<option value="PALAU">PALAU</option>
+															<option value="PALESTINIAN TERRITORIES">PALESTINIAN
+																TERRITORIES</option>
+															<option value="PANAMA">PANAMA</option>
+															<option value="PAPUA NEW GUINEA">PAPUA NEW GUINEA</option>
+															<option value="PARAGUAY">PARAGUAY</option>
+															<option value="PERU">PERU</option>
+															<option value="PHILIPPINES">PHILIPPINES</option>
+															<option value="PITCAIRN ISLAND">PITCAIRN ISLAND</option>
+															<option value="POLAND">POLAND</option>
+															<option value="PORTUGAL">PORTUGAL</option>
+															<option value="PUERTO RICO">PUERTO RICO</option>
+															<option value="QATAR">QATAR</option>
+															<option value="REUNION ISLAND">REUNION ISLAND</option>
+															<option value="ROMANIA">ROMANIA</option>
+															<option value="RUSSIAN FEDERATION">RUSSIAN FEDERATION
+															</option>
+															<option value="RWANDA">RWANDA</option>
+															<option value="SAINT HELENA">SAINT HELENA</option>
+															<option value="SAINT KITTS AND NEVIS">SAINT KITTS AND NEVIS
+															</option>
+															<option value="SAINT LUCIA">SAINT LUCIA</option>
+															<option value="SAINT VINCENT AND THE GRENADINES">SAINT
+																VINCENT AND THE GRENADINES</option>
+															<option value="SAMOA">SAMOA</option>
+															<option value="SAN MARINO">SAN MARINO</option>
+															<option value="SAO TOME AND PRINCIPE">SAO TOME AND PRINCIPE
+															</option>
+															<option value="SAUDI ARABIA">SAUDI ARABIA</option>
+															<option value="SCOTLAND">SCOTLAND</option>
+															<option value="SENEGAL">SENEGAL</option>
+															<option value="SERBIA">SERBIA</option>
+															<option value="SEYCHELLES">SEYCHELLES</option>
+															<option value="SIERRA LEONE">SIERRA LEONE</option>
+															<option value="SINGAPORE">SINGAPORE</option>
+															<option value="SLOVAKIA (SLOVAK REPUBLIC)">SLOVAKIA (SLOVAK
+																REPUBLIC)</option>
+															<option value="SLOVENIA">SLOVENIA</option>
+															<option value="SOLOMON ISLANDS">SOLOMON ISLANDS</option>
+															<option value="SOMALIA">SOMALIA</option>
+															<option value="SOUTH AFRICA">SOUTH AFRICA</option>
+															<option value="SOUTH SUDAN">SOUTH SUDAN</option>
+															<option value="SPAIN">SPAIN</option>
+															<option value="SRI LANKA">SRI LANKA</option>
+															<option value="SUDAN">SUDAN</option>
+															<option value="SURINAME">SURINAME</option>
+															<option value="SWAZILAND">SWAZILAND</option>
+															<option value="SWEDEN">SWEDEN</option>
+															<option value="SWITZERLAND">SWITZERLAND</option>
+															<option value="SYRIAN ARAB REPUBLIC">SYRIAN ARAB REPUBLIC
+															</option>
+															<option value="TAJIKISTAN">TAJIKISTAN</option>
+															<option value="TANZANIA">TANZANIA</option>
+															<option value="THAILAND">THAILAND</option>
+															<option value="TIBET">TIBET</option>
+															<option value="TIMOR-LESTE (EAST TIMOR)">TIMOR-LESTE (EAST
+																TIMOR)</option>
+															<option value="TOGO">TOGO</option>
+															<option value="TOKELAU">TOKELAU</option>
+															<option value="TONGA">TONGA</option>
+															<option value="TRINIDAD AND TOBAGO">TRINIDAD AND TOBAGO
+															</option>
+															<option value="TUNISIA">TUNISIA</option>
+															<option value="TURKEY">TURKEY</option>
+															<option value="TURKMENISTAN">TURKMENISTAN</option>
+															<option value="TURKS AND CAICOS ISLANDS">TURKS AND CAICOS
+																ISLANDS</option>
+															<option value="TUVALU">TUVALU</option>
+															<option value="UGANDA">UGANDA</option>
+															<option value="UKRAINE">UKRAINE</option>
+															<option value="UNITED ARAB EMIRATES">UNITED ARAB EMIRATES
+															</option>
+															<option value="UNITED KINGDOM">UNITED KINGDOM</option>
+															<option value="UNITED STATES">UNITED STATES</option>
+															<option value="URUGUAY">URUGUAY</option>
+															<option value="UZBEKISTAN">UZBEKISTAN</option>
+															<option value="VANUATU">VANUATU</option>
+															<option value="VATICAN CITY STATE (HOLY SEE)">VATICAN CITY
+																STATE (HOLY SEE)</option>
+															<option value="VENEZUELA">VENEZUELA</option>
+															<option value="VIETNAM">VIETNAM</option>
+															<option value="VIRGIN ISLANDS (BRITISH)">VIRGIN ISLANDS
+																(BRITISH)</option>
+															<option value="VIRGIN ISLANDS (U.S.)">VIRGIN ISLANDS (U.S.)
+															</option>
+															<option value="WALES">WALES</option>
+															<option value="WALLIS AND FUTUNA ISLANDS">WALLIS AND FUTUNA
+																ISLANDS</option>
+															<option value="WESTERN SAHARA">WESTERN SAHARA</option>
+															<option value="YEMEN">YEMEN</option>
+															<option value="ZAMBIA">ZAMBIA</option>
+															<option value="ZIMBABWE">ZIMBABWE</option>
+														</select>
+													</div>
+													<span *ngIf="formDataError.error_field === 'provider_country'"
+														class="error-message">
+														{{ formDataError.msg }}
+													</span>
+												</div>
+											</div>
+										</div>
+										<div class="row mrb-30">
+											<div class="col-md-6">
+												<div class="form-group">
+													<label class="control-label">Course</label>
+													<div class="input-group">
+														<span class="input-group-addon">
+															<i class="fa fa-group"></i>
+														</span>
+														<select class="form-control" formControlName="provider_course">
+															<option value="">--Select--</option>
+															<option *ngFor="let opt of courses" [value]="opt.id">
+																{{opt.title}}</option>
+														</select>
+													</div>
+												</div>
+											</div>
+											<div class="col-md-6">
+												<div class="form-group">
+													<label class="control-label">Pack Number</label>
+													<div class="input-group">
+														<span class="input-group-addon">
+															<i class="fa fa-group"></i>
+														</span>
+														<input type="text" class="form-control"
+															formControlName="pack_no">
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<button type="button" class="btn btn-sm btn-own" (click)="displayModal(true)">Add
+										Provider</button>
+									<button #new_providr type="submit" hidden>Submit form</button>
+									<span *ngIf="formDataError.error_field === 'record_id'" class="error-message">
+										{{ formDataError.msg }}
+									</span>
+								</div>
+							</form>
+							<div class="row">
+								<div class="col-md-12">
+									<div class="table-wrapper">
+										<div class="table-scrollable">
+											<h3>Providers Trained</h3>
+											<table class="table table-striped table-hover table-light" cellspacing="0"
+												width="100%" role="grid">
+												<thead>
+													<tr role="row">
+														<th>Member</th>
+														<th>Course</th>
+														<th>Active Date</th>
+														<th>Active Until</th>
+														<th>Course Status</th>
+														<th>Course Refresh</th>
+													</tr>
+												</thead>
+
+												<tbody>
+													<tr *ngFor="let provider of providers">
+														<td>
+															<a class="button-ghost"
+																[routerLink]="['/extensions/memberships/editstudent/',provider.member_id]">
+																<span>{{provider.first_name}} {{provider.surname=="" ||
+																	provider.surname=="null"?'':provider.surname}}</span>
+															</a>
+														</td>
+														<td>{{provider.title}}</td>
+														<td>{{provider.active_date | date:'yyyy-MM-dd'}}</td>
+														<td>{{provider.active_until | date:'yyyy-MM-dd'}}</td>
+														<td>{{provider.status}}</td>
+														<td></td>
+													</tr>
+
+												</tbody>
+											</table>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="modal fade" role="dialog"
+								[ngStyle]="{'display': IsDisplay ? 'block' : 'none', 'opacity': 1}">
+								<div class="modal-dialog modal-lg">
+									<div class="modal-content">
+										<div class="modal-header">
+											<h6 class="modal-title">Confirm</h6>
+										</div>
+										<div class="modal-body">Are you sure you would like to add the instructor?</div>
+										<div class="modal-footer" align="right">
+											<button type="button" id="btnOK" class="btn btn-success"
+												(click)="providerClick(new_providr)"><i class="fa fa-check fa-fw"></i>
+												Yes</button>
+											<button type="button" id="btnClose" class="btn btn-warning"
+												(click)="displayModal(false)"><i class="fa fa-times fa-fw"></i>
+												Cancel</button>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div> <!-- Tab 9 close -->
+
+					<div id="comment" class="container tab-pane fade tabcontent"><br>
+						<div class="portlet-body">
+							<div class="form-tab-heading">
+								<h3>Note</h3>
+							</div>
+							<div class="row">
+								<div class="col-md-6">
+									<div class="form-group">
+										<label class="control-label">Main Reason</label>
+										<div class="input-group">
+											<span class="input-group-addon ">
+												<i class="fa fa-group"></i>
+											</span>
+
+											<select class="form-control" formControlName="mainReason"
+												(change)="onChange($event)" [(ngModel)]="mainReason">
+												<option value="">--Select--</option>
+												<option *ngFor="let reason of reasons" value={{reason.id}}>
+													{{reason.title}}</option>
+											</select>
+										</div>
+										<span *ngIf="formDataError.error_field === 'mainReason'" class="error-message">
+											{{ formDataError.msg }}
+										</span>
+									</div>
+								</div>
+								<div class="col-md-6">
+
+									<div class="form-group">
+										<label class="control-label">Sub Reason</label>
+										<div class="input-group">
+											<span class="input-group-addon ">
+												<i class="fa fa-group"></i>
+											</span>
+
+											<select class="form-control" formControlName="subReason"
+												[(ngModel)]="subReason">
+												<option value="">--Select--</option>
+												<option *ngFor="let sub of sub_reasons" value={{sub.id}}>{{sub.title}}
+												</option>
+											</select>
+										</div>
+										<span *ngIf="formDataError.error_field === 'subReason'" class="error-message">
+											{{ formDataError.msg }}
+										</span>
+									</div>
+								</div>
+
+							</div>
+							<div class="row">
+								<div class="col-md-12">
+									<div class="form-group">
+										<label class="control-label">Comment</label>
+										<div class="input-group">
+											<span class="input-group-addon">
+												<i class="fa fa-user"></i>
+											</span>
+											<textarea class="form-control" rows="2" cols="3" formControlName="comment"
+												[(ngModel)]="comment"></textarea>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<div class="row">
+								<div class="col-md-12">
+
+									<div class="history-tl-container">
+										<ul class="tl">
+											<li class="tl-item" *ngFor="let comment of comments">
+												<div class="timestamp">
+													{{comment.created_at | date:'dd/MM/yyyy'}}<br> {{comment.created_at
+													| date:'hh:mm:ss a'}}
+												</div>
+												<div class="right">
+													<div class="content">
+														<div class="item-title">{{comment.title}} -
+															{{comment.reason_title}}</div>
+														<div class="item-detail">{{comment.description}} - </div>
+													</div>
+												</div>
+											</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+
+						</div>
+
+					</div> <!-- Tab 10 close -->
+
+				</div>
+			</div>
+			<div class="form-group">
+					<button type="submit" class="btn btn-own">Submit</button>
+					<span *ngIf="successMsg != ''" class="success-message">
+						{{ successMsg }}
+					</span>
+			</div>
+		</form>
+	</div>
+
+</body>
+
+</html>

@@ -1,0 +1,32 @@
+{
+  "name": "backend",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev:server": "ts-node ./src/index.ts",
+    "dev:worker": "ts-node ./src/index-worker.ts",
+    "dev": "concurrently yarn:dev:*",
+    "build": "tsc",
+    "start:server": "node ./dist/index.js",
+    "start:worker": "node ./dist/index-worker.js",
+    "start": "concurrently yarn:start:*",
+    "migration:generate": "ts-node migration generate",
+    "migration:run": "ts-node migration run",
+    "migration:revert": "ts-node migration revert"
+  },
+  "dependencies": {
+    "@vendure/admin-ui-plugin": "2.1.0",
+    "@vendure/asset-server-plugin": "2.1.0",
+    "@vendure/core": "2.1.0",
+    "@vendure/email-plugin": "2.1.0",
+    "axios": "^1.5.1",
+    "dotenv": "16.3.1",
+    "mysql": "2.18.1"
+  },
+  "devDependencies": {
+    "@vendure/ui-devkit": "^2.1.0",
+    "concurrently": "8.2.1",
+    "ts-node": "10.9.1",
+    "typescript": "^5.1.5"
+  }
+}

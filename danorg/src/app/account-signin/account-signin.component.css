@@ -1,0 +1,12 @@
+.custom-control.custom-checkbox {
+    display: flex !important;
+    width: 100%;
+    display: -webkit-box !important;
+    display: -webkit-flex !important;
+    display: -moz-flex !important;
+    display: -ms-flexbox !important;
+    display: flex !important;
+    justify-content: space-between;
+    margin: 0 0 15px;
+    position: relative;
+}

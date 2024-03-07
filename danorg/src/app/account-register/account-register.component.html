@@ -1,0 +1,96 @@
+<section class="banner-inner" style="background-image: url(/assets/danshop/images/14304860_5568x3712_2500.png);">
+  <div class="container">
+    <div class="row">      
+	  <div class="col-sm-12">
+	    <div class="banner-text">
+		  <h1>Register</h1>
+		  <h3>Creating an account is free, quick and easy.</h3>
+        </div>
+	  </div>	
+    </div>
+  </div>
+</section><!--/ banner --> 
+<section class="login-wrap">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 full-wrap">
+                <div class="danshop-registeration">
+                    <div class="row">
+                        <div class="col-sm-4 offset-md-4 checkout-coll">
+                            <div id="sign-in">
+                                <h2 class="mrb-20">Register</h2>
+								<!---(ngSubmit)="register()"-->
+                                <form [formGroup]="registerForm" (ngSubmit)="register()">
+                                    <div class="form-row row">
+									    <div class="form-group col-sm-12">
+                                            <label class="label">First Name</label>
+                                            <input class="form-control" type="email" id="firstName" name="firstName" formControlName="firstName">
+											<div *ngIf="submitted && f['firstName'].errors" class="error-message">
+												<div *ngIf="submitted && registerForm.get('firstName')?.hasError('required')">First Name is invalid</div>											
+											</div>
+                                        </div>
+										<div class="form-group col-sm-12">
+                                            <label class="label">Last Name</label>
+                                            <input class="form-control" type="text" id="lastName" name="lastName" formControlName="lastName">
+											<div *ngIf="submitted && f['lastName'].errors" class="error-message">
+												<div *ngIf="submitted && registerForm.get('lastName')?.hasError('required')">Last Name is invalid</div>											
+											</div>
+										</div>
+										 <div class="form-group col-sm-12">
+                                            <label class="label">Phone Number</label>
+                                            <input class="form-control" type="text" id="phoneNumber" name="phoneNumber" formControlName="phoneNumber">
+											<div *ngIf="submitted && f['phoneNumber'].errors" class="error-message">
+												<div *ngIf="submitted && registerForm.get('phoneNumber')?.hasError('required')">Phone Number is invalid</div>											
+											</div>
+                                        </div>
+                                        <div class="form-group col-sm-12">
+                                            <label class="label">Email Address</label>
+                                            <input class="form-control" type="email" id="emailAddress" name="emailAddress" formControlName="emailAddress">
+											<div *ngIf="submitted && f['emailAddress'].errors" class="error-message">
+												<div *ngIf="submitted && registerForm.get('emailAddress')?.hasError('required')">Email Address is invalid</div>
+												<div *ngIf="submitted && registerForm.get('emailAddress')?.hasError('email')">Email Address is invalid</div>
+											</div>
+                                        </div>										
+                                        <div class="form-group col-sm-12">
+                                            <label class="label">Password</label>
+                                            <input class="form-control" type="password" id="password" name="password" formControlName="password">
+											<div *ngIf="submitted && f['password'].errors" class="error-message">
+												<div *ngIf="submitted && registerForm.get('password')?.hasError('required')">Password is invalid</div>											
+											</div>
+                                        </div> 
+										<div class="form-group col-sm-12">
+                                            <label class="label">Repeat Password</label>
+                                            <input class="form-control" type="password" id="repeatPassword" name="repeatPassword" formControlName="repeatPassword">
+											<div *ngIf="submitted && f['repeatPassword'].errors" class="error-message">
+												<div *ngIf="submitted && registerForm.get('repeatPassword')?.hasError('required')">Repeat Password is invalid</div>													
+											</div>
+											<div *ngIf="submitted && registerForm.hasError('passwordMismatch')" class="error-message">
+												<div>Password do not match</div>
+											</div>	
+                                        </div> 
+										<div class="form-group col-sm-12">
+											<button type="submit" name="register" class="btn">Register</button>
+										</div>
+										<div class="form-group col-sm-12"><a [routerLink]="['../sign-in']">Go back to login.</a></div>
+										<div class="form-group col-sm-12" *ngIf="successMessage">
+                                        	<div class="alert alert-success text-success checkout-submit-msg">{{ successMessage }}</div>
+										</div>
+										<div class="form-group col-sm-12" *ngIf="errorMessage">
+											<div class="alert alert-danger text-danger checkout-submit-msg">{{ errorMessage }}</div>
+										</div>
+                                    </div>
+                                    <!--/ form-row -->
+                                </form>
+                            </div>
+                            <!--/ signin -->
+                        </div>
+                    </div>
+                    <!--/ row -->
+                </div>
+                <!--/ checkout-coll -->
+            </div>
+        </div>
+        <!--/ row -->
+    </div>
+</section>
+<!--/ mid-inner -->

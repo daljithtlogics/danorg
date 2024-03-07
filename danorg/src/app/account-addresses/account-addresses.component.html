@@ -1,0 +1,38 @@
+<section class="mid-inner">
+    <div class="container">
+        <div class="row">
+		    <div class="col-sm-3 full-wrap">
+				<app-account-sidebar></app-account-sidebar>
+			</div>
+            <div class="col-sm-9 full-wrap">
+			    <div class="col-sm-12 mb-3">
+					<h2>Addresses</h2>
+				</div>
+				<div class="row" *ngIf="addresses$ | async as address; else loading">
+					<div class="col-md-4" *ngFor="let addr of address.addresses">
+						<div class="border rounded bg-white p-3 text-sm">
+							<ul class="addresses-block">
+								<li>{{ addr.fullName }}</li>
+								<li>{{ addr.streetLine1 }}</li>
+								<li>{{ addr.postalCode }}</li>
+								<li>{{ addr.country.name }} ({{ addr.country.code }})</li>
+							</ul>
+							<a class="edit-address-link"
+							   [routerLink]="['/danshop/account/address-edit', addr.id]">
+								Edit
+							</a>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-12 mb-3">
+						<a [routerLink]="['/danshop/account/new-address']" class="btn mt-4">Add Address</a>
+					</div>
+				</div>
+				<ng-template #loading>Loading...</ng-template>	
+            </div>
+        </div>
+        <!--/ row -->
+    </div>
+</section>
+<!--/ mid-inner -->

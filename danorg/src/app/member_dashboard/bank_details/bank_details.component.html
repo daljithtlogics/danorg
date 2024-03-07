@@ -1,0 +1,206 @@
+<section class="dashboard-wrapper">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-3">
+                <member-sidebar></member-sidebar>
+            </div>
+            <div class="col-sm-9">
+                <div id="" class="sky-form" *ngIf="userMembership === 'annual'">
+                    <div class="chalkbg">
+                        <img src="/assets/images/red-logo.png" style="height: 50px;">
+                        <span style="text-align: right">
+                            <br>
+                            <label class="chalktitle" style="color: white">DIVERS ALERT NETWORK SOUTHERN AFRICA</label>
+                        </span>
+                    </div>
+                    <div class="row" style="padding: 20px 30px;">
+                        <div class="col col-12">
+                            <p class="heading" style="color: #666666;">Bank Details</p>
+                            <p class="dan-p">We offer a membership option tailored to meet your specific needs. To
+                                apply, please complete and submit the membership application form from below.
+                                <strong>This is an annual membership that can only be cancelled after one year.</strong>
+                            </p>
+                        </div>
+                    </div>
+                    <form [formGroup]="anualBankForm" (ngSubmit)="onSubmit()">
+                        <div class="row" style="padding: 0 30px;">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label">Payment Method <span class="text-danger">*</span></label>
+                                    <select class="form-control" formControlName="pay_method"
+                                    [(ngModel)]="pay_method">
+                                        <option value="EFT">EFT</option>
+                                        <option value="CREDIT CARD">CREDIT CARD</option>
+                                        <option value="DEBIT ORDER">DEBIT ORDER</option>
+                                        <option value="UNKNOWN">UNKNOWN</option>
+                                        <option value="DEPOSIT">DEPOSIT</option>
+                                    </select>
+                                    <span *ngIf="formDataError.error_field === 'pay_method'" class="error-message">
+                                        {{ formDataError.msg }}
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label">Payment Period</label>
+                                    <select class="form-control" formControlName="pay_period"
+                                    [(ngModel)]="pay_period">
+                                        <option value="1">1</option>
+                                        <option value="2">15</option>
+                                        <option value="3">25</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label">Account Holder <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" formControlName="account_holder"
+                                    [(ngModel)]="account_holder">
+                                    <span *ngIf="formDataError.error_field === 'account_holder'" class="error-message"> {{ formDataError.msg }} </span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label">Institution</label>
+                                    <select class="form-control" formControlName="institute"
+                                    [(ngModel)]="institute">
+                                        <option value="UNKNOWN">UNKNOWN</option>
+                                        <option value="ABN AMRO">ABN AMRO</option>
+                                        <option value="ABSA">ABSA</option>
+                                        <option value="ALLIED">ALLIED</option>
+                                        <option value="RAND MERCHANT BANK">RAND MERCHANT BANK</option>
+                                        <option value="BANQUE DE LA REUNION">BANQUE DE LA REUNION</option>
+                                        <option value="BANK OF WINDHOEK">BANK OF WINDHOEK</option>
+                                        <option value="BARCLAYS">BARCLAYS</option>
+                                        <option value="BARCLAYS CONNECT VISA">BARCLAYS CONNECT VISA</option>
+                                        <option value="BOLAND">BOLAND</option>
+                                        <option value="CAPITAL ONE USA VISA">CAPITAL ONE USA VISA</option>
+                                        <option value="COMMERCIAL">COMMERCIAL</option>
+                                        <option value="COMMERCIAL BANK OF NAMIBIA">COMMERCIAL BANK OF NAMIBIA
+                                        </option>
+                                        <option value="DEN DANKE BANK">DEN DANKE BANK</option>
+                                        <option value="DINERS CLUB INTERNATIONAL">DINERS CLUB INTERNATIONAL
+                                        </option>
+                                        <option value="FIRST CARD">FIRST CARD</option>
+                                        <option value="FIRST NATIONAL BANK">FIRST NATIONAL BANK</option>
+                                        <option value="FIRST NATIONAL  VISA">FIRST NATIONAL VISA</option>
+                                        <option value="BANK OF ATHENS">BANK OF ATHENS</option>
+                                        <option value="STANDARD CHARTERED">STANDARD CHARTERED</option>
+                                        <option value="CAPITEC">CAPITEC</option>
+                                        <option value="INVESTEC">INVESTEC</option>
+                                        <option value="AMEX">AMEX</option>
+                                        <option value="LISBON">LISBON</option>
+                                        <option value="LLOYDS">LLOYDS</option>
+                                        <option value="LLOYDS  VISA">LLOYDS VISA</option>
+                                        <option value="MASTER CARD">MASTER CARD</option>
+                                        <option value="MERCANTILE LISBON">MERCANTILE LISBON</option>
+                                        <option value="NATWEST">NATWEST</option>
+                                        <option value="NBS">NBS</option>
+                                        <option value="NEDBANK">NEDBANK</option>
+                                        <option value="NEDBANK GOLD">NEDBANK GOLD</option>
+                                        <option value="NEDBANK MASTER CARD">NEDBANK MASTER CARD</option>
+                                        <option value="NEDBANK VISA">NEDBANK VISA</option>
+                                        <option value="OTHER">OTHER</option>
+                                        <option value="PERM">PERM</option>
+                                        <option value="PREMIER">PREMIER</option>
+                                        <option value="SAAMBOU">SAAMBOU</option>
+                                        <option value="STANDARD BANK">STANDARD BANK</option>
+                                        <option value="STANDARD BANK GOLD MASTER CARD">STANDARD BANK GOLD MASTER
+                                            CARD</option>
+                                        <option value="STANDARD BANK MASTER CARD">STANDARD BANK MASTER CARD
+                                        </option>
+                                        <option value="TRUST BANK">TRUST BANK</option>
+                                        <option value="TRUST BANK VISA">TRUST BANK VISA</option>
+                                        <option value="UNITED">UNITED</option>
+                                        <option value="UNITED MASTER CARD">UNITED MASTER CARD</option>
+                                        <option value="VISA">VISA</option>
+                                        <option value="VOLKSKAS">VOLKSKAS</option>
+                                        <option value="VOLKSKAS VISA">VOLKSKAS VISA</option>
+                                        <option value="WINDHOEK">WINDHOEK</option>
+                                        <option value="VOLKSKAS MASTER CARD">VOLKSKAS MASTER CARD</option>
+                                        <option value="20TWENTY">20TWENTY</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="control-label">Account Type <span class="text-danger">*</span></label>
+                                    <select class="form-control" formControlName="account_type"
+                                    [(ngModel)]="account_type">
+                                        <option value="UNKNOWN">UNKNOWN</option>
+                                        <option value="CHEQUE">CHEQUE</option>
+                                        <option value="SAVINGS">SAVINGS</option>
+                                        <option value="TRANSMISSION">TRANSMISSION</option>
+                                        <option value="CREDIT CARD">CREDIT CARD</option>
+                                        <option value="DEBIT CARD">DEBIT CARD</option>
+                                        <option value="CURRENT">CURRENT</option>
+                                        <option value="EFT">EFT</option>
+                                    </select>
+                                    <span *ngIf="formDataError.error_field === 'account_type'" class="error-message"> {{ formDataError.msg }} </span>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="control-label">Account No <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" formControlName="account_no"
+                                    [(ngModel)]="account_no">
+                                    <span *ngIf="formDataError.error_field === 'account_no'" class="error-message">{{ formDataError.msg }}</span>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="control-label">Card Expiry <span class="text-danger">*</span></label>
+                                    <input type="date" class="form-control" formControlName="card_expiry"
+                                    [(ngModel)]="card_expiry">
+                                    <span *ngIf="formDataError.error_field === 'card_expiry'" class="error-message"> {{ formDataError.msg }} </span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label">Branch</label>
+                                    <input type="text" class="form-control" formControlName="branch"
+                                    [(ngModel)]="branch">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="control-label">Branch code</label>
+                                    <input type="text" class="form-control date-picker" formControlName="branch_code" [(ngModel)]="branch_code">
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="control-label">Authorised Sign</label> 
+                                    <div class="outerDivFull">
+                                        <div class="switchToggle">
+                                            <input type="checkbox" name="sign" id="switch_1"
+                                                formControlName="authorise_sign" [(ngModel)]="authorise_sign">
+                                            <label for="switch_1">Toggle</label>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label class="control-label">Bad Debt</label>
+                                    <div class="outerDivFull">
+                                        <div class="switchToggle">
+                                            <input type="checkbox" name="debt" id="switch_2"
+                                                formControlName="debt" [(ngModel)]="debt">
+                                            <label for="switch_2">Toggle</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-sm-12">
+                                <input type="submit" class="btn btn-suucess" style="padding: 7px 20px !important;" value="Submit">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

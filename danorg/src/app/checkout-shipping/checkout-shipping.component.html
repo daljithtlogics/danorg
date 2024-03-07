@@ -1,0 +1,265 @@
+<section class="mid-inner">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 full-wrap">
+                <div class="product-checkout">
+                    <div class="row">
+                        <div class="col-sm-12 mb-3">
+                            <h2>Checkout Details</h2>
+                            <p>Please enter your details below to complete your purchase.</p>
+                        </div>
+                        <div class="col-sm-5 checkout-coll">
+                            <!--/ shipping -->
+                            <div id="sign-in">
+                                <div class="step-title">
+                                    <i class="fa fa fa-home"></i> Shipping Address
+                                </div>
+                                <form [formGroup]="addressForm" (ngSubmit)="onSubmit()">
+									<div class="form-row row">
+										<div class="form-group col-sm-12" *ngIf="!(signedIn$ | async)">
+											<h2 class="checkout-inner-title">Contact Information</h2>
+										</div>			
+										<div class="form-group col-sm-12" *ngIf="!(signedIn$ | async)">
+										  <label class="label">Email Address</label>
+										  <input class="form-control" type="email" id="emailAddress" name="emailAddress" autoComplete="email" formControlName="emailAddress">
+										  <div *ngIf="submitted && f['emailAddress'].errors" class="error-message">
+											<div *ngIf="submitted && addressForm.get('emailAddress')?.hasError('required')">Email Address is required</div>
+											<div *ngIf="submitted && addressForm.get('emailAddress')?.hasError('email')">Email Address is invalid</div>
+										  </div>
+										</div>
+
+										<div class="form-group col-sm-6" *ngIf="!(signedIn$ | async)">
+										  <label class="label">First Name</label>
+										  <input class="form-control" type="text" id="firstName" name="firstName" autoComplete="given-name" formControlName="firstName">
+										  <div *ngIf="submitted && f['firstName'].errors" class="error-message">
+											<div *ngIf="submitted && addressForm.get('firstName')?.hasError('required')">First Name is required</div>
+										  </div>
+										</div>
+										<div class="form-group col-sm-6" *ngIf="!(signedIn$ | async)">
+										  <label class="label">Last Name</label>
+										  <input class="form-control" type="text" id="lastName" name="lastName" autoComplete="family-name" formControlName="lastName">
+										  <div *ngIf="submitted && f['lastName'].errors" class="error-message">
+											<div *ngIf="submitted && addressForm.get('lastName')?.hasError('required')">Last Name is required</div>
+										  </div>
+										</div>
+										
+										<!-- Shipping Address Form-->
+										<div class="form-group col-sm-12">
+											<h2 class="checkout-inner-title">Shipping Address</h2>
+										</div>
+										
+										<div class="form-group col-sm-12">
+										  <label class="label">Full Name</label>
+										  <input class="form-control" type="text" id="fullName" name="fullName" autoComplete="given-name" formControlName="fullName">
+										  <div *ngIf="submitted && f['fullName'].errors" class="error-message">
+											<div *ngIf="submitted && addressForm.get('fullName')?.hasError('required')">Full Name is required</div>
+										  </div>
+										</div>
+										
+										<div class="form-group col-sm-12">
+										  <label class="label">Company</label>
+										  <input class="form-control" type="text" name="company" id="company" formControlName="company">
+										  <div *ngIf="submitted && f['company'].errors" class="error-message">
+											<div *ngIf="submitted && addressForm.get('company')?.hasError('required')">Company is required</div>
+										  </div>
+										</div>
+
+										<div class="form-group col-sm-12">
+										  <label class="label">Address</label>
+										  <input class="form-control" type="text" name="streetLine1" id="streetLine1" formControlName="streetLine1" autoComplete="street-address">
+										  <div *ngIf="submitted && f['streetLine1'].errors" class="error-message">
+											<div *ngIf="submitted && addressForm.get('streetLine1')?.hasError('required')">Address is required</div>
+										  </div>
+										</div>
+										
+										<div class="form-group col-sm-12">
+										  <label class="label">Suburb / Area</label>
+										  <input class="form-control" type="text" name="streetLine2" id="streetLine2" formControlName="streetLine2">
+										  <div *ngIf="submitted && f['streetLine2'].errors" class="error-message">
+											<div *ngIf="submitted && addressForm.get('streetLine2')?.hasError('required')">Suburb / Area is required</div>
+										  </div>
+										</div>
+										
+										<div class="form-group col-sm-6">
+										  <label class="label">City</label>
+										  <input class="form-control" type="text" name="city" id="city"    formControlName="city" autoComplete="address-level2">
+										  <div *ngIf="submitted && f['city'].errors" class="error-message">
+											<div *ngIf="submitted && addressForm.get('city')?.hasError('required')">City is required</div>
+										  </div>
+										</div>
+										
+                                        <ng-container *ngIf="availableCountries$ | async as countries">
+										<div class="form-group col-sm-6">
+										  <label class="label">Country</label>
+										  <select class="form-control" name="countryCode" formControlName="countryCode" id="countryCode">
+											<option value=""></option>
+											<option *ngFor="let country of countries" [ngValue]="country.code">
+												{{ country.name }}
+											</option>
+										  </select>
+										  <div *ngIf="submitted && f['countryCode'].errors" class="error-message">
+											<div *ngIf="submitted && addressForm.get('countryCode')?.hasError('required')">Country is required</div>
+										  </div>
+										</div>
+                                        </ng-container>
+										
+										<div class="form-group col-sm-12" *ngIf="!(eligibleShippingMethods$ | async)">
+											<p>Loading...</p>
+										</div>
+										
+										<div class="form-group col-sm-6">
+										  <label class="label">Province / State</label>
+										  <input class="form-control" type="text" name="province" id="province" formControlName="province" autoComplete="address-level1">
+										  <div *ngIf="submitted && f['province'].errors" class="error-message">
+											<div *ngIf="submitted && addressForm.get('province')?.hasError('required')">Province is required</div>
+										  </div>
+										</div>
+										
+										<div class="form-group col-sm-6">
+										  <label class="label">Postal Code</label>
+										  <input class="form-control" type="text" name="postalCode" id="postalCode" formControlName="postalCode" autoComplete="postal-code">
+										  <div *ngIf="submitted && f['postalCode'].errors" class="error-message">
+											<div *ngIf="submitted && addressForm.get('postalCode')?.hasError('required')">Postal Code is required</div>
+										  </div>
+										</div>
+
+										<div class="form-group col-sm-12">
+										  <label class="label">Phone</label>
+										  <input class="form-control" type="text" name="phoneNumber" id="phoneNumber" formControlName="phoneNumber" autoComplete="tel">
+										   <div *ngIf="submitted && f['phoneNumber'].errors" class="error-message">
+											<div *ngIf="submitted && addressForm.get('phoneNumber')?.hasError('required')">Phone is required</div>
+										   </div>
+										</div>
+										<!--// shipping address form -->
+
+										<div class="form-group col-sm-12">
+											<h2 class="checkout-inner-title">Shipping Method</h2>
+										</div>
+										
+										<ng-container *ngIf="eligibleShippingMethods$ | async as shippingMethods">
+										<div class="form-group col-sm-6 checkout-shipping" *ngFor="let method of shippingMethods">
+										    <input type="radio" name="deliveryMethod" class="" value="{{method.id}}" id="shipping_tab_{{method.id}}" formControlName="deliveryMethod" (change)="setShippingMethod(method.id)">
+											<label class="border rounded shadow-sm p-4" for="shipping_tab_{{method.id}}">
+												<div class="shipping-rate-tab">
+													<div class="flex flex-col">
+														<span class="block text-sm font-medium text-gray-900"> {{method.name}} </span>
+														<span class="mt-6 text-sm font-medium text-gray-900"> ZAR {{method.priceWithTax / 100 | number:'1.2-2'}} </span>
+													</div>
+												</div>
+											</label>
+											<div *ngIf="submitted && f['deliveryMethod'].errors" class="error-message">
+												<div *ngIf="submitted && addressForm.get('deliveryMethod')?.hasError('required')">Shipping Method is required</div>
+											</div>
+										</div>
+                                        </ng-container>
+										
+										<div class="form-group col-sm-12" *ngIf="!(eligibleShippingMethods$ | async)">
+											<p>Loading...</p>
+										</div>
+										
+										<div class="form-group col-sm-12">
+											<button _ngcontent-pys-c29="" type="submit" name="sign-in" class="btn" >Proceed to Payment</button>
+										</div>
+										<!--[disabled]="!addressForm.valid"-->
+										<div class="form-group col-sm-12">
+                                        	<div *ngIf="successMessage" class="alert alert-success text-success checkout-submit-msg">{{ successMessage }}</div>
+											<div *ngIf="errorMessage" class="alert alert-danger text-danger checkout-submit-msg">{{ errorMessage }}</div>
+										</div>
+									</div><!--/ form-row -->
+								</form>
+                            </div>
+                            <!--/ signin -->
+                        </div>
+                        <!--/ checkout-coll -->
+                        <div class="col-sm-7 checkout-coll">
+                            <div id="order-summary">
+                                <div class="step-title">
+                                    <i class="fa fa-check-square"></i> Order Summary
+                                </div>
+                                <div class="cart-totals">
+                                    <table class="table table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th class="product-thumbnail">Image</th>
+                                                <th class="product-name">Product</th>
+                                                <th class="product-price">Price</th>
+                                                <th class="product-subtotal">Subtotal</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody *ngIf="activeOrder && activeOrder?.lines?.length ?? 0 > 0; else elseStatement">
+											<tr class="woocommerce-cart-form__cart-item cart_item" *ngFor="let item of activeOrder.lines; let index = index">
+												<td class="product-thumbnail">
+													<a [routerLink]="['/danshop/product-details/', item.productVariant.product.slug]">
+														<img src="{{item.featuredAsset.preview}}" alt="" class="rounded" style="max-width:80px">
+													</a>
+												</td>
+												<td class="product-name" data-title="Product">
+													<a [routerLink]="['/danshop/product-details/', item.productVariant.product.slug]">{{item.productVariant.name}}</a> <br>Qty: {{item.quantity}}
+												</td>
+												<td class="product-price" data-title="Price">
+													<span class="woocommerce-Price-amount amount">
+														<bdi>{{activeOrder.currencyCode}} {{ item.unitPriceWithTax / 100 | number:'1.2-2' }}</bdi>
+													</span>
+												</td>
+												<td class="product-subtotal" data-title="Subtotal">
+													<span class="woocommerce-Price-amount amount">
+														<bdi>{{activeOrder.currencyCode}} {{ (item.unitPriceWithTax * item.quantity) / 100 | number:'1.2-2' }}</bdi>
+													</span>
+												</td>
+											</tr>											
+											<tr *ngFor="let promotion of activeOrder.promotions; let index = index">
+												<td colspan="3" class="text-right"><strong>Discount Code</strong></td>
+												<td>
+												<span class="coupon-tag">{{promotion.couponCode}}</span>
+												</td>
+											</tr>											
+											<tr *ngFor="let discount of activeOrder.discounts; let index = index">
+												<td colspan="3" class="text-right"><strong>Discount Amount</strong></td>
+												<td>{{activeOrder.currencyCode}} {{discount.amountWithTax / 100  | number:'1.2-2'}}</td>
+											</tr>
+											
+											<tr>
+												<td colspan="3" class="text-right">
+													<strong>Sub-Total:</strong>
+												</td>
+												<td>{{activeOrder.currencyCode}} {{activeOrder.subTotalWithTax / 100 | number:'1.2-2'}}</td>
+											</tr>
+											<tr>
+												<td colspan="3" class="text-right">
+													<!--<strong>Shipping (<span class="" *ngFor="let line of activeOrder.shippingLines">{{ line.shippingMethod.name }}</span>):</strong>-->
+													<strong>Shipping (<span class="" *ngFor="let line of activeOrder.shippingLines">{{ line.shippingMethod.name }}</span>):</strong>
+												</td>
+												<td>{{activeOrder.currencyCode}} {{activeOrder.shippingWithTax / 100 | number:'1.2-2'}}</td>
+											</tr>
+											
+											<tr>
+												<td colspan="3" class="text-right">
+													<strong>Total:</strong>
+												</td>
+												<td>{{activeOrder.currencyCode}} {{activeOrder.totalWithTax / 100 | number:'1.2-2'}}</td>
+											</tr>
+										</tbody>
+										<ng-template #elseStatement>
+											<tbody>
+												<tr>
+													<td class="text-center" colspan="8">You have no items in your shopping cart</td>
+												</tr>
+											</tbody>
+										</ng-template>
+                                    </table>
+                                </div>
+                                <!--/ cart-totals -->
+                            </div>
+                            <!--/ order-summary -->
+                        </div>
+                        <!--/ checkout-coll -->
+                    </div>
+                    <!--/ row -->
+                </div>
+                <!--/ checkout-coll -->
+            </div>
+        </div>
+        <!--/ row -->
+    </div>
+</section>
+<!--/ mid-inner -->

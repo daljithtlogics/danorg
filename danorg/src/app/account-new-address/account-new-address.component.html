@@ -1,0 +1,121 @@
+<!-- <section class="breadcrumb"> -->
+    <!-- <div class="container"> -->
+        <!-- <ul> -->
+            <!-- <li> -->
+                <!-- <a routerLink="/danshop"> -->
+                    <!-- <i class="fa fa-home" aria-hidden="true"></i>Home </a> -->
+            <!-- </li> -->
+            <!-- <li>Add New Address</li> -->
+        <!-- </ul> -->
+    <!-- </div> -->
+<!-- </section> -->
+<section class="account-inner mid-inner">
+    <div class="container">
+        <div class="row">
+		    <div class="col-sm-3 full-wrap">
+				<app-account-sidebar></app-account-sidebar>
+			</div>
+            <div class="col-sm-9 full-wrap">
+			    <div class="col-sm-12 mb-3">
+					<h2>Add New Address</h2>
+				</div>
+				<div class="edit-address-form">
+					<form [formGroup]="addressForm" (ngSubmit)="onSubmit()">
+						<div class="form-row row">							    
+							<div class="form-group col-sm-6">
+							  <label class="label">Full Name</label>
+							  <input class="form-control" type="text" id="fullName" name="fullName" autoComplete="given-name" formControlName="fullName">
+							  <div *ngIf="submitted && f['fullName'].errors" class="error-message">
+								<div *ngIf="submitted && addressForm.get('fullName')?.hasError('required')">Full Name is required</div>
+							  </div>
+							</div>
+							
+							<div class="form-group col-sm-12">
+								<label class="label">Company</label>
+								<input class="form-control" type="text" name="company" id="company"  formControlName="company">
+								<div *ngIf="submitted && f['company'].errors" class="error-message">
+									<div *ngIf="submitted && addressForm.get('company')?.hasError('required')">Company is required</div>											
+								</div>
+							</div>
+
+							<div class="form-group col-sm-12">
+							  <label class="label">Address</label>
+							  <input class="form-control" type="text" name="streetLine1" id="streetLine1"  formControlName="streetLine1" autoComplete="street-address">
+							  <div *ngIf="submitted && f['streetLine1'].errors" class="error-message">
+								<div *ngIf="submitted && addressForm.get('streetLine1')?.hasError('required')">Address is required</div>											
+							  </div>
+							</div>
+							
+							<div class="form-group col-sm-12">										
+							  <label class="label">Apartment, suite, etc.</label>
+							  <input class="form-control" type="text" name="streetLine2" id="streetLine2" formControlName="streetLine2">
+							  <div *ngIf="submitted && f['streetLine2'].errors" class="error-message">
+								<div *ngIf="submitted && addressForm.get('streetLine2')?.hasError('required')">Apartment, suite is required</div>											
+							  </div>
+							</div>
+							
+							<div class="form-group col-sm-6">
+							  <label class="label">City</label>
+							  <input class="form-control" type="text" name="city" id="city"  formControlName="city" autoComplete="address-level2">
+							  <div *ngIf="submitted && f['city'].errors" class="error-message">
+								<div *ngIf="submitted && addressForm.get('city')?.hasError('required')">City is required</div>											
+							  </div>
+							</div>
+							
+							<ng-container *ngIf="availableCountries$ | async as countries">
+							<div class="form-group col-sm-6">
+							  <label class="label">Country</label>
+							  <select class="form-control" name="countryCode" formControlName="countryCode" id="countryCode">										  
+								<option value=""></option>
+								<option *ngFor="let country of countries" [ngValue]="country.code">
+									{{ country.name }}
+								</option>
+							  </select>
+							  <div *ngIf="submitted && f['countryCode'].errors" class="error-message">
+								<div *ngIf="submitted && addressForm.get('countryCode')?.hasError('required')">Country is required</div>											
+							  </div>
+							</div>
+							</ng-container>
+							
+							<div class="form-group col-sm-6">
+							  <label class="label">State / Province</label>
+							  <input class="form-control" type="text" name="province" id="province" formControlName="province" autoComplete="address-level1">
+							  <div *ngIf="submitted && f['province'].errors" class="error-message">
+								<div *ngIf="submitted && addressForm.get('province')?.hasError('required')">Province is required</div>											
+							  </div>
+							</div>	 
+							
+							<div class="form-group col-sm-6">
+							  <label class="label">Post Code</label>
+							  <input class="form-control" type="text" name="postalCode" id="postalCode" formControlName="postalCode" autoComplete="postal-code">
+							  <div *ngIf="submitted && f['postalCode'].errors" class="error-message">
+								<div *ngIf="submitted && addressForm.get('postalCode')?.hasError('required')">Post Code is required</div>											
+							  </div>
+							</div>
+
+							<div class="form-group col-sm-12">
+							  <label class="label">Phone</label>
+							  <input class="form-control" type="text" name="phoneNumber" id="phoneNumber"    formControlName="phoneNumber" autoComplete="tel">
+							   <div *ngIf="submitted && f['phoneNumber'].errors" class="error-message">
+								<div *ngIf="submitted && addressForm.get('phoneNumber')?.hasError('required')">Phone is  required</div>											
+							   </div>
+							</div>
+							
+							<div class="form-group col-sm-12">							   
+								<button style="margin-top:20px" type="submit" name="sign-in" class="btn" >Create Address</button>
+							</div>
+							<!--[disabled]="!addressForm.valid"-->
+							<div class="form-group col-sm-12">
+								<div *ngIf="successMessage" class="alert alert-success text-success checkout-submit-msg">{{ successMessage }}</div>
+								<div *ngIf="errorMessage" class="alert alert-danger text-danger checkout-submit-msg">{{ errorMessage }}</div>
+							</div>
+						</div><!--/ form-row -->
+					</form>
+				</div>
+				<ng-template #loading>Loading...</ng-template>	
+            </div>
+        </div>
+        <!--/ row -->
+    </div>
+</section>
+<!--/ mid-inner -->

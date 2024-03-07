@@ -1,0 +1,67 @@
+<section class="account-inner mid-inner">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-3 full-wrap">
+        <app-account-sidebar></app-account-sidebar>
+      </div>
+      <div class="col-sm-9 full-wrap">
+        <div class="col-sm-12 mb-3">
+          <h2 class="pb-2">Dashboard</h2>
+        </div>
+        <div class="account-dashboard">
+          <div class="row">
+            <div class="col-sm-12 checkout-coll">
+              <div id="account-dashboard" *ngIf="activeCustomer">
+                <h4 class="text-3xl text-3xl pb-2">Contact Information</h4>
+                <p>{{ activeCustomer.firstName }} {{ activeCustomer.lastName }}
+                  <br>
+                  {{ activeCustomer.emailAddress }}
+                  <br>
+                  {{ activeCustomer.phoneNumber }}
+                </p>
+              </div>
+            </div>
+            <div class="col-sm-12 checkout-coll">
+              <div id="account-dashboard" *ngIf="activeCustomer">
+                <h4 class="text-3xl text-3xl pb-2">Recent Orders</h4>
+                <div *ngIf="orders$ | async as orders; else loading">
+                  <div class="table-responsive">
+                    <table class="table table-bordered">
+                      <thead>
+                        <tr>
+                          <th>Code</th>
+                          <th>State</th>
+                          <th>Total</th>
+                          <th>Last updated</th>
+                          <th>Action</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr *ngFor="let order of orders?.orders?.items">
+                          <th scope="row">
+                            <a [routerLink]="['/danshop/account/order-details', order.code]">
+                              {{ order.code }}
+                            </a>
+                          </th>
+                          <td>{{ order.state | formatOrderState }}</td>
+                          <td>{{ order.currencyCode }} {{ order.totalWithTax / 100 | number:'1.2-2' }}</td>
+                          <td>{{ order.updatedAt | date: 'medium' }}</td>
+                          <td>
+                            <a [routerLink]="['/danshop/account/order-details', order.code]" class="btn btn-sm btn-small">
+                              <i class="fa fa-eye"></i> View </a>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <div *ngIf="!orders?.orders?.items || orders.orders.items.length === 0"> No Recent orders found. </div>
+                </div>
+                <ng-template #loading>Loading...</ng-template>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

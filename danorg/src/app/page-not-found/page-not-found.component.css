@@ -1,0 +1,19 @@
+.page-not-found-title{
+	color: #e33439;
+    font-size: 6em;
+    font-weight: bold;
+    margin-bottom: 0px; 
+}
+.page-not-found-text {
+    font-size: 1.6em;
+}
+.btn.back-btn-404 {
+    padding: 15px 25px;
+    line-height: 15px;
+    max-width: max-content;
+    border-radius: 3px;
+    margin-bottom: 80px;
+}
+.btn.back-btn-404:after{
+	background-color:#3c3e93;
+}

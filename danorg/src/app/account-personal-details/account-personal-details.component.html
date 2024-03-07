@@ -1,0 +1,63 @@
+<!-- <section class="breadcrumb"> -->
+    <!-- <div class="container"> -->
+        <!-- <ul> -->
+            <!-- <li> -->
+                <!-- <a routerLink="/danshop"> -->
+                    <!-- <i class="fa fa-home" aria-hidden="true"></i>Home </a> -->
+            <!-- </li> -->
+            <!-- <li>Personal Details</li> -->
+        <!-- </ul> -->
+    <!-- </div> -->
+<!-- </section> -->
+<section class="account-inner mid-inner">
+    <div class="container">
+        <div class="row">
+		    <div class="col-sm-3 full-wrap">
+				<app-account-sidebar></app-account-sidebar>
+			</div>
+            <div class="col-sm-9 full-wrap">
+				<div class="col-sm-12 mb-3">
+					<h2>Personal Details</h2>
+				</div>
+				<div class="edit-address-form">
+					<form [formGroup]="personalForm" (ngSubmit)="onSubmit()">
+						<div class="form-row row">							    
+							<div class="form-group col-sm-6">
+							  <label class="label">First Name</label>
+							  <input class="form-control" type="text" id="firstName" name="firstName" autoComplete="first-name" formControlName="firstName">
+							  <div *ngIf="submitted && f['firstName'].errors" class="error-message">
+								<div *ngIf="submitted && personalForm.get('firstName')?.hasError('required')">First Name is required</div>
+							  </div>
+							</div>
+							<div class="form-group col-sm-6">
+							  <label class="label">Last Name</label>
+							  <input class="form-control" type="text" id="lastName" name="lastName" autoComplete="last-name" formControlName="lastName">
+							  <div *ngIf="submitted && f['lastName'].errors" class="error-message">
+								<div *ngIf="submitted && personalForm.get('lastName')?.hasError('required')">Last Name is required</div>
+							  </div>
+							</div>
+							<div class="form-group col-sm-12">
+							  <label class="label">Phone</label>
+							  <input class="form-control" type="text" name="phoneNumber" id="phoneNumber"    formControlName="phoneNumber" autoComplete="tel">
+							   <div *ngIf="submitted && f['phoneNumber'].errors" class="error-message">
+								<div *ngIf="submitted && personalForm.get('phoneNumber')?.hasError('required')">Phone is  required</div>
+							   </div>
+							</div>
+							
+							<div class="form-group col-sm-12">							   
+								<button style="margin-top:20px" type="submit" name="sign-in" class="btn" >Update Details</button>
+							</div>
+							<!--[disabled]="!personalForm.valid"-->
+							<div class="form-group col-sm-12">
+								<div *ngIf="successMessage" class="alert alert-success text-success checkout-submit-msg">{{ successMessage }}</div>
+								<div *ngIf="errorMessage" class="alert alert-danger text-danger checkout-submit-msg">{{ errorMessage }}</div>
+							</div>
+						</div><!--/ form-row -->
+					</form>
+				</div>
+            </div>
+        </div>
+        <!--/ row -->
+    </div>
+</section>
+<!--/ mid-inner -->

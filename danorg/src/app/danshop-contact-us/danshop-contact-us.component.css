@@ -1,0 +1,9 @@
+.cms-page .panel-body { margin-bottom: 20px; background-color: #fff; border: 1px solid #ddd; border-radius: 4px; -webkit-box-shadow: 0 1px 1px rgb(0 0 0 / 5%); box-shadow: 0 1px 1px rgb(0 0 0 / 5%); padding: 20px; }
+.cms-page img.img-thumbnail { border: 0px; }
+.cms-page a.btn-google-map { color: #fff; background: #dd1717; border: 1px solid; padding: 6px 20px; } 
+.cms-page a.btn-google-map i.fa.fa-map-marker { margin-right: 10px; }
+.form-group.row { margin-bottom: 15px; }
+.cms-page.contact label {text-align: right; font-size: 14px;}
+.cms-page.contact input.btn.btn-primary {color: #fff; background: #dd1717;  border: 1px solid;  padding: 6px 20px;}
+.cms-page.contact legend { display: block; width: 100%; margin-bottom: 20px; font-size: 21px; line-height: inherit; color: #333; border: 0; border-bottom: 1px solid #e5e5e5; padding: 7px 0; }
+.cms-page div.required .control-label:before { content: '* '; color: #F00; font-weight: bold; }

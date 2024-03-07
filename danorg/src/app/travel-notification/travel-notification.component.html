@@ -1,0 +1,712 @@
+<section class="form-wrap">
+  <div class="container">
+    <div class="row">
+      
+	  <div class="col-sm-12">
+	    <div class="form-grid">
+	      <div class="title">
+	        <h2>Dive Travel Notification</h2>
+		    <p>Please complete the form before departing on your next dive trip.</p>
+	      </div><!--/ title -->
+		  
+		  <form [formGroup]="myForm" (ngSubmit)="onSubmit()">			
+			<div class="form-steps form-group col-sm-12" id="step_1">
+			  <div class="row">
+			    
+				<div class="form-group col-sm-12">
+				  <div class="step-no">Step 1 of 6</div>
+				  <h3>PERSONAL DETAILS</h3>
+				  <div class="form-bar">
+					<div class="form-clearbar"></div>
+					<div class="form-fillbar"></div>
+				  </div><!--/ form-bar -->
+				</div>
+			
+			    <div class="form-group col-sm-12">
+			      <div class="form-text">
+			        <p>The travel notification is to ensure that the DAN hotline team knows when you travel to a dive destination and to note this on our system. This information helps the DAN hotline team to assist you with fast and speedy service when you need it. With the information provided, we will be able to plan potential evacuation procedures and advise you on the availability of appropriate facilities where you will be diving.</p>
+				    <p>We aim to process notifications as soon as possible. However please allow 48 hours for processing. If you have not heard from us, please contact the DAN office during office hours directly on&nbsp;<b>+27 11 266 4900</b>&nbsp;or send an e-mail to&nbsp;<b>mail@dansa.org</b></p>
+				    <p>Please do not e-mail in the event of an emergency. Call the 24-hour DAN Emergency Hotline on&nbsp;<b>+27 82 810 6010</b></p>
+			      </div><!--/ form-bar -->
+			    </div>
+			
+		        <div class="form-group col-sm-6">
+			      <label>Your name <small class="text-danger">*</small></label>
+			      <input class="form-control" formControlName="fname1">
+				  <small class="text-danger" *ngIf="isNextButtonClicked && myForm.get('fname1')?.hasError('required')"> Name is required. </small>
+		        </div>
+			
+			    <div class="form-group col-sm-6">
+			      <label>Surname <small class="text-danger">*</small> </label>
+			      <input class="form-control" formControlName="sname1">
+				  <small class="text-danger" *ngIf="isNextButtonClicked && myForm.get('sname1')?.hasError('required')"> Surname is required. </small>
+		        </div>
+			
+			    <div class="form-group col-sm-6">
+			      <label>Email <small class="text-danger">*</small></label>
+			      <input class="form-control" type="email" formControlName="email1">
+				  <small class="text-danger" *ngIf="isNextButtonClicked && (myForm.get('email1')?.hasError('required') || myForm.get('email1')?.hasError('email'))">
+					<ng-container *ngIf="myForm.get('email1')?.hasError('required')">Email address is required.</ng-container>
+					<ng-container *ngIf="myForm.get('email1')?.hasError('email') && !myForm.get('email1')?.hasError('required')">Invalid email address.</ng-container>
+				</small>
+		        </div>
+			
+			    <div class="form-group col-sm-6">
+			      <label>Phone <small class="text-danger">*</small> </label>
+			      <input class="form-control" type="phone" formControlName="cellphone1">
+				  <small class="text-danger" *ngIf="isNextButtonClicked && myForm.get('cellphone1')?.hasError('required')"> Phone number is required. </small>
+		        </div>
+			
+			    <div class="form-group col-sm-12">
+			      <div class="input-group">
+			        <label class="label">Are you a DAN member</label>
+				    <div class="input-inner row">
+				      <div class="col-sm-6 input-radio"><label class="radio-container mrb-r"><input type="radio" formControlName="dan_member" value="Yes"><span class="checkmark"></span> Yes</label></div>
+				    
+					  <div class="col-sm-6 input-radio"><label class="radio-container"><input type="radio" formControlName="dan_member" value="No"><span class="checkmark"></span> No</label></div>
+				    </div>
+			      </div>
+		        </div>
+			
+			    <div class="form-group col-sm-6">
+			      <label>DAN number</label>
+			      <input class="form-control" type="text" formControlName="dan_no">
+		        </div>
+			
+			    <div class="form-group col-sm-6">
+			      <label>ID/Passport Number </label>
+			      <input class="form-control" type="text" formControlName="passport1">
+		        </div>
+			
+			    <div class="form-group col-sm-12">
+			      <label>Date of birth</label>
+			      <input class="form-control" type="date" formControlName="dob1">
+		        </div>
+			
+			    <div class="form-group col-sm-12 steps-btn">
+			      <a href="#" class="btn next-btn" data-id="1">Next</a>
+		        </div>
+			
+		      </div><!--/ row -->
+		    </div><!--/ form-steps -->
+			
+			<div class="form-steps form-group col-sm-12" id="step_2">
+			  <div class="row">
+			    
+				<div class="form-group col-sm-12">
+				  <div class="step-no">Step 2 of 6</div>
+				  <h3>EMERGENCY CONTACT DETAILS</h3>
+				  <div class="form-bar">
+					<div class="form-clearbar"></div>
+					<div class="form-fillbar"></div>
+				  </div><!--/ form-bar -->
+				</div>
+			
+		        <div class="form-group col-sm-6">
+			      <label>Emergency contact name</label>
+			      <input class="form-control" formControlName="fname2">
+		        </div>
+			
+			    <div class="form-group col-sm-6">
+			      <label>Emergency contact surname</label>
+			      <input class="form-control" formControlName="sname2">
+		        </div>
+			
+			    <div class="form-group col-sm-6">
+			      <label>Emergency phone</label>
+			      <input class="form-control" placeholder="" type="text" formControlName="cellphone2">
+		        </div>
+			
+			    <div class="form-group col-sm-6">
+			      <label>Emergency email</label>
+			      <input class="form-control" placeholder="" type="phone" formControlName="email2">
+		        </div>
+			
+			    <div class="form-group col-sm-12 steps-btn">
+			      <div class="row">
+				    <div class="col-sm-6"><a href="#" class="btn btn-red back-btn" data-id="2">Back</a></div>
+					<div class="col-sm-6"><a href="#" class="btn next-btn" data-id="2">Next</a></div>
+		          </div>
+		        </div>
+			
+		      </div><!--/ row -->
+		    </div><!--/ form-steps -->
+			
+			<div class="form-steps form-group col-sm-12" id="step_3">
+			  <div class="row">
+			    
+				<div class="form-group col-sm-12">
+				  <div class="step-no">Step 3 of 6</div>
+				  <h3>TRAVEL INFORMATION</h3>
+				  <div class="form-bar">
+					<div class="form-clearbar"></div>
+					<div class="form-fillbar"></div>
+				  </div><!--/ form-bar -->
+				</div>
+			
+			    <div class="form-group col-sm-12">
+			      <div class="input-group">
+			        <label class="label">Are you going on a dive trip</label>
+				    <div class="input-inner row">
+				      <div class="col-sm-6 input-radio"><label class="radio-container mrb-r"><input type="radio" formControlName="dive_trip" value="Yes"><span class="checkmark"></span> Yes</label></div>
+				    
+					  <div class="col-sm-6 input-radio"><label class="radio-container"><input type="radio" formControlName="dive_trip" value="No"><span class="checkmark"></span> No</label></div>
+				    </div>
+			      </div>
+		        </div>
+				
+				<div class="form-group col-sm-12">
+			      <div class="input-group">
+			        <label class="label">Will you be working as a dive professional during your dive trip</label>
+				    <div class="input-inner row">
+				      <div class="col-sm-6 input-radio"><label class="radio-container mrb-r"><input type="radio" formControlName="professional" value="Yes"><span class="checkmark"></span> Yes</label></div>
+				    
+					  <div class="col-sm-6 input-radio"><label class="radio-container"><input type="radio" formControlName="professional" value="No"><span class="checkmark"></span> No</label></div>
+				    </div>
+			      </div>
+		        </div>
+			
+			    <div class="form-group col-sm-6">
+			      <label>Travel Destination</label>
+			      <select class="form-control" formControlName="destination"><option value="Afghanistan">Afghanistan</option><option value="Albania">Albania</option><option value="Algeria">Algeria</option><option value="Andorra">Andorra</option><option value="Angola">Angola</option><option value="Antigua and Barbuda">Antigua and Barbuda</option><option value="Argentina">Argentina</option><option value="Armenia">Armenia</option><option value="Australia">Australia</option><option value="Austria">Austria</option><option value="Azerbaijan">Azerbaijan</option><option value="Bahamas (the)">Bahamas (the)</option><option value="Bahrain">Bahrain</option><option value="Bangladesh">Bangladesh</option><option value="Barbados">Barbados</option><option value="Belarus">Belarus</option><option value="Belgium">Belgium</option><option value="Belize">Belize</option><option value="Benin">Benin</option><option value="Bhutan">Bhutan</option><option value="Bolivia (Plurinational State of)">Bolivia (Plurinational State of)</option><option value="Bosnia and Herzegovina">Bosnia and Herzegovina</option><option value="Botswana">Botswana</option><option value="Brazil">Brazil</option><option value="Brunei Darussalam">Brunei Darussalam</option><option value="Bulgaria">Bulgaria</option><option value="Burkina Faso">Burkina Faso</option><option value="Burundi">Burundi</option><option value="Cabo Verde">Cabo Verde</option><option value="Cambodia">Cambodia</option><option value="Cameroon">Cameroon</option><option value="Canada">Canada</option><option value="Central African Republic (the)">Central African Republic (the)</option><option value="Chad">Chad</option><option value="Chile">Chile</option><option value="China">China</option><option value="Colombia">Colombia</option><option value="Comoros (the)">Comoros (the)</option><option value="Congo (the)">Congo (the)</option><option value="Costa Rica">Costa Rica</option><option value="Côte d'Ivoire">Côte d'Ivoire</option><option value="Croatia">Croatia</option><option value="Cuba">Cuba</option><option value="Cyprus">Cyprus</option><option value="Czechia">Czechia</option><option value="Democratic People's Republic of Korea (the)">Democratic People's Republic of Korea (the)</option><option value="Democratic Republic of the Congo (the)">Democratic Republic of the Congo (the)</option><option value="Denmark">Denmark</option><option value="Djibouti">Djibouti</option><option value="Dominica">Dominica</option><option value="Dominican Republic (the)">Dominican Republic (the)</option><option value="Ecuador">Ecuador</option><option value="Egypt">Egypt</option><option value="El Salvador">El Salvador</option><option value="Equatorial Guinea">Equatorial Guinea</option><option value="Eritrea">Eritrea</option><option value="Estonia">Estonia</option><option value="Eswatini">Eswatini</option><option value="Ethiopia">Ethiopia</option><option value="Fiji">Fiji</option><option value="Finland">Finland</option><option value="France">France</option><option value="Gabon">Gabon</option><option value="Gambia (the)">Gambia (the)</option><option value="Georgia">Georgia</option><option value="Germany">Germany</option><option value="Ghana">Ghana</option><option value="Greece">Greece</option><option value="Grenada">Grenada</option><option value="Guatemala">Guatemala</option><option value="Guinea">Guinea</option><option value="Guinea-Bissau">Guinea-Bissau</option><option value="Guyana">Guyana</option><option value="Haiti">Haiti</option><option value="Honduras">Honduras</option><option value="Hungary">Hungary</option><option value="Iceland">Iceland</option><option value="India">India</option><option value="Indonesia">Indonesia</option><option value="Iran (Islamic Republic of)">Iran (Islamic Republic of)</option><option value="Iraq">Iraq</option><option value="Ireland">Ireland</option><option value="Israel">Israel</option><option value="Italy">Italy</option><option value="Jamaica">Jamaica</option><option value="Japan">Japan</option><option value="Jordan">Jordan</option><option value="Kazakhstan">Kazakhstan</option><option value="Kenya">Kenya</option><option value="Kiribati">Kiribati</option><option value="Kuwait">Kuwait</option><option value="Kyrgyzstan">Kyrgyzstan</option><option value="Lao People's Democratic Republic (the)">Lao People's Democratic Republic (the)</option><option value="Latvia">Latvia</option><option value="Lebanon">Lebanon</option><option value="Lesotho">Lesotho</option><option value="Liberia">Liberia</option><option value="Libya">Libya</option><option value="Liechtenstein">Liechtenstein</option><option value="Lithuania">Lithuania</option><option value="Luxembourg">Luxembourg</option><option value="Madagascar">Madagascar</option><option value="Malawi">Malawi</option><option value="Malaysia">Malaysia</option><option value="Maldives">Maldives</option><option value="Mali">Mali</option><option value="Malta">Malta</option><option value="Marshall Islands (the)">Marshall Islands (the)</option><option value="Mauritania">Mauritania</option><option value="Mauritius">Mauritius</option><option value="Mexico">Mexico</option><option value="Micronesia (Federated States of)">Micronesia (Federated States of)</option><option value="Monaco">Monaco</option><option value="Mongolia">Mongolia</option><option value="Montenegro">Montenegro</option><option value="Morocco">Morocco</option><option value="Mozambique">Mozambique</option><option value="Myanmar">Myanmar</option><option value="Namibia">Namibia</option><option value="Nauru">Nauru</option><option value="Nepal">Nepal</option><option value="Netherlands (the)">Netherlands (the)</option><option value="New Zealand">New Zealand</option><option value="Nicaragua">Nicaragua</option><option value="Niger (the)">Niger (the)</option><option value="Nigeria">Nigeria</option><option value="North Macedonia">North Macedonia</option><option value="Norway">Norway</option><option value="Oman">Oman</option><option value="Pakistan">Pakistan</option><option value="Palau">Palau</option><option value="Panama">Panama</option><option value="Papua New Guinea">Papua New Guinea</option><option value="Paraguay">Paraguay</option><option value="Peru">Peru</option><option value="Philippines (the)">Philippines (the)</option><option value="Poland">Poland</option><option value="Portugal">Portugal</option><option value="Qatar">Qatar</option><option value="Republic of Korea (the)">Republic of Korea (the)</option><option value="Republic of Moldova (the)">Republic of Moldova (the)</option><option value="Romania">Romania</option><option value="Russian Federation (the)">Russian Federation (the)</option><option value="Rwanda">Rwanda</option><option value="Saint Kitts and Nevis">Saint Kitts and Nevis</option><option value="Saint Lucia">Saint Lucia</option><option value="Saint Vincent and the Grenadines">Saint Vincent and the Grenadines</option><option value="Samoa">Samoa</option><option value="San Marino">San Marino</option><option value="Sao Tome and Principe">Sao Tome and Principe</option><option value="Saudi Arabia">Saudi Arabia</option><option value="Senegal">Senegal</option><option value="Serbia">Serbia</option><option value="Seychelles">Seychelles</option><option value="Sierra Leone">Sierra Leone</option><option value="Singapore">Singapore</option><option value="Slovakia">Slovakia</option><option value="Slovenia">Slovenia</option><option value="Solomon Islands">Solomon Islands</option><option value="Somalia">Somalia</option><option value="South Africa">South Africa</option><option value="South Sudan">South Sudan</option><option value="Spain">Spain</option><option value="Sri Lanka">Sri Lanka</option><option value="Sudan (the)">Sudan (the)</option><option value="Suriname">Suriname</option><option value="Sweden">Sweden</option><option value="Switzerland">Switzerland</option><option value="Syrian Arab Republic (the)">Syrian Arab Republic (the)</option><option value="Tajikistan">Tajikistan</option><option value="Thailand">Thailand</option><option value="Timor-Leste">Timor-Leste</option><option value="Togo">Togo</option><option value="Tonga">Tonga</option><option value="Trinidad and Tobago">Trinidad and Tobago</option><option value="Tunisia">Tunisia</option><option value="Turkey">Turkey</option><option value="Turkmenistan">Turkmenistan</option><option value="Tuvalu">Tuvalu</option><option value="Uganda">Uganda</option><option value="Ukraine">Ukraine</option><option value="United Arab Emirates (the)">United Arab Emirates (the)</option><option value="United Kingdom of Great Britain and Northern Ireland (the)">United Kingdom of Great Britain and Northern Ireland (the)</option><option value="United Republic of Tanzania (the)">United Republic of Tanzania (the)</option><option value="United States of America (the)">United States of America (the)</option><option value="Uruguay">Uruguay</option><option value="Uzbekistan">Uzbekistan</option><option value="Vanuatu">Vanuatu</option><option value="Venezuela (Bolivarian Republic of)">Venezuela (Bolivarian Republic of)</option><option value="Viet Nam">Viet Nam</option><option value="Yemen">Yemen</option><option value="Zambia">Zambia</option><option value="Zimbabwe">Zimbabwe</option><option value="Holy See (the) *">Holy See (the) *</option><option value="State of Palestine (the) *">State of Palestine (the) *</option><option value="Cook Islands (the) **">Cook Islands (the) **</option><option value="Niue **">Niue **</option></select>
+		        </div>
+			
+			    <div class="form-group col-sm-6">
+			      <label>Dive site</label>
+			      <input class="form-control" placeholder="" type="text" value="" formControlName="dive_site">
+		        </div>
+				
+				<div class="form-group col-sm-6">
+			      <label>Departure date</label>
+			      <input class="form-control" placeholder="" type="date" value="" formControlName="dep_date">
+		        </div>
+				
+				<div class="form-group col-sm-6">
+			      <label>Return date</label>
+			      <input class="form-control" placeholder="" type="date" value="" formControlName="return_date">
+		        </div>
+			
+			    <div class="form-group col-sm-6">
+			      <label>How many dives have you done in the last 12 months</label>
+			      <select class="form-control" formControlName="dive_done"><option value="None">None</option><option value="1 to 5 dives">1 to 5 dives</option><option value="6 top 10 dives">6 top 10 dives</option><option value="11 to 15 dives">11 to 15 dives</option><option value="16 to 20 dives">16 to 20 dives</option><option value="More than 20 dives">More than 20 dives</option></select>
+		        </div>
+				
+				<div class="form-group col-sm-6">
+			      <label>Which depth are you comfortable diving too</label>
+			      <select class="form-control" formControlName="depth"><option value="1 to 20 meter">1 to 20 meter</option><option value="21 to 40 meters">21 to 40 meters</option><option value="41 to 60 meters">41 to 60 meters</option><option value="61 to 80 meters">61 to 80 meters</option><option value="81 - 100 meters">81 - 100 meters</option><option value="Deeper than 100 meters">Deeper than 100 meters</option></select>
+		        </div>
+			
+			    <div class="form-group col-sm-12 steps-btn">
+			      <div class="row">
+				    <div class="col-sm-6"><a href="#" class="btn btn-red back-btn" data-id="3">Back</a></div>
+					<div class="col-sm-6"><a href="#" class="btn next-btn" data-id="3">Next</a></div>
+		          </div>
+		        </div>
+			
+		      </div><!--/ row -->
+		    </div><!--/ form-steps -->
+			
+			<div class="form-steps form-group col-sm-12" id="step_4">
+			  <div class="row">
+			    
+				<div class="form-group col-sm-12">
+				  <div class="step-no">Step 4 of 6</div>
+				  <h3>INSURANCE INFORMATION</h3>
+				  <div class="form-bar">
+					<div class="form-clearbar"></div>
+					<div class="form-fillbar"></div>
+				  </div><!--/ form-bar -->
+				</div>
+			
+			    <div class="form-group col-sm-12">
+			      <div class="input-group">
+			        <label class="label">Do you have medical insurance</label>
+				    <div class="input-inner row">
+				      <div class="col-sm-6 input-radio"><label class="radio-container mrb-r"><input type="radio" formControlName="medical" value="Yes"><span class="checkmark"></span> Yes</label></div>
+				    
+					  <div class="col-sm-6 input-radio"><label class="radio-container"><input type="radio" formControlName="medical" value="No"><span class="checkmark"></span> No</label></div>
+				    </div>
+			      </div>
+		        </div>
+			
+			    <div class="form-group col-sm-6">
+			      <label>Medical insurance name</label>
+			      <input class="form-control" type="text"  formControlName="medical_name">
+		        </div>
+				
+				<div class="form-group col-sm-6">
+			      <label>Medical insurance number</label>
+			      <input class="form-control" type="text" formControlName="medical_no">
+		        </div>
+				
+				<div class="form-group col-sm-12">
+			      <div class="input-group">
+			        <label class="label">Do you have travel insurance</label>
+				    <div class="input-inner row">
+				      <div class="col-sm-6 input-radio"><label class="radio-container mrb-r"><input type="radio" formControlName="travel" value="Yes"><span class="checkmark"></span> Yes</label></div>
+				    
+					  <div class="col-sm-6 input-radio"><label class="radio-container"><input type="radio" formControlName="travel" value="No"><span class="checkmark"></span> No</label></div>
+				    </div>
+			      </div>
+		        </div>
+			
+			    <div class="form-group col-sm-6">
+			      <label>Travel insurance name</label>
+			      <input class="form-control" type="text" formControlName="travel_name">
+		        </div>
+				
+				<div class="form-group col-sm-6">
+			      <label>Travel insurance number</label>
+			      <input class="form-control" type="text" formControlName="travel_no">
+		        </div>
+			
+			    <div class="form-group col-sm-12 steps-btn">
+			      <div class="row">
+				    <div class="col-sm-6"><a href="#" class="btn btn-red back-btn" data-id="4">Back</a></div>
+					<div class="col-sm-6"><a href="#" class="btn next-btn" data-id="4">Next</a></div>
+		          </div>
+		        </div>
+			
+		      </div><!--/ row -->
+		    </div><!--/ form-steps -->
+			
+			<div class="form-steps form-group col-sm-12" id="step_5">
+			  <div class="row">
+			    
+				<div class="form-group col-sm-12">
+				  <div class="step-no">Step 5 of 6</div>
+				  <h3>FAMILY MEMBERS</h3>
+				  <div class="form-bar">
+					<div class="form-clearbar"></div>
+					<div class="form-fillbar"></div>
+				  </div><!--/ form-bar -->
+				</div>
+			
+			    <div class="form-group col-sm-12">
+			      <div class="input-group">
+			        <label class="label">Will your diving family members join you on your trip</label>
+				    <div class="input-inner row">
+				      <div class="col-sm-6 input-radio"><label class="radio-container mrb-r"><input type="radio" formControlName="diving_family" value="Yes"><span class="checkmark"></span> Yes</label></div>
+				    
+					  <div class="col-sm-6 input-radio"><label class="radio-container"><input type="radio" formControlName="diving_family" value="No"><span class="checkmark"></span> No</label></div>
+				    </div>
+			      </div>
+		        </div>
+			
+			    <div class="form-group col-sm-4">
+			      <label>1. Name</label>
+			      <input class="form-control" type="text" formControlName="family_fname1">
+		        </div>
+				
+				<div class="form-group col-sm-4">
+			      <label>Surname</label>
+			      <input class="form-control" type="text" formControlName="family_sname1">
+		        </div>
+				
+				<div class="form-group col-sm-4">
+			      <label>Age</label>
+			      <input class="form-control" type="text" formControlName="family_age1">
+		        </div>
+				
+				<div class="form-group col-sm-4">
+			      <label>2. Name</label>
+			      <input class="form-control" type="text" formControlName="family_fname2">
+		        </div>
+				
+				<div class="form-group col-sm-4">
+			      <label>Surname</label>
+			      <input class="form-control" type="text" formControlName="family_sname2">
+		        </div>
+				
+				<div class="form-group col-sm-4">
+			      <label>Age</label>
+			      <input class="form-control" type="text" formControlName="family_age2">
+		        </div>
+				
+				<div class="form-group col-sm-4">
+			      <label>3. Name</label>
+			      <input class="form-control" type="text" formControlName="family_fname3">
+		        </div>
+				
+				<div class="form-group col-sm-4">
+			      <label>Surname</label>
+			      <input class="form-control" type="text" formControlName="family_sname3">
+		        </div>
+				
+				<div class="form-group col-sm-4">
+			      <label>Age</label>
+			      <input class="form-control" type="text" formControlName="family_age3">
+		        </div>
+				
+				<div class="form-group col-sm-4">
+			      <label>4. Name</label>
+			      <input class="form-control" type="text" formControlName="family_fname4">
+		        </div>
+				
+				<div class="form-group col-sm-4">
+			      <label>Surname</label>
+			      <input class="form-control" type="text" formControlName="family_sname4">
+		        </div>
+				
+				<div class="form-group col-sm-4">
+			      <label>Age</label>
+			      <input class="form-control" type="text" formControlName="family_age4">
+		        </div>
+				
+				<div class="form-group col-sm-12">
+			      <div class="input-group">
+			        <label class="label">Will your non-diving family members join you on your trip </label>
+				    <div class="input-inner row">
+				      <div class="col-sm-6 input-radio"><label class="radio-container mrb-r"><input type="radio" formControlName="nondiving_family" value="Yes"><span class="checkmark"></span> Yes</label></div>
+				    
+					  <div class="col-sm-6 input-radio"><label class="radio-container"><input type="radio" formControlName="nondiving_family" value="No"><span class="checkmark"></span> No</label></div>
+				    </div>
+			      </div>
+		        </div>
+			
+			    <div class="form-group col-sm-4">
+			      <label>1. Name</label>
+			      <input class="form-control" type="text" formControlName="nonfamily_fname1">
+		        </div>
+				
+				<div class="form-group col-sm-4">
+			      <label>Surname</label>
+			      <input class="form-control" type="text" formControlName="nonfamily_sname1">
+		        </div>
+				
+				<div class="form-group col-sm-4">
+			      <label>Age</label>
+			      <input class="form-control" type="text" formControlName="nonfamily_age1">
+		        </div>
+				
+				<div class="form-group col-sm-4">
+			      <label>2. Name</label>
+			      <input class="form-control" type="text" formControlName="nonfamily_fname2">
+		        </div>
+				
+				<div class="form-group col-sm-4">
+			      <label>Surname</label>
+			      <input class="form-control" type="text" formControlName="nonfamily_sname2">
+		        </div>
+				
+				<div class="form-group col-sm-4">
+			      <label>Age</label>
+			      <input class="form-control" type="text" formControlName="nonfamily_age2">
+		        </div>
+				
+				<div class="form-group col-sm-4">
+			      <label>3. Name</label>
+			      <input class="form-control" type="text" formControlName="nonfamily_fname3">
+		        </div>
+				
+				<div class="form-group col-sm-4">
+			      <label>Surname</label>
+			      <input class="form-control" type="text" formControlName="nonfamily_sname3">
+		        </div>
+				
+				<div class="form-group col-sm-4">
+			      <label>Age</label>
+			      <input class="form-control" type="text" formControlName="nonfamily_age3">
+		        </div>
+				
+				<div class="form-group col-sm-4">
+			      <label>4. Name</label>
+			      <input class="form-control" type="text" formControlName="nonfamily_fname4">
+		        </div>
+				
+				<div class="form-group col-sm-4">
+			      <label>Surname</label>
+			      <input class="form-control" type="text" formControlName="nonfamily_sname4">
+		        </div>
+				
+				<div class="form-group col-sm-4">
+			      <label>Age</label>
+			      <input class="form-control" type="text" formControlName="nonfamily_age4">
+		        </div>
+				
+				<div class="form-group col-sm-12">
+			      <label>Additional information</label>
+			      <textarea class="form-control" formControlName="additional_info"></textarea>
+		        </div>
+			
+			    <div class="form-group col-sm-12 steps-btn">
+			      <div class="row">
+				    <div class="col-sm-6"><a href="#" class="btn btn-red back-btn" data-id="5">Back</a></div>
+					<div class="col-sm-6"><a href="#" class="btn next-btn" data-id="5">Next</a></div>
+		          </div>
+		        </div>
+			
+		      </div><!--/ row -->
+		    </div><!--/ form-steps -->
+			
+			<div class="form-steps form-group col-sm-12" id="step_6">
+			  <div class="row">
+			    
+				<div class="form-group col-sm-12">
+				  <div class="step-no">Step 6 of 6</div>
+				  <h3>MEDICAL INFORMATION</h3>
+				  <div class="form-bar">
+					<div class="form-clearbar"></div>
+					<div class="form-fillbar"></div>
+				  </div><!--/ form-bar -->
+				</div>
+			
+			    <div class="form-group col-sm-12">
+			      <div class="input-group">
+			        <label class="label">Are you aware of any prophylactic medication you need for your trip</label>
+				    <div class="input-inner row">
+				      <div class="col-sm-6 input-radio"><label class="radio-container mrb-r"><input type="radio" formControlName="prophylactic" value="Yes"><span class="checkmark"></span> Yes</label></div>
+				    
+					  <div class="col-sm-6 input-radio"><label class="radio-container"><input type="radio" formControlName="nondiving_family" value="No"><span class="checkmark"></span> No</label></div>
+				    </div>
+			      </div>
+		        </div>
+				
+				<div class="form-group col-sm-12">
+			      <div class="input-group">
+			        <label class="label">What type examination did you undergo</label>
+				    <div class="input-inner row">
+				      <div class="col-sm-12 input-radio mrb-10"><label class="radio-container mrb-r"><input type="radio" formControlName="examination" value="General medical examination"><span class="checkmark"></span> General medical examination</label></div>
+				    
+					  <div class="col-sm-12 input-radio mrb-10"><label class="radio-container"><input type="radio" formControlName="examination" value="Fitness to dive examination"><span class="checkmark"></span> Fitness to dive examination</label></div>
+					  
+					  <div class="col-sm-12 input-radio"><label class="radio-container"><input type="radio" formControlName="examination" value="Both"><span class="checkmark"></span> General medical &amp; Fitness to dive examinations</label></div>
+				    </div>
+			      </div>
+		        </div>
+				
+				<div class="form-group col-sm-12">
+			      <div class="input-group">
+			        <label class="label">Are you willing to provide additional medical information</label>
+					<p class="mrb-10">Please note the information shared will be treated as confidential and is aimed to assist you in the best possible way in the event of an emergency. For more information regarding your DAN membership benefits, please refer to the DAN-SA website.</p>
+				    <div class="input-inner row">
+				      <div class="col-sm-6 input-radio"><label class="radio-container mrb-r"><input type="radio" formControlName="willing_info" value="Yes"><span class="checkmark"></span> Yes</label></div>
+				    
+					  <div class="col-sm-6 input-radio"><label class="radio-container"><input type="radio" formControlName="willing_info" value="No"><span class="checkmark"></span> No</label></div>
+				    </div>
+			      </div>
+		        </div>
+				
+				<div class="form-group col-sm-12">
+			      <div class="input-group">
+			        <label class="label">Are you pregnant</label>
+				    <div class="input-inner row">
+				      <div class="col-sm-6 input-radio"><label class="radio-container mrb-r"><input type="radio" formControlName="pregnant" value="Yes"><span class="checkmark"></span> Yes</label></div>
+				    
+					  <div class="col-sm-6 input-radio"><label class="radio-container"><input type="radio" formControlName="pregnant" value="No"><span class="checkmark"></span> No</label></div>
+				    </div>
+			      </div>
+		        </div>
+				
+				<div class="form-group col-sm-12">
+			      <div class="input-group">
+			        <label class="label">If you are pregnant how many months</label>
+				    <div class="input-inner row">
+				      <div class="col-sm-4 input-radio"><label class="radio-container mrb-r"><input type="radio" formControlName="pregnant_month" value="1-3 months"><span class="checkmark"></span> 1 to 3 months</label></div>
+				    
+					  <div class="col-sm-4 input-radio"><label class="radio-container"><input type="radio" formControlName="pregnant_month" value="4-6 months"><span class="checkmark"></span> 4 to 6 months</label></div>
+					  
+					  <div class="col-sm-4 input-radio"><label class="radio-container"><input type="radio" formControlName="pregnant_month" value="7-9 months"><span class="checkmark"></span> 7 to 9 months</label></div>
+				    </div>
+			      </div>
+		        </div>
+				
+				<div class="form-group col-sm-12">
+			      <div class="input-group">
+			        <label class="label">Any ear problems</label>
+					<p class="mrb-10">Have you had a recent operation, infection, discharging, deafness or ringing in the ears?</p>
+				    <div class="input-inner row">
+				      <div class="col-sm-6 input-radio"><label class="radio-container mrb-r"><input type="radio" formControlName="ear" value="Yes"><span class="checkmark"></span> Yes</label></div>
+				    
+					  <div class="col-sm-6 input-radio"><label class="radio-container"><input type="radio" formControlName="ear" value="No"><span class="checkmark"></span> No</label></div>
+				    </div>
+			      </div>
+		        </div>
+				
+				<div class="form-group col-sm-12 select-full">
+			      <label>Specify ear issue</label>
+			      <select class="form-control" formControlName="ear_issue"><option value="Recent Operations (within 12 month)">Recent Operations (within 12 month)</option><option value="Discharge from the ears">Discharge from the ears</option><option value="Ringing in the ear">Ringing in the ear</option><option value="Chronic infection">Chronic infection</option><option value="Deafness">Deafness</option><option value="I am deaf">I am deaf</option><option value="Other">Other</option></select>
+		        </div>
+				
+				<div class="form-group col-sm-12">
+			      <div class="input-group">
+			        <label class="label">Any cardiac issues</label>
+					<p class="mrb-10">Do you have any heart problems e.g. Rheumatic fever, rapid heart rate, angina, chest pains, PFO?</p>
+				    <div class="input-inner row">
+				      <div class="col-sm-6 input-radio"><label class="radio-container mrb-r"><input type="radio" formControlName="cardiac" value="Yes"><span class="checkmark"></span> Yes</label></div>
+				    
+					  <div class="col-sm-6 input-radio"><label class="radio-container"><input type="radio" formControlName="cardiac" value="No"><span class="checkmark"></span> No</label></div>
+				    </div>
+			      </div>
+		        </div>
+				
+				<div class="form-group col-sm-12 select-full">
+			      <label>Specify cardiac issues</label>
+			      <select class="form-control" formControlName="cardiac_issue"><option value="Rheumatic fever">Rheumatic fever</option><option value="Rapid heart rate">Rapid heart rate</option><option value="Angina">Angina</option><option value="PFO (patent foramen ovale)">PFO (patent foramen ovale)</option><option value="Chest pains">Chest pains</option><option value="Other">Other</option></select>
+		        </div>
+				
+				<div class="form-group col-sm-12">
+			      <div class="input-group">
+			        <label class="label">Are you diabetic?</label>
+				    <div class="input-inner row">
+				      <div class="col-sm-6 input-radio"><label class="radio-container mrb-r"><input type="radio" formControlName="diabetic" value="Yes"><span class="checkmark"></span> Yes</label></div>
+				    
+					  <div class="col-sm-6 input-radio"><label class="radio-container"><input type="radio" formControlName="diabetic" value="No"><span class="checkmark"></span> No</label></div>
+				    </div>
+			      </div>
+		        </div>
+				
+				<div class="form-group col-sm-12">
+			      <div class="input-group">
+			        <label class="label">Do you suffer from hypertension (high blood pressure)?</label>
+				    <div class="input-inner row">
+				      <div class="col-sm-12 input-radio mrb-10"><label class="radio-container mrb-r"><input type="radio" formControlName="high_bp" value="Yes"><span class="checkmark"></span> Yes</label></div>
+				    
+					  <div class="col-sm-12 input-radio"><label class="radio-container"><input type="radio" formControlName="high_bp" value="No"><span class="checkmark"></span> No</label></div>
+				    </div>
+			      </div>
+		        </div>
+				
+				<div class="form-group col-sm-12">
+			      <div class="input-group">
+			        <label class="label">Do you have any lung problems, e.g. Asthma, COPD, Bronchitis, Pneumonia, Pneumothorax?</label>
+				    <div class="input-inner row">
+				      <div class="col-sm-6 input-radio"><label class="radio-container mrb-r"><input type="radio" formControlName="lung" value="Yes"><span class="checkmark"></span> Yes</label></div>
+				    
+					  <div class="col-sm-6 input-radio"><label class="radio-container"><input type="radio" formControlName="lung" value="No"><span class="checkmark"></span> No</label></div>
+				    </div>
+			      </div>
+		        </div>
+				
+				<div class="form-group col-sm-12 select-full">
+			      <label>Specify lung issues</label>
+			      <select class="form-control" formControlName="lung_issue">
+					<option value="Asthma">Asthma</option>
+					<option value="COPD">COPD</option>
+					<option value="Currently bronchitis">Currently bronchitis</option>
+					<option value="Previous pneumothorax">Previous pneumothorax</option>
+					<option value="Currently pneumonia">Currently pneumonia</option>
+					<option value="Other">Other</option>
+				  </select>
+		        </div>
+				
+				<div class="form-group col-sm-12">
+			      <div class="input-group">
+			        <label class="label">Do you have any gastro-intestinal problems?</label>
+				    <div class="input-inner row">
+				      <div class="col-sm-6 input-radio"><label class="radio-container mrb-r"><input type="radio" formControlName="gastro" value="Yes"><span class="checkmark"></span> Yes</label></div>
+				    
+					  <div class="col-sm-6 input-radio"><label class="radio-container"><input type="radio" formControlName="gastro" value="No"><span class="checkmark"></span> No</label></div>
+				    </div>
+			      </div>
+		        </div>
+				
+				<div class="form-group col-sm-12">
+			      <div class="input-group">
+			        <label class="label">Do you suffer from epilepsy (seizures) or fits?</label>
+				    <div class="input-inner row">
+				      <div class="col-sm-6 input-radio"><label class="radio-container mrb-r"><input type="radio" formControlName="epilepsy" value="Yes"><span class="checkmark"></span> Yes</label></div>
+				    
+					  <div class="col-sm-6 input-radio"><label class="radio-container"><input type="radio" formControlName="epilepsy" value="No"><span class="checkmark"></span> No</label></div>
+				    </div>
+			      </div>
+		        </div>
+				
+				<div class="form-group col-sm-12 select-full">
+			      <label>Specify epilepsy or fits issues</label>
+			      <select class="form-control" formControlName="epilepsy_issue"><option value="Epilepsy">Epilepsy</option><option value="Fits">Fits</option><option value="Other">Other</option></select>
+		        </div>
+				
+				<div class="form-group col-sm-12">
+			      <div class="input-group">
+			        <label class="label">Do you suffer from depression, anxiety or any other psychological problems?</label>
+				    <div class="input-inner row">
+				      <div class="col-sm-6 input-radio"><label class="radio-container mrb-r"><input type="radio" formControlName="psychological" value="Yes"><span class="checkmark"></span> Yes</label></div>
+				    
+					  <div class="col-sm-6 input-radio"><label class="radio-container"><input type="radio" formControlName="psychological" value="No"><span class="checkmark"></span> No</label></div>
+				    </div>
+			      </div>
+		        </div>
+				
+				<div class="form-group col-sm-12">
+			      <label>Specify psychological issues</label>
+			      <select class="form-control" formControlName="psychological_issue"><option value=""></option><option value="Depression">Depression</option><option value="Panic attacks">Panic attacks</option><option value="Anxiety">Anxiety</option><option value="Other psychological problems">Other psychological problems</option></select>
+		        </div>
+				
+				<div class="form-group col-sm-12">
+			      <div class="input-group">
+			        <label class="label">Are you anaemic</label>
+				    <div class="input-inner row">
+				      <div class="col-sm-6 input-radio"><label class="radio-container mrb-r"><input type="radio" formControlName="anaemic" value="Yes"><span class="checkmark"></span> Yes</label></div>
+				    
+					  <div class="col-sm-6 input-radio"><label class="radio-container"><input type="radio" formControlName="anaemic" value="No"><span class="checkmark"></span> No</label></div>
+				    </div>
+			      </div>
+		        </div>
+				
+				<div class="form-group col-sm-12">
+			      <div class="input-group">
+			        <label class="label">Are you taking any medication</label>
+				    <div class="input-inner row">
+				      <div class="col-sm-6 input-radio"><label class="radio-container mrb-r"><input type="radio" formControlName="medication" value="Yes"><span class="checkmark"></span> Yes</label></div>
+				    
+					  <div class="col-sm-6 input-radio"><label class="radio-container"><input type="radio" formControlName="medication" value="No"><span class="checkmark"></span> No</label></div>
+				    </div>
+			      </div>
+		        </div>
+				
+				<div class="form-group col-sm-12">
+			      <label>Specify any medication</label>
+			      <textarea class="form-control" formControlName="medication_reason"></textarea>
+		        </div>
+				
+				<div class="form-group col-sm-12">
+			      <div class="input-group">
+			        <label class="label">Have you had any recent operations or hospital admissions (within the last 6 months)?</label>
+				    <div class="input-inner row">
+				      <div class="col-sm-6 input-radio"><label class="radio-container mrb-r"><input type="radio" formControlName="operation"><span class="checkmark"></span> Yes</label></div>
+				    
+					  <div class="col-sm-6 input-radio"><label class="radio-container"><input type="radio" formControlName="operation"><span class="checkmark"></span> No</label></div>
+				    </div>
+			      </div>
+		        </div>
+				
+				<div class="form-group col-sm-12">
+			     <label>Specify operations or hospital admissions</label>
+			      <textarea class="form-control" formControlName="operation_reason"></textarea>
+		        </div>
+				
+				<div class="form-group col-sm-12">
+			     <p class="mrb-0"><b><a href="https://storage.snappages.site/eupr0m0685/assets/files/Travel-Guide-V1.2.pdf" target="_blank">Download</a>&nbsp;the DAN Travel Guide&nbsp;</b></p>
+		        </div>
+				
+				<div class="form-group col-sm-12">
+			     <p class="mrb-0">The travel notification is to ensure that the DAN hotline team knows when you travel abroad and to note this on our system. This information helps the DAN hotline team to assist you with fast and speedy service when you need it. With the information provided the DAN hotline team will be able to plan potential evacuation procedures and advise you on the availability of appropriate facilities where you will be diving.</p>
+		        </div>
+				
+				<div class="form-group col-sm-12">
+			     <div class="custom-control custom-checkbox">
+			        <input type="checkbox" class="custom-control-input" id="agree" formControlName="agree">
+			        <label class="custom-control-label ml-2" for="remember">I’ve read and agree with <a routerLink="/travel-statement" rel="noopener noreferrer" target="_blank">Terms of the DAN Travel Statement</a> and <a routerLink="/privacy-policy" rel="noopener noreferrer" target="_blank"><span>Privacy Policy</span> </a></label>
+			      </div>
+				  <small class="text-danger" *ngIf="isNextButtonClickedLast && myForm.get('agree')?.hasError('required')"> This field is required. </small>
+		        </div>
+				
+			    <div class="form-group col-sm-12 steps-btn">
+			      <div class="row">
+				    <div class="col-sm-6"><a href="#" class="btn btn-red back-btn" data-id="6">Back</a></div>
+					<div class="col-sm-6"><input type="submit" class="btn" value="Submit"></div>
+		          </div>
+		        </div>
+			
+		      </div><!--/ row -->
+		    </div><!--/ form-steps -->
+		  </form>
+		  
+	    </div><!--/ form-grid -->
+	  </div>
+          
+    </div><!--/ row -->	
+  </div>
+</section><!--/ form-wrap -->
+<app-sub-footer></app-sub-footer>

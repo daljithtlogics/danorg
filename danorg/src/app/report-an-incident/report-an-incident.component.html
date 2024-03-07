@@ -1,0 +1,652 @@
+<section class="form-wrap annual-application">
+  <div class="container">
+    <div class="row">
+
+      <div class="col-sm-12">
+        <div class="form-grid">
+          <div class="title">
+            <h2>Diving Incident Reporting System</h2>
+            <p>Please make sure you've filled in all the required fields</p>
+          </div><!--/ title -->
+
+          <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+            <div class="form-steps form-group col-sm-12" id="step_1">
+              <div class="row">
+                <div class="col-sm-12 form-group">
+                  <div class="step-no">Step 1 of 6</div>
+                  <h3>DISCLAIMER</h3>
+                  <div class="form-bar">
+                    <div class="form-clearbar"></div>
+                    <div class="form-fillbar"></div>
+                  </div><!--/ form-bar -->
+                </div>
+
+                <div class="row">
+                  <div class="form-group col-sm-12">
+                    <div class="heading_main">If you are experiencing a medical emergency, call your local emergency
+                      service.</div>
+                    <p class="heading_caption">If you are suffering from medical issues as a result of an incident and
+                      would like to consult a DAN medic, email danmedic@dansa.org or call the DAN Diving Hotline at +27
+                      82
+                      810 6010.</p>
+                  </div>
+                  <div class="form-group col-sm-12">
+                    <div class="heading_main">DO NOT use this report to file membership
+                      benefit claim.</div>
+                    <p class="heading_caption">If you intend to file a claim under
+                      diving accident or travel membership benefits, please contact DAN Claims Department at
+                      mail@dansa.org or call +27 266 4900, option 6.</p>
+                  </div>
+                  <div class="form-group col-sm-12">
+                    <div class="heading_main">PRIVACY</div>
+                    <p class="heading_caption">The Divers Alert Network (DAN) Research
+                      department will not share your information with any other department within DAN. DAN cares
+                      about
+                      your privacy and no individual shall be identified verbally or published. Data are released
+                      only
+                      in anonymous form and contact information of the reporting person will not be released
+                      publicly.
+                      Contact information is requested to facilitate follow-up if warranted (and if the person
+                      grants
+                      permission for contact to be made – asked as one of the final questions). All information
+                      obtained during the study, including the respondent’s identity, will be kept confidential to
+                      the
+                      full extent allowed by law.</p>
+                  </div>
+                  <div class="form-group col-sm-12">
+                    <div class="heading_main">ABOUT</div>
+                    <p class="heading_caption">We appreciate your time and effort in
+                      providing information about the diving incident and the results of our data collection and
+                      analysis may be made public for the benefit of our community. DAN (Divers Alert Network), with
+                      your help, has maintained a diving incident database since 1989. Originally, it was limited to
+                      scuba diving incidents. This online reporting system is designed to include a variety of
+                      incidents including breath-hold diving, rebreather diving, accidents and incidents that
+                      happened
+                      outside of the water.</p>
+                  </div>
+                  <div class="form-group col-sm-12">
+                    <div class="heading_main">INSTRUCTIONS</div>
+                    <p class="heading_caption">The incident collection instrument is
+                      divided into sections, each with a series of questions. The time required to complete
+                      the sections will vary with the amount of detail available and the complexity of the case.
+                      Each section will be saved automatically when you click “Continue”. After saving a page, you
+                      will automatically be sent to the next one. You will be able to move forward and backward
+                      through the pages to make any necessary changes until you click “Done” on the final page. At
+                      that time, you will no longer be able to return to the case. Please contact special
+                      projects@dansa.org if you have questions or issues concerning this process.
+                    </p>
+                  </div>
+                  <div class="form-group col-sm-12 steps-btn">
+                    <p class="heading_caption text-center"><a href="#" class="btn next-btn" data-id="1">Next</a></p>
+                  </div>
+                  <div class="form-group col-sm-12 text-left">
+                    <p class="heading_caption">Divers Alert Network Southern Africa Private Bag X197, Halfway House,
+                      1685 Tel: +27 11 266 4900 • Email: mail@dansa.org</p>
+                  </div>
+                </div>
+              </div>
+            </div><!--/ form-steps -->
+
+            <div class="form-steps form-group col-sm-12" id="step_2">
+              <div class="row">
+                <div class="col-sm-12 form-group">
+                  <div class="step-no">Step 2 of 6</div>
+                  <h3>CONTACT INFORMATION</h3>
+                  <div class="form-bar">
+                    <div class="form-clearbar"></div>
+                    <div class="form-fillbar"></div>
+                  </div><!--/ form-bar -->
+                </div>
+
+                <div class="row">
+                  <div class="form-group col-sm-12">
+                    <div class="heading_main">1. Please enter your contact information.</div>
+                    <p class="heading_caption">Your contact details are only used to contact you for further
+                      information. None of your identifying information will be in the report if it is published
+                      through DAN channels. This should be the information for the person filling out the form, or
+                      the primary contact for the case, who may not be the same as the victim. Questions marked
+                      with (*) are required.</p>
+                  </div>
+                  <div class="form-group col-sm-12">
+                    <div class="heading_main">Name</div>
+                    <p class="heading_caption">Enter the information which is in your passport</p>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="form-group col-sm-6">
+                    <label>First Name <span class="text-danger">*</span></label>
+                    <input class="form-control" placeholder="John" value="" formControlName="fname1">
+                    <small class="text-danger" *ngIf="isNextButtonClicked && myForm.get('fname1')?.hasError('required')"> First name is required. </small>
+                  </div>
+
+                  <div class="form-group col-sm-6">
+                    <label>Last Name <span class="text-danger">*</span></label>
+                    <input class="form-control" placeholder="Doe" value="" formControlName="sname1">
+                    <small class="text-danger" *ngIf="isNextButtonClicked && myForm.get('sname1')?.hasError('required')"> Last name is required. </small>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="form-group col-sm-12">
+                    <div class="heading_main">Contact details</div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="form-group col-sm-6">
+                    <label>Phone <span class="text-danger">*</span></label>
+                    <input class="form-control" placeholder="Include country code" type="text" value=""
+                      formControlName="cellphone1">
+                      <small class="text-danger" *ngIf="isNextButtonClicked && myForm.get('cellphone1')?.hasError('required')"> Phone number is required. </small>
+                  </div>
+                  <div class="form-group col-sm-6">
+                    <label>Email <span class="text-danger">*</span> </label>
+                    <input class="form-control" placeholder="example@box.com" type="email" value=""
+                      formControlName="email1">
+                      <small class="text-danger" *ngIf="isNextButtonClicked && (myForm.get('email1')?.hasError('required') || myForm.get('email1')?.hasError('email'))">
+                        <ng-container *ngIf="myForm.get('email1')?.hasError('required')">Email address is required.</ng-container>
+                        <ng-container *ngIf="myForm.get('email1')?.hasError('email') && !myForm.get('email1')?.hasError('required')">Invalid email address.</ng-container>
+                      </small>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="form-group col-sm-12">
+                    <div class="heading_main">2. DAN Membership</div>
+                  </div>
+                  <div class="form-group col-sm-12">
+                    <div class="input-group">
+                      <label class="label">Are you a DAN member</label>
+                      <div class="input-inner row">
+                        <div class="col-sm-6 input-radio"><label class="radio-container mrb-r"><input type="radio" formControlName="dan_member" value="Yes"><span class="checkmark"></span> Yes</label></div>
+                      
+                      <div class="col-sm-6 input-radio"><label class="radio-container"><input type="radio" formControlName="dan_member" value="No"><span class="checkmark"></span> No</label></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+               
+                <div class="row steps-btn">
+                  <div class="form-group col-sm-12">
+                    <p class="heading_caption text-center"><a href="#" class="btn btn-lightgray back-btn"
+                        data-id="2">Back</a> <a href="#" class="btn next-btn" data-id="2">Next</a></p>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="form-group col-sm-12 text-left">
+                    <p class="heading_caption">Divers Alert Network Southern Africa Private Bag X197, Halfway
+                      House, 1685 Tel: +27 11 266 4900 • Email: mail@dansa.org</p>
+                  </div>
+                </div>
+              </div><!--/ row -->
+            </div><!--/ form-steps -->
+
+            <div class="form-steps form-group col-sm-12" id="step_3">
+              <div class="row">
+                <div class="col-sm-12 form-group">
+                  <div class="step-no">Step 3 of 6</div>
+                  <h3>INCIDENT CATEGORY</h3>
+                  <div class="form-bar">
+                    <div class="form-clearbar"></div>
+                    <div class="form-fillbar"></div>
+                  </div><!--/ form-bar -->
+                </div>
+
+                <div class="row">
+                  <div class="form-group col-sm-12">
+                    <div class="heading_main">Incident Type</div>
+                  </div>
+                  <div class="form-group col-sm-12">
+                    <label>What type of incident would you like to report?</label>
+                    <label class="font-light">Select all that apply</label>
+                  </div>
+                </div>
+                <div class="row step3">
+                  <div class="col-sm-6 form-group" *ngFor="let incident of incidentTypeOptions">
+                    <div class="custom-control custom-checkbox">
+                      <label class="custom-control-label ml-2"><input type="checkbox" class="custom-control-input" [(ngModel)]="incidentCheckbox[incident.value]" formControlName="incident_type" (change)="onIncidentCheckboxChange(incident.value)">{{ incident.label }}</label>
+                    </div>
+                  </div>
+                  <div class="col-sm-12 form-group">
+                    <input *ngIf="incidentCheckbox['Others']" type="text" formControlName="othersInputValue" placeholder="Type your answer" id="othersInput" [(ngModel)]="incidentTextField" class="form-control">
+                  </div>
+                </div>
+                <!-- incident type -->
+
+                <div class="row">
+                  <div class="form-group col-sm-12">
+                    <div class="heading_main">Incident Involvement</div>
+                  </div>
+
+                  <div class="form-group col-sm-12">
+                    <div class="input-group">
+                      <label class="label">Were you involved in the incident?</label>
+                      <div class="input-inner row">
+                        <div class="col-sm-6 input-radio"><label class="radio-container mrb-r"><input type="radio" formControlName="involved" value="Yes"><span class="checkmark"></span> Yes</label></div>
+                      
+                      <div class="col-sm-6 input-radio"><label class="radio-container"><input type="radio" formControlName="involved" value="No"><span class="checkmark"></span> No</label></div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group col-sm-12">
+                    <div class="heading_main">5. Were you the person (victim) affected by the incident?</div>
+                  </div>
+                  <div class="form-group col-sm-12">
+                    <div class="input-group">
+                      <label class="label">Were you the person (victim) affected by the incident?</label>
+                      <div class="input-inner row">
+                        <div class="col-sm-6 input-radio"><label class="radio-container mrb-r"><input type="radio" formControlName="victim" value="Yes"><span class="checkmark"></span> Yes</label></div>
+                      
+                      <div class="col-sm-6 input-radio"><label class="radio-container"><input type="radio" formControlName="victim" value="No"><span class="checkmark"></span> No</label></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row steps-btn">
+                  <div class="form-group col-sm-12">
+                    <p class="heading_caption text-center"><a href="#" class="btn btn-lightgray back-btn"
+                        data-id="3">Back</a> <a href="#" class="btn next-btn" data-id="3">Next</a></p>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="form-group col-sm-12 text-left">
+                    <p class="heading_caption">Divers Alert Network Southern Africa Private Bag X197, Halfway
+                      House, 1685 Tel: +27 11 266 4900 • Email: mail@dansa.org</p>
+                  </div>
+                </div>
+              </div><!--/ row -->
+            </div><!--/ form-steps -->
+
+            <div class="form-steps form-group col-sm-12" id="step_4">
+              <div class="row">
+                <div class="col-sm-12 form-group">
+                  <div class="step-no">Step 4 of 6</div>
+                  <h3>ADDITIONAL INFORMATION</h3>
+                  <div class="heading_caption">Additional information about the victim. Please provide additional
+                    information about the victim, their health and dive experience. Skip questions you cannot answer.
+                    Only questions marked with (*) are required to continue.</div>
+                  <div class="form-bar">
+                    <div class="form-clearbar"></div>
+                    <div class="form-fillbar"></div>
+                  </div><!--/ form-bar -->
+                </div>
+
+                <div class="row">
+                  <div class="form-group col-sm-12">
+                    <div class="heading_main">5. Identify Units</div>
+                  </div>
+                  <div class="form-group col-sm-12">
+                    <div class="input-group">
+                      <label class="label">Indicate if you will be using imperial or metric units during your report.</label>
+                      <div class="input-inner row">
+                        <div class="col-sm-6 input-radio"><label class="radio-container mrb-r"><input type="radio" formControlName="units" value="Imperial"><span class="checkmark"></span> Imperial</label></div>
+
+                        <div class="col-sm-6 input-radio"><label class="radio-container"><input type="radio" formControlName="units" value="Metric"><span class="checkmark"></span> Metric</label></div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group col-sm-12">
+                    <div class="heading_main">6. Choose Sex</div>
+                  </div>
+                  <div class="form-group col-sm-12">
+                    <div class="input-group">
+                      <label class="label">What is the victim's sex?</label>
+                      <div class="input-inner row">
+                        <div class="col-sm-4 input-radio"><label class="radio-container mrb-r"><input type="radio" formControlName="gender" value="Female"><span class="checkmark"></span> Female</label></div>
+                        
+                        <div class="col-sm-4 input-radio"><label class="radio-container"><input type="radio" formControlName="gender" value="Male"><span class="checkmark"></span> Male</label></div>
+                        <div class="col-sm-4 input-radio"><label class="radio-container"><input type="radio" formControlName="gender" value="Idk"><span class="checkmark"></span> I don't know</label></div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group col-sm-12">
+                    <div class="heading_main">7. Height</div>
+                  </div>
+                  <div class="form-group col-sm-12">
+                    <label>What is the victim's height?</label>
+                    <input type="text" formControlName="height" id="" class="form-control" placeholder="Add information">
+                  </div>
+                  <div class="form-group col-sm-12">
+                    <div class="heading_main">8. Weight</div>
+                  </div>
+                  <div class="form-group col-sm-12">
+                    <label>What is the victim's weight?</label>
+                    <input type="text" formControlName="weight" id="" class="form-control" placeholder="Add information">
+                  </div>
+                  <div class="form-group col-sm-12">
+                    <div class="heading_main">9. Age</div>
+                  </div>
+                  <div class="form-group col-sm-12">
+                    <div class="input-group">
+                      <label class="label">What is the victim's sex?</label>
+                      <div class="input-inner row">
+                        <div class="col-sm-12 input-radio"><label class="radio-container mrb-r"><input type="radio" formControlName="age" value="Under 18"><span class="checkmark"></span> Under 18</label></div>
+                        <div class="col-sm-12 input-radio"><label class="radio-container"><input type="radio" formControlName="age" value="18-24"><span class="checkmark"></span> 18-24</label></div>
+                        <div class="col-sm-12 input-radio"><label class="radio-container"><input type="radio" formControlName="age" value="35-44"><span class="checkmark"></span> 35-44</label></div>
+                        <div class="col-sm-12 input-radio"><label class="radio-container"><input type="radio" formControlName="age" value="45-54"><span class="checkmark"></span> 45-54</label></div>
+                        <div class="col-sm-12 input-radio"><label class="radio-container"><input type="radio" formControlName="age" value="55-64"><span class="checkmark"></span> 55-64</label></div>
+                        <div class="col-sm-12 input-radio"><label class="radio-container"><input type="radio" formControlName="age" value="65+"><span class="checkmark"></span> 65+</label></div>
+                        <div class="col-sm-12 input-radio"><label class="radio-container"><input type="radio" formControlName="age" value="Idk"><span class="checkmark"></span>I don't know</label></div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group col-sm-12">
+                    <div class="heading_main">10. Fitness Level</div>
+                  </div>
+                  <div class="form-group col-sm-12">
+                    <label>How would you rate the victim's fitness level?</label>
+                    <div class="NumberScale__Container">
+                      <div role="radiogroup" aria-required="false" class="NumberScale__Numbers">
+                        <label class="NumberScale__NumberContainer" [class.selected]="selectedFitnessLevel === '1'"><input type="radio" formControlName="fitness_level" class="NumberScale__Input" [(ngModel)]="selectedFitnessLevel" value="1">
+                          <div class="NumberScale__NumberLabel">1</div>
+                        </label>
+                        <label class="NumberScale__NumberContainer" [class.selected]="selectedFitnessLevel === '2'"><input type="radio" formControlName="fitness_level" class="NumberScale__Input" [(ngModel)]="selectedFitnessLevel" value="2">
+                          <div class="NumberScale__NumberLabel">2</div>
+                        </label>
+                        <label class="NumberScale__NumberContainer" [class.selected]="selectedFitnessLevel === '3'"><input type="radio" formControlName="fitness_level" class="NumberScale__Input" [(ngModel)]="selectedFitnessLevel" value="3">
+                          <div class="NumberScale__NumberLabel">3</div>
+                        </label>
+                        <label class="NumberScale__NumberContainer" [class.selected]="selectedFitnessLevel === '4'"><input type="radio" formControlName="fitness_level" class="NumberScale__Input" [(ngModel)]="selectedFitnessLevel" value="4">
+                          <div class="NumberScale__NumberLabel">4</div>
+                        </label>
+                        <label class="NumberScale__NumberContainer" [class.selected]="selectedFitnessLevel === '5'"><input type="radio" formControlName="fitness_level" class="NumberScale__Input" [(ngModel)]="selectedFitnessLevel" value="5">
+                          <div class="NumberScale__NumberLabel">5</div>
+                        </label>
+                        <label class="NumberScale__NumberContainer" [class.selected]="selectedFitnessLevel === '6'"><input type="radio" formControlName="fitness_level" class="NumberScale__Input" [(ngModel)]="selectedFitnessLevel" value="6">
+                          <div class="NumberScale__NumberLabel">6</div>
+                        </label>
+                        <label class="NumberScale__NumberContainer" [class.selected]="selectedFitnessLevel === '7'"><input type="radio" formControlName="fitness_level" class="NumberScale__Input" [(ngModel)]="selectedFitnessLevel" value="7">
+                          <div class="NumberScale__NumberLabel">7</div>
+                        </label>
+                        <label class="NumberScale__NumberContainer" [class.selected]="selectedFitnessLevel === '8'"><input type="radio" formControlName="fitness_level" class="NumberScale__Input" [(ngModel)]="selectedFitnessLevel" value="8">
+                          <div class="NumberScale__NumberLabel">8</div>
+                        </label>
+                        <label class="NumberScale__NumberContainer" [class.selected]="selectedFitnessLevel === '9'"><input type="radio" formControlName="fitness_level" class="NumberScale__Input" [(ngModel)]="selectedFitnessLevel" value="9">
+                          <div class="NumberScale__NumberLabel">9</div>
+                        </label>
+                        <label class="NumberScale__NumberContainer" [class.selected]="selectedFitnessLevel === '10'"><input type="radio" formControlName="fitness_level" class="NumberScale__Input" [(ngModel)]="selectedFitnessLevel" value="10">
+                          <div class="NumberScale__NumberLabel">10</div>
+                        </label>
+                      </div>
+                      <div class="NumberScale__Caption NumberScale__LeftCaption"> Mostly Inactive</div>
+                      <div class="NumberScale__Caption NumberScale__RightCaption"> Very Active</div>
+                    </div>
+                  </div>
+                  <div class="form-group col-sm-12">
+                    <div class="heading_main">11. Medical Conditions</div>
+                  </div>
+                  <div class="col-sm-12 form-group">
+                    <label>To your knowledge, does the victim have any of the following medical conditions?</label>
+                    <div class="row step3">
+                      <div class="col-sm-12 form-group" *ngFor="let medical of medicalTypeOptions">
+                        <div class="custom-control custom-checkbox">
+                          <label class="custom-control-label ml-2"><input type="checkbox" class="custom-control-input" [(ngModel)]="medicalCheckbox[medical.value]" formControlName="medical" (change)="onMedicalCheckboxChange(medical.value)">{{ medical.label }}</label>
+                        </div>
+                      </div>
+                      <div class="col-sm-12 form-group">
+                        <input *ngIf="medicalCheckbox['Others']" type="text" formControlName="medicalInputValue" placeholder="Type your answer" id="medicalInput" [(ngModel)]="medicalTextField" class="form-control">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group col-sm-12">
+                    <div class="heading_main">12. Diving Discipline</div>
+                  </div>
+                  <div class="col-sm-12 form-group">
+                    <label>What kind of diving does the victim practice?</label>
+                    <div class="row step3">
+                      <div class="col-sm-12 form-group" *ngFor="let discipline of disciplineTypeOptions">
+                        <div class="custom-control custom-checkbox">
+                          <label class="custom-control-label ml-2"><input type="checkbox" class="custom-control-input" [(ngModel)]="disciplineCheckbox[discipline.value]" formControlName="discipline" (change)="onDisciplineCheckboxChange(discipline.value)">{{ discipline.label }}</label>
+                        </div>
+                      </div>
+                      <div class="col-sm-12 form-group">
+                        <input *ngIf="disciplineCheckbox['Others']" type="text" formControlName="disciplineInputValue" placeholder="Type your answer" id="disciplineInput" [(ngModel)]="disciplineTextField" class="form-control">
+                      </div>
+                    </div>
+                    
+                  </div>
+                  <div class="form-group col-sm-12">
+                    <div class="heading_main">13. Dive Certification</div>
+                  </div>
+                  <div class="col-sm-12 form-group">
+                    <label>What is the victim's highest recreational dive certification level?</label>
+                    <div class="row step3">
+                      <div class="col-sm-12 form-group" *ngFor="let certification of certificationTypeOptions">
+                        <div class="custom-control custom-checkbox">
+                          <label class="custom-control-label ml-2"><input type="checkbox" class="custom-control-input" [(ngModel)]="certificationCheckbox[certification.value]" formControlName="certification">{{ certification.label }}</label>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group col-sm-12">
+                    <div class="heading_main">14. Diving Frequency</div>
+                  </div>
+                  <div class="form-group col-sm-12">
+                    <div class="input-group">
+                      <label class="label">How frequently did the victim dive in the last 3 years?</label>
+                      <div class="input-inner row">
+                        <div class="col-sm-12 input-radio"><label class="radio-container mrb-r"><input type="radio" formControlName="frequency" value="1-10 dives/year"><span class="checkmark"></span> 1-10 dives/year</label></div>
+                        <div class="col-sm-12 input-radio"><label class="radio-container"><input type="radio" formControlName="frequency" value="11-25 divers/year"><span class="checkmark"></span> 11-25 divers/year</label></div>
+                        <div class="col-sm-12 input-radio"><label class="radio-container"><input type="radio" formControlName="frequency" value="26-50 dives/year"><span class="checkmark"></span> 26-50 dives/year</label></div>
+                        <div class="col-sm-12 input-radio"><label class="radio-container"><input type="radio" formControlName="frequency" value=">50 dives/year"><span class="checkmark"></span> >50 dives/year</label></div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group col-sm-12">
+                    <div class="heading_main">15. Lifetime Dives</div>
+                  </div>
+                  <div class="form-group col-sm-12">
+                    <label>How many lifetime dives has the victim logged?</label>
+                    <input type="text" formControlName="lifetime_dives" class="form-control" placeholder="Add amount of lifetime dives">
+                  </div>
+                </div>
+
+                <div class="row steps-btn">
+                  <div class="form-group col-sm-12">
+                    <p class="heading_caption text-center"><a href="#" class="btn btn-lightgray back-btn"
+                        data-id="4">Back</a> <a href="#" class="btn next-btn" data-id="4">Next</a></p>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="form-group col-sm-12 text-left">
+                    <p class="heading_caption">Divers Alert Network Southern Africa Private Bag X197, Halfway
+                      House, 1685 Tel: +27 11 266 4900 • Email: mail@dansa.org</p>
+                  </div>
+                </div>
+              </div><!--/ row -->
+            </div><!--/ form-steps -->
+
+            <div class="form-steps form-group col-sm-12" id="step_5">
+              <div class="row">
+                <div class="col-sm-12 form-group">
+                  <div class="step-no">Step 5 of 6</div>
+                  <h3>INCIDENT INFORMATION</h3>
+                  <div class="heading_caption">Incident information involving pre-dive, in-water, or medical issues. We are asking you to provide detailed information about the incident you or the victim experienced. All information will be handled confidential and will not be shared or published with identifying information.</div>
+                  <div class="form-bar">
+                    <div class="form-clearbar"></div>
+                    <div class="form-fillbar"></div>
+                  </div><!--/ form-bar -->
+                </div>
+
+                <div class="row">
+                  <div class="form-group col-sm-12">
+                    <div class="heading_main">16. Date</div>
+                  </div>
+                  <div class="form-group col-sm-12">
+                    <label>Date of Incident</label>
+                    <input type="date" formControlName="date_incident" class="form-control">
+                  </div>
+                  <div class="form-group col-sm-12">
+                    <div class="heading_main">17. Location of Incident</div>
+                  </div>
+                  <div class="form-group col-sm-12">
+                    <label>Country - Location of Incident <small class="text-danger">*</small></label>
+                    <input type="text" formControlName="country_loc" class="form-control">
+                    <small class="text-danger" *ngIf="isNextButtonClickedLast && myForm.get('country_loc')?.hasError('required')"> Country field is required. </small>
+                    <br>
+                    <label>Dive Site - Location of Incident <small class="text-danger">*</small></label>
+                    <input type="text" formControlName="divesite_loc" class="form-control">
+                    <small class="text-danger" *ngIf="isNextButtonClickedLast && myForm.get('divesite_loc')?.hasError('required')"> Dive site - location is required. </small>
+                    <br>
+                    <label>CityTown - Location of Incident <small class="text-danger">*</small></label>
+                    <input type="text" formControlName="citytown_loc" class="form-control">
+                    <small class="text-danger" *ngIf="isNextButtonClickedLast && myForm.get('citytown_loc')?.hasError('required')"> CityTown - location is required. </small>
+                    <br>
+                  </div>
+                  <div class="form-group col-sm-12">
+                    <div class="heading_main">Description of the incident</div>
+                    <div class="heading_para">In the following sections, please describe the incident to your best ability. You will find a list of keywords that might be helpful for you and for us to understand what circumstances may have been a factor in this incident, not all terms will apply to your case, you do not need to address all. You may choose to upload an existing document if you have submitted an incident report elsewhere.</div>
+                  </div>
+
+                  <div class="form-group col-sm-12">
+                    <div class="heading_main">18. Document Upload (optional)</div>
+                    <div class="heading_para">If you have already submitted the incident elsewhere (training agency, dive center, federal agencies, etc.) or have the description of the incident as a written document, you may upload the document here. Otherwise, please refer to the next sections to complete your report. Please note that this platform only supports PDF, DOC, DOCX, PNG, JPG, JPEG, and GIF files. </div>
+                  </div>
+
+                  <div class="form-group col-sm-12">
+                    <div class="heading_main">Report Sections</div>
+                    <div class="heading_para">The following sections contain keywords as a guideline for you. Not all of them might be relevant to your incident, so you do not need to address all.</div>
+                  </div>
+
+                  <div class="form-group col-sm-12">
+                    <div class="heading_main">19. Section 1: Incident / Problem / Situation</div>
+                    <div class="heading_para">1. What happened (brief description)?
+                      <br> 2. Where did it happen (location, surface before the dive, during descent, at depth, during ascent, during deco, at the surface after the dive, out of the water)? <br>3. How many divers or non-divers were involved? <br> 4. Number of divers affected by the incident? <br> 5. Medical history/conditions?
+                    </div>
+                  </div>
+                  <div class="form-group col-sm-12">
+                    <label>Incident / Problem / Situation</label>
+                    <textarea formControlName="prob_situation" class="form-control" placeholder="Add information"></textarea>
+                  </div>
+                  <div class="form-group col-sm-12">
+                    <div class="heading_main">20. Section 2: The Dive</div>
+                    <div class="heading_para">Type of dive (training, recreational, technical, exploration, scientific, commercial, spearfishing/harvesting,...), preparation for the dive, type of equipment used, dive platform (e.g. boat, shore, pool), gas(es) used, altitude, max depth, weather/water conditions, time of day, etc.</div>
+                  </div>
+                  <div class="form-group col-sm-12">
+                    <label>The Dive</label>
+                    <textarea formControlName="the_dive" class="form-control" placeholder="Add information"></textarea>
+                  </div>
+                  <div class="form-group col-sm-12">
+                    <div class="heading_main">21. Section 3: Outcome</div>
+                    <div class="heading_para"> 1. What was the outcome of this incident? <br> 2. Loss of consciousness, panic, out of gas emergency, separation, broken equipment, disorientation, emergency ascent, injury, fatality,...</div>
+                  </div>
+                  <div class="form-group col-sm-12">
+                    <label>Outcome</label>
+                    <textarea formControlName="outcome" class="form-control" placeholder="Add information"></textarea>
+                  </div>
+
+                  <div class="form-group col-sm-12">
+                    <div class="heading_main">22. Section 4: Emergency Response</div>
+                    <div class="heading_para"> 1. Who if anyone responded to the incident underwater and/or at the surface (dive partner, first responder, boat crew, EMS, coast guard)? <br>2. What was done (share air, recovery, emergency ascent, first aid, emergency oxygen, equipment recovery, evacuation, hospitalization,...)?</div>
+                  </div>
+                  <div class="form-group col-sm-12">
+                    <label>Emergency Response</label>
+                    <textarea formControlName="emergency_response" class="form-control" placeholder="Add information"></textarea>
+                  </div>
+                  <div class="form-group col-sm-12">
+                    <div class="heading_main">23. Section 5: Contributing Factors</div>
+                    <div class="heading_para"> Address anything that might have contributed to the incident, e.g. (un)familiarity with equipment/dive site, diving experience level, task-loading, checklists used, weights carried, alcohol/lifestyle choices, haste, health problem/fitness to dive exam, fatigue, anxiety, training status, skill level, solo-dive, overhead environment, separation from dive partner, depth, visibility, temperature, decompression obligation, previous diving-related incidents etc.</div>
+                  </div>
+                  <div class="form-group col-sm-12">
+                    <label>Contributing Factors</label>
+                    <textarea formControlName="contributing_factors" class="form-control" placeholder="Add information"></textarea>
+                  </div>
+                  <div class="form-group col-sm-12">
+                    <div class="heading_main">24. Section 6: Lessons Learned (optional)</div>
+                    <div class="heading_para"> 1. What can be learned from the incident and how could similar situations be prevented or handled better in the future?  <br> 2. What lessons would you like to share with divers reading this incident report?</div>
+                  </div>
+                  <div class="form-group col-sm-12">
+                    <label>Lessons Learned</label>
+                    <textarea formControlName="lessons" class="form-control" placeholder="Add information"></textarea>
+                  </div>
+                  <div class="form-group col-sm-12">
+                    <div class="heading_main">25. Are you willing to talk to a member of the DAN team?</div>
+                    <div class="heading_para"> Are you willing to talk to a member of the DAN Team about this incident and to answer more questions to help us understand what may have contributed to the incident? Your contact information remains confidential and will not be shared.</div>
+                  </div>
+                  <div class="form-group col-sm-12">
+                    <div class="input-group">
+                      <label class="label">Are you willing to talk to a member of the DAN Team?</label>
+                      <div class="input-inner row">
+                        <div class="col-sm-12 input-radio"><label class="radio-container mrb-r"><input type="radio" formControlName="willing_talk" value="Yes"><span class="checkmark"></span> Yes</label></div>
+                        <div class="col-sm-12 input-radio"><label class="radio-container"><input type="radio" formControlName="willing_talk" value="No"><span class="checkmark"></span> No</label></div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group col-sm-12">
+                    <div class="heading_main">26. Upload additional information (optional)</div>
+                    <div class="heading_para">If you have additional documents you would like to share with us (incident reports submitted to agencies, police reports, news articles, dive profiles, photos, etc.) please upload those below. If the file format you want to upload is not supported, please attach the file to an email to specialprojects@dansa.org.</div>
+                  </div>
+                </div>
+
+                <div class="row steps-btn">
+                  <div class="form-group col-sm-12">
+                    <p class="heading_caption text-center"><a href="#" class="btn btn-lightgray back-btn"
+                        data-id="5">Back</a> <a href="#" class="btn next-btn" data-id="5">Next</a></p>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="form-group col-sm-12 text-left">
+                    <p class="heading_caption">Divers Alert Network Southern Africa Private Bag X197, Halfway
+                      House, 1685 Tel: +27 11 266 4900 • Email: mail@dansa.org</p>
+                  </div>
+                </div>
+              </div><!--/ row -->
+            </div><!--/ form-steps -->
+
+            <div class="form-steps form-group col-sm-12" id="step_6">
+              <div class="row">
+                <div class="col-sm-12 form-group">
+                  <div class="step-no">Step 6 of 6</div>
+                  <h3>THANK YOU</h3>
+                  <div class="form-bar">
+                    <div class="form-clearbar"></div>
+                    <div class="form-fillbar"></div>
+                  </div><!--/ form-bar -->
+                </div>
+
+                <div class="row">
+                  <div class="form-group col-sm-12">
+                    <div class="heading_para">Thank you for completing this incident report, it will be submitted when you click the <strong>'Done - Submit Incident Report'</strong> button. At that time you will not be able to edit the submitted information. Please know that your contribution is very important to us. We will review your report and a member of our team might contact you with additional questions. </div>
+                  </div>
+
+                  <div class="form-group col-sm-12">
+                    <div class="heading_para">If you are experiencing any medical issues as a result of the reported incident, please contact danmedica@dansa.org or call DAN Diving Hotline at +27 82 810 6010. </div>
+                  </div>
+
+                  <div class="form-group col-sm-12">
+                    <div class="heading_para">In case you want to withdraw the incident report, edit information, or if you have any questions regarding the DAN Diving Incident Reporting System, please contact specialprojects@dansa.org. </div>
+                  </div>
+
+                  <div class="form-group col-sm-12">
+                    <div class="heading_para">Stay safe,  </div>
+                  </div>
+                  <div class="form-group col-sm-12">
+                    <div class="heading_para">Your DAN-Team</div>
+                  </div>
+                  <div class="form-group col-sm-12">
+                    <div class="heading_main">Please refresh the page and resubmit the form if the submit button doesn't redirect you to the thank you page.</div>
+                    <div class="heading_caption">Once you refresh the page your details will remain on the form if you decide to refresh the page and resubmit the form.</div>
+                  </div>
+                </div>
+
+                <div class="row steps-btn">
+                  <div class="form-group col-sm-12">
+                    <p class="heading_caption text-center"><a href="#" class="btn btn-lightgray back-btn"
+                        data-id="6">Back</a> <input type="submit" value="Submit" class="btn"></p>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="form-group col-sm-12 text-left">
+                    <p class="heading_caption">Divers Alert Network Southern Africa Private Bag X197, Halfway
+                      House, 1685 Tel: +27 11 266 4900 • Email: mail@dansa.org</p>
+                  </div>
+                </div>
+              </div><!--/ row -->
+            </div><!--/ form-steps -->
+          </form>
+
+        </div><!--/ form-grid -->
+      </div>
+
+    </div><!--/ row -->
+  </div>
+</section><!--/ form-wrap -->

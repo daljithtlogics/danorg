@@ -1,0 +1,159 @@
+<section class="info-wrapper">
+  <div class="container">
+    <div class="row">
+      
+	  <div class="col-sm-12">
+	    <div class="banner-text">
+		  <h1 class="text-show"><b>Privacy Policy</b></h1>
+		  <p class="update-info">DAN is committed to protecting your privacy and uses your personal information only to process orders and provide you with the highest level of service. Please read on for more details about DAN's policy regarding your privacy.</p>
+		  
+        </div>
+	  </div>
+	
+    </div>
+  </div>
+</section><!--/ info-wrapper -->
+
+<section class="about-text about-black">
+  <div class="container">
+    <div class="row">
+      
+	  <div class="col-sm-6 left">
+	    <h2>Information Collected</h2>
+		<p>When you order a product or sign up for membership, we need to know your name, email address, mailing or physical address and payment information. This allows us to process and fulfill your orders and to notify you of your order status.</p>
+		<p>When you enter a contest or other promotional feature, we may ask for your name, address and email address so we can administer the contest and notify winners.</p>
+		<p>We also monitor traffic patterns and site usage to help us improve our site and identify problems.</p>
+		<p>We may also use the information we collect to occasionally notify you about important functionality changes to our website, new DAN services and announcements we think you will find valuable.</p>
+			
+	  </div>
+	  
+	  <div class="col-sm-6 right">		 
+		<figure><img src="assets/images/3369136_6318x4212_1000.jpg" alt="image"></figure>
+      </div><!--/ right -->  
+          
+    </div><!--/ row -->	
+  </div>
+</section><!--/ about-text  -->
+
+<section class="about-text light-blue">
+  <div class="container">
+    <div class="row row-flex">
+      
+	  <div class="col-sm-6 left">
+	    <h2>Protecting Your Information</h2>
+		<p>When you place an order or use our online membership form, we offer the use of a secure server. The secure server software (SSL) encrypts all information you input before it is sent to us. Furthermore, all of the member data we collect is protected against unauthorised access.</p>
+	  </div>
+	  
+	  <div class="col-sm-6 right">		 
+		<figure><img src="assets/images/3369144_5568x3712_1000.jpg" alt="image"></figure>
+      </div><!--/ right -->  
+          
+    </div><!--/ row -->	
+  </div>
+</section><!--/ about-text  -->
+
+<section class="about-text about-black">
+  <div class="container">
+    <div class="row">
+      
+	  <div class="col-sm-6 left">
+	    <h2>Cookies</h2>
+		<p>"Cookies" are small pieces of information that are stored by your browser on your computer's hard drive. Our cookies do not contain any personally identifying information, but they do enable us to learn more about our members, provide better online features and store items in your shopping cart between visits. Most web browsers automatically accept cookies, but you can usually change your browser preferences to prevent that. Even without a cookie, you can still use most of the features on our site. However, we do not recommend this if you plan to purchase products or access restricted areas.</p>
+		
+	  </div>
+	  
+	  <div class="col-sm-6 right">		 
+		<figure><img src="assets/images/3369149_6720x4480_1000.jpg" alt="image"></figure>
+      </div><!--/ right -->  
+          
+    </div><!--/ row -->	
+  </div>
+</section><!--/ about-text  -->
+
+<section class="about-text light-blue">
+  <div class="container">
+    <div class="row row-flex">
+      
+	  <div class="col-sm-6 left">
+	    <h2>Summary</h2>
+		<p>DAN is committed to protecting your privacy. We use the information we collect on the site to enhance your overall experience while visiting DAN online.</p>
+		
+	  </div>
+	  
+	  <div class="col-sm-6 right">		 
+		<figure><img src="assets/images/3369154_6720x4480_1000.jpg" alt="image"></figure>
+      </div><!--/ right -->  
+          
+    </div><!--/ row -->	
+  </div>
+</section><!--/ about-text  -->
+<section class="about-text about-black">
+  <div class="container">
+    <div class="row">
+      
+	  <div class="col-sm-6 left">
+	    <h2>Consent</h2>
+		<p>By using our website, you consent to the collection and use of this information by DAN. If we decide to change our privacy policy, we will post those changes on this page so that you are always aware of what information we collect, how we use it and under what circumstances we disclose it.</p>
+		
+	  </div>
+	  
+	  <div class="col-sm-6 right">		 
+		<figure><img src="assets/images/3369164_6489x4326_1000.jpg" alt="image"></figure>
+      </div><!--/ right -->  
+          
+    </div><!--/ row -->	
+  </div>
+</section><!--/ about-text  -->
+
+
+<section class="form-wrap policy-form light-blue">
+	<div class="container">
+	  <div class="row">
+		
+		<div class="col-sm-12">
+		  <div class="form-grid">
+			<div class="title">
+				<h1 class="text-show"><b> Feedback</b></h1>
+			  <p>DAN welcomes your questions and comments about privacy.</p>
+			</div><!--/ title -->
+			
+			<form [formGroup]="feedbackForm" (ngSubmit)="onSubmit()">
+				<input type="hidden" formControlName="slug" value="privacy-policy">
+			  <div class="form-group col-sm-6">
+				<label>First Name<small class="text-danger">*</small></label>
+				<input class="form-control" placeholder="" value="" formControlName="fname">
+				<small class="text-danger" *ngIf="isNextButtonClicked && feedbackForm.get('fname')?.hasError('required')"> First Name is required. </small>
+			  </div>
+			  
+			  <div class="form-group col-sm-6">
+				<label>Last Name</label>
+				<input class="form-control" placeholder="" value="" formControlName="sname">
+			  </div>
+			  
+			  <div class="form-group col-sm-12">
+				<label>Email Address<small class="text-danger">*</small> </label>
+				<input class="form-control" placeholder="" type="email" value="" formControlName="email_address">
+				<small class="text-danger" *ngIf="isNextButtonClicked && (feedbackForm.get('email_address')?.hasError('required') || feedbackForm.get('email_address')?.hasError('email'))">
+					<ng-container *ngIf="feedbackForm.get('email_address')?.hasError('required')">Email address is required.</ng-container>
+					<ng-container *ngIf="feedbackForm.get('email_address')?.hasError('email') && !feedbackForm.get('email_address')?.hasError('required')">Invalid email address.</ng-container>
+				</small>
+			  </div>
+			  
+			  		  
+			  <div class="form-group col-sm-12">
+				<label>Message </label>
+				<textarea class="form-control" placeholder="" formControlName="message"></textarea>
+			  </div>
+			  
+			  <div class="form-group col-sm-12 text-center">
+				<input class="btn" value="Submit" type="submit">
+			  </div>
+			</form>
+			
+		  </div><!--/ form-grid -->
+		</div>
+			
+	  </div><!--/ row -->	
+	</div>
+  </section><!--/ form-wrap -->
+  <app-sub-footer></app-sub-footer>

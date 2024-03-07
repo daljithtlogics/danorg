@@ -1,0 +1,124 @@
+<section class="breadcrumb">
+  <div class="container">
+    <ul>
+      <li>
+        <a routerLink="/danshop">
+          <i class="fa fa-home" aria-hidden="true"></i>Home </a>
+      </li>
+      <li>Order Details</li>
+    </ul>
+  </div>
+</section>
+<section class="mid-inner">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-3 full-wrap">
+        <app-account-sidebar></app-account-sidebar>
+      </div>
+      <div class="col-sm-9 full-wrap">
+        <div class="order-confirmation" *ngIf="orderByCode; else loading">
+          <div class="row">
+            <div class="col-sm-12 mb-3">
+              <h2>Order Details #{{orderByCode.code}}</h2>
+            </div>
+            <div class="col-sm-12 mb-3">
+              <p> 
+                Order code: {{orderByCode.code}} <br> 
+                Order placed on: {{ orderByCode.updatedAt | date: 'medium' }} <br> 
+                State: {{ orderByCode.state | formatOrderState }} <br>
+              </p>
+            </div>
+            <div class="col-sm-12" style="margin-bottom: 10px;">
+              <h4>Contact Details</h4>
+              {{ orderByCode.customer.firstName }} {{ orderByCode.customer.lastName }} <br>
+              {{ orderByCode.customer.emailAddress }} <br>
+              {{ orderByCode.customer.phoneNumber }} <br>
+              <br>
+            </div>
+            <div class="col-sm-12" style="margin-bottom: 25px;">
+              <h4>Shipping Address</h4>
+              <div *ngIf="orderByCode && orderByCode.shippingAddress">
+                {{ orderByCode.shippingAddress.fullName }} <br>
+                {{ orderByCode.shippingAddress.phoneNumber }} <br>
+                {{ orderByCode.shippingAddress.streetLine1 }} <br> 
+								{{ orderByCode.shippingAddress.streetLine2 }}, 
+								{{ orderByCode.shippingAddress.city }} <br>
+								{{ orderByCode.shippingAddress.province }} <br>
+                {{ orderByCode.shippingAddress.postalCode }} <br>
+                {{ orderByCode.shippingAddress.country }} <br>
+                <br>
+              </div>
+            </div>
+            <div class="col-sm-12" style="margin-bottom: 10px;">
+              <h4>Order Summary</h4>
+            </div>
+            <!--/ checkout-coll -->
+            <div class="order-summary">
+              <div class="table-responsive">
+                <table class="table table-bordered">
+                  <tbody>
+                    <tr class="woocommerce-cart-form__cart-item cart_item" *ngFor="let item of orderByCode.lines; let index = index">
+                      <td class="product-thumbnail">
+                        <img src="{{item.featuredAsset.preview}}" alt="" class="rounded" style="max-width:80px">
+                      </td>
+                      <td class="product-name" data-title="Product">
+                        {{item.productVariant.name}}
+                        <br>Qty: {{item.quantity}}
+                      </td>
+                      <td class="product-price" data-title="Price">
+                        <span class="woocommerce-Price-amount amount">
+                          <bdi>{{orderByCode.currencyCode}} {{ item.unitPriceWithTax / 100 | number:'1.2-2' }}</bdi>
+                        </span>
+                      </td>
+                      <td class="product-subtotal" data-title="Subtotal">
+                        <span class="woocommerce-Price-amount amount">
+                          <bdi>{{orderByCode.currencyCode}} {{ (item.unitPriceWithTax * item.quantity) / 100 | number:'1.2-2' }}</bdi>
+                        </span>
+                      </td>
+                    </tr>
+                    <tr *ngFor="let promotion of orderByCode.promotions; let index = index">
+                      <td colspan="3" class="text-right">
+                        <strong>Discount Code</strong>
+                      </td>
+                      <td>
+                        <span class="coupon-tag">{{promotion.couponCode}}</span>
+                      </td>
+                    </tr>
+                    <tr *ngFor="let discount of orderByCode.discounts; let index = index">
+                      <td colspan="3" class="text-right">
+                        <strong>Discount Amount</strong>
+                      </td>
+                      <td>{{orderByCode.currencyCode}} {{discount.amountWithTax / 100  | number:'1.2-2'}}</td>
+                    </tr>
+                    <tr>
+                      <td colspan="3" class="text-right">
+                        <strong>Sub-Total:</strong>
+                      </td>
+                      <td>{{orderByCode.currencyCode}} {{orderByCode.subTotalWithTax / 100 | number:'1.2-2'}}</td>
+                    </tr>
+                    <tr>
+                      <td colspan="3" class="text-right">
+                        <strong>Shipping ( <span class="" *ngFor="let line of orderByCode.shippingLines">{{ line.shippingMethod.name }}</span>): </strong>
+                      </td>
+                      <td>{{orderByCode.currencyCode}} {{orderByCode.shippingWithTax / 100 | number:'1.2-2'}}</td>
+                    </tr>
+                    <tr>
+                      <td colspan="3" class="text-right">
+                        <strong>Total:</strong>
+                      </td>
+                      <td>{{orderByCode.currencyCode}} {{orderByCode.totalWithTax / 100 | number:'1.2-2'}}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          <!--/ row -->
+        </div>
+        <ng-template #loading>Loading...</ng-template>
+      </div>
+    </div>
+    <!--/ row -->
+  </div>
+</section>
+<!--/ mid-inner -->

@@ -1,0 +1,154 @@
+<header class="header {{currentRoutePath}}">
+    <div class="head-top">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="product_search_form">
+                        <app-danshop-search-bar></app-danshop-search-bar>
+                    </div>
+                    <div class="account-view">
+                        <button class="click-btn" type="button" data-bs-toggle="collapse" data-bs-target="#account" aria-expanded="false" aria-controls="account">
+                            <i class="fa-regular fa-user"></i>
+                        </button>
+                        <div class="collapse" id="account">
+                            <div class="card card-body" *ngIf="!(signedIn$ | async); else elseBlock">
+                                <ul>
+                                    <li>
+                                        <a [routerLink]="['/danshop/account/register']">
+                                            <i class="fa fa-user"></i> Register </a>
+                                    </li>
+                                    <li>
+                                        <a [routerLink]="['/danshop/account/sign-in']">
+                                            <i class="fa fa-sign-in"></i> Login </a>
+                                    </li>
+                                </ul>
+                            </div>
+							<ng-template #elseBlock>
+							    <div class="card card-body"> 
+								<!-- This will be displayed if the signin is true -->
+								<ul> 
+                                    <li>
+                                        <a [routerLink]="['/danshop/account']">
+                                            <i class="fa fa-dashboard"></i> Dashboard 
+										</a>
+                                    </li>
+									<li>
+                                        <a [routerLink]="['/danshop/account/orders']">
+                                            <i class="fa fa-list"></i> Orders 
+										</a>
+                                    </li>
+									<li>
+                                        <a [routerLink]="['/danshop/account/addresses']">
+                                            <i class="fa fa-address-card"></i> Addresses
+										</a>
+                                    </li>
+									<li>
+                                        <a [routerLink]="['/danshop/account/personal-details']">
+                                            <i class="fa fa-user"></i> Personal Details
+										</a>
+                                    </li>
+									<li>
+                                        <a [routerLink]="['/danshop/account/change-password']">
+                                            <i class="fa fa-key"></i> Change Password
+										</a>
+                                    </li>
+                                    <li>
+                                        <a [routerLink]="['/danshop/account/signout']">
+                                            <i class="fa fa-sign-out"></i> Logout 
+										</a>
+                                    </li>
+                                </ul>
+								</div>
+							</ng-template>
+                        </div>
+                    </div>
+                    <div class="cart-button">
+                        <button *ngIf="activeOrder" class="click-btn" type="button" data-bs-toggle="collapse" data-bs-target="#cart" aria-expanded="false" aria-controls="cart">
+                            <img src="../assets/danshop/images/cart.png" alt="image">
+                            <div class="cartco">
+                                <span id="cart-total">
+                                    <span class="cartcount">{{activeOrder.totalQuantity}}</span>
+                                </span>
+                            </div>
+                        </button>
+						<button *ngIf="!activeOrder" class="click-btn" type="button" data-bs-toggle="collapse" data-bs-target="#cart" aria-expanded="false" aria-controls="cart">
+                            <img src="../assets/danshop/images/cart.png" alt="image">
+                            <div class="cartco">
+                                <span id="cart-total">
+                                    <span class="cartcount">0</span>
+                                </span>
+                            </div>
+                        </button>
+                        <div class="collapse" id="cart">
+                            <div class="card card-body">
+                                <ul>
+                                    <li>
+                                        <table class="table table-striped">
+                                            <tbody *ngIf="activeOrder && activeOrder?.lines?.length ?? 0 > 0; else elseStatement">
+                                                <tr *ngFor="let item of activeOrder.lines; let index = index">
+                                                    <td class="text-center">
+                                                        <a [routerLink]="['/danshop/product-details/', item.productVariant.product.slug]">
+                                                            <img src="{{item.featuredAsset.preview}}" alt="" title="" class="img-thumbnail">
+                                                        </a>
+                                                    </td>
+                                                    <td class="text-left">
+                                                        <a [routerLink]="['/danshop/product-details/', item.productVariant.product.slug]">{{item.productVariant.name}}</a>
+                                                    </td>
+                                                    <td class="text-right" width="95">{{item.unitPriceWithTax / 100 | number:'1.2-2'}} X {{item.quantity}}</td>
+                                                    <td class="text-right" width="96">{{activeOrder.currencyCode}} {{ (item.unitPriceWithTax * item.quantity) / 100 | number:'1.2-2' }}</td>
+                                                    <td class="text-center">
+                                                        <button type="button" [attr.data-indexId]="item.id" (click)="onRemoveCart(item.id)" title="Remove" class="btn btn-danger btn-xs">
+                                                            <i class="fa fa-times" [attr.data-indexId]="item.id"></i>
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                            <ng-template #elseStatement>
+                                                <tbody>
+                                                    <tr>
+                                                        <td class="text-center" colspan="5">You have no items in your shopping cart.</td>
+                                                    </tr>
+                                                </tbody>
+                                            </ng-template>
+                                        </table>
+                                    </li>
+                                    <li *ngIf="activeOrder && activeOrder?.lines?.length ?? 0 > 0;">
+                                        <div>
+                                            <table class="table table-bordered">
+                                                <tbody>
+                                                    <tr>
+                                                        <td class="text-right">Total Qty</td>
+                                                        <td class="text-right">{{activeOrder.totalQuantity}}</td>
+                                                    </tr>
+                                                    <tr *ngFor="let discount of activeOrder.discounts; let index = index">
+                                                        <td class="text-right">Discount Amount</td>
+                                                        <td class="text-right">{{activeOrder.currencyCode}} {{discount.amountWithTax / 100  | number:'1.2-2'}}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="text-right">Subtotal</td>
+                                                        <td class="text-right">{{activeOrder.currencyCode}} {{activeOrder.subTotalWithTax / 100 | number:'1.2-2'}}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="text-right">Total</td>
+                                                        <td class="text-right">{{activeOrder.currencyCode}} {{activeOrder.totalWithTax / 100 | number:'1.2-2'}}</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                            <p class="text-right">
+                                                <a [routerLink]="['/danshop/cart']" class="btn btn-primary">
+                                                    <i class="fa fa-shopping-cart"></i> View Cart </a>&nbsp;&nbsp;&nbsp; <a [routerLink]="['/danshop/checkout']" class="btn btn-primary">
+                                                    <i class="fa fa-share"></i> Checkout </a>
+                                            </p>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--/ coll -->
+            </div>
+        </div>
+    </div>
+    <app-danshop-menu></app-danshop-menu>
+</header>

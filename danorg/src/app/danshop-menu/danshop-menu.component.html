@@ -1,0 +1,47 @@
+<nav>
+    <div class="navbar">
+      <i class='fa fa-navicon bx bx-menu'></i>
+	  
+	  <div class="logo"><a [routerLink]="['/']"><img src="../assets/danshop/images/logo.png" al="image"></a></div>
+	  
+	  <div class="nav-links">
+	    
+		<div class="sidebar-logo">
+		  <span class="logo-name"><img src="../assets/danshop/images/logo.png" al="image"></span>
+          <i class="fa-solid fa-xmark bx bx-x"></i>
+		</div>
+		
+      <ul class="links">
+        <li><a [routerLink]="['/danshop']">Store Home</a></li>
+		
+        <li class="main-menu">
+          <a routerLink="/danshop/category/oxygen-units">Oxygen Units</a>
+		  <i class="fa fa-angle-down htmlcss-arrow arrow" aria-hidden="true"></i>
+          <ul class="htmlCss-sub-menu sub-menu">
+            <li><a routerLink="/danshop/category/oxygen-accessories">Oxygen Accessories</a></li>
+            <!--li class="more">
+              <a href="#">More</a><i class="fa fa-angle-right more-arrow arrow" aria-hidden="true"></i>
+              <ul class="more-sub-menu sub-menu">
+                <li><a href="#">dummy</a></li>
+              </ul>
+            </li-->
+          </ul>
+        </li>
+
+		<li class="main-menu">
+          <a routerLink="/danshop/category/first-aid-kits">First Aid Kits</a>
+		  <i class="fa fa-angle-down htmlcss-arrow arrow" aria-hidden="true"></i>
+          <ul class="htmlCss-sub-menu sub-menu">
+            <li><a routerLink="/danshop/category/first-aid-accessories">First Aid Accessories</a></li>
+          </ul>
+        </li>
+       
+        <li><a routerLink="/danshop/category/safety-gear">Safety</a></li>
+        <li><a routerLink="/danshop/category/clothing">Lifestyle</a></li>
+        <li><a routerLink="/danshop/category/training">Training</a></li>
+        <li><a routerLink="/danshop/contact-us">Contact</a></li>
+        <li><a routerLink="/danshop/account/sign-in">Login</a></li>
+      </ul>
+    </div>
+    </div>
+</nav><!--/ nac -->

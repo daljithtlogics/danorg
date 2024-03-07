@@ -1,0 +1,1259 @@
+<section class="dashboard-wrapper">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <form id="" class="sky-form" *ngIf="userMembership === 'student'" [formGroup]="studentForm" (ngSubmit)="onSubmit()">
+                    <div class="chalkbg">
+                        <img src="/assets/images/red-logo.png" style="height: 50px;">
+                        <span style="text-align: right">
+                            <br>
+                            <label class="chalktitle" style="color: white">DIVERS ALERT NETWORK SOUTHERN AFRICA</label>
+                        </span>
+                    </div>
+                    <div class="row" style="padding: 20px 30px;">
+                        <div class="col col-12">
+                            <p class="heading" style="color: #666666;">Membership Info</p>
+                        </div>
+                    </div>
+                    <div class="row" style="padding: 0 30px;">
+                        <div class="form-group col-sm-6">
+                            <label>Instructor <span class="text-danger">*</span> </label>
+                            <select class="form-control" formControlName="stud_instructor" [(ngModel)]="stud_instructor">   		
+                                <option *ngFor="let member of users" value= {{member.id}}>{{member.fname1}} {{member.sname1}}</option> 
+                            </select>
+                            <span *ngIf="formDataError.error_field === 'stud_instructor'" class="error-message"> {{ formDataError.msg }} </span>
+                        </div>
+                        <div class="form-group col-sm-6">
+                            <label>Start Date <span class="text-danger">*</span></label>
+                            <input class="form-control" type="date" formControlName="stud_start_date" [(ngModel)]="stud_start_date" readonly>
+                        </div>
+                        <div class="form-group col-sm-6">
+                            <label>Medical Aid <span class="text-danger">*</span> </label>
+                            <input class="form-control"  type="text" formControlName="stud_aid" [(ngModel)]="stud_aid">
+                            <span *ngIf="formDataError.error_field === 'stud_aid'" class="error-message">
+                                {{ formDataError.msg }}
+                            </span>
+                        </div>
+                        <div class="form-group col-sm-6">
+                            <label>Medical Aid number <span class="text-danger">*</span> </label>
+                            <input class="form-control" type="text" value="" formControlName="stud_aid_no" [(ngModel)]="stud_aid_no">
+                            <span *ngIf="formDataError.error_field === 'stud_aid_no'" class="error-message">
+                                {{ formDataError.msg }}
+                            </span>
+                        </div>
+                        <div class="form-group col-sm-12">
+                            <input type="submit" class="btn btn-suucess" style="padding: 7px 20px !important;" value="Submit">
+                        </div>
+                    </div>
+                </form>
+
+                <form class="sky-form" *ngIf="userMembership === 'annual'" [formGroup]="anualForm" (ngSubmit)="onSubmit()">  
+					<input type="hidden" formControlName="tab_id" [(ngModel)]="tab_id" />      
+                    <div class="chalkbg">
+                        <img src="/assets/images/red-logo.png" style="height: 50px;">  		
+                        <span style="text-align: right">  
+                            <br>
+                            <label class="chalktitle" style="color: white">DIVERS ALERT NETWORK SOUTHERN AFRICA</label>
+                        </span>
+                    </div>
+                    <div class="row" style="padding: 20px 30px;">
+                        <div class="col col-12">
+                            <p class="heading" style="color: #666666;">Membership Info</p>
+                            <p class="dan-p">We offer a membership option tailored to meet your specific needs. To
+                                apply, please complete and submit the membership application form from below.
+                                <strong>This is an annual membership that can only be cancelled after one year.</strong>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="row" style="padding: 0 30px;">
+                        <div class="form-group col-sm-6">
+                            <label class="control-label">Member Type</label>
+                            <select class="form-control" name="member_type" formControlName="member_type" [(ngModel)]="member_type"> 
+                                <option value="UNKNOWN">UNKNOWN</option>
+                                <option value="INDIVIDUAL">INDIVIDUAL</option>    
+                                <option value="FAMILY">FAMILY</option>
+                                <option value="DIVING FAMILY">DIVING FAMILY</option>
+                                <option value="NON MEMBER">NON MEMBER</option>
+                                <option value="HONORARY">HONORARY</option>
+                                <option value="INTERNATIONAL">INTERNATIONAL</option>
+                                <option value="COMPANY">COMPANY</option>
+                                <option value="COMMERCIAL INDIVIDUAL">COMMERCIAL INDIVIDUAL</option>
+                                <option value="PROFESSIONAL">PROFESSIONAL</option>
+                                <option value="RESCUE">RESCUE</option>
+                                <option value="INSTRUCTOR">INSTRUCTOR</option>
+                                <option value="COMMERCIAL SCHOOL">COMMERCIAL SCHOOL</option>
+                                <option value="INDUSTRY PARTNER">INDUSTRY PARTNER</option>
+                            </select>
+                            <!-- <span *ngIf="formDataError.error_field === 'member_type'" class="error-message">
+                        {{ formDataError.msg }}
+                    </span> -->
+                        </div>
+                        <div class="form-group col-sm-6">
+                            <label class="control-label">Membership Level</label>
+                            <input type="text" class="form-control" name="member_level" formControlName="member_level" [(ngModel)]="member_level" readonly>
+                        </div>
+
+                        <div class="form-group col-sm-6">
+                            <label class="control-label">Broker</label>
+                            <select class="form-control" name="broker" formControlName="broker" [(ngModel)]="broker">   
+                                <option value="UNKNOWN">UNKNOWN</option>
+                                <option value="SEA FEVER DIVE CENTRE">SEA FEVER DIVE CENTRE</option>
+                                <option value="MARK WILKEN">MARK WILKEN</option>
+                                <option value="ABYSS ADVENTURES">ABYSS ADVENTURES</option>
+                                <option value="SCUBA COLLEGE">SCUBA COLLEGE</option>
+                                <option value="GARRETH MURRAY">GARRETH MURRAY</option>
+                                <option value="SODWANA BAY LODGE SCUBA CENTRE">SODWANA BAY LODGE SCUBA
+                                    CENTRE</option>
+                                <option value="DAN SOUTHERN AFRICA">DAN SOUTHERN AFRICA</option>
+                                <option value="OMEGA DIVING ACADEMY">OMEGA DIVING ACADEMY</option>
+                                <option value="DAVID DONALDSON">DAVID DONALDSON</option>
+                                <option value="WET CONNECTION">WET CONNECTION</option>
+                                <option value="FROGGIE FEVER CC">FROGGIE FEVER CC</option>
+                                <option value="MARK CASTLE (MRI NELSPRUIT)">MARK CASTLE (MRI NELSPRUIT)
+                                </option>
+                                <option value="PAINDANE BAY DIVE CHARTERS">PAINDANE BAY DIVE CHARTERS
+                                </option>
+                                <option value="RIAAN BRITS">RIAAN BRITS</option>
+                                <option value="TABLE BAY DIVING">TABLE BAY DIVING</option>
+                                <option value="DIVE DIMENSION">DIVE DIMENSION</option>
+                                <option value="DIVENIQUE">DIVENIQUE</option>
+                                <option value="MAFIKENG DIVING CLUB">MAFIKENG DIVING CLUB</option>
+                                <option value="HEIN HERSELMAN">HEIN HERSELMAN</option>
+                                <option value="LIQUID BLUE MARKETING">LIQUID BLUE MARKETING</option>
+                                <option value="KOBUS LOUBSER">KOBUS LOUBSER</option>
+                                <option value="AQUARIUS DIVING">AQUARIUS DIVING</option>
+                                <option value="AQUADISIACS">AQUADISIACS</option>
+                                <option value="DIVE ACTION CC">DIVE ACTION CC</option>
+                                <option value="INDIAN OCEAN DIVERS ACADEMY">INDIAN OCEAN DIVERS ACADEMY
+                                </option>
+                                <option value="AFRICA DIVE ADVENTURES">AFRICA DIVE ADVENTURES</option>
+                                <option value="PHILIPP SONNTAG">PHILIPP SONNTAG</option>
+                                <option value="VICKY HOUGH / LYNETTE DE ROOCK">VICKY HOUGH / LYNETTE DE
+                                    ROOCK</option>
+                                <option value="ADRIAN MUNDAY">ADRIAN MUNDAY</option>
+                                <option value="JENNY WILSON">JENNY WILSON</option>
+                                <option value="LE CLIQUE">LE CLIQUE</option>
+                                <option value="MW PRETORIUS">MW PRETORIUS</option>
+                                <option value="LOUIS OLIVIER JNR">LOUIS OLIVIER JNR</option>
+                                <option value="CABIN COVE DIVING">CABIN COVE DIVING</option>
+                                <option value="LE PLONGEE SCUBA ACADEMY">LE PLONGEE SCUBA ACADEMY
+                                </option>
+                                <option value="JONATHON FLAX">JONATHON FLAX</option>
+                                <option value="TOTAL SCUBA">TOTAL SCUBA</option>
+                                <option value="PRODIVE ELLISRAS">PRODIVE ELLISRAS</option>
+                                <option value="AFRICAN ADVENTURE CENTRE">AFRICAN ADVENTURE CENTRE
+                                </option>
+                                <option value="QUADRISURE">QUADRISURE</option>
+                                <option value="SEBASTIAN VACCARO">SEBASTIAN VACCARO</option>
+                                <option value="BENEATH THE BLUE">BENEATH THE BLUE</option>
+                                <option value="BOATLOAD">BOATLOAD</option>
+                                <option value="VICTOR MUHLENBECK">VICTOR MUHLENBECK</option>
+                                <option value="THOMAS MINNIE">THOMAS MINNIE</option>
+                                <option value="JEFFREY SLESSOR">JEFFREY SLESSOR</option>
+                                <option value="SHANTI DIVERS">SHANTI DIVERS</option>
+                                <option value="PRO DIVERS CENTURION">PRO DIVERS CENTURION</option>
+                                <option value="SCUBA EXPERIENCE CC">SCUBA EXPERIENCE CC</option>
+                                <option value="LOURENS VERMAAK">LOURENS VERMAAK</option>
+                                <option value="BRENDAN COOPER">BRENDAN COOPER</option>
+                                <option value="BERTIE MATTHEWS">BERTIE MATTHEWS</option>
+                                <option value="THE SEA SAILING CLUB">THE SEA SAILING CLUB</option>
+                                <option value="RCSC">RCSC</option>
+                                <option value="SCUBA SCENE">SCUBA SCENE</option>
+                                <option value="DIVERS INTERNATIONAL">DIVERS INTERNATIONAL</option>
+                                <option value="CATEMBE MEDICAL">CATEMBE MEDICAL</option>
+                                <option value="FIN-UP SCUBA">FIN-UP SCUBA</option>
+                                <option value="GEORGE LEONARD">GEORGE LEONARD</option>
+                                <option value="SCUBA CLUB">SCUBA CLUB</option>
+                                <option value="REGAL DIVERS">REGAL DIVERS</option>
+                                <option value="CHARMAINE COETZEE">CHARMAINE COETZEE</option>
+                                <option value="DUSKY DIVING">DUSKY DIVING</option>
+                                <option value="ANDY COBB ECO DIVING">ANDY COBB ECO DIVING</option>
+                                <option value="WINDHOEK UNDERWATER CLUB">WINDHOEK UNDERWATER CLUB
+                                </option>
+                                <option value="CM INSURANCE CONSULTANTS">CM INSURANCE CONSULTANTS
+                                </option>
+                                <option value="THE TRAVEL & CONFERENCE SHOP">THE TRAVEL &amp; CONFERENCE
+                                    SHOP</option>
+                                <option value="CAN DIVERS">CAN DIVERS</option>
+                                <option value="DIVE TRAVEL SCHOOL">DIVE TRAVEL SCHOOL</option>
+                                <option value="KAYAK AFRICA">KAYAK AFRICA</option>
+                                <option value="MEYERTON SCUBA DIVING CLUB">MEYERTON SCUBA DIVING CLUB
+                                </option>
+                                <option value="EXCALIBUR DIVE CHARTERS">EXCALIBUR DIVE CHARTERS</option>
+                                <option value="CHRISTOPHER DEUTSCHMANN">CHRISTOPHER DEUTSCHMANN</option>
+                                <option value="ANTOINETTE WALTERS">ANTOINETTE WALTERS</option>
+                                <option value="PIETERSBURG DIVE SCHOOL">PIETERSBURG DIVE SCHOOL</option>
+                                <option value="PETER GROVE">PETER GROVE</option>
+                                <option value="TOMMY STOLZ BROKERS">TOMMY STOLZ BROKERS</option>
+                                <option value="ANCHOR DIVING">ANCHOR DIVING</option>
+                                <option value="EXPOSURE CLUB">EXPOSURE CLUB</option>
+                                <option value="INTER PENFIN">INTER PENFIN</option>
+                                <option value="POSEIDON ADVENTURES">POSEIDON ADVENTURES</option>
+                                <option value="BLU INTERNATIONAL">BLU INTERNATIONAL</option>
+                                <option value="DIVE QUEST">DIVE QUEST</option>
+                                <option value="MIKE KNOX">MIKE KNOX</option>
+                                <option value="DISCOVERY ADVENTURE TOURS">DISCOVERY ADVENTURE TOURS
+                                </option>
+                                <option value="CRYSTAL BLUE DIVING">CRYSTAL BLUE DIVING</option>
+                                <option value="CASUAL DIVERS UNLIMITED">CASUAL DIVERS UNLIMITED</option>
+                                <option value="EDENVALE SCUBA">EDENVALE SCUBA</option>
+                                <option value="DUPLICATE RECORD">DUPLICATE RECORD</option>
+                                <option value="MANATEES">MANATEES</option>
+                                <option value="SUB AFRICA DIVING">SUB AFRICA DIVING</option>
+                                <option value="DIVE AFRICA TOURS">DIVE AFRICA TOURS</option>
+                                <option value="IANTD(SA)">IANTD(SA)</option>
+                                <option value="AZTEC SCUBA ACADEMY">AZTEC SCUBA ACADEMY</option>
+                                <option value="EAST RAND WATERSPORTS CC">EAST RAND WATERSPORTS CC
+                                </option>
+                                <option value="DIVERS WORLD">DIVERS WORLD</option>
+                                <option value="FOURWAYS SCUBA">FOURWAYS SCUBA</option>
+                                <option value="SKINDEEP DIVING">SKINDEEP DIVING</option>
+                                <option value="BOTTOMS UP SCUBA">BOTTOMS UP SCUBA</option>
+                                <option value="MARCO CABULA">MARCO CABULA</option>
+                                <option value="ANBOT DIVERS">ANBOT DIVERS</option>
+                                <option value="HERMIE BRITZ ON REQ">HERMIE BRITZ ON REQ</option>
+                                <option value="ORCA DIVE AND LEISURE">ORCA DIVE AND LEISURE</option>
+                                <option value="ALPHA DIVE CENTRE">ALPHA DIVE CENTRE</option>
+                                <option value="THE DIVE SHOP - EASTGATE">THE DIVE SHOP - EASTGATE
+                                </option>
+                                <option value="ADVENTURE DIVING SA">ADVENTURE DIVING SA</option>
+                                <option value="SURFACE SCUBA SCHOOL & SHOP">SURFACE SCUBA SCHOOL &amp;
+                                    SHOP</option>
+                                <option value="XTREME SCUBA CENTRE">XTREME SCUBA CENTRE</option>
+                                <option value="DIVE JUNCTION">DIVE JUNCTION</option>
+                                <option value="GRAHAM PEARSON">GRAHAM PEARSON</option>
+                                <option value="INSTRUCTOR TRAINING ACADEMY">INSTRUCTOR TRAINING ACADEMY
+                                </option>
+                                <option value="SCUBAVERSITY">SCUBAVERSITY</option>
+                                <option value="EXECUTIVE SCUBA CC">EXECUTIVE SCUBA CC</option>
+                                <option value="DELPHINUS DIVING & TRAVEL">DELPHINUS DIVING &amp; TRAVEL
+                                </option>
+                                <option value="SCUBA DIVING SAFARIS">SCUBA DIVING SAFARIS</option>
+                                <option value="AFRICA SCUBA TRAVEL">AFRICA SCUBA TRAVEL</option>
+                                <option value="ONDERBERG SCUBA">ONDERBERG SCUBA</option>
+                                <option value="AFRICA SEAFARIS">AFRICA SEAFARIS</option>
+                                <option value="THE WHALER DIVE CENTRE">THE WHALER DIVE CENTRE</option>
+                                <option value="ACTION DIVERS">ACTION DIVERS</option>
+                                <option value="PETER'S DIVE CENTRE">PETER'S DIVE CENTRE</option>
+                                <option value="OPENWATER SPECIALISTS">OPENWATER SPECIALISTS</option>
+                                <option value="SPECIALISED DIVING ACADEMY">SPECIALISED DIVING ACADEMY
+                                </option>
+                                <option value="KOWIE DIVE SCHOOL">KOWIE DIVE SCHOOL</option>
+                                <option value="KEMPTON SUB AQUA">KEMPTON SUB AQUA</option>
+                                <option value="BREAKAWAY OUTDOOR">BREAKAWAY OUTDOOR</option>
+                                <option value="INDIGO BLUE">INDIGO BLUE</option>
+                                <option value="LANS SCHICK">LANS SCHICK</option>
+                                <option value="BCSA SCUBA ACADEMY">BCSA SCUBA ACADEMY</option>
+                                <option value="SUPA SCUBA">SUPA SCUBA</option>
+                                <option value="SCUBA TECHNICAL SERVICES">SCUBA TECHNICAL SERVICES
+                                </option>
+                                <option value="SCUBA DO ZANZIBAR">SCUBA DO ZANZIBAR</option>
+                                <option value="SCUBA CITY DIVE AND TRAVEL">SCUBA CITY DIVE AND TRAVEL
+                                </option>
+                                <option value="SANDTON SCUBA">SANDTON SCUBA</option>
+                                <option value="REEF DIVERS">REEF DIVERS</option>
+                                <option value="TIM EDWARDS">TIM EDWARDS</option>
+                                <option value="ODI PRETORIA">ODI PRETORIA</option>
+                                <option value="ECSTASEA DIVE SCHOOL">ECSTASEA DIVE SCHOOL</option>
+                                <option value="UNDERWATER WORLD">UNDERWATER WORLD</option>
+                                <option value="AFRICA COASTAL DIVING">AFRICA COASTAL DIVING</option>
+                                <option value="MEDICAL AID OPTIONS">MEDICAL AID OPTIONS</option>
+                                <option value="AFDIVE">AFDIVE</option>
+                                <option value="A ZYLUK ZYLINSKI">A ZYLUK ZYLINSKI</option>
+                                <option value="RODNEY DU PLESSIS">RODNEY DU PLESSIS</option>
+                                <option value="SCUBA Q">SCUBA Q</option>
+                                <option value="CHRIS LEWIS">CHRIS LEWIS</option>
+                                <option value="SOUL SCUBA">SOUL SCUBA</option>
+                                <option value="AQUA ZOO SCUBA">AQUA ZOO SCUBA</option>
+                                <option value="DAVID URTEL">DAVID URTEL</option>
+                                <option value="BUBBLE MAGIC">BUBBLE MAGIC</option>
+                                <option value="AFRICAN NEPTUNE ADVENTURES">AFRICAN NEPTUNE ADVENTURES
+                                </option>
+                                <option value="J SWANEPOEL">J SWANEPOEL</option>
+                                <option value="BASS LAKE ADVENTURES">BASS LAKE ADVENTURES</option>
+                                <option value="AQUANAUT DIVERS">AQUANAUT DIVERS</option>
+                                <option value="DIVE ALTERNATIVE">DIVE ALTERNATIVE</option>
+                                <option value="EOS FIN (PTY) LTD">EOS FIN (PTY) LTD</option>
+                                <option value="BLUEMOON DIVERS">BLUEMOON DIVERS</option>
+                                <option value="WENDY DOVALE MEMBER">WENDY DOVALE MEMBER</option>
+                                <option value="AFRICA XTREME DIVE CHARTERS">AFRICA XTREME DIVE CHARTERS
+                                </option>
+                                <option value="AQUAGEM">AQUAGEM</option>
+                                <option value="TWIN PALMS SCUBA">TWIN PALMS SCUBA</option>
+                                <option value="C-DIVERS">C-DIVERS</option>
+                                <option value="SCUBA AFRICA">SCUBA AFRICA</option>
+                                <option value="ORACLE HYDROSPORTS">ORACLE HYDROSPORTS</option>
+                                <option value="MARIUS VAN HUYSSTEEN">MARIUS VAN HUYSSTEEN</option>
+                                <option value="THE SCUBA CLUB">THE SCUBA CLUB</option>
+                                <option value="PISCES DIVE CENTRE">PISCES DIVE CENTRE</option>
+                                <option value="KEVIN COLLINS">KEVIN COLLINS</option>
+                                <option value="BEV COLLINS">BEV COLLINS</option>
+                                <option value="SILVER TOP DIVERS">SILVER TOP DIVERS</option>
+                                <option value="AQUAVENTURES SCUBA ACADEMY">AQUAVENTURES SCUBA ACADEMY
+                                </option>
+                                <option value="SEADOG COMMERCIAL DIVING SCHOOL">SEADOG COMMERCIAL DIVING
+                                    SCHOOL</option>
+                                <option value="DIVE NATAL">DIVE NATAL</option>
+                                <option value="DW COOPER">DW COOPER</option>
+                                <option value="INTERNATIONAL DIVING ACADEMY">INTERNATIONAL DIVING
+                                    ACADEMY</option>
+                                <option value="C R HALGRYN">C R HALGRYN</option>
+                                <option value="RICHARD BOTHA">RICHARD BOTHA</option>
+                                <option value="ALL ABOUT SCUBA">ALL ABOUT SCUBA</option>
+                                <option value="COOL-VIZ-SCUBA">COOL-VIZ-SCUBA</option>
+                                <option value="AFRICA BLUE">AFRICA BLUE</option>
+                                <option value="UNDERWATER EXPLORERS">UNDERWATER EXPLORERS</option>
+                                <option value="ADVENTURE MANIA PTY LTD">ADVENTURE MANIA PTY LTD</option>
+                                <option value="DERIK DE JAGER">DERIK DE JAGER</option>
+                                <option value="MICHAEL HORN">MICHAEL HORN</option>
+                                <option value="TWO BAR SCUBA">TWO BAR SCUBA</option>
+                                <option value="JERRY CARDY">JERRY CARDY</option>
+                                <option value="AQUA FANTASEAS">AQUA FANTASEAS</option>
+                                <option value="DURBAN UNDERSEA CLUB">DURBAN UNDERSEA CLUB</option>
+                                <option value="BUBBLE BLOWERS">BUBBLE BLOWERS</option>
+                                <option value="SURFACE SCUBA">SURFACE SCUBA</option>
+                                <option value="THE DIVE EXCHANGE">THE DIVE EXCHANGE</option>
+                                <option value="MARTIN NIEUWOUDT">MARTIN NIEUWOUDT</option>
+                                <option value="SEA DELIGHT">SEA DELIGHT</option>
+                                <option value="SCUBA INTERNATIONAL">SCUBA INTERNATIONAL</option>
+                                <option value="DEEPTEC">DEEPTEC</option>
+                                <option value="DANIEL GERICKE">DANIEL GERICKE</option>
+                                <option value="3D DIVE">3D DIVE</option>
+                                <option value="DIVE MEDICAL SERVICE">DIVE MEDICAL SERVICE</option>
+                                <option value="NATIONAL SEA RESCUE INSTITUTE OF SA">NATIONAL SEA RESCUE
+                                    INSTITUTE OF SA</option>
+                                <option value="DOMINO DIVING">DOMINO DIVING</option>
+                                <option value="PROFESSIONAL AQUATIC WORLD">PROFESSIONAL AQUATIC WORLD
+                                </option>
+                                <option value="MIDRAND SCUBA">MIDRAND SCUBA</option>
+                                <option value="TRIGGERPHINS">TRIGGERPHINS</option>
+                                <option value="TDA WONDERGAT">TDA WONDERGAT</option>
+                                <option value="CALYPSO">CALYPSO</option>
+                                <option value="PUK SCUBA">PUK SCUBA</option>
+                                <option value="SHANE WILLMOTH">SHANE WILLMOTH</option>
+                                <option value="JASON JOUBERT">JASON JOUBERT</option>
+                                <option value="SOUTH SEA ADVENTURES">SOUTH SEA ADVENTURES</option>
+                                <option value="SCUBA WORLD INTERNATIONAL">SCUBA WORLD INTERNATIONAL
+                                </option>
+                                <option value="MYSTIC DOLPHIN">MYSTIC DOLPHIN</option>
+                                <option value="GRAHAM KOLM">GRAHAM KOLM</option>
+                                <option value="SCUBA SHACK">SCUBA SHACK</option>
+                                <option value="PRESTIGE DIVE SCHOOL">PRESTIGE DIVE SCHOOL</option>
+                                <option value="4x4 DIVING SAFARIS">4x4 DIVING SAFARIS</option>
+                                <option value="OCEAN DREAMERS">OCEAN DREAMERS</option>
+                                <option value="ANDY SCHRODER">ANDY SCHRODER</option>
+                                <option value="AFRICAN WATERSPORTS - ALIWAL">AFRICAN WATERSPORTS -
+                                    ALIWAL</option>
+                                <option value="ANDREW ROBERTSON">ANDREW ROBERTSON</option>
+                                <option value="SEAN SQUARED SCUBA">SEAN SQUARED SCUBA</option>
+                                <option value="FLAGSHIP DIVING">FLAGSHIP DIVING</option>
+                                <option value="SURITA FITCHAT">SURITA FITCHAT</option>
+                                <option value="CRAIG KIGGEN & ASSOCIATES">CRAIG KIGGEN &amp; ASSOCIATES
+                                </option>
+                                <option value="AFRICA SCUBA SAFARIS">AFRICA SCUBA SAFARIS</option>
+                                <option value="PLAN D SCUBA ADVENTURES">PLAN D SCUBA ADVENTURES</option>
+                                <option value="WILDERNESS SAFARIS">WILDERNESS SAFARIS</option>
+                                <option value="THROB EXPEDITIONS & TRAINING CC">THROB EXPEDITIONS &amp;
+                                    TRAINING CC</option>
+                                <option value="NATIONAL SCUBA DIVE ACADEMY">NATIONAL SCUBA DIVE ACADEMY
+                                </option>
+                                <option value="AQUA AFRICA">AQUA AFRICA</option>
+                                <option value="HONEY COASTLINE">HONEY COASTLINE</option>
+                                <option value="HOTBLUE">HOTBLUE</option>
+                                <option value="PRO DIVERS CAPE TOWN">PRO DIVERS CAPE TOWN</option>
+                                <option value="CATHERINE'S DIVE SCHOOL & SCUBA CYLINDER SERVICES">
+                                    CATHERINE'S DIVE SCHOOL &amp; SCUBA CYLINDER SERVICES</option>
+                                <option value="GET WET SCUBA">GET WET SCUBA</option>
+                                <option value="CHRIS MITCHELL">CHRIS MITCHELL</option>
+                                <option value="DOUBLE M DIVING">DOUBLE M DIVING</option>
+                                <option value="IAN MADDISON">IAN MADDISON</option>
+                                <option value="CORAL DIVERS">CORAL DIVERS</option>
+                                <option value="AKUARIUS LDA">AKUARIUS LDA</option>
+                                <option value="BS DIVERS - HERMANUS">BS DIVERS - HERMANUS</option>
+                                <option value="TOFO SCUBA">TOFO SCUBA</option>
+                                <option value="PISCES DIVING CHARTER">PISCES DIVING CHARTER</option>
+                                <option value="NEIL MURPHY">NEIL MURPHY</option>
+                                <option value="OCEAN'ATICS">OCEAN'ATICS</option>
+                                <option value="AQUANUTS">AQUANUTS</option>
+                                <option value="DIVEMASTERS">DIVEMASTERS</option>
+                                <option value="IAIN'S SCUBA SCHOOL">IAIN'S SCUBA SCHOOL</option>
+                                <option value="BLUE VISION DIVE CENTRE">BLUE VISION DIVE CENTRE</option>
+                                <option value="FINS N BOOTS">FINS N BOOTS</option>
+                                <option value="OCEAN ECSTASY">OCEAN ECSTASY</option>
+                                <option value="DIVE NAUTIQUE">DIVE NAUTIQUE</option>
+                                <option value="DIVEXTREME">DIVEXTREME</option>
+                                <option value="NAUTILUS DIVE SCHOOL & CHARTERS">NAUTILUS DIVE SCHOOL
+                                    &amp; CHARTERS</option>
+                                <option value="SEAFOREVER DIVE CENTRE">SEAFOREVER DIVE CENTRE</option>
+                                <option value="AHA DIVE CENTRE">AHA DIVE CENTRE</option>
+                                <option value="UNDERWATER ADVENTURES">UNDERWATER ADVENTURES</option>
+                                <option value="OUTDOOR FOCUS">OUTDOOR FOCUS</option>
+                                <option value="SIMPLY SCUBA DIVE CHARTERS">SIMPLY SCUBA DIVE CHARTERS
+                                </option>
+                                <option value="BAY DIVING">BAY DIVING</option>
+                                <option value="DIVERSITY SCUBA">DIVERSITY SCUBA</option>
+                                <option value="GUINJATA BAY MOZAMBIQUE">GUINJATA BAY MOZAMBIQUE</option>
+                                <option value="DINKY DIVERS">DINKY DIVERS</option>
+                                <option value="BLOEMFONTEIN SUB AQUA CLUB">BLOEMFONTEIN SUB AQUA CLUB
+                                </option>
+                                <option value="TWO OCEAN DIVERS">TWO OCEAN DIVERS</option>
+                                <option value="DIVE4LIFE">DIVE4LIFE</option>
+                                <option value="VOLITANS DIVING">VOLITANS DIVING</option>
+                                <option value="IAN MCKENZIE">IAN MCKENZIE</option>
+                                <option value="XTASEA SCUBA">XTASEA SCUBA</option>
+                                <option value="LIQUID LIVING">LIQUID LIVING</option>
+                                <option value="101 SCUBA">101 SCUBA</option>
+                                <option value="SCUBA LEADERSHIP ACADEMY">SCUBA LEADERSHIP ACADEMY
+                                </option>
+                                <option value="BARRA REEF DIVERS">BARRA REEF DIVERS</option>
+                                <option value="J H VAN DER MERWE">J H VAN DER MERWE</option>
+                                <option value="DEEP BLUE SCUBA">DEEP BLUE SCUBA</option>
+                                <option value="AQUA PLANET DIVE CENTRE">AQUA PLANET DIVE CENTRE</option>
+                                <option value="THINK TROPICS DIVING & INSTRUCTION">THINK TROPICS DIVING
+                                    &amp; INSTRUCTION</option>
+                                <option value="WET SPOT SCUBA">WET SPOT SCUBA</option>
+                                <option value="DA ADAMS">DA ADAMS</option>
+                                <option value="BRIGHT WATER SCUBA CENTRE">BRIGHT WATER SCUBA CENTRE
+                                </option>
+                                <option value="SCUBA NETWORK SA">SCUBA NETWORK SA</option>
+                                <option value="AQUASPACE CC">AQUASPACE CC</option>
+                                <option value="C CRAZY ADVENTURES">C CRAZY ADVENTURES</option>
+                                <option value="AQUA SCUBA CENTRE">AQUA SCUBA CENTRE</option>
+                                <option value="VAAL SUB AQUA CLUB">VAAL SUB AQUA CLUB</option>
+                                <option value="JOHN LIVOCK">JOHN LIVOCK</option>
+                                <option value="STRAND SCUBA DIVING">STRAND SCUBA DIVING</option>
+                                <option value="DIVERIQUE ADVENTURES CC">DIVERIQUE ADVENTURES CC</option>
+                                <option value="LIGHTHOUSE SCUBA SAFARI">LIGHTHOUSE SCUBA SAFARI</option>
+                                <option value="BEST DIVING LIMITED">BEST DIVING LIMITED</option>
+                                <option value="OCEAN EXPLORERS KNYSNA">OCEAN EXPLORERS KNYSNA</option>
+                                <option value="A WHOLE NEW WORLD">A WHOLE NEW WORLD</option>
+                                <option value="2 DIVE 4 SCUBA">2 DIVE 4 SCUBA</option>
+                                <option value="LIZZARD WETSUITS">LIZZARD WETSUITS</option>
+                                <option value="GERRIT SMIT">GERRIT SMIT</option>
+                                <option value="ANGEL FISH DIVE CENTRE">ANGEL FISH DIVE CENTRE</option>
+                                <option value="WET STUFF SCUBA">WET STUFF SCUBA</option>
+                                <option value="ALIWAL DIVE CHARTERS">ALIWAL DIVE CHARTERS</option>
+                                <option value="C-QUEST DIVING SAFARIS">C-QUEST DIVING SAFARIS</option>
+                                <option value="BOB'S SCUBA">BOB'S SCUBA</option>
+                                <option value="SCUBA WORLD & UNIVERSAL ADVENTURES">SCUBA WORLD &amp;
+                                    UNIVERSAL ADVENTURES</option>
+                                <option value="U-CAN DEVELOPMENT">U-CAN DEVELOPMENT</option>
+                                <option value="SCUBA - ONE">SCUBA - ONE</option>
+                                <option value="PISCES DIVERS">PISCES DIVERS</option>
+                                <option value="ADVANCED SCUBA ACADEMY">ADVANCED SCUBA ACADEMY</option>
+                                <option value="MASCAREIGNES PLONGEE">MASCAREIGNES PLONGEE</option>
+                                <option value="UNDERWATER GANGSTERS">UNDERWATER GANGSTERS</option>
+                                <option value="TETRALOGIC 12">TETRALOGIC 12</option>
+                                <option value="ECO BLUE SCUBA">ECO BLUE SCUBA</option>
+                                <option value="DIVERSITY">DIVERSITY</option>
+                                <option value="KBR DIVING CLUB">KBR DIVING CLUB</option>
+                                <option value="CRADLE ADVENTURES">CRADLE ADVENTURES</option>
+                                <option value="STEPHEN SMITH">STEPHEN SMITH</option>
+                                <option value="AQUANUTS DIVE SCHOOL - MALAW">AQUANUTS DIVE SCHOOL -
+                                    MALAW</option>
+                                <option value="SUBMERSION SCUBA">SUBMERSION SCUBA</option>
+                                <option value="ORCA INDUSTRIES">ORCA INDUSTRIES</option>
+                                <option value="AMORAY DIVING">AMORAY DIVING</option>
+                                <option value="WATERBORNE ADVENTURES">WATERBORNE ADVENTURES</option>
+                                <option value="DIVE LOCKER RUSTENBURG">DIVE LOCKER RUSTENBURG</option>
+                                <option value="AFRICAN DIVE & WILDLIFE ADVENTURES">AFRICAN DIVE &amp;
+                                    WILDLIFE ADVENTURES</option>
+                                <option value="BIG BLUE DIVERS (PTY) LTD">BIG BLUE DIVERS (PTY) LTD
+                                </option>
+                                <option value="AQUALOON DIVERS">AQUALOON DIVERS</option>
+                                <option value="ANDRE FISHER">ANDRE FISHER</option>
+                                <option value="BUCCANEER DIVING">BUCCANEER DIVING</option>
+                                <option value="UNDERSEA ADVENTURES">UNDERSEA ADVENTURES</option>
+                                <option value="I R DIVER">I R DIVER</option>
+                                <option value="INFINITE SCUBA">INFINITE SCUBA</option>
+                                <option value="DIVE H2O ON REQUEST">DIVE H2O ON REQUEST</option>
+                                <option value="THE DIVE SHOP - CLEARWATER MALL">THE DIVE SHOP -
+                                    CLEARWATER MALL</option>
+                                <option value="CLUB MAXEL LDA">CLUB MAXEL LDA</option>
+                                <option value="SAKATIA LODGE">SAKATIA LODGE</option>
+                                <option value="REEFTEACH">REEFTEACH</option>
+                                <option value="BARRA LODGE">BARRA LODGE</option>
+                                <option value="VERTIGO SCUBA">VERTIGO SCUBA</option>
+                                <option value="MARTHINUS VAN WYK">MARTHINUS VAN WYK</option>
+                                <option value="DIVERSIONS ADVENTURES CC">DIVERSIONS ADVENTURES CC
+                                </option>
+                                <option value="SCUBA SPIRIT">SCUBA SPIRIT</option>
+                                <option value="OCEAN SAFARIS">OCEAN SAFARIS</option>
+                                <option value="DIVING WORLD">DIVING WORLD</option>
+                                <option value="CENTRO DE MERGULHO">CENTRO DE MERGULHO</option>
+                                <option value="QUO">QUO</option>
+                                <option value="WILD ABOUT DIVING">WILD ABOUT DIVING</option>
+                                <option value="LIQUID ADVENTURES">LIQUID ADVENTURES</option>
+                                <option value="MERIDIAN DIVE CENTRE">MERIDIAN DIVE CENTRE</option>
+                                <option value="SEACRITS DIVE CENTRE">SEACRITS DIVE CENTRE</option>
+                                <option value="DIVING IN AFRICA">DIVING IN AFRICA</option>
+                                <option value="GILLIAN BARRENGER">GILLIAN BARRENGER</option>
+                                <option value="MARK ELKINS">MARK ELKINS</option>
+                                <option value="RENE LIEBENBERG">RENE LIEBENBERG</option>
+                                <option value="SEAVISION SCUBA">SEAVISION SCUBA</option>
+                                <option value="ADVENTURE MANIA - GAUTENG">ADVENTURE MANIA - GAUTENG
+                                </option>
+                                <option value="ADVENTURE SCUBA DIVING">ADVENTURE SCUBA DIVING</option>
+                                <option value="LET$39;S DIVE">LET$39;S DIVE</option>
+                                <option value="SCUBA ADVENTURES">SCUBA ADVENTURES</option>
+                                <option value="WITS UNDERWATER CLUB">WITS UNDERWATER CLUB</option>
+                                <option value="PLANET SCUBA">PLANET SCUBA</option>
+                                <option value="WESTERN CAPE DIVING ACADEMY">WESTERN CAPE DIVING ACADEMY
+                                </option>
+                                <option value="NAUTI-DUCK DIVERS">NAUTI-DUCK DIVERS</option>
+                                <option value="DIVE LOCKER NELSPRUIT">DIVE LOCKER NELSPRUIT</option>
+                                <option value="CRESSI SUB PAINDANE WATERSPORTS">CRESSI SUB PAINDANE
+                                    WATERSPORTS</option>
+                                <option value="ABSOLUTE LIVING ADVENTURES">ABSOLUTE LIVING ADVENTURES
+                                </option>
+                                <option value="DIVING SAFETY ACADEMY">DIVING SAFETY ACADEMY</option>
+                                <option value="MAKO DIVING">MAKO DIVING</option>
+                                <option value="SUBSURFACE DIVING">SUBSURFACE DIVING</option>
+                                <option value="DIVE WITH OPTIONS">DIVE WITH OPTIONS</option>
+                                <option value="DUCK N DIVE">DUCK N DIVE</option>
+                                <option value="DOYLE ADVENTURES">DOYLE ADVENTURES</option>
+                                <option value="QUILALEA ISLAND">QUILALEA ISLAND</option>
+                                <option value="GET WET SCUBA">GET WET SCUBA</option>
+                                <option value="FALSE BAY UNDERWATER CLUB">FALSE BAY UNDERWATER CLUB
+                                </option>
+                                <option value="A DAY IN AFRICA">A DAY IN AFRICA</option>
+                                <option value="THE WHALER MOZAMBIQUE">THE WHALER MOZAMBIQUE</option>
+                                <option value="SCUBA HOUSE">SCUBA HOUSE</option>
+                                <option value="BRIGHT WEIGHTS">BRIGHT WEIGHTS</option>
+                                <option value="DEEP OCEAN DIVING">DEEP OCEAN DIVING</option>
+                                <option value="DIVE CHEST CC">DIVE CHEST CC</option>
+                                <option value="ADVENTURE N BEYOND">ADVENTURE N BEYOND</option>
+                                <option value="SEAL EXPEDITIONS">SEAL EXPEDITIONS</option>
+                                <option value="SCUBAWORX">SCUBAWORX</option>
+                                <option value="PHOENIX AQUATIC CLUB">PHOENIX AQUATIC CLUB</option>
+                                <option value="AQUAIMAGE DIVE SCHOOL MEMBER">AQUAIMAGE DIVE SCHOOL
+                                    MEMBER</option>
+                                <option value="PJP TECHNICAL DIVING">PJP TECHNICAL DIVING</option>
+                                <option value="SCUBA FUNATICS CC">SCUBA FUNATICS CC</option>
+                                <option value="DIVE 710">DIVE 710</option>
+                                <option value="POMENE BAY LODGE DIVE CENTRE">POMENE BAY LODGE DIVE
+                                    CENTRE</option>
+                                <option value="AQUA MARINE SCUBA & TRAINING CENTRE">AQUA MARINE SCUBA
+                                    &amp; TRAINING CENTRE</option>
+                                <option value="FIN@ITQUE SCUBA & CHARTERS">FIN@ITQUE SCUBA &amp;
+                                    CHARTERS</option>
+                                <option value="SCREAM SPORT">SCREAM SPORT</option>
+                                <option value="DIVE ADDICTION">DIVE ADDICTION</option>
+                                <option value="INDA BLU">INDA BLU</option>
+                                <option value="GYPSEA CENTRE">GYPSEA CENTRE</option>
+                                <option value="FLIPPERS TO FINS SCUBA ACADEMY">FLIPPERS TO FINS SCUBA
+                                    ACADEMY</option>
+                                <option value="EAST RAND SCUBA CC">EAST RAND SCUBA CC</option>
+                                <option value="PONTUS DIVE CHARTERS">PONTUS DIVE CHARTERS</option>
+                                <option value="PJ$39;S SCUBA SCHOOL">PJ$39;S SCUBA SCHOOL</option>
+                                <option value="KARAFUU DIVE CENTRE">KARAFUU DIVE CENTRE</option>
+                                <option value="JEFFS PRO DIVE CENTRE">JEFFS PRO DIVE CENTRE</option>
+                                <option value="EAST AFRICA DIVING">EAST AFRICA DIVING</option>
+                                <option value="XPLORER SCUBA">XPLORER SCUBA</option>
+                                <option value="THE ZANZIBAR DIVE CENTRE ONE OCEAN LTD">THE ZANZIBAR DIVE
+                                    CENTRE ONE OCEAN LTD</option>
+                                <option value="RISING SUN DIVE CENTRE">RISING SUN DIVE CENTRE</option>
+                                <option value="ZANZIBAR BEACH HOTEL & RESORT">ZANZIBAR BEACH HOTEL &amp;
+                                    RESORT</option>
+                                <option value="RAS NUNGWI BEACH HOTEL">RAS NUNGWI BEACH HOTEL</option>
+                                <option value="2ND BREATH SCUBA DIVING">2ND BREATH SCUBA DIVING</option>
+                                <option value="ABYSS DIVERS">ABYSS DIVERS</option>
+                                <option value="SOUTHERN CROSS ADVENTURES">SOUTHERN CROSS ADVENTURES
+                                </option>
+                                <option value="WHITE PEARL RESORT AT PONTA MAMOLI">WHITE PEARL RESORT AT
+                                    PONTA MAMOLI</option>
+                                <option value="MOZAMBIQUE TRAVEL SERVICE">MOZAMBIQUE TRAVEL SERVICE
+                                </option>
+                                <option value="BAHARI DIVERS">BAHARI DIVERS</option>
+                                <option value="DIVERS WORLD SCHOOL">DIVERS WORLD SCHOOL</option>
+                                <option value="MANTA RAY SCUBA">MANTA RAY SCUBA</option>
+                                <option value="SCUBA MAGIC">SCUBA MAGIC</option>
+                                <option value="PAJE EAST COAST DIVING">PAJE EAST COAST DIVING</option>
+                                <option value="HIPPO DIVE CAMPUS">HIPPO DIVE CAMPUS</option>
+                                <option value="SCOTT SCUBA">SCOTT SCUBA</option>
+                                <option value="CALYPSO DIVE USHAKA">CALYPSO DIVE USHAKA</option>
+                                <option value="SEAN MILLIGAN MEMBER">SEAN MILLIGAN MEMBER</option>
+                                <option value="DIVE LOCKER">DIVE LOCKER</option>
+                                <option value="OCEANWORX">OCEANWORX</option>
+                                <option value="SCUBA CENTRE TYGERVALLEY">SCUBA CENTRE TYGERVALLEY
+                                </option>
+                                <option value="ABSOLUTE SCUBA">ABSOLUTE SCUBA</option>
+                                <option value="RIPTIDE SCUBA CC">RIPTIDE SCUBA CC</option>
+                                <option value="MNM DIVING ENTERPRISES">MNM DIVING ENTERPRISES</option>
+                                <option value="MARINE EXTREME DIVING SCHOOL MEMBER">MARINE EXTREME
+                                    DIVING SCHOOL MEMBER</option>
+                                <option value="ADVENTURE$39;S EDGE DIVE & OUTDOOR CENTRE">ADVENTURE$39;S
+                                    EDGE DIVE &amp; OUTDOOR CENTRE</option>
+                                <option value="AQUABUD SCUBA">AQUABUD SCUBA</option>
+                                <option value="UNDERWATERLOVE">UNDERWATERLOVE</option>
+                                <option value="DIVERS DELUXE">DIVERS DELUXE</option>
+                                <option value="SPLASH H2O">SPLASH H2O</option>
+                                <option value="OCEANA DIVING">OCEANA DIVING</option>
+                                <option value="TREVOR JONES">TREVOR JONES</option>
+                                <option value="DANFORTH YACHTING">DANFORTH YACHTING</option>
+                                <option value="NICHOLAS KRUL">NICHOLAS KRUL</option>
+                                <option value="HYDRO DIVE CC">HYDRO DIVE CC</option>
+                                <option value="PJ WESSELS">PJ WESSELS</option>
+                                <option value="WATER LIFE SCUBA">WATER LIFE SCUBA</option>
+                                <option value="ALL ABOUT SCUBA - RUSTENBURG">ALL ABOUT SCUBA -
+                                    RUSTENBURG</option>
+                                <option value="SEA ESCAPES">SEA ESCAPES</option>
+                                <option value="TEAM INTENSITY CC">TEAM INTENSITY CC</option>
+                                <option value="INTENSE ADVENTURES (PTY) LTD">INTENSE ADVENTURES (PTY)
+                                    LTD</option>
+                                <option value="AZURA RETREAT @ GABRIELS">AZURA RETREAT @ GABRIELS
+                                </option>
+                                <option value="MENT-A-SCUBA">MENT-A-SCUBA</option>
+                                <option value="GEKO DIVERS">GEKO DIVERS</option>
+                                <option value="LET$39;S GO DIVE CLUB">LET$39;S GO DIVE CLUB</option>
+                                <option value="THE WATER RATS">THE WATER RATS</option>
+                                <option value="OCEAN DIVERS INTERNATIONAL">OCEAN DIVERS INTERNATIONAL
+                                </option>
+                                <option value="PHAMBUKA DIVE CHARTERS">PHAMBUKA DIVE CHARTERS</option>
+                                <option value="SCUBA.CO.ZA">SCUBA.CO.ZA</option>
+                                <option value="TRIBOLOGY DIVING">TRIBOLOGY DIVING</option>
+                                <option value="TRITON DIVE CHARTERS">TRITON DIVE CHARTERS</option>
+                                <option value="OCEAN EXPLORERS MEYERSDAL MALL">OCEAN EXPLORERS MEYERSDAL
+                                    MALL</option>
+                                <option value="BUBBLE BLASTERS">BUBBLE BLASTERS</option>
+                                <option value="ROB AVICE DU BUISSON">ROB AVICE DU BUISSON</option>
+                                <option value="BACK TO BASICS ADVENTURES">BACK TO BASICS ADVENTURES
+                                </option>
+                                <option value="SCUBANEST ADVENTURES">SCUBANEST ADVENTURES</option>
+                                <option value="GRACE DIVING SCHOOL">GRACE DIVING SCHOOL</option>
+                                <option value="SHARED VIZ SCUBA DIVING CLUB">SHARED VIZ SCUBA DIVING
+                                    CLUB</option>
+                                <option value="LA SPORT DIVING (PTY) LTD">LA SPORT DIVING (PTY) LTD
+                                </option>
+                                <option value="FABSOLUTE SCUBA">FABSOLUTE SCUBA</option>
+                                <option value="COMPLEXO TURISTICO DA PONTA MALONGANE CENTRE">COMPLEXO
+                                    TURISTICO DA PONTA MALONGANE CENTRE</option>
+                                <option value="360 SCUBA">360 SCUBA</option>
+                                <option value="FIFTH DAY DIVE CLUB">FIFTH DAY DIVE CLUB</option>
+                                <option value="POTCH SCUBA">POTCH SCUBA</option>
+                                <option value="BLUE CHILLI ADVENTURES">BLUE CHILLI ADVENTURES</option>
+                                <option value="AQUAMANIA">AQUAMANIA</option>
+                                <option value="MERGULHADORES DE MOCAMBIQUE">MERGULHADORES DE MOCAMBIQUE
+                                </option>
+                                <option value="AFRICA DIVING">AFRICA DIVING</option>
+                                <option value="KYALAMI SCUBA">KYALAMI SCUBA</option>
+                                <option value="REMORA DIVE CHARTERS AND ADVENTURES">REMORA DIVE CHARTERS
+                                    AND ADVENTURES</option>
+                                <option value="NUDI DIVERS">NUDI DIVERS</option>
+                                <option value="LIQUID EDGE DIVING">LIQUID EDGE DIVING</option>
+                                <option value="SCUBA REBELS">SCUBA REBELS</option>
+                                <option value="OCEANIC DIVE ADVENTURES">OCEANIC DIVE ADVENTURES</option>
+                                <option value="THE DIVE SPOT">THE DIVE SPOT</option>
+                                <option value="O$39;WILLIES SCUBA DIVING SAFARIS">O$39;WILLIES SCUBA
+                                    DIVING SAFARIS</option>
+                                <option value="50 BAR SCUBA">50 BAR SCUBA</option>
+                                <option value="AQUANAUTS DIVE ACADEMY">AQUANAUTS DIVE ACADEMY</option>
+                                <option value="SCUBA FUSION">SCUBA FUSION</option>
+                                <option value="OCEAN ECHO SCUBA">OCEAN ECHO SCUBA</option>
+                                <option value="DALEDNA CC">DALEDNA CC</option>
+                                <option value="DANTICA DIVING">DANTICA DIVING</option>
+                                <option value="REEF DIVERS GEORGE">REEF DIVERS GEORGE</option>
+                                <option value="BLUE HORIZONZ ADVENTURES">BLUE HORIZONZ ADVENTURES
+                                </option>
+                                <option value="LIBELULA LDA">LIBELULA LDA</option>
+                                <option value="OLD MUTUAL SUB AQUA CLUB">OLD MUTUAL SUB AQUA CLUB
+                                </option>
+                                <option value="SCOOBA DOO DIVE CENTRE">SCOOBA DOO DIVE CENTRE</option>
+                                <option value="INDIGO SCUBA DIVING CENTRE">INDIGO SCUBA DIVING CENTRE
+                                </option>
+                                <option value="ALAN PRIOR">ALAN PRIOR</option>
+                                <option value="SCUBA ADDICTS">SCUBA ADDICTS</option>
+                                <option value="IN DEPTH DIVING">IN DEPTH DIVING</option>
+                                <option value="PEMBA DIVE">PEMBA DIVE</option>
+                                <option value="PELAGO ADVENTURA LDA">PELAGO ADVENTURA LDA</option>
+                                <option value="ISLAND XTREME LTD">ISLAND XTREME LTD</option>
+                                <option value="SEA URCHIN LTD">SEA URCHIN LTD</option>
+                                <option value="POSEIDON DIVING">POSEIDON DIVING</option>
+                                <option value="DUPLICATE">DUPLICATE</option>
+                                <option value="DIVESAIL DIVING PTY LTD">DIVESAIL DIVING PTY LTD</option>
+                                <option value="TURTLE DIVERS">TURTLE DIVERS</option>
+                                <option value="AFRICA DIVE EXPEDITIONS">AFRICA DIVE EXPEDITIONS</option>
+                                <option value="TIMEOUT SCUBA">TIMEOUT SCUBA</option>
+                                <option value="SCUBA-LICIOUS">SCUBA-LICIOUS</option>
+                                <option value="OCEAN VISION -  CC">OCEAN VISION - CC</option>
+                                <option value="DIVERS ECO OPERATION LDA T/A NUARRO">DIVERS ECO OPERATION
+                                    LDA T/A NUARRO</option>
+                                <option value="DIVING WITH SHARKS">DIVING WITH SHARKS</option>
+                                <option value="DA BLU JUICE">DA BLU JUICE</option>
+                                <option value="BUDDY SCUBA DIVING ADVENTURES">BUDDY SCUBA DIVING
+                                    ADVENTURES</option>
+                                <option value="PERI-PERI DIVERS">PERI-PERI DIVERS</option>
+                                <option value="ZULULAND UNDERSEA CLUB">ZULULAND UNDERSEA CLUB</option>
+                                <option value="CLEAR VISION SCUBA">CLEAR VISION SCUBA</option>
+                                <option value="THONGA BEACH LODGE">THONGA BEACH LODGE</option>
+                                <option value="DIVE FACTORY JOHANNESBURG">DIVE FACTORY JOHANNESBURG
+                                </option>
+                                <option value="PARQUE DE MALONGANE">PARQUE DE MALONGANE</option>
+                                <option value="CLUB VENTURE">CLUB VENTURE</option>
+                                <option value="GULUDO BEACH LODGE">GULUDO BEACH LODGE</option>
+                                <option value="UNGUJA LODGE LTD">UNGUJA LODGE LTD</option>
+                                <option value="FRANCOIS ANDREW LANGLOIS">FRANCOIS ANDREW LANGLOIS
+                                </option>
+                                <option value="SCUBA GALAXY">SCUBA GALAXY</option>
+                                <option value="AFRICAN DIVE ADVENTURES">AFRICAN DIVE ADVENTURES</option>
+                                <option value="NEMO$39;S SCUBA & TRAVEL">NEMO$39;S SCUBA &amp; TRAVEL
+                                </option>
+                                <option value="METUNDOLODGE QUIRIMBAS ISLAND">METUNDOLODGE QUIRIMBAS
+                                    ISLAND</option>
+                                <option value="THE SHOAL DIVE CENTRE">THE SHOAL DIVE CENTRE</option>
+                                <option value="AFRICAN ADVENTURES">AFRICAN ADVENTURES</option>
+                                <option value="DIVEDEALS SOUTHERN AFRICA">DIVEDEALS SOUTHERN AFRICA
+                                </option>
+                                <option value="AQUATIC JAUNT T/A AQUA RUSH">AQUATIC JAUNT T/A AQUA RUSH
+                                </option>
+                                <option value="C FREAKS">C FREAKS</option>
+                                <option value="DIVING POSEIDON LTD">DIVING POSEIDON LTD</option>
+                                <option value="SHAUN THOMSON">SHAUN THOMSON</option>
+                                <option value="DIVE MORRUNGULO">DIVE MORRUNGULO</option>
+                                <option value="BLUESTAR DIVING">BLUESTAR DIVING</option>
+                                <option value="WOBBEGONG DIVE">WOBBEGONG DIVE</option>
+                                <option value="LEARN TO DIVE TODAY">LEARN TO DIVE TODAY</option>
+                                <option value="MATIES UNDERWATER CLU">MATIES UNDERWATER CLUB</option>
+                                <option value="AFRICA BUSH & DIVE">AFRICA BUSH &amp; DIVE</option>
+                                <option value="JUST SCUBA">JUST SCUBA</option>
+                                <option value="SCUBA XCURSION">SCUBA XCURSION</option>
+                                <option value="BLUE FOOTPRINTS ECO LODGE">BLUE FOOTPRINTS ECO LODGE
+                                </option>
+                                <option value="BLUE REEF DIVE CLUB">BLUE REEF DIVE CLUB</option>
+                                <option value="GETWET DIVING">GETWET DIVING</option>
+                                <option value="BIG BLUE LDA">BIG BLUE LDA</option>
+                                <option value="34 SOUTH DIVERS">34 SOUTH DIVERS</option>
+                                <option value="DEEP BLUE SCUBA DIVING">DEEP BLUE SCUBA DIVING</option>
+                                <option value="INTO THE BLUE">INTO THE BLUE</option>
+                                <option value="TANGA ADVENTURES">TANGA ADVENTURES</option>
+                                <option value="OFFSHORE AFRICA DIVE CHARTERS">OFFSHORE AFRICA DIVE
+                                    CHARTERS</option>
+                                <option value="OCEANIC SIX DIVERS">OCEANIC SIX DIVERS</option>
+                                <option value="LET$39;S SCUBA DIVE">LET$39;S SCUBA DIVE</option>
+                                <option value="GERHARD S JANSEN VAN VUUREN">GERHARD S JANSEN VAN VUUREN
+                                </option>
+                                <option value="AQUATEC SCUBA">AQUATEC SCUBA</option>
+                                <option value="AGULHAS HOUSE AND DIVING">AGULHAS HOUSE AND DIVING
+                                </option>
+                                <option value="DOWN SOUTH SCUBA CC">DOWN SOUTH SCUBA CC</option>
+                                <option value="BLUE WORLD DIVING">BLUE WORLD DIVING</option>
+                                <option value="AFRICAN WATERS SCUBA">AFRICAN WATERS SCUBA</option>
+                                <option value="SOUTHERN CROSS SCUBA">SOUTHERN CROSS SCUBA</option>
+                                <option value="COME PLAY SCUBA ADVENTURES">COME PLAY SCUBA ADVENTURES
+                                </option>
+                                <option value="URBAN DIVE">URBAN DIVE</option>
+                                <option value="UNME AFRICA">UNME AFRICA</option>
+                                <option value="DIVE CONNECTION">DIVE CONNECTION</option>
+                                <option value="OCEAN COMOCEAN">OCEAN COMOCEAN</option>
+                                <option value="PLEASURE BAY WATERSPORT CENTRE">PLEASURE BAY WATERSPORT
+                                    CENTRE</option>
+                                <option value="OCEAN ACTIVE DIVE CHARTERS">OCEAN ACTIVE DIVE CHARTERS
+                                </option>
+                                <option value="SCUBA ACADEMY">SCUBA ACADEMY</option>
+                                <option value="ADVENTURES4CHRIST">ADVENTURES4CHRIST</option>
+                                <option value="LONEHILL DIVE CLUB">LONEHILL DIVE CLUB</option>
+                                <option value="DIVE SOUTHERN AFRICA">DIVE SOUTHERN AFRICA</option>
+                                <option value="ZANZIBAR WATERSPORTS">ZANZIBAR WATERSPORTS</option>
+                                <option value="KWALALA LODGE">KWALALA LODGE</option>
+                                <option value="CAPE SCUBA CLUB">CAPE SCUBA CLUB</option>
+                                <option value="BUBBLE TECH SCUBA">BUBBLE TECH SCUBA</option>
+                                <option value="NELSON MANDELA METROPOLETAN UNIVERSITY">NELSON MANDELA
+                                    METROPOLETAN UNIVERSITY</option>
+                                <option value="SHARK ALLEY DIVE & TRAVEL">SHARK ALLEY DIVE &amp; TRAVEL
+                                </option>
+                                <option value="7TH HEAVEN SCUBA">7TH HEAVEN SCUBA</option>
+                                <option value="UMHLANGA SCUBA">UMHLANGA SCUBA</option>
+                                <option value="OCEAN BLUE SCUBA">OCEAN BLUE SCUBA</option>
+                                <option value="AFRICAN ADVENTURE ACADEMY">AFRICAN ADVENTURE ACADEMY
+                                </option>
+                                <option value="AQUAZONE">AQUAZONE</option>
+                                <option value="BLUE WAVE SCUBA">BLUE WAVE SCUBA</option>
+                                <option value="SCUBA CO (PTY) LTD">SCUBA CO (PTY) LTD</option>
+                                <option value="SCUBA 101">SCUBA 101</option>
+                                <option value="GIGGLES SCUBA DIVING">GIGGLES SCUBA DIVING</option>
+                                <option value="BELLVILLE UNDERWATER DIVE CLUB">BELLVILLE UNDERWATER DIVE
+                                    CLUB</option>
+                                <option value="PUMA SCUBA">PUMA SCUBA</option>
+                                <option value="NELSPRUIT SCUBA DIVING GEAR">NELSPRUIT SCUBA DIVING GEAR
+                                </option>
+                                <option value="SCUBA DIVING 4 U">SCUBA DIVING 4 U</option>
+                                <option value="BLUE WORLD EXPLORER LTD">BLUE WORLD EXPLORER LTD</option>
+                                <option value="MARINE TRAINING & CONSULTING">MARINE TRAINING &amp;
+                                    CONSULTING</option>
+                                <option value="PRO DIVE LTD MAURITIUS">PRO DIVE LTD MAURITIUS</option>
+                                <option value="ZAVORA LODGE">ZAVORA LODGE</option>
+                                <option value="PANGEA RESORT">PANGEA RESORT</option>
+                                <option value="OLLAVA SCUBA">OLLAVA SCUBA</option>
+                                <option value="MZANSI SCUBA DIVING ACADEMY">MZANSI SCUBA DIVING ACADEMY
+                                </option>
+                                <option value="NUARRO LODGE">NUARRO LODGE</option>
+                                <option value="SUBMERGETECH">SUBMERGETECH</option>
+                                <option value="XCLUSIVE SCUBA">XCLUSIVE SCUBA</option>
+                                <option value="SCUBA EVOLUTION">SCUBA EVOLUTION</option>
+                                <option value="GOZO AZUL DIVING">GOZO AZUL DIVING</option>
+                                <option value="ADRENALISED DIVING">ADRENALISED DIVING</option>
+                                <option value="NORTH COAST SCUBA">NORTH COAST SCUBA</option>
+                                <option value="OFFSHORE AFRICA">OFFSHORE AFRICA</option>
+                                <option value="NELSON MANDELA METROPOLITAN UNIVERSITY">NELSON MANDELA
+                                    METROPOLITAN UNIVERSITY</option>
+                                <option value="JENS & LAUREL">JENS &amp; LAUREL</option>
+                                <option value="JENS COMMERCIAL DIVING">JENS COMMERCIAL DIVING</option>
+                                <option value="JACKS DIVE CHEST">JACKS DIVE CHEST</option>
+                                <option value="DEEP">DEEP</option>
+                                <option value="UKZN UNDERWATER CLUB">UKZN UNDERWATER CLUB</option>
+                                <option value="APNEA ACADEMY">APNEA ACADEMY</option>
+                                <option value="JUST DIVING LIMITED">JUST DIVING LIMITED</option>
+                                <option value="BLUE WORLD EXPLORER LTD">BLUE WORLD EXPLORER LTD</option>
+                                <option value="D">D</option>
+                                <option value=">MANGILY SCUBA">MANGILY SCUBA</option>
+                                <option value="SEAXPLORE">SEAXPLORE</option>
+                                <option value="MOOINOOI AQUA CLUB">MOOINOOI AQUA CLUB</option>
+                                <option value="COME DIVE - DELETE">COME DIVE - DELETE</option>
+                                <option value="DIVEALOT">DIVEALOT</option>
+                                <option value="AQUA WILD AFRICA">AQUA WILD AFRICA</option>
+                                <option value="CRYSTAL DIVERS">CRYSTAL DIVERS</option>
+                                <option value="BLUE OCEAN DIVE RESORT">BLUE OCEAN DIVE RESORT</option>
+                                <option value="ALIWAL SHOAL SCUBA">ALIWAL SHOAL SCUBA</option>
+                                <option value="JACKS DIVE CHEST">JACKS DIVE CHEST</option>
+                                <option value="JONES CONSULTING">JONES CONSULTING</option>
+                                <option value="MANTA TRAINING SOLUTIONS">MANTA TRAINING SOLUTIONS
+                                </option>
+                                <option value="SHARK EXPLORERS">SHARK EXPLORERS</option>
+                                <option value="WRECK AND REEF SCUBA ADVENTURES">WRECK AND REEF SCUBA
+                                    ADVENTURES</option>
+                                <option value="COME DIVE">COME DIVE</option>
+                                <option value="WATER ORPHANS">WATER ORPHANS</option>
+                                <option value="SCUBATECH">SCUBATECH</option>
+                                <option value="ALIWAL DIVE CENTRE & LODGE">ALIWAL DIVE CENTRE &amp;
+                                    LODGE</option>
+                                <option value="NOORDHOEK SKI BOAT CLUB">NOORDHOEK SKI BOAT CLUB</option>
+                                <option value="PRO DIVE">PRO DIVE</option>
+                                <option value="AQUAHOLICS BARRA">AQUAHOLICS BARRA</option>
+                                <option value="BORDER UNDERSEA CLUB - TEST PROFILE">BORDER UNDERSEA CLUB
+                                    - TEST PROFILE</option>
+                                <option value="BORDER UNDERSEA CLUB">BORDER UNDERSEA CLUB</option>
+                                <option value="TEST">TEST</option>
+                                <option value="GUINJATA DIVE CENTRE">GUINJATA DIVE CENTRE</option>
+                                <option value="RUSS OPLAND PROFESSIONAL SCUBA SERVICES">RUSS OPLAND
+                                    PROFESSIONAL SCUBA SERVICES</option>
+                                <option value="FUN DIVERS ZANZIBAR">FUN DIVERS ZANZIBAR</option>
+                                <option value="CAPE TOWN DIVE CENTRE">CAPE TOWN DIVE CENTRE</option>
+                                <option value="JUST AFRICA SCUBA">JUST AFRICA SCUBA</option>
+                                <option value="MELT$39;S DIVE CO">MELT$39;S DIVE CO</option>
+                                <option value="RESEARCH DIVE UNIT">RESEARCH DIVE UNIT</option>
+                                <option value="GARDEN ROUTE SCUBA">GARDEN ROUTE SCUBA</option>
+                                <option value="GO DIVE MOSSELBAY">GO DIVE MOSSELBAY</option>
+                                <option value="IDIVE AFRICA">IDIVE AFRICA</option>
+                                <option value="ATLANTIS DIVING CENTRE">ATLANTIS DIVING CENTRE</option>
+                                <option value="CRYSTAL DIVERS MAURITIUS">CRYSTAL DIVERS MAURITIUS
+                                </option>
+                                <option value="INTERNATIONAL DIVING SYSTEMS">INTERNATIONAL DIVING
+                                    SYSTEMS</option>
+                                <option value="SCUBADOMAIN">SCUBADOMAIN</option>
+                                <option value="PRODIVE PE">PRODIVE PE</option>
+                                <option value="ABSOLUTELY SCUBA">ABSOLUTELY SCUBA</option>
+                                <option value="OCEAN EXPERIENCES">OCEAN EXPERIENCES</option>
+                                <option value="SCUBACREW">SCUBACREW</option>
+                                <option value="AQUAVENTURES SCUBA ACADEMY">AQUAVENTURES SCUBA ACADEMY
+                                </option>
+                                <option value="PONTA SCUBA SHOP">PONTA SCUBA SHOP</option>
+                                <option value="NEPTUNE$39;S DIVERS HERMANUS">NEPTUNE$39;S DIVERS
+                                    HERMANUS</option>
+                                <option value="SCUBA LEGENDZ">SCUBA LEGENDZ</option>
+                                <option value="DELTA CRUSIS SCUBA">DELTA CRUSIS SCUBA</option>
+                                <option value="TEC DIVING MAURITIUS LTD">TEC DIVING MAURITIUS LTD
+                                </option>
+                                <option value="P.T.R.D">P.T.R.D</option>
+                                <option value="CAPENSIS DIVING">CAPENSIS DIVING</option>
+                                <option value="COCO DE MER DIVING CENTER">COCO DE MER DIVING CENTER
+                                </option>
+                                <option value="BAZARUTO CENTER FOR SCIENTIFIC STUDIES">BAZARUTO CENTER
+                                    FOR SCIENTIFIC STUDIES</option>
+                                <option value="D3 TOTAL DIVER EVOLUTION">D3 TOTAL DIVER EVOLUTION
+                                </option>
+                                <option value="SEARAES DIVING">SEARAES DIVING</option>
+                                <option value="TRAVEL TO DIVE">TRAVEL TO DIVE</option>
+                                <option value="GEKO ADVENTURES">GEKO ADVENTURES</option>
+                                <option value="DIVETEAM (PTY) LTD">DIVETEAM (PTY) LTD</option>
+                                <option value="OSSIMBA BEACH LODGE">OSSIMBA BEACH LODGE</option>
+                                <option value="FUN DIVERS ZANZIBAR">FUN DIVERS ZANZIBAR</option>
+                                <option value="KELP DIVERS">KELP DIVERS</option>
+                                <option value="APNEA ADDICTS FREEDIVING">APNEA ADDICTS FREEDIVING
+                                </option>
+                                <option value="IMPACT DIVERS">IMPACT DIVERS</option>
+                                <option value="CONNVEST T/A THE SCUBA CLUB">CONNVEST T/A THE SCUBA CLUB
+                                </option>
+                            </select>
+                        </div>
+                        <div class="form-group col-sm-6">
+                            <label class="control-label">Agency</label>
+                            <select class="form-control" name="agency" formControlName="agency" [(ngModel)]="agency">  
+                                <option value="UNKNOWN">UNKNOWN</option>  
+                                <option value="OTHER">OTHER</option>
+                                <option value="CMAS">CMAS</option>
+                                <option value="IANTD">IANTD</option>
+                                <option value="NAUI">NAUI</option>
+                                <option value="PADI">PADI</option>
+                                <option value="SAUU">SAUU</option>
+                                <option value="SSI">SSI</option>
+                                <option value="TDI">TDI</option>
+                                <option value="ANDI">ANDI</option>
+                                <option value="SDI">SDI</option>
+                                <option value="SAUFF">SAUFF</option>
+                                <option value="RAID">RAID</option>
+                                <option value="SAFF">SAFF</option>
+                                <option value="PURE APNEA">PURE APNEA</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-sm-6">
+                            <label class="control-label">Working Diver</label> <br>
+                            <input type="radio" name="work_diver" value="DiveMaster" formControlName="work_diver" [(ngModel)]="work_diver" [checked]="work_diver == 'DiveMaster'"> 
+							<span
+                                class="work_diver">Dive Master</span>
+                            <input type="radio" name="work_diver" value="Instructor" formControlName="work_diver" [(ngModel)]="work_diver" [checked]="work_diver == 'Instructor'"> 
+							<span
+                                class="work_diver">Instructor</span>
+                            <input type="radio" name="work_diver" value="NA" formControlName="work_diver" [(ngModel)]="work_diver" [checked]="work_diver == 'NA'">
+							<span class="work_diver">N/A</span>      		
+                        </div>
+                        <div class="form-group col-sm-6">
+                            <label class="control-label">Diver Qualification</label>
+                            <input type="text" class="form-control" name="qualification" formControlName="qualification" [(ngModel)]="qualification">  
+                        </div>
+                        <div class="form-group col-sm-6">
+                            <label class="control-label">Start date</label>
+                            <input type="date" class="form-control date-picker" name="start_date" formControlName="start_date" [(ngModel)]="start_date" readonly>  
+                        </div>
+                        <div class="form-group col-sm-6">
+                            <label class="control-label">Join date</label>
+                            <input type="date" class="form-control date-picker" name="join_date" formControlName="join_date" [(ngModel)]="join_date" readonly>    
+                        </div>
+                        <div class="form-group col-sm-12">
+                            <input type="submit" class="btn" value="Submit">
+                        </div>
+						<!-- <span *ngIf="successMsg != ''" class="success-message">		
+							{{ successMsg }}						  			
+						</span>      -->
+						<span *ngIf="formError" class="text-danger">		
+							{{ 'Please fill all the required fields' }}												  			
+						</span> 		  
+                    </div>
+                </form>
+
+                <form id="" class="sky-form" *ngIf="userMembership === 'temporary'" [formGroup]="tempForm" (ngSubmit)="onSubmit()">
+                    <div class="chalkbg">
+                        <img src="/assets/images/red-logo.png" style="height: 50px;">
+                        <span style="text-align: right">
+                            <br>
+                            <label class="chalktitle" style="color: white">DIVERS ALERT NETWORK SOUTHERN AFRICA</label>
+                        </span>
+                    </div>
+                    <div class="row" style="padding: 20px 30px;">
+                        <div class="col col-12">
+                            <p class="heading" style="color: #666666;">Membership Info</p>
+                        </div>
+                    </div>
+                    <div class="row" style="padding: 0 30px;">
+                        <div class="form-group col-sm-6">
+                            <label class="control-label">Dive Location <span class="text-danger">*</span></label>
+                            <select formControlName="temp_dive_loc" [(ngModel)]="temp_dive_loc" class="form-control">
+                                <option value="UNKNOWN">UNKNOWN</option>
+                                <option value="AFGHANISTAN">AFGHANISTAN</option>
+                                <option value="ALBANIA">ALBANIA</option>
+                                <option value="ALGERIA">ALGERIA</option>
+                                <option value="AMERICAN SAMOA">AMERICAN SAMOA</option>
+                                <option value="ANDORRA">ANDORRA</option>
+                                <option value="ANGOLA">ANGOLA</option>
+                                <option value="ANGUILLA">ANGUILLA</option>
+                                <option value="ANTARCTICA">ANTARCTICA</option>
+                                <option value="ANTIGUA AND BARBUDA">ANTIGUA AND BARBUDA</option>
+                                <option value="ARGENTINA">ARGENTINA</option>
+                                <option value="ARMENIA">ARMENIA</option>
+                                <option value="ARUBA">ARUBA</option>
+                                <option value="AUSTRALIA">AUSTRALIA</option>
+                                <option value="AUSTRIA">AUSTRIA</option>
+                                <option value="AZERBAIJAN">AZERBAIJAN</option>
+                                <option value="BAHAMAS">BAHAMAS</option>
+                                <option value="BAHRAIN">BAHRAIN</option>
+                                <option value="BANGLADESH">BANGLADESH</option>
+                                <option value="BARBADOS">BARBADOS</option>
+                                <option value="BELARUS">BELARUS</option>
+                                <option value="BELGIUM">BELGIUM</option>
+                                <option value="BELIZE">BELIZE</option>
+                                <option value="BENIN">BENIN</option>
+                                <option value="BERMUDA">BERMUDA</option>
+                                <option value="BHUTAN">BHUTAN</option>
+                                <option value="BOLIVIA">BOLIVIA</option>
+                                <option value="BOSNIA AND HERZEGOVINA">BOSNIA AND HERZEGOVINA</option>
+                                <option value="BOTSWANA">BOTSWANA</option>
+                                <option value="BOUVET ISLAND">BOUVET ISLAND</option>
+                                <option value="BRAZIL">BRAZIL</option>
+                                <option value="BRITISH INDIAN OCEAN TERRITORY">BRITISH INDIAN OCEAN TERRITORY</option>
+                                <option value="BRUNEI DARUSSALAM">BRUNEI DARUSSALAM</option>
+                                <option value="BULGARIA">BULGARIA</option>
+                                <option value="BURKINA FASO">BURKINA FASO</option>
+                                <option value="BURUNDI">BURUNDI</option>
+                                <option value="CAMBODIA">CAMBODIA</option>
+                                <option value="CAMEROON">CAMEROON</option>
+                                <option value="CANADA">CANADA</option>
+                                <option value="CAPE VERDE">CAPE VERDE</option>
+                                <option value="CAYMAN ISLANDS">CAYMAN ISLANDS</option>
+                                <option value="CENTRAL AFRICAN REPUBLIC">CENTRAL AFRICAN REPUBLIC</option>
+                                <option value="CHAD">CHAD</option>
+                                <option value="CHILE">CHILE</option>
+                                <option value="CHINA">CHINA</option>
+                                <option value="CHRISTMAS ISLAND">CHRISTMAS ISLAND</option>
+                                <option value="COCOS (KEELING) ISLANDS">COCOS (KEELING) ISLANDS</option>
+                                <option value="COLOMBIA">COLOMBIA</option>
+                                <option value="COMOROS">COMOROS</option>
+                                <option value="CONGO REPUBLIC (BRAZZAVILLE)">CONGO REPUBLIC (BRAZZAVILLE)</option>
+                                <option value="COOK ISLANDS">COOK ISLANDS</option>
+                                <option value="COSTA RICA">COSTA RICA</option>
+                                <option value="CROATIA">CROATIA</option>
+                                <option value="CUBA">CUBA</option>
+                                <option value="CYPRUS">CYPRUS</option>
+                                <option value="CZECH REPUBLIC">CZECH REPUBLIC</option>
+                                <option value="DEMOCRATIC REPUBLIC OF CONGO (KINSHASA)">DEMOCRATIC REPUBLIC OF CONGO
+                                    (KINSHASA)</option>
+                                <option value="DENMARK">DENMARK</option>
+                                <option value="DJIBOUTI">DJIBOUTI</option>
+                                <option value="DOMINICA">DOMINICA</option>
+                                <option value="DOMINICAN REPUBLIC">DOMINICAN REPUBLIC</option>
+                                <option value="EAST TIMOR (TIMOR-LESTE)">EAST TIMOR (TIMOR-LESTE)</option>
+                                <option value="ECUADOR">ECUADOR</option>
+                                <option value="EGYPT">EGYPT</option>
+                                <option value="EL SALVADOR">EL SALVADOR</option>
+                                <option value="ENGLAND">ENGLAND</option>
+                                <option value="EQUATORIAL GUINEA">EQUATORIAL GUINEA</option>
+                                <option value="ERITREA">ERITREA</option>
+                                <option value="ESTONIA">ESTONIA</option>
+                                <option value="ETHIOPIA">ETHIOPIA</option>
+                                <option value="FALKLAND ISLANDS">FALKLAND ISLANDS</option>
+                                <option value="FAROE ISLANDS">FAROE ISLANDS</option>
+                                <option value="FIJI">FIJI</option>
+                                <option value="FINLAND">FINLAND</option>
+                                <option value="FRANCE">FRANCE</option>
+                                <option value="FRENCH GUIANA">FRENCH GUIANA</option>
+                                <option value="FRENCH POLYNESIA">FRENCH POLYNESIA</option>
+                                <option value="FRENCH SOUTHERN TERRITORIES">FRENCH SOUTHERN TERRITORIES</option>
+                                <option value="GABON">GABON</option>
+                                <option value="GAMBIA">GAMBIA</option>
+                                <option value="GEORGIA">GEORGIA</option>
+                                <option value="GERMANY">GERMANY</option>
+                                <option value="GHANA">GHANA</option>
+                                <option value="GIBRALTAR">GIBRALTAR</option>
+                                <option value="GREECE">GREECE</option>
+                                <option value="GREENLAND">GREENLAND</option>
+                                <option value="GRENADA">GRENADA</option>
+                                <option value="GUADELOUPE">GUADELOUPE</option>
+                                <option value="GUAM">GUAM</option>
+                                <option value="GUATEMALA">GUATEMALA</option>
+                                <option value="GUINEA">GUINEA</option>
+                                <option value="GUINEA-BISSAU">GUINEA-BISSAU</option>
+                                <option value="GUYANA">GUYANA</option>
+                                <option value="HAITI">HAITI</option>
+                                <option value="HOLY SEE">HOLY SEE</option>
+                                <option value="HONDURAS">HONDURAS</option>
+                                <option value="HONG KONG">HONG KONG</option>
+                                <option value="HUNGARY">HUNGARY</option>
+                                <option value="ICELAND">ICELAND</option>
+                                <option value="INDIA">INDIA</option>
+                                <option value="INDONESIA">INDONESIA</option>
+                                <option value="IRAN (ISLAMIC REPUBLIC OF)">IRAN (ISLAMIC REPUBLIC OF)</option>
+                                <option value="IRAQ">IRAQ</option>
+                                <option value="IRELAND">IRELAND</option>
+                                <option value="ISRAEL">ISRAEL</option>
+                                <option value="ITALY">ITALY</option>
+                                <option value="IVORY COAST">IVORY COAST</option>
+                                <option value="JAMAICA">JAMAICA</option>
+                                <option value="JAPAN">JAPAN</option>
+                                <option value="JORDAN">JORDAN</option>
+                                <option value="KAZAKHSTAN">KAZAKHSTAN</option>
+                                <option value="KENYA">KENYA</option>
+                                <option value="KIRIBATI">KIRIBATI</option>
+                                <option value="KOREAN DEMOCRATIC PEOPLE'S REPUBLIC (NORTH KOREA)">KOREAN DEMOCRATIC
+                                    PEOPLE'S REPUBLIC (NORTH KOREA)</option>
+                                <option value="KOREAN REPUBLIC (SOUTH KOREA)">KOREAN REPUBLIC (SOUTH KOREA)</option>
+                                <option value="KOSOVO">KOSOVO</option>
+                                <option value="KUWAIT">KUWAIT</option>
+                                <option value="KYRGYZSTAN">KYRGYZSTAN</option>
+                                <option value="LAO PEOPLE'S DEMOCRATIC REPUBLIC">LAO PEOPLE'S DEMOCRATIC REPUBLIC
+                                </option>
+                                <option value="LATVIA">LATVIA</option>
+                                <option value="LEBANON">LEBANON</option>
+                                <option value="LESOTHO">LESOTHO</option>
+                                <option value="LIBERIA">LIBERIA</option>
+                                <option value="LIBYA">LIBYA</option>
+                                <option value="LIECHTENSTEIN">LIECHTENSTEIN</option>
+                                <option value="LITHUANIA">LITHUANIA</option>
+                                <option value="LUXEMBOURG">LUXEMBOURG</option>
+                                <option value="MACAU">MACAU</option>
+                                <option value="MACEDONIA REPUBLIC">MACEDONIA REPUBLIC</option>
+                                <option value="MADAGASCAR">MADAGASCAR</option>
+                                <option value="MALAWI">MALAWI</option>
+                                <option value="MALAYSIA">MALAYSIA</option>
+                                <option value="MALDIVES">MALDIVES</option>
+                                <option value="MALI">MALI</option>
+                                <option value="MALTA">MALTA</option>
+                                <option value="MARSHALL ISLANDS">MARSHALL ISLANDS</option>
+                                <option value="MARTINIQUE">MARTINIQUE</option>
+                                <option value="MAURITANIA">MAURITANIA</option>
+                                <option value="MAURITIUS">MAURITIUS</option>
+                                <option value="MAYOTTE">MAYOTTE</option>
+                                <option value="MEXICO">MEXICO</option>
+                                <option value="MICRONESIA FEDERAL STATES">MICRONESIA FEDERAL STATES</option>
+                                <option value="MOLDOVA REPUBLIC">MOLDOVA REPUBLIC</option>
+                                <option value="MONACO">MONACO</option>
+                                <option value="MONGOLIA">MONGOLIA</option>
+                                <option value="MONTENEGRO">MONTENEGRO</option>
+                                <option value="MONTSERRAT">MONTSERRAT</option>
+                                <option value="MOROCCO">MOROCCO</option>
+                                <option value="MOZAMBIQUE">MOZAMBIQUE</option>
+                                <option value="MYANMAR BURMA">MYANMAR BURMA</option>
+                                <option value="NAMIBIA">NAMIBIA</option>
+                                <option value="NAURU">NAURU</option>
+                                <option value="NEPAL">NEPAL</option>
+                                <option value="NETHERLANDS">NETHERLANDS</option>
+                                <option value="NETHERLANDS ANTILLES">NETHERLANDS ANTILLES</option>
+                                <option value="NEW CALEDONIA">NEW CALEDONIA</option>
+                                <option value="NEW ZEALAND">NEW ZEALAND</option>
+                                <option value="NICARAGUA">NICARAGUA</option>
+                                <option value="NIGER">NIGER</option>
+                                <option value="NIGERIA">NIGERIA</option>
+                                <option value="NIUE">NIUE</option>
+                                <option value="NORTHERN MARIANA ISLANDS">NORTHERN MARIANA ISLANDS</option>
+                                <option value="NORWAY">NORWAY</option>
+                                <option value="OMAN">OMAN</option>
+                                <option value="PAKISTAN">PAKISTAN</option>
+                                <option value="PALAU">PALAU</option>
+                                <option value="PALESTINIAN TERRITORIES">PALESTINIAN TERRITORIES</option>
+                                <option value="PANAMA">PANAMA</option>
+                                <option value="PAPUA NEW GUINEA">PAPUA NEW GUINEA</option>
+                                <option value="PARAGUAY">PARAGUAY</option>
+                                <option value="PERU">PERU</option>
+                                <option value="PHILIPPINES">PHILIPPINES</option>
+                                <option value="PITCAIRN ISLAND">PITCAIRN ISLAND</option>
+                                <option value="POLAND">POLAND</option>
+                                <option value="PORTUGAL">PORTUGAL</option>
+                                <option value="PUERTO RICO">PUERTO RICO</option>
+                                <option value="QATAR">QATAR</option>
+                                <option value="REUNION ISLAND">REUNION ISLAND</option>
+                                <option value="ROMANIA">ROMANIA</option>
+                                <option value="RUSSIAN FEDERATION">RUSSIAN FEDERATION</option>
+                                <option value="RWANDA">RWANDA</option>
+                                <option value="SAINT HELENA">SAINT HELENA</option>
+                                <option value="SAINT KITTS AND NEVIS">SAINT KITTS AND NEVIS</option>
+                                <option value="SAINT LUCIA">SAINT LUCIA</option>
+                                <option value="SAINT VINCENT AND THE GRENADINES">SAINT VINCENT AND THE GRENADINES
+                                </option>
+                                <option value="SAMOA">SAMOA</option>
+                                <option value="SAN MARINO">SAN MARINO</option>
+                                <option value="SAO TOME AND PRINCIPE">SAO TOME AND PRINCIPE</option>
+                                <option value="SAUDI ARABIA">SAUDI ARABIA</option>
+                                <option value="SCOTLAND">SCOTLAND</option>
+                                <option value="SENEGAL">SENEGAL</option>
+                                <option value="SERBIA">SERBIA</option>
+                                <option value="SEYCHELLES">SEYCHELLES</option>
+                                <option value="SIERRA LEONE">SIERRA LEONE</option>
+                                <option value="SINGAPORE">SINGAPORE</option>
+                                <option value="SLOVAKIA (SLOVAK REPUBLIC)">SLOVAKIA (SLOVAK REPUBLIC)</option>
+                                <option value="SLOVENIA">SLOVENIA</option>
+                                <option value="SOLOMON ISLANDS">SOLOMON ISLANDS</option>
+                                <option value="SOMALIA">SOMALIA</option>
+                                <option value="SOUTH AFRICA">SOUTH AFRICA</option>
+                                <option value="SOUTH SUDAN">SOUTH SUDAN</option>
+                                <option value="SPAIN">SPAIN</option>
+                                <option value="SRI LANKA">SRI LANKA</option>
+                                <option value="SUDAN">SUDAN</option>
+                                <option value="SURINAME">SURINAME</option>
+                                <option value="SWAZILAND">SWAZILAND</option>
+                                <option value="SWEDEN">SWEDEN</option>
+                                <option value="SWITZERLAND">SWITZERLAND</option>
+                                <option value="SYRIAN ARAB REPUBLIC">SYRIAN ARAB REPUBLIC</option>
+                                <option value="TAJIKISTAN">TAJIKISTAN</option>
+                                <option value="TANZANIA">TANZANIA</option>
+                                <option value="THAILAND">THAILAND</option>
+                                <option value="TIBET">TIBET</option>
+                                <option value="TIMOR-LESTE (EAST TIMOR)">TIMOR-LESTE (EAST TIMOR)</option>
+                                <option value="TOGO">TOGO</option>
+                                <option value="TOKELAU">TOKELAU</option>
+                                <option value="TONGA">TONGA</option>
+                                <option value="TRINIDAD AND TOBAGO">TRINIDAD AND TOBAGO</option>
+                                <option value="TUNISIA">TUNISIA</option>
+                                <option value="TURKEY">TURKEY</option>
+                                <option value="TURKMENISTAN">TURKMENISTAN</option>
+                                <option value="TURKS AND CAICOS ISLANDS">TURKS AND CAICOS ISLANDS</option>
+                                <option value="TUVALU">TUVALU</option>
+                                <option value="UGANDA">UGANDA</option>
+                                <option value="UKRAINE">UKRAINE</option>
+                                <option value="UNITED ARAB EMIRATES">UNITED ARAB EMIRATES</option>
+                                <option value="UNITED KINGDOM">UNITED KINGDOM</option>
+                                <option value="UNITED STATES">UNITED STATES</option>
+                                <option value="URUGUAY">URUGUAY</option>
+                                <option value="UZBEKISTAN">UZBEKISTAN</option>
+                                <option value="VANUATU">VANUATU</option>
+                                <option value="VATICAN CITY STATE (HOLY SEE)">VATICAN CITY STATE (HOLY SEE)</option>
+                                <option value="VENEZUELA">VENEZUELA</option>
+                                <option value="VIETNAM">VIETNAM</option>
+                                <option value="VIRGIN ISLANDS (BRITISH)">VIRGIN ISLANDS (BRITISH)</option>
+                                <option value="VIRGIN ISLANDS (U.S.)">VIRGIN ISLANDS (U.S.)</option>
+                                <option value="WALES">WALES</option>
+                                <option value="WALLIS AND FUTUNA ISLANDS">WALLIS AND FUTUNA ISLANDS</option>
+                                <option value="WESTERN SAHARA">WESTERN SAHARA</option>
+                                <option value="YEMEN">YEMEN</option>
+                                <option value="ZAMBIA">ZAMBIA</option>
+                                <option value="ZIMBABWE">ZIMBABWE</option>
+                            </select>
+                            <span *ngIf="formDataError.error_field === 'temp_dive_loc'" class="error-message"> {{ formDataError.msg }} </span>
+                        </div>
+                        <div class="form-group col-sm-6">
+                            <label class="control-label">Agency <span class="text-danger">*</span></label>
+                            <select class="form-control" formControlName="temp_agency" [(ngModel)]="temp_agency">
+                                <option value="UNKNOWN">UNKNOWN</option>
+                                <option value="OTHER">OTHER</option>
+                                <option value="CMAS">CMAS</option>
+                                <option value="IANTD">IANTD</option>
+                                <option value="NAUI">NAUI</option>
+                                <option value="PADI">PADI</option>
+                                <option value="SAUU">SAUU</option>
+                                <option value="SSI">SSI</option>
+                                <option value="TDI">TDI</option>
+                                <option value="ANDI">ANDI</option>
+                                <option value="SDI">SDI</option>
+                                <option value="SAUFF">SAUFF</option>
+                                <option value="RAID">RAID</option>
+                                <option value="SAFF">SAFF</option>
+                                <option value="PURE APNEA">PURE APNEA</option>
+                            </select>
+                            <span *ngIf="formDataError.error_field === 'temp_agency'" class="error-message"> {{ formDataError.msg }} </span>
+                        </div>
+
+                        <div class="form-group col-sm-6">
+                            <label class="control-label">Are you a freediver or spear fisherman?</label> <br>
+                            <input type="radio" formControlName="temp_spear_dive" [(ngModel)]="temp_spear_dive" value="Recreational"> <span class="work_diver">Recreational</span>
+                            <input type="radio" formControlName="temp_spear_dive" [(ngModel)]="temp_spear_dive" value="Competitive"> <span class="work_diver">Competitive</span>
+                        </div>
+                        <div class="form-group col-sm-6">
+                            <label class="control-label">Are you a recreational diver?</label> <br>
+                            <input type="radio" formControlName="temp_recr_dive" [(ngModel)]="temp_recr_dive" id="" value="Yes"> <span class="work_diver">Yes</span>
+                            <input type="radio" formControlName="temp_recr_dive" [(ngModel)]="temp_recr_dive" id="" value="No"> <span class="work_diver">No</span>
+                        </div>
+                        <div class="form-group col-sm-6">
+                            <label class="control-label">Diver Qualification <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" formControlName="temp_qualification" [(ngModel)]="temp_qualification">
+                            <span *ngIf="formDataError.error_field === 'temp_qualification'" class="error-message"> {{ formDataError.msg }} </span>
+                        </div>
+                        <div class="form-group col-sm-6"></div>
+                        <div class="form-group col-sm-6">
+                            <label class="control-label">Start date <span class="text-danger">*</span></label>
+                            <input type="date" class="form-control date-picker" formControlName="temp_start_date" [(ngModel)]="temp_start_date" readonly>
+                        </div>
+                        <div class="form-group col-sm-12">
+                            <input type="submit" class="btn btn-suucess" style="padding: 7px 20px !important;" value="Submit">
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>

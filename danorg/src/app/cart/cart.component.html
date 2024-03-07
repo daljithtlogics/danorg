@@ -1,0 +1,183 @@
+<section class="mid-inner">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12 full-wrap">
+        <div class="product-cart">
+          <div class="row">
+            <div class="col-sm-12">
+              <form class="cart-form">
+                <table class="table table-bordered" cellspacing="0">
+                  <thead>
+                    <tr>
+                      <th class="product-remove">&nbsp;</th>
+                      <th class="product-thumbnail">Image</th>
+                      <th class="product-name">Product</th>
+                      <th class="product-name">Sku</th>
+                      <th class="product-price">Unit Price</th>
+                      <th class="product-quantity">Quantity</th>
+                      <th class="product-subtotal">Subtotal</th>
+                    </tr>
+                  </thead>
+                  <tbody *ngIf="activeOrder && activeOrder?.lines?.length ?? 0 > 0; else elseStatement">
+                    <tr class="woocommerce-cart-form__cart-item cart_item" *ngFor="let item of activeOrder.lines; let index = index">
+                      <td class="product-remove">
+                        <a href="javascript:void(0);" class="remove" aria-label="Remove this item" data-product_id="1493" [attr.data-indexId]="item.id" (click)="onRemoveCart(item.id)" data-product_sku="">×</a>
+                      </td>
+                      <td class="product-thumbnail">
+                        <a [routerLink]="['/danshop/product-details/', item.productVariant.product.slug]">
+                          <img src="{{item.featuredAsset.preview}}" alt="">
+                        </a>
+                      </td>
+                      <td class="product-name" data-title="Product">
+                        <a [routerLink]="['/danshop/product-details/', item.productVariant.product.slug]">{{item.productVariant.name}}</a>
+                      </td>
+                      <td class="product-model" data-title="Model No">{{item.productVariant.sku}}</td>
+                      <td class="product-price" data-title="Price">
+                        <span class="woocommerce-Price-amount amount">
+                          <bdi>{{activeOrder.currencyCode}} {{ (item.unitPriceWithTax) / 100 | number:'1.2-2' }}</bdi>
+                        </span>
+                      </td>
+                      <td class="product-quantity" data-title="Quantity">
+                        <div class="cart quantity">
+                          <div class="quantity-input">
+                            <input type='button' value='-' class='qtyminus minus' field='quantity' [attr.data-productId]="item.id" [attr.data-productName]="item.productVariant.name" (click)="decrement(item.id, item.quantity)" />
+                            <input type='text' name='quantity' value='{{item.quantity}}' class='qty' readonly />
+                            <input type='button' value='+' class='qtyplus plus' field='quantity' [attr.data-productId]="item.id" [attr.data-productName]="item.productVariant.name" (click)="increment(item.id, item.quantity)" />
+                          </div>
+                        </div>
+                      </td>
+                      <td class="product-subtotal" data-title="Subtotal">
+                        <span class="woocommerce-Price-amount amount">
+                          <bdi>{{activeOrder.currencyCode}} {{ (item.unitPriceWithTax * item.quantity) / 100 | number:'1.2-2' }}</bdi>
+                        </span>
+                      </td>
+                    </tr>
+                  </tbody>
+                  <ng-template #elseStatement>
+                    <tbody>
+                      <tr>
+                        <td class="text-center" colspan="8">You have no items in your shopping cart</td>
+                      </tr>
+                    </tbody>
+                  </ng-template>
+                </table>
+              </form>
+            </div>
+            <div class="col-sm-12 cart-full" *ngIf="activeOrder?.lines?.length ?? 0 > 0">
+              <h3>What would you like to do next?</h3>
+              <p>Choose if you have a discount code or reward points you want to use.</p>
+            </div>
+            <div class="col-sm-7 cart-left" *ngIf="activeOrder">
+              <div class="accordion" id="accordionExample" *ngIf="activeOrder?.lines?.length ?? 0 > 0">
+                <div class="accordion-item">
+                  <h2 class="accordion-header">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">Use Coupon Code</button>
+                  </h2>
+                  <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                      <form (ngSubmit)="submitCoupon()" style="margin-bottom:10px">
+                        <label for="input-coupon">Enter your coupon here</label>
+                        <div class="input-group">
+                          <input type="text" name="coupon" [(ngModel)]="couponCode" placeholder="Enter your coupon here" id="input-coupon" class="form-control">
+                          <span class="input-group-btn">
+                            <input type="submit" value="Apply Coupon" id="button-coupon" data-loading-text="Loading..." class="btn btn-primary">
+                          </span>
+                        </div>
+                      </form>
+                      <div *ngIf="successMessage" class="text-success">{{ successMessage }}</div>
+                      <div *ngIf="errorMessage" class="text-danger">{{ errorMessage }}</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="accordion-item">
+                  <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">Use Gift Certificate</button>
+                  </h2>
+                  <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                      <form>
+                        <label class="" for="input-coupon">Enter your gift certificate code here</label>
+                        <div class="input-group">
+                          <input type="text" name="coupon" value="" placeholder="Enter your gift certificate code here" id="input-coupon" class="form-control">
+                          <span class="input-group-btn">
+                            <input type="button" value="Apply Gift Certificate" id="button-coupon" data-loading-text="Loading..." class="btn btn-primary">
+                          </span>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!--/ accordion -->
+            </div>
+            <!--/ cart-left -->
+            <div class="col-sm-5 cart-right" *ngIf="activeOrder">
+              <div class="cart-totals" *ngIf="activeOrder?.lines?.length ?? 0 > 0">
+								<h3>Order Summary</h3>
+                <table class="table table-bordered">
+                  <tbody>
+                    <tr>
+                      <td class="text-right">
+                        <strong>State:</strong>
+                      </td>
+                      <td class="text-right">{{ activeOrder.state | formatOrderState }}</td>
+                    </tr>
+                    <tr>
+                      <td class="text-right">
+                        <strong>Total Quantity:</strong>
+                      </td>
+                      <td class="text-right">{{activeOrder.totalQuantity}}</td>
+                    </tr>
+                    <tr *ngFor="let promotion of activeOrder.promotions; let index = index">
+                      <td class="text-right">
+                        <strong>Discount Code</strong>
+                      </td>
+                      <td class="text-right">
+                        <span class="coupon-tag">{{promotion.couponCode}}
+                          <a href="javascript:void(0);" class="" alt="remove coupon code" (click)="removeCouponCode(promotion.couponCode)">×</a>
+                        </span>
+                      </td>
+                    </tr>
+                    <tr *ngFor="let discount of activeOrder.discounts; let index = index">
+                      <td class="text-right">
+                        <strong>Discount Amount</strong>
+                      </td>
+                      <td class="text-right">{{activeOrder.currencyCode}} {{discount.amountWithTax / 100  | number:'1.2-2'}}</td>
+                    </tr>
+                    <tr>
+                      <td class="text-right">
+                        <strong>Sub-Total:</strong>
+                      </td>
+                      <td class="text-right">{{activeOrder.currencyCode}} {{activeOrder.subTotalWithTax / 100 | number:'1.2-2'}}</td>
+                    </tr>
+                    <tr>
+                      <td class="text-right">
+                        <strong>Shipping Cost:</strong>
+                      </td>
+                      <td class="text-right">{{activeOrder.currencyCode}} {{activeOrder.shippingWithTax / 100 | number:'1.2-2'}}</td>
+                    </tr>
+                    <tr>
+                      <td class="text-right">
+                        <strong>Total:</strong>
+                      </td>
+                      <td class="text-right">{{activeOrder.currencyCode}} {{activeOrder.totalWithTax / 100 | number:'1.2-2'}}</td>
+                    </tr>
+                  </tbody>
+                </table>
+                <div class="proceed-checkout">
+                  <a [routerLink]="['/danshop/checkout']" class="checkout-button btn">Proceed to checkout</a>
+                </div>
+              </div>
+              <!--/ cart-totals -->
+            </div>
+            <!--/ right -->
+          </div>
+          <!--/ row -->
+        </div>
+        <!--/ product-cart -->
+      </div>
+    </div>
+    <!--/ row -->
+  </div>
+</section>
+<!--/ mid-inner -->

@@ -1,0 +1,39 @@
+ul.addresses-block li {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    font-size: 0.825rem;
+}
+ul.addresses-block li:before {
+    content:unset;
+}
+.edit-address-link{
+	font-size: 0.825rem;
+    border-top: 1px solid #eee;
+    display: block;
+	padding-top: 8px;
+}
+.btn.add-address-btn {
+    position: relative;
+    background: #dd1717;
+    font-family: 'Lato', sans-serif;
+    font-weight: 700;
+    color: #fff;
+    text-shadow: none;
+    animation-delay: 2s;
+    -webkit-transition: background 0.3s ease-in-out, color 0.3s ease-in-out;
+    transition: background 0.3s ease-in-out, color 0.3s ease-in-out;
+    text-align: center;
+    margin: 0;
+    padding: 12px 20px;
+    border: 0;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    font-size: 14px;
+    text-transform: uppercase;
+    margin-top: 30px;
+}  
+ul.addresses-block {
+    min-height: 115px;
+}

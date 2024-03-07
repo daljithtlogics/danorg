@@ -1,0 +1,68 @@
+<section class="banner-inner" style="background-image: url(/assets/danshop/images/14304860_5568x3712_2500.png);">
+  <div class="container">
+    <div class="row">      
+	  <div class="col-sm-12">
+	    <div class="banner-text">
+		  <h1>User Login</h1>
+		  <h3>DAN MEMBERS REGISTER TO RECEIVE YOUR MEMBER DISCOUNTS</h3>
+        </div>
+	  </div>	
+    </div>
+  </div>
+</section><!--/ banner --> 
+
+<section class="login-wrap">
+  <div class="container">
+    <div class="row">  	  
+	  
+	  <div class="col-sm-6 left-area mrb-30">
+	    <div class="inner">
+		  <h2 class="mrb-30">Login</h2>
+		  <form [formGroup]="signInForm" (ngSubmit)="signIn()">
+		    <div class="form-group">
+				<label>Email</label>
+				<input class="form-control" type="email" id="emailAddress" name="emailAddress" formControlName="emailAddress">
+				<div *ngIf="submitted && f['emailAddress'].errors" class="error-message">
+					<div *ngIf="submitted && signInForm.get('emailAddress')?.hasError('required')">Email Address is invalid</div>
+					<div *ngIf="submitted && signInForm.get('emailAddress')?.hasError('email')">Email Address is invalid</div>
+				</div>
+			</div>
+			
+			<div class="form-group">
+				<label class="label">Password</label>
+				<input class="form-control" type="password" id="password" name="password" formControlName="password">
+				<div *ngIf="submitted && f['password'].errors" class="error-message">
+					<div *ngIf="submitted && signInForm.get('password')?.hasError('required')">Password is Invalid</div>									
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="custom-control custom-checkbox">
+					<label class="custom-control-label ml-2" for="remember">
+					<input type="checkbox" class="custom-control-input" id="remember" formControlName="remember"> Remember Me </label>
+					<span class="ml-auto">
+						<a [routerLink]="['/danshop/account/forgot-password']">Forgot Password ?</a>
+					</span>
+				</div>
+			</div>
+			<div class="form-group"><button type="submit" class="btn">Sign In</button></div>
+			<div class="form-group col-sm-12" *ngIf="successMessage">
+				<div class="alert alert-success text-success checkout-submit-msg">{{ successMessage }}</div>
+			</div>
+			<div class="form-group col-sm-12" *ngIf="errorMessage">
+				<div class="alert alert-danger text-danger checkout-submit-msg">{{ errorMessage }}</div>
+			</div>
+		  </form>
+	    </div><!--/ inner -->
+	  </div><!--/ left-area --> 	  
+	  
+	  <div class="col-sm-6 right-area mrb-30">
+	    <div class="inner">
+		  <h2 class="mrb-50 pad-b10">New to the DAN Store?</h2>
+		  <p class="mrb-50"><a [routerLink]="['/danshop/account/register']" class="btn">Create an account</a></p>
+		  <h4>Creating an account is free, quick and easy.</h4>
+	    </div><!--/ inner -->
+	  </div><!--/ left-area -->
+	  
+    </div><!--/ row -->	
+  </div>
+</section><!--/ login wrap -->

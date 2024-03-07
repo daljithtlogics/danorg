@@ -1,0 +1,117 @@
+<section class="banner-inner" style="background-image: url(/assets/danshop/images/14304465_5568x3712_2500.jpg);">
+  <div class="container">
+    <div class="row">      
+	  <div class="col-sm-12">
+	    <div class="banner-text">
+		  <h1>Contact Us</h1>
+		  <h3>Got questions or feedback?</h3>
+        </div>
+	  </div>	
+    </div>
+  </div>
+</section><!--/ banner --> 
+<section class="mid-inner">
+  <div class="container-fluid">
+    <div class="row">
+
+	  <div class="col-sm-12 full-wrap">
+	    
+		<div class="contact-page">
+		  <div class="row">
+		  
+		    <div class="col-sm-2 hidden-xs"></div>
+			
+			<div class="col-sm-8">
+			  <div class="info-tag text-center mrb-50">
+			    <h2>Let's Work Together</h2>
+				<h3>We'd love to hear from you. Fill out the form below to get started.</h3>
+			  </div>
+			  
+			  <form action="#" method="post" enctype="multipart/form-data" class="form-horizontal mrb-50" [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+			    <div class="form-group col-sm-12">
+					<label>Name</label>
+					<input type="text" name="contact_name" class="form-control" formControlName="contact_name"> 									
+					<div *ngIf="formDataError.error_field === 'contact_name'" class="error-message">
+						<div>{{ formDataError.msg }}</div>											
+					</div>  
+					<div *ngIf="contactForm.controls['contact_name'].hasError('required') && formSubmitted" class="error-message">
+						<div>Name Required</div>	   										
+					</div>
+				</div>
+				
+				<div class="form-group col-sm-12">
+					<label>Email</label>
+					<input type="text" name="contact_email" class="form-control" formControlName="contact_email">  									 
+					<div *ngIf="formDataError.error_field === 'contact_email'" class="error-message">
+						<div>{{ formDataError.msg }}</div>											
+					</div>  										
+					<div *ngIf="contactForm.controls['contact_email'].hasError('required') && formSubmitted" class="error-message">
+						<div>E-Mail Address Required</div>											
+					</div> 
+					<div *ngIf="contactForm.controls['contact_email'].hasError('email') && formSubmitted" class="error-message">
+						<div>Invalid E-Mail Address</div>											
+					</div>
+				</div>
+				
+				<div class="form-group col-sm-12">
+					<label>Message</label>
+					<textarea name="contact_enquiry" rows="10" class="form-control" formControlName="contact_enquiry"></textarea>									
+					<div *ngIf="formDataError.error_field === 'contact_enquiry'" class="error-message">
+						<div>{{ formDataError.msg }}</div>											
+					</div>  
+					<div *ngIf="contactForm.controls['contact_enquiry'].hasError('required') && formSubmitted" class="error-message">
+						<div>Enquiry Message Required</div>											
+					</div>
+				</div>
+				
+				<div class="form-group col-sm-12"><button type="submit" class="btn">Contact Us</button></div>
+			  </form>
+			  
+			  <div class="address-wrap mrb-40">
+			     <div class="info-tag text-center">
+			      <h2>Our Location</h2>
+			    </div>
+			  
+			    <div class="row">
+				 
+				  <div class="col-sm-4">
+				    <h4>DAN Shop</h4>
+					<address>
+					  <p>Reception <br>Stor-age Edenvale <br>60 Civin Drive <br>Essexwold, <br>Germiston <br>2008</p>
+					</address>
+					<a href="https://maps.google.com/maps?q=-26.161673266927213%2C%2028.132926230681505&amp;hl=en-gb&amp;t=m&amp;z=15" target="_blank" class="btn btn-info btn-google-map mb-4">
+						<i class="fa fa-map-marker-alt"></i>View Google Map 
+					</a>
+				  </div>
+				
+				  <div class="col-sm-4">
+				    <h4>Telephone</h4>
+					<address>
+					  <p>+27 11 266 4900</p>
+					</address>
+				  </div>
+				
+				  <div class="col-sm-4">
+				    <h4>Opening Times</h4>
+					<address>
+					  <p>Monday to Friday 08:00 - 15:30</p>
+					</address>
+					
+				    <h4>Comments</h4>
+					<address>
+					  <p>Register and add your DAN Number to receive a member discount where applicable. Registered DAN members are able to renew membership.</p>
+					</address>
+				  </div>
+				  
+				</div><!--/ row -->
+			  </div><!--/ address-wrap -->
+			  
+			</div><!--/ col -->
+			
+	      </div><!--/ row -->		  
+        </div><!--/ contact-page -->		  
+          
+    </div><!--/ row -->	
+  </div>
+  </div>
+</section><!--/ mid-inner -->  

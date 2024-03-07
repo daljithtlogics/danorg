@@ -1,0 +1,239 @@
+<section class="dashboard-wrapper">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-3">
+                <member-sidebar></member-sidebar>
+            </div>
+            <div class="col-sm-9">
+                <div id="" class="sky-form" *ngIf="userMembership === 'annual'">
+                    <div class="chalkbg">
+                        <img src="/assets/images/red-logo.png" style="height: 50px;">
+                        <span style="text-align: right">
+                            <br>
+                            <label class="chalktitle" style="color: white">UPGRADE MEMBERSHIP</label>
+                        </span>
+                    </div>
+                    <form [formGroup]="upgradeForm" (ngSubmit)="onSubmit()">
+                        <input type="hidden" formControlName="annual_id" value="{{ userId }}">  
+                        <input type="hidden" formControlName="price" [value]="payable">   
+
+
+                        <div class="row" style="padding: 0 15px;">
+                            <div class="level_area">
+                                <div class="row">
+                                    <label class="label-left col col-4">Current Membership:</label>
+                                    <div class="col col-8">
+                                        <section>
+                                            <label class="label-left">{{ annualRecords && annualRecords[0].package_name }}</label>
+                                        </section>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="levelarea" class="level_area" style="background: white">
+                                <div class="row">
+                                    <label class="label-left col col-4">Choose Membership<span class="text-danger">*</span>:</label>
+                                    <div class="col col-8">
+                                        <section>
+                                            <!-- [(ngModel)]="member_choose" [checked]="member_choose == 'Master Dive Pro'"  [checked]="member_choose == 'Master Tech'"]-->
+                                            <input type="radio" name="member_choose"  formControlName="member_choose" (ngModelChange)="updatePrice()" value="Master Dive Pro"> <span class="input label-left radio" style="font-weight: normal"> Master Dive Pro</span>
+                                            <input type="radio" name="member_choose"  formControlName="member_choose" (ngModelChange)="updatePrice()" value="Master Tech"> <span class="input label-left radio" style="font-weight: normal"> Master Tech</span>
+                                        </section>
+                                        <span *ngIf="formDataError.error_field === 'member_choose'" class="error-message"> {{ formDataError.msg }} </span>	      
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="level_area">
+                                <div class="row">
+                                    <label class="label-left col col-4">Package For<span class="text-danger">*</span>:</label>
+                                    <div class="col col-8">
+                                        <section>
+                                            <!-- [(ngModel)]="pack_for" [checked]="pack_for == 'month'" [checked]="pack_for == 'year'"  -->
+                                            <input type="radio" name="pack_for" formControlName="pack_for"  (ngModelChange)="updatePrice()" value="month"> <span class="input label-left radio" style="font-weight: normal"> Monthly</span>
+                                            <input type="radio" name="pack_for" formControlName="pack_for"  (ngModelChange)="updatePrice()" value="year"> <span class="input label-left radio" style="font-weight: normal"> Annual</span>
+                                        </section>
+                                        <span *ngIf="formDataError.error_field === 'pack_for'" class="error-message"> {{ formDataError.msg }} </span>	  
+                                    </div>
+                                </div>
+                            </div>
+    
+                            <div class="level_area" style="background: white">
+                                <div class="row">
+                                    <label class="label-left col col-4">Total Payable:</label>
+                                    <div class="col col-8">
+                                        <section>
+                                            <label id="payable" class="input label-left" style="font-weight: normal">R {{ payable }}.00</label>
+                                        </section>
+                                    </div>
+                                </div>
+                            </div>
+    
+                            <div class="level_area">
+                                <div class="row">
+                                    <label class="label-left col col-4">Payment Type<span class="text-danger">*</span>:</label>
+                                    <div class="col col-8">
+                                        <!-- [(ngModel)]="pay_type" -->
+                                        <select class="form-control" formControlName="pay_type">    
+                                            <option value="CREDIT CARD">Credit Card</option>
+                                            <option value="EFT">EFT</option>
+                                            <option value="DEBIT ORDER">Debit Order</option>    
+                                        </select>
+                                        <span *ngIf="formDataError.error_field === 'pay_type'" class="error-message"> {{ formDataError.msg }} </span>	         
+                                    </div>
+                                </div>
+                            </div>
+    
+                            <div style="border-top: 0px; display: none;" id="CreditCard"
+                                class="level_area">
+                                <div class="row">
+                                    <label class="label-left col col-12">Once you click continue you will be redirected to a payment gateway to complete your payment</label>
+                                </div>
+                            </div>
+    
+                            <div id="BankingDetails" style="border-top: 0px; background: white;" class="level_area">
+                                <div class="row">
+                                    <label class="label-left col col-4"></label>
+                                    <label class="label-left col col-8">
+                                        <strong style="color:red">Important: </strong>Your membership can only be
+                                        activated after you make the EFT payment. Please email the proof of payment to
+                                        <a href="mailto:mail@dansa.org" target="_blank">mail@dansa.org</a>.
+                                        <br>
+                                        <br>
+                                    </label>
+                                </div>
+                                <div class="row">
+                                    <label class="label-left col col-4">
+                                    </label>
+                                    <label class="label-left col col-4">
+                                        <strong>Bank Details:</strong><br>
+                                        <br>
+                                        Divers Alert Network<br>
+                                        Nedbank<br>
+                                        Braamfontein Branch<br>
+                                        Branch Code: 195005<br>
+                                        Account Number: 1950508714<br>
+                                        Cheque Account<br>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" style="padding: 0 30px;">
+                            <div class="form-group col-sm-12">
+                                <input type="submit" class="btn" value="Submit">
+                            </div>
+                        </div>
+                    </form>
+                  
+                </div>
+
+                <div id="" class="sky-form" *ngIf="userMembership === 'instructor_student'">
+                    <div class="chalkbg">
+                        <img src="/assets/images/red-logo.png" style="height: 50px;">
+                        <span style="text-align: right">
+                            <br>
+                            <label class="chalktitle" style="color: white">UPGRADE MEMBERSHIP</label>
+                        </span>
+                    </div>
+                    <form [formGroup]="upgradeInstForm" (ngSubmit)="onInstSave()">
+                        <input type="hidden" formControlName="annual_id" value="{{ userId }}">  
+                        <input type="hidden" formControlName="inst_price" [value]="payable"> 
+                        <input type="hidden" formControlName="inst_membership">   
+
+                        <div class="row" style="padding: 0 15px;">
+                            <div id="levelarea" class="level_area" style="background: white">
+                                <div class="row">
+                                    <label class="label-left col col-4">Choose Membership<span class="text-danger">*</span>:</label>
+                                    <div class="col col-8">
+                                        <section>
+                                            <input type="radio" name="inst_member_choose"  formControlName="inst_member_choose" (ngModelChange)="updateInstPrice()" value="Standard"> <span class="input label-left radio" style="font-weight: normal"> Standard</span>
+                                            <input type="radio" name="inst_member_choose"  formControlName="inst_member_choose" (ngModelChange)="updateInstPrice()" value="Plus"> <span class="input label-left radio" style="font-weight: normal"> Plus</span>
+                                            <input type="radio" name="inst_member_choose"  formControlName="inst_member_choose" (ngModelChange)="updateInstPrice()" value="Master Dive Pro"> <span class="input label-left radio" style="font-weight: normal"> Master Dive Pro</span>
+                                            <input type="radio" name="inst_member_choose"  formControlName="inst_member_choose" (ngModelChange)="updateInstPrice()" value="Master Tech"> <span class="input label-left radio" style="font-weight: normal"> Master Tech</span>
+                                        </section>
+                                        <span *ngIf="formDataError.error_field === 'inst_member_choose'" class="error-message"> {{ formDataError.msg }} </span>	      
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="level_area">
+                                <div class="row">
+                                    <label class="label-left col col-4">Package For<span class="text-danger">*</span>:</label>
+                                    <div class="col col-8">
+                                        <section>
+                                            <input type="radio" name="inst_pack_for" formControlName="inst_pack_for"  (ngModelChange)="updateInstPrice()" value="month"> <span class="input label-left radio" style="font-weight: normal"> Monthly</span>
+                                            <input type="radio" name="inst_pack_for" formControlName="inst_pack_for"  (ngModelChange)="updateInstPrice()" value="year"> <span class="input label-left radio" style="font-weight: normal"> Annual</span>
+                                        </section>
+                                        <span *ngIf="formDataError.error_field === 'inst_pack_for'" class="error-message"> {{ formDataError.msg }} </span>	  
+                                    </div>
+                                </div>
+                            </div>
+    
+                            <div class="level_area" style="background: white">
+                                <div class="row">
+                                    <label class="label-left col col-4">Total Payable:</label>
+                                    <div class="col col-8">
+                                        <section>
+                                            <label id="inst_payable" class="input label-left" style="font-weight: normal">R {{ inst_payable }}.00</label>
+                                        </section>
+                                    </div>
+                                </div>
+                            </div>
+    
+                            <div class="level_area">
+                                <div class="row">
+                                    <label class="label-left col col-4">Payment Type<span class="text-danger">*</span>:</label>
+                                    <div class="col col-8">
+                                        <select class="form-control" formControlName="inst_pay_type">    
+                                            <option value="CREDIT CARD">Credit Card</option>
+                                            <option value="EFT">EFT</option>
+                                            <option value="DEBIT ORDER">Debit Order</option>    
+                                        </select>
+                                        <span *ngIf="formDataError.error_field === 'inst_pay_type'" class="error-message"> {{ formDataError.msg }} </span>	         
+                                    </div>
+                                </div>
+                            </div>
+    
+                            <div style="border-top: 0px; display: none;" id="CreditCard"
+                                class="level_area">
+                                <div class="row">
+                                    <label class="label-left col col-12">Once you click continue you will be redirected to a payment gateway to complete your payment</label>
+                                </div>
+                            </div>
+    
+                            <div id="BankingDetails" style="border-top: 0px; background: white;" class="level_area">
+                                <div class="row">
+                                    <label class="label-left col col-4"></label>
+                                    <label class="label-left col col-8">
+                                        <strong style="color:red">Important: </strong>Your membership can only be
+                                        activated after you make the EFT payment. Please email the proof of payment to
+                                        <a href="mailto:mail@dansa.org" target="_blank">mail@dansa.org</a>.
+                                        <br>
+                                        <br>
+                                    </label>
+                                </div>
+                                <div class="row">
+                                    <label class="label-left col col-4">
+                                    </label>
+                                    <label class="label-left col col-4">
+                                        <strong>Bank Details:</strong><br>
+                                        <br>
+                                        Divers Alert Network<br>
+                                        Nedbank<br>
+                                        Braamfontein Branch<br>
+                                        Branch Code: 195005<br>
+                                        Account Number: 1950508714<br>
+                                        Cheque Account<br>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" style="padding: 0 30px;">
+                            <div class="form-group col-sm-12">
+                                <input type="submit" class="btn" value="Submit">
+                            </div>
+                        </div>
+                    </form>
+                  
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

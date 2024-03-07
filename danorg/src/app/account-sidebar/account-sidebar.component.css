@@ -1,0 +1,15 @@
+.account-sidebar {
+    border: 1px solid #eee;
+    border-radius: 5px;
+}
+.account-sidebar a.account-sidebar-link {
+    display: block;
+    padding: 8px 15px;
+    border-bottom: 1px solid #eee;
+    background: #f8f8f8;
+    color: #333333;
+}
+.account-sidebar a.account-sidebar-link.active{
+    color: #dd1717 !important;
+    background: #fdfdfd;
+}

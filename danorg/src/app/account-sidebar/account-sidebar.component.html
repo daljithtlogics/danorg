@@ -1,0 +1,33 @@
+<div class="account-sidebar mb-4">
+	<a class="account-sidebar-link"
+	   [routerLink]="['/danshop/account']"
+	   [routerLinkActiveOptions]="{ exact: true }"
+	   routerLinkActive="active">
+		Dashboard
+	</a>
+	<a class="account-sidebar-link"
+	   [routerLink]="['/danshop/account/orders']"
+	   routerLinkActive="active">
+		Orders
+	</a>
+	<a class="account-sidebar-link"
+	   [routerLink]="['/danshop/account/addresses']"
+	   routerLinkActive="active">
+		Addresses
+	</a>
+	<a class="account-sidebar-link"
+	   [routerLink]="['/danshop/account/personal-details']"
+	   routerLinkActive="active">
+		Personal Details
+	</a>
+	<a class="account-sidebar-link"
+	   [routerLink]="['/danshop/account/change-password']"
+	   routerLinkActive="active">
+		Change Password
+	</a>
+	<a class="account-sidebar-link"
+	   [routerLink]="['/danshop/account', 'signout']"
+	   routerLinkActive="active">
+		Logout
+	</a>
+</div>

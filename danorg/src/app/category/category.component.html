@@ -1,0 +1,90 @@
+<!--<section class="breadcrumb">
+    <div class="container">
+		<ul *ngIf="collectionData">
+			<li class="breadcrumb-item">
+			  <a routerLink="/danshop"><i class="fa fa-home" aria-hidden="true"></i> Home</a>
+			</li>
+			<ng-container *ngFor="let breadcrumb of collectionData.breadcrumbs; let last = last">
+			  <li class="breadcrumb-item" *ngIf="!last && breadcrumb.name !== '__root_collection__'">
+				<a [routerLink]="['/danshop/category', breadcrumb.slug]">{{ breadcrumb.name }}</a>
+			  </li>
+			  <li class="breadcrumb-item active" *ngIf="last">{{ breadcrumb.name }}</li>
+			</ng-container>
+		</ul>
+    </div>
+</section>-->
+<section class="banner-inner nj" *ngIf="collectionData && collectionData.featuredAsset != null; else noBanner" style="background-image: url({{collectionData.featuredAsset.source}});">
+  <div class="container">
+    <div class="row">
+      
+	  <div class="col-sm-12">
+	    <div class="banner-text">
+		  <h1>{{ collectionData.name }}</h1>
+		  <h3>DAN MEMBERS REGISTER TO RECEIVE YOUR MEMBER DISCOUNTS</h3>
+        </div>
+	  </div>
+	
+    </div>
+  </div>
+</section><!--/ banner -->
+<ng-template #noBanner>
+<section class="banner-inner bn" *ngIf="collectionData;" style="background-image: url(/assets/danshop/images/default_category_banner.jpg);">
+  <div class="container">
+    <div class="row">      
+	  <div class="col-sm-12">
+	    <div class="banner-text">
+		  <h1>{{ collectionData.name }}</h1>
+		  <h3>DAN MEMBERS REGISTER TO RECEIVE YOUR MEMBER DISCOUNTS</h3>
+        </div>
+	  </div>	
+    </div>
+  </div>
+</section><!--/ banner -->
+</ng-template>
+
+<section class="featured-products">
+	<div class="container">
+		<div class="row" *ngIf="allProducts && allProducts.length > 0; else noProducts">
+
+		  <div class="col-sm-12 title mrb-35">
+			<div class="info-tag" *ngIf="collectionData">
+			  <h2>{{ collectionData.name }}</h2>
+			  <p [innerHTML]="collectionData.description"></p>
+			</div>
+		  </div>
+		  
+		  <div class="col-sm-4 featured-col mrb-30" *ngFor="let prod of allProducts">	    
+			<div class="info">
+				<figure><img src="{{prod.productAsset.preview}}" alt="image"></figure>
+				<h4>{{prod.productName}}
+				<ng-template [ngIf]="prod.priceWithTax.__typename === 'SinglePrice'">
+					<!--if price is single-->				
+					<span>ZAR {{ prod.priceWithTax.value / 100 | number:'1.2-2' }}</span>
+				</ng-template>
+				<ng-template [ngIf]="prod.priceWithTax.min === prod.priceWithTax.max" [ngIfElse]="range">
+					<!--if price is same in range-->
+					<span>ZAR {{ prod.priceWithTax.min / 100 | number:'1.2-2' }}</span>				
+				</ng-template>
+				<ng-template #range>
+					<!--if price diffrent in range-->
+					<span>ZAR {{ prod.priceWithTax.min / 100 | number:'1.2-2' }}</span>
+				</ng-template>
+				</h4>
+				<ng-template [ngIf]="prod.inStock == false" [ngIfElse]="shopNow">
+					<a [routerLink]="['/danshop/product-details/',prod.slug]" class="btn"><i class="fa fa-check-circle" aria-hidden="true"></i> 
+						Out of stock
+					</a>
+				</ng-template>
+				<ng-template #shopNow>
+					<a [routerLink]="['/danshop/product-details/',prod.slug]" class="btn"><i class="fa fa-check-circle" aria-hidden="true"></i> 
+						Shop Now
+					</a>
+				</ng-template>
+			</div>
+		  </div>
+		</div><!--/ row -->
+		<ng-template #noProducts>
+			<div class="no-product-found-text text-muted small">There are no products to list in this category.</div>
+		</ng-template>
+	</div>
+</section><!--/ featured-products  -->

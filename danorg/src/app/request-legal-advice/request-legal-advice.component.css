@@ -1,0 +1,51 @@
+.form-wrap.annual-application .title {
+    text-align: left !important;
+}
+.dan_member {
+    margin: 0 10px 0 0;
+}
+.font-weight-light {
+    font-weight: 300;
+}
+.File__Container {
+    line-height: 20px;
+    font-size: 16px;
+    font-weight: normal;
+    font-style: normal;
+    cursor: pointer;
+    margin: 20px 0 5px 0;
+}
+.File__DropArea {
+    position: relative;
+    padding-top: 32px;
+    padding-bottom: 32px;
+    transition: background-color 0.3s ease 0s;
+    border-radius: 4px;
+    border: 1px dashed rgba(17, 17, 17, 0.2);
+    text-align: center !important;
+}
+.File__DropArea:hover{
+    background-color: rgba(17, 17, 17, 0.05);
+}
+.File__Input {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+    cursor: pointer;
+    z-index: 10;
+}
+.File__Link {
+    display: inline-block;
+    color: rgb(25, 123, 255);
+    margin-right: 0.25em;
+}
+.File__DropArea:hover .File__Link {
+    text-decoration: underline;
+}
+.File__Text {
+    display: inline-block;
+    color: rgb(17, 17, 17);
+}

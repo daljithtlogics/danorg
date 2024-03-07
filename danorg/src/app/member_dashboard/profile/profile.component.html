@@ -1,0 +1,229 @@
+<section class="dashboard-wrapper">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-3">
+                <member-sidebar></member-sidebar>
+            </div>
+            <div class="col-sm-9">
+                <div id="" class="sky-form" *ngIf="userMembership === 'student' || userMembership === 'annual' || userMembership === 'temporary' || userMembership === 'commercial'">
+                    <div class="chalkbg">
+                        <img src="/assets/images/red-logo.png" style="height: 50px;">
+                        <span style="text-align: right">
+                            <br>
+                            <label class="chalktitle" style="color: white">DIVERS ALERT NETWORK SOUTHERN AFRICA</label>
+                        </span>
+                    </div>
+                    <div class="row" style="padding: 20px 30px;">
+                        <div class="col col-12">
+                            <p class="heading" style="color: #666666;">{{ userMembership }} Profile</p>
+                            <p class="dan-p" *ngIf="userMembership === 'annual'">We offer a membership option tailored to meet your specific needs. To apply, please complete and submit the membership application form from below. <strong>This is an annual membership that can only be cancelled after one year.</strong>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="row" style="padding: 0 30px;" *ngIf="userMembership === 'annual'">
+                        <div class="col col-3">
+                            <a href="http://www.123contactform.com/form-2436010/Notification-Of-Travel" id="a1"
+                                style="text-decoration: none;" target="_blank">
+                                <div class="fixed-size-square"
+                                    style="background-color: #f2f2f2; border: 1px dashed #ddd;">
+                                    <i id="Annualicon" class="fa fa-plane"
+                                        style="font-size: 35px; margin: 20px 0 10px 0;"></i>
+                                    <p><strong style="color: #FF5252; font-size: 15px;">Travel</strong></p>
+                                    <p style="padding: 10px;">Travel Notification</p>
+                                </div>
+                            </a>
+                        </div>
+
+                        <div class="col col-3">
+                            <a href="mailto:mail@dansa.org" id="temporary" style="text-decoration: none;">
+                                <div class="fixed-size-square"
+                                    style="background-color: #f2f2f2; border: 1px dashed #ddd;">
+                                    <i id="Tempicon" class="fa fa-envelope"
+                                        style="font-size: 35px; margin: 20px 0 10px 0;"></i>
+                                    <p><strong style="color: #FF5252; font-size: 15px;">Email</strong></p>
+                                    <p style="padding: 10px;">mail@dansa.org</p>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col col-3">
+                            <a [routerLink]="['#']" id="A2" style="text-decoration: none;" target="_blank">
+                                <div class="fixed-size-square"
+                                    style="background-color: #f2f2f2; border: 1px dashed #ddd;">
+                                    <i id="Studenticon" class="fa fa-life-ring"
+                                        style="font-size: 35px; margin: 20px 0 10px 0;"></i>
+                                    <p><strong style="color: #FF5252; font-size: 15px;">Helpdesk</strong></p>
+                                    <p style="padding: 10px;">Submit a ticket</p>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col col-3">
+                            <a href="https://diversafetyguardian.org" id="A3" style="text-decoration: none;"
+                                target="_blank">
+                                <div class="fixed-size-square"
+                                    style="background-color: #f2f2f2; border: 1px dashed #ddd;">
+                                    <i id="Industryicon" class="fa fa-user-md"
+                                        style="font-size: 35px; margin: 20px 0 10px 0;"></i>
+                                    <p><strong style="color: #FF5252; font-size: 15px;">DSG</strong></p>
+                                    <p style="padding: 10px;">Dive Research</p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="row" style="padding: 20px 30px;">
+                        <div class="col-sm-12 form-group">
+                            <h4>Basic Info</h4>
+                            <div class="table-wrapper">
+                                <div class="table-scrollable">
+                                    <table class="table table-striped table-hover table-light" cellspacing="0"
+                                        width="100%" role="grid">
+                                        <tbody>
+                                            <tr>
+                                                <th>Name:</th>
+                                                <td><span>{{ membeRecords && membeRecords[0].fname1}} {{ membeRecords && membeRecords[0].sname1 }}</span></td>
+                                            </tr>
+                                            <tr>
+                                                <th>Email:</th>
+                                                <td><span>{{ membeRecords && membeRecords[0].email1 }}</span></td>
+                                            </tr>
+                                            <tr>
+                                                <th>Choose Membership:</th>
+                                                <td><span>{{ membeRecords && membeRecords[0].package_name }}</span></td>
+                                            </tr>
+                                            <tr>
+                                                <th>Membership Price:</th>
+                                                <td><span *ngIf="membeRecords && membeRecords.length > 0">{{ membeRecords[0].package_price }}/{{ membeRecords[0].package_for}}</span></td>
+                                            </tr>
+                                            <tr>
+                                                <th>DAN Membership Number :</th>
+                                                <td><span *ngIf="membeRecords && membeRecords.length > 0">{{ membeRecords[0].member_no }}</span></td>
+                                            </tr>
+                                            <tr>
+                                                <th>Cell Phone:</th>
+                                                <td><span>{{ membeRecords && membeRecords[0].cellphone1 }}</span></td>
+                                            </tr>
+                                            <tr>
+                                                <th>Address:</th>
+                                                <td><span *ngIf="membeRecords && membeRecords.length > 0">{{ membeRecords[0].address1 }}, {{ membeRecords[0].address2 }} {{ membeRecords[0].city1}}, {{ membeRecords[0].province1 }}, {{ membeRecords[0].postcode1 }}, {{ membeRecords[0].country1 }}</span></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="" class="sky-form" *ngIf="userMembership === 'annual_instructor' || userMembership === 'instructor_student'">
+                    <div class="chalkbg">
+                        <img src="/assets/images/red-logo.png" style="height: 50px;">
+                        <span style="text-align: right">
+                            <br>
+                            <label class="chalktitle" style="color: white">DIVERS ALERT NETWORK SOUTHERN AFRICA</label>
+                        </span>
+                    </div>
+                    <div class="row" style="padding: 20px 30px;">
+                        <div class="col col-12">
+                            <p class="heading" style="color: #666666;" *ngIf="userMembership === 'annual_instructor'">Annual Instructor Profile</p>
+                            <p class="heading" style="color: #666666;" *ngIf="userMembership === 'instructor_student'">Instructor Student Profile</p>
+                            <p class="dan-p">We offer a membership option tailored to meet your specific needs. To apply, please complete and submit the membership application form from below. <strong>This is an annual membership that can only be cancelled after one year.</strong>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="row" style="padding: 0 30px;">
+                        <div class="col col-3">
+                            <a href="http://www.123contactform.com/form-2436010/Notification-Of-Travel" id="a1"
+                                style="text-decoration: none;" target="_blank">
+                                <div class="fixed-size-square"
+                                    style="background-color: #f2f2f2; border: 1px dashed #ddd;">
+                                    <i id="Annualicon" class="fa fa-plane"
+                                        style="font-size: 35px; margin: 20px 0 10px 0;"></i>
+                                    <p><strong style="color: #FF5252; font-size: 15px;">Travel</strong></p>
+                                    <p style="padding: 10px;">Travel Notification</p>
+                                </div>
+                            </a>
+                        </div>
+
+                        <div class="col col-3">
+                            <a href="mailto:mail@dansa.org" id="temporary" style="text-decoration: none;">
+                                <div class="fixed-size-square"
+                                    style="background-color: #f2f2f2; border: 1px dashed #ddd;">
+                                    <i id="Tempicon" class="fa fa-envelope"
+                                        style="font-size: 35px; margin: 20px 0 10px 0;"></i>
+                                    <p><strong style="color: #FF5252; font-size: 15px;">Email</strong></p>
+                                    <p style="padding: 10px;">mail@dansa.org</p>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col col-3">
+                            <a [routerLink]="['#']" id="A2" style="text-decoration: none;" target="_blank">
+                                <div class="fixed-size-square"
+                                    style="background-color: #f2f2f2; border: 1px dashed #ddd;">
+                                    <i id="Studenticon" class="fa fa-life-ring"
+                                        style="font-size: 35px; margin: 20px 0 10px 0;"></i>
+                                    <p><strong style="color: #FF5252; font-size: 15px;">Helpdesk</strong></p>
+                                    <p style="padding: 10px;">Submit a ticket</p>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col col-3">
+                            <a href="https://diversafetyguardian.org" id="A3" style="text-decoration: none;"
+                                target="_blank">
+                                <div class="fixed-size-square"
+                                    style="background-color: #f2f2f2; border: 1px dashed #ddd;">
+                                    <i id="Industryicon" class="fa fa-user-md"
+                                        style="font-size: 35px; margin: 20px 0 10px 0;"></i>
+                                    <p><strong style="color: #FF5252; font-size: 15px;">DSG</strong></p>
+                                    <p style="padding: 10px;">Dive Research</p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="row" style="padding: 20px 30px;">
+                        <div class="col-sm-12 form-group">
+                            <h4>Basic Info</h4>
+                            <div class="table-wrapper">
+                                <div class="table-scrollable">
+                                    <table class="table table-striped table-hover table-light" cellspacing="0"
+                                        width="100%" role="grid">
+                                        <tbody>
+                                            <tr>
+                                                <th>Name:</th>
+                                                <td><span>{{ membeRecords && membeRecords[0].fname1}} {{ membeRecords && membeRecords[0].sname1 }}</span></td>
+                                            </tr>
+                                            <tr>
+                                                <th>Email:</th>
+                                                <td><span>{{ membeRecords && membeRecords[0].email1 }}</span></td>
+                                            </tr>
+                                            <tr *ngIf="userMembership === 'annual_instructor'">
+                                                <th>Instructor Type:</th>
+                                                <td><span>{{ membeRecords && membeRecords[0].package_name }}</span></td>
+                                            </tr>
+                                            <tr *ngIf="userMembership === 'instructor_student'">
+                                                <th>Student Type:</th>
+                                                <td><span>{{ membeRecords && membeRecords[0].package_name }}</span></td>
+                                            </tr>
+                                            <tr>
+                                                <th>DAN Membership Number :</th>
+                                                <td><span *ngIf="membeRecords && membeRecords.length > 0">{{ membeRecords[0].member_no }}</span></td>
+                                            </tr>
+                                            <tr>
+                                                <th>Cell Phone:</th>
+                                                <td><span>{{ membeRecords && membeRecords[0].cellphone1 }}</span></td>
+                                            </tr>
+                                            <tr>
+                                                <th>Address:</th>
+                                                <td><span *ngIf="membeRecords && membeRecords.length > 0">{{ membeRecords[0].address1 }}, {{ membeRecords[0].address2 }} {{ membeRecords[0].city1}}, {{ membeRecords[0].province1 }}, {{ membeRecords[0].postcode1 }}, {{ membeRecords[0].country1 }}</span></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
