@@ -1,4 +1,4 @@
-import { SharedModule } from '@vendure/admin-ui/core';
+import { PageMetadataService,SharedModule } from '@vendure/admin-ui/core';       
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http'; 
@@ -17,6 +17,7 @@ export class EditNonDiveFamilyComponent implements OnInit {
       greeting = 'non dive family';       
 	  id: any;  
 	  tab_id:any;  
+	  main_id:any; 	 
 	  tab_label:any; 	  	
 	  diveForm: any;         
 	  form!: FormGroup;  	
@@ -42,9 +43,17 @@ export class EditNonDiveFamilyComponent implements OnInit {
 	  data: any;  	  
 	  private apiUrl = 'https://danshopapi.devworktdmc.com/nondiver/update';  		  
 	
-	constructor(private formbulider: FormBuilder,private http: HttpClient,private route: ActivatedRoute) {
+	constructor(private formbulider: FormBuilder,private http: HttpClient,private pageMetadataService: PageMetadataService,private route: ActivatedRoute) {
         this.id = this.route.snapshot.paramMap.get('id');  
-		this.tab_id = this.route.snapshot.paramMap.get('id');  	
+		this.tab_id = this.route.snapshot.paramMap.get('id'); 
+		this.route.queryParams.subscribe(params => {
+			this.main_id = params['tab_id'];
+		});		
+		pageMetadataService.setBreadcrumbs([
+            { link: ['./extensions/memberships/annual'], label: 'Annual Members' },        
+			{ link: ['./extensions/memberships/annual/editannual/'+this.main_id], label: 'Edit Annual' },    
+            { link: ['./'], label: 'Edit Non Diving Family' },             			     		    		
+        ]);       
     }		
 	
 	ngOnInit(): void { 

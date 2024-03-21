@@ -1,4 +1,4 @@
-import { SharedModule } from '@vendure/admin-ui/core';
+import { PageMetadataService,SharedModule } from '@vendure/admin-ui/core';    
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
@@ -26,8 +26,12 @@ export class AddTemporarymembershipsComponent {
 	  data: any;
 	  private apiUrl = 'https://danshopapi.devworktdmc.com/temporary/add'; // Replace this with your API endpoint
 
-	  constructor(private http: HttpClient) {
-			this.getReasons();        
+	  constructor(private http: HttpClient,private pageMetadataService: PageMetadataService) {
+			this.getReasons();     
+			pageMetadataService.setBreadcrumbs([
+				{ link: ['./extensions/memberships/temporary'], label: 'Temporary Members' },   
+				{ link: ['./'], label: 'Add Temporary' },      						     		
+			]);  		
 	  }
 	  
 	  onChange(event: any) {

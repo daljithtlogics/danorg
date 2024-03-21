@@ -1,4 +1,4 @@
-import { SharedModule } from '@vendure/admin-ui/core';
+import { PageMetadataService,SharedModule } from '@vendure/admin-ui/core';   
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http'; 
@@ -52,10 +52,14 @@ export class EditStudentmembershipsComponent implements OnInit {
     data: any;
     private apiUrl = 'https://danshopapi.devworktdmc.com/student/update'; // Replace this with your API endpoint  
 
-	constructor(private formbulider: FormBuilder,private http: HttpClient,private route: ActivatedRoute) {
+	constructor(private formbulider: FormBuilder,private http: HttpClient,private pageMetadataService: PageMetadataService,private route: ActivatedRoute) {
 	    this.id = this.route.snapshot.paramMap.get('id');     
 		this.getReasons();   
-		this.getProfiles();       	
+		this.getProfiles();   
+		pageMetadataService.setBreadcrumbs([
+			{ link: ['./extensions/memberships/student'], label: 'Student Members' },   		
+			{ link: ['./'], label: 'Edit Student' },   	   			   		  		 						     		
+		]);  	
       }   
 
 	ngOnInit() { 			
@@ -199,7 +203,7 @@ export class EditStudentmembershipsComponent implements OnInit {
   }    
   
   getProfiles() {
-    this.http.get('https://danshopapi.devworktdmc.com/annual/get').subscribe((response) => {
+    this.http.get('https://danshopapi.devworktdmc.com/annual/active_members').subscribe((response) => {
       this.users = response;         		       					
     });
   }

@@ -1,4 +1,4 @@
-import { SharedModule } from '@vendure/admin-ui/core';
+import { PageMetadataService,SharedModule } from '@vendure/admin-ui/core'; 
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http'; 
@@ -14,7 +14,8 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class EditInstructorPartnerComponent implements OnInit {	          
       greeting = 'Edit instructor';         
-	  id: any;   	   
+	  id: any;
+	  tab_id: any;			
 	  instrucForm: any;            	  
 	  form!: FormGroup;
 	  formSubmitted: boolean = false;    	
@@ -41,8 +42,16 @@ export class EditInstructorPartnerComponent implements OnInit {
 	  responseData: any;      
 	  private apiUrl = 'https://danshopapi.devworktdmc.com/instructor/update';  				
 	
-	constructor(private formbulider: FormBuilder,private http: HttpClient,private route: ActivatedRoute) {
-        this.id = this.route.snapshot.paramMap.get('id');  
+	constructor(private formbulider: FormBuilder,private http: HttpClient,private pageMetadataService: PageMetadataService,private route: ActivatedRoute) {
+        this.id = this.route.snapshot.paramMap.get('id'); 
+		this.route.queryParams.subscribe(params => {
+			this.tab_id = params['tab_id'];
+		});
+		pageMetadataService.setBreadcrumbs([
+            { link: ['./extensions/memberships/partner'], label: 'Partner Members' },        
+			{ link: ['./extensions/memberships/partner/editpartner/'+this.tab_id], label: 'Edit Partner' },    
+            { link: ['./'], label: 'Edit Instructor' },  							    			   	           			     		    		
+        ]);   	 		 
     }		
 	
 	ngOnInit(): void { 
@@ -117,7 +126,8 @@ export class EditInstructorPartnerComponent implements OnInit {
   
    getData(id) { 
 	  this.http.get('https://danshopapi.devworktdmc.com/instructor/edit/'+id).subscribe((response) => {
-      this.data = response;  
+      this.data = response;   	  
+	  this.tab_id=(this.data.length >0)?this.data[0].parent_id:''; 	
 	  this.title=(this.data.length >0)?this.data[0].title1:'';   	
 	  this.fname=(this.data.length >0)?this.data[0].fname1:'';  
 	  this.sname=(this.data.length >0)?this.data[0].sname1:''; 		

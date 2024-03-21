@@ -1,4 +1,4 @@
-import { SharedModule } from '@vendure/admin-ui/core';
+import { PageMetadataService,SharedModule } from '@vendure/admin-ui/core';  
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http'; 
@@ -118,8 +118,12 @@ export class EditTemporarymembershipsComponent {
 	  responseData: any;    	
 	  private apiUrl = 'https://danshopapi.devworktdmc.com/temporary/update'; 	
 
-	  constructor(private formbulider: FormBuilder,private http: HttpClient,private route: ActivatedRoute) {
-	    this.id = this.route.snapshot.paramMap.get('id');   
+	  constructor(private formbulider: FormBuilder,private http: HttpClient,private pageMetadataService: PageMetadataService,private route: ActivatedRoute) {
+	    this.id = this.route.snapshot.paramMap.get('id');  
+		pageMetadataService.setBreadcrumbs([
+			{ link: ['./extensions/memberships/temporary'], label: 'Temporary Members' },   
+			{ link: ['./'], label: 'Edit Temporary' },      						     		
+		]);  	
 		this.getReasons();      
       }
 	  

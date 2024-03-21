@@ -616,8 +616,8 @@
 <span class="input-group-addon">		
 <i class="fa fa-university"></i>
 </span>
-<select class="form-control" formControlName="broker_id" [(ngModel)]="broker_id">      
-	<option *ngFor="let broker of brokers" value= {{broker.id}}>{{broker.bname}}</option>                         	   	    
+<select class="form-control" formControlName="broker_id" [(ngModel)]="broker_id">      		
+	<option *ngFor="let broker of brokers" value= {{broker.id}}>{{broker.company_name}}</option>                         	   	    
 </select> 
 </div>
 <span *ngIf="formDataError.error_field === 'broker_id'" class="error-message">  

@@ -1,4 +1,4 @@
-import { SharedModule } from '@vendure/admin-ui/core';
+import { PageMetadataService,SharedModule } from '@vendure/admin-ui/core';   
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
@@ -22,8 +22,12 @@ export class AddPartnermembershipsComponent implements OnInit {
 	data: any;
 	private apiUrl = 'https://danshopapi.devworktdmc.com/partner/add'; // Replace this with your API endpoint
 
-	  constructor(private http: HttpClient) {
-		this.getReasons();        
+	  constructor(private http: HttpClient,private pageMetadataService: PageMetadataService) {
+		this.getReasons();    
+		pageMetadataService.setBreadcrumbs([
+			{ link: ['./extensions/memberships/partner'], label: 'Partner Members' },   
+			{ link: ['./'], label: 'Add Partner' },      		   						     		
+		]);  		
 	  }
 	  
 	  ngOnInit() {

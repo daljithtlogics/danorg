@@ -1,4 +1,4 @@
-import { SharedModule } from '@vendure/admin-ui/core';
+import { PageMetadataService,SharedModule } from '@vendure/admin-ui/core';	  
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
@@ -19,9 +19,17 @@ export class AddAnnualmembershipsComponent implements OnInit {
 	  data: any;
 	  private apiUrl = 'https://danshopapi.devworktdmc.com/annual/add'; // Replace this with your API endpoint		
 
-	  constructor(private http: HttpClient) {}
+	  constructor(private http: HttpClient,private pageMetadataService: PageMetadataService) {
+	  
+		pageMetadataService.setBreadcrumbs([
+            { link: ['./extensions/memberships/annual'], label: 'Annual Members' },   
+            { link: ['./'], label: 'Add Annual' },      						     		
+        ]);  	
+	  
+	  }
+	  
 	  ngOnInit() {
-			this.getBroker();   
+		this.getBroker();    			
 	  }  		
 	  
 	  handleClick(cityName) {

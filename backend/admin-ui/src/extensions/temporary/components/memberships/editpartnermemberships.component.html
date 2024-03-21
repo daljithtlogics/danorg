@@ -693,7 +693,7 @@
 	  <tbody> 	    
 		<tr *ngFor="let instructor of instructors">  							
 	      <td>
-		  <a class="button-ghost" [routerLink]="['/extensions/memberships/editinstructor/',instructor.id]">  
+		  <a class="button-ghost" [routerLink]="['/extensions/memberships/editinstructor/',instructor.id]" [queryParams]="{tab_id:instructor.parent_id}">  
 			<span>{{instructor.fname1}} {{(instructor.sname1=="" || instructor.sname1=="null")?'':instructor.sname1}}</span>                             
           </a>     
 		  </td> 	  

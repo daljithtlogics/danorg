@@ -1,4 +1,4 @@
-import { SharedModule } from '@vendure/admin-ui/core';
+import { PageMetadataService,SharedModule } from '@vendure/admin-ui/core';    
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
@@ -23,8 +23,12 @@ export class AddStudentmembershipsComponent implements OnInit {
     data: any;
     private apiUrl = 'https://danshopapi.devworktdmc.com/student/add'; // Replace this with your API endpoint
 
-	constructor(private http: HttpClient) {
-		this.getReasons();        
+	constructor(private http: HttpClient,private pageMetadataService: PageMetadataService) {
+		this.getReasons();   
+		pageMetadataService.setBreadcrumbs([
+			{ link: ['./extensions/memberships/student'], label: 'Student Members' },   		
+			{ link: ['./'], label: 'Add Student' },   			  		 						     		
+		]);  	
 	  } 
 
 	ngOnInit() { 			
@@ -155,8 +159,8 @@ export class AddStudentmembershipsComponent implements OnInit {
   }    
   
   getProfiles() {
-    this.http.get('https://danshopapi.devworktdmc.com/annual/get').subscribe((response) => {
-      this.users = response;                					
+    this.http.get('https://danshopapi.devworktdmc.com/annual/active_members').subscribe((response) => {
+      this.users = response;     		           					
     });
   }
 

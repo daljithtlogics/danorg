@@ -1,4 +1,4 @@
-import { SharedModule } from '@vendure/admin-ui/core';
+import { PageMetadataService,SharedModule } from '@vendure/admin-ui/core';
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http'; 
@@ -156,12 +156,16 @@ export class EditAnnualmembershipsComponent implements OnInit {
 		this.IsDisplay = false;    		     	  
 	  }
 	  
-	  constructor(private formbulider: FormBuilder,private http: HttpClient,private route: ActivatedRoute) {
+	  constructor(private formbulider: FormBuilder,private http: HttpClient,private pageMetadataService: PageMetadataService,private route: ActivatedRoute) {
 	    this.id = this.route.snapshot.paramMap.get('id');   		
-		this.row_id = this.route.snapshot.paramMap.get('id');  	   	  		
+		this.row_id = this.route.snapshot.paramMap.get('id');  			
         this.getCourses(this.id);    
 		this.getStudents();   
 		this.getReasons();   
+		pageMetadataService.setBreadcrumbs([
+            { link: ['./extensions/memberships/annual'], label: 'Annual Members' },      
+            { link: ['./'], label: 'Edit Annual' },      						     		
+        ]);  
       }
 	  
 	  ngOnInit(): void { 

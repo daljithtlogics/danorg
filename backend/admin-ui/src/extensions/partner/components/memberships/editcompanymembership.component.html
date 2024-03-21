@@ -790,8 +790,8 @@
 	  <tbody> 	    
 		<tr *ngFor="let staff of staffs">  							
 	      <td>
-		  <a class="button-ghost" [routerLink]="['/extensions/memberships/editstaff/',staff.id]">  
-			<span>{{staff.contact_person}}</span>                             
+		  <a class="button-ghost" [routerLink]="['/extensions/memberships/editstaff/',staff.id]" [queryParams]="{tab_id:staff.parent_id}">  
+			<span>{{staff.contact_person}}</span>                   		          
           </a>     
 		  </td> 	  
 		  <td>{{staff.member_no}}</td> 	   	

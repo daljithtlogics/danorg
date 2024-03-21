@@ -31,6 +31,7 @@ import { EditProfessionalMembershipComponent } from './components/memberships/ed
 import { AddSchoolMembershipComponent } from './components/memberships/addschoolmembership.component';    
 import { EditSchoolMembershipComponent } from './components/memberships/editschoolmembership.component';  
 import { AddSchoolStudentComponent } from './components/memberships/addschoolstudent.component';  
+import { EditSchoolStudentComponent } from './components/memberships/editschoolstudent.component';   
 
 export default [
     registerRouteComponent({
@@ -224,6 +225,12 @@ export default [
         component: AddSchoolStudentComponent,								
         path: 'addscholar/:id',	  
         title: 'Add School Student',
-        breadcrumb: 'Add School Student',	     	
+        breadcrumb: 'Add School Student',	   		  	
+     }),	
+	 registerRouteComponent({
+        component: EditSchoolStudentComponent,								
+        path: 'editscholar/:id',	  
+        title: 'Edit School Student',
+        breadcrumb: 'Edit School Student',	   							  				
      }),	
 ];

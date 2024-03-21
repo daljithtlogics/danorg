@@ -661,8 +661,8 @@
 											</span>
 											<select class="form-control" formControlName="broker" [(ngModel)]="broker">
 												<option value="0">UNKNOWN</option>
-												<option *ngFor="let broker of brokers" value={{broker.id}}>
-													{{broker.bname}}</option>
+												<option *ngFor="let broker of brokers" value={{broker.id}}>		
+													{{broker.company_name}}</option>		
 											</select>
 										</div>
 									</div>
@@ -1554,8 +1554,7 @@
 
 													<tr *ngFor="let dive of dives">
 														<td>
-															<a class="button-ghost"
-																[routerLink]="['/extensions/memberships/editdivefamily/',dive.id]">
+															<a class="button-ghost" [routerLink]="['/extensions/memberships/editdivefamily/',dive.id]" [queryParams]="{tab_id:dive.parent_id}">
 																<span>{{dive.fname1}}
 																	{{dive.sname1=='null'?'':dive.sname1}}</span>
 															</a>
@@ -1610,10 +1609,8 @@
 												<tbody>
 													<tr *ngFor="let dive of nondives">
 														<td>
-															<a class="button-ghost"
-																[routerLink]="['/extensions/memberships/editnondivefamily/',dive.id]">
-																<span>{{dive.fname1}}
-																	{{dive.sname1=='null'?'':dive.sname1}}</span>
+															<a class="button-ghost" [routerLink]="['/extensions/memberships/editnondivefamily/',dive.id]" [queryParams]="{tab_id:dive.parent_id}">
+																<span>{{dive.fname1}}{{dive.sname1=='null'?'':dive.sname1}}</span>   
 															</a>
 														</td>
 														<td>{{dive.email1 }}</td>
@@ -1956,9 +1953,9 @@
 
 													<tr *ngFor="let qualify of qualifications">
 														<td>{{qualify.title}}</td>
-														<td>{{qualify.created_at | date:'yyyy/MM/dd hh:mm:ss a'}}</td>
-														<td>{{qualify.active_at | date:'yyyy/MM/dd'}}</td>
-														<td>{{qualify.trained_by}}</td>
+														<td>{{qualify.capturedate | date:'yyyy/MM/dd hh:mm:ss a'}}</td>
+														<td>{{qualify.startdate | date:'yyyy/MM/dd'}}</td>   
+														<td>{{qualify.contact_person}}</td>  
 														<td>{{qualify.type}}</td>
 														<td>{{qualify.status}}</td>
 														<td></td>
@@ -2093,15 +2090,15 @@
 													<tr *ngFor="let instructor of instructors">
 														<td>
 															<a class="button-ghost"
-																[routerLink]="['/extensions/memberships/editannual/',instructor.student_id]">
+																[routerLink]="['/extensions/memberships/editannual/',instructor.instructor_id]">
 																<span>{{instructor.fname1}}
 																	{{instructor.sname1==""?'':instructor.sname1}}</span>
 															</a>
 														</td>
 														<td>{{instructor.member_no}}</td>
 														<td>{{instructor.title}}</td>
-														<td>{{instructor.active_at | date:'yyyy-MM-dd'}}</td>
-														<td>{{instructor.status}}</td>
+														<td>{{instructor.capturedate | date:'yyyy-MM-dd'}}</td>
+														<td>{{instructor.status}}</td>   
 													</tr>
 
 												</tbody>
@@ -2652,15 +2649,15 @@
 													<tr *ngFor="let provider of providers">
 														<td>
 															<a class="button-ghost"
-																[routerLink]="['/extensions/memberships/editstudent/',provider.member_id]">
-																<span>{{provider.first_name}} {{provider.surname=="" ||
-																	provider.surname=="null"?'':provider.surname}}</span>
+																[routerLink]="['/extensions/memberships/editstudent/',provider.id]">
+																<span>{{provider.fname1}} {{provider.sname1=="" ||
+																	provider.sname1=="null"?'':provider.sname1}}</span>
 															</a>
 														</td>
 														<td>{{provider.title}}</td>
-														<td>{{provider.active_date | date:'yyyy-MM-dd'}}</td>
-														<td>{{provider.active_until | date:'yyyy-MM-dd'}}</td>
-														<td>{{provider.status}}</td>
+														<td>{{provider.startdate | date:'yyyy-MM-dd'}}</td>
+														<td>{{provider.lastdate | date:'yyyy-MM-dd'}}</td>
+														<td>{{provider.status}}</td>   				
 														<td></td>
 													</tr>
 
@@ -2789,7 +2786,7 @@
 					<button type="submit" class="btn btn-own">Submit</button>
 					<span *ngIf="successMsg != ''" class="success-message">
 						{{ successMsg }}
-					</span>
+					</span>		
 			</div>
 		</form>
 	</div>

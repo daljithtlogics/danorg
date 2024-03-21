@@ -1,4 +1,4 @@
-import { SharedModule } from '@vendure/admin-ui/core';
+import { PageMetadataService,SharedModule } from '@vendure/admin-ui/core';     
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
@@ -69,9 +69,13 @@ export class EditCompanyMembershipComponent implements OnInit {
 	  data: any; 	  
 	  private apiUrl = 'https://danshopapi.devworktdmc.com/company/update'; // Replace this with your API endpoint
 
-	  constructor(private formbulider: FormBuilder,private http: HttpClient,private route: ActivatedRoute) {  	    
+	  constructor(private formbulider: FormBuilder,private http: HttpClient,private pageMetadataService: PageMetadataService,private route: ActivatedRoute) {  	    
 		this.id = this.route.snapshot.paramMap.get('id');     										
-		this.getReasons();        
+		this.getReasons();     
+		pageMetadataService.setBreadcrumbs([
+            { link: ['./extensions/memberships/commercial'], label: 'Commercial Members' },      
+            { link: ['./'], label: 'Edit Company' },  		  				   	           			     		    		
+        ]);    	
 	  }
 	  
 	  ngOnInit() {

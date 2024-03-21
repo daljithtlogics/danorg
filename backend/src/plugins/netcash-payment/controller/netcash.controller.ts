@@ -23,13 +23,13 @@ export class NetcashController {
     ): Promise<string> {
     const ctx = RequestContext.empty(); // placeholder for actual context creation
 
-    // Log the raw request body from Pipedream for debugging - Logger.error
-    Logger.info(`Raw request body: ${JSON.stringify(req.body, null, 2)}`, 'Netcash Controller - Request Body from Pipedream');
+    // Log the raw request body from Netcash Notification
+    Logger.info(`Body: ${JSON.stringify(req.body, null, 2)}`, 'Netcash Controller - Netcash Raw Request');
 
     try {
       // Process the notification
       const result = await this.netcashPaymentService.processNotification(ctx, notification);
-      Logger.warn(`processNotifcation body: ${JSON.stringify(result, null, 2)}`, 'NetcashController')
+      Logger.warn(`Notification Body: ${JSON.stringify(result, null, 2)}`, 'NetcashController - Netcash Raw Request')
 
       if (result.vendureState === 'Error') {
         Logger.error(`Error processing notification: ${result.message}`, 'NetcashController');
@@ -62,7 +62,7 @@ export class NetcashController {
     try {
       // Process the notification with payment service
       const result = await this.netcashPaymentService.processNotification(ctx, notification);
-      Logger.warn(`processNotifcation body for Successfull Transaction: ${JSON.stringify(result, null, 2)}`, 'PaymentController - Payment Success')
+      Logger.warn(`Body for Successfull Transaction: ${JSON.stringify(result, null, 2)}`, 'PaymentController - Payment Success')
 
 			// Get the transaction id from the payment record
 			const paymentRecordTransactionId = await this.netcashPaymentService.getPaymentRecord(ctx, notification.Reference);
@@ -97,7 +97,7 @@ export class NetcashController {
   @Post('payment-declined')
   async handlePaymentDeclined(@Body() notification: NetcashNotification, @Res() res: Response) {
     const ctx = RequestContext.empty(); // Placeholder for actual context creation
-    Logger.info(`Received declined payment notification: ${JSON.stringify(notification, null, 2)}`, 'NetcashController - Payment Declined');
+    Logger.info(`Body for Declined Transaction: ${JSON.stringify(notification, null, 2)}`, 'NetcashController - Payment Declined');
 
     try {
 			// notification includes an order ID (Extra1)
@@ -119,6 +119,7 @@ export class NetcashController {
 
 			Logger.error(`Error handling declined payment due to ${errorMessage}`, 'NetcashController', errorStack);
       
+			// Redirect or respond with error handling 
 			res.redirect(`http://157.245.36.128:5200/page-not-found?error-payment-declined=error`);
     }
   }
@@ -136,14 +137,20 @@ export class NetcashController {
 
     try {
       const result = await this.netcashPaymentService.processNotification(ctx, notification);
-      Logger.info(`Payment redirect processed: ${JSON.stringify(result, null, 2)}`, 'NetcashController');
+      Logger.info(`Payment redirect processed: ${JSON.stringify(result, null, 2)}`, 'NetcashController - Payment Redirect');
 
-      // Query parameter if the transaction was cancelled by the user in the payment gateway
-      const redirectUrl = notification.Reason === 'Cancelled by user'
-        ? `http://157.245.36.128:5200/danshop/allproducts?transaction=cancelled` // flag for the allproducts page
-        : `http://157.245.36.128:5200/danshop/allproducts`;
+      // notification includes an order ID (Extra1)
+      const orderId = notification.Extra1;
+
+			// Update order state to 'Cancelled' to cancel the transaction
+			await this.netcashPaymentService.transitionOrderState(ctx, orderId, 'Cancelled');
       
-      // redirect to all product page
+			// Add query parameter if transaction was cancelled by the user in the payment gateway
+			const redirectUrl = notification.Reason === 'Cancelled by user'
+				? `http://157.245.36.128:5200/danshop/account/order-details/${result.orderCode}?payment=cancelled` // flag for account order details page 
+				: `http://157.245.36.128:5200/danshop/account/order-details/${result.orderCode}`;
+
+      // Redirect to account order details page
       res.redirect(redirectUrl);
     } catch (error) {
 			const errorMessage = error instanceof Error ? error.message : 'An unknown error occurred during redirecting the cancelled payment';
@@ -151,6 +158,7 @@ export class NetcashController {
 
       Logger.error(`Error handling payment redirect: ${errorMessage}`, 'NetcashController', errorStack);
 
+			// Redirect or respond with error handling 
       res.redirect(`http://157.245.36.128:5200/page-not-found?error-payment-redirect=error`);
     }
   }

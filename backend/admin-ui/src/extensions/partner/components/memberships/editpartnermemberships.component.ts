@@ -1,4 +1,4 @@
-import { SharedModule } from '@vendure/admin-ui/core';
+import { PageMetadataService,SharedModule } from '@vendure/admin-ui/core';   
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http'; 
@@ -55,9 +55,13 @@ export class EditPartnermembershipsComponent implements OnInit {
 	data: any;
 	private apiUrl = 'https://danshopapi.devworktdmc.com/partner/update'; // Replace this with your API endpoint
 
-	 constructor(private formbulider: FormBuilder,private http: HttpClient,private route: ActivatedRoute) {
+	 constructor(private formbulider: FormBuilder,private http: HttpClient,private pageMetadataService: PageMetadataService,private route: ActivatedRoute) {
 	    this.id = this.route.snapshot.paramMap.get('id');     
-		this.getReasons();     		 
+		this.getReasons();
+		pageMetadataService.setBreadcrumbs([
+			{ link: ['./extensions/memberships/partner'], label: 'Partner Members' },   
+			{ link: ['./'], label: 'Edit Partner' },      						     		  
+		]);  	
       }
 	  
 	  ngOnInit() {	 			
@@ -220,27 +224,27 @@ export class EditPartnermembershipsComponent implements OnInit {
     getData(id) { 
 	  this.http.get('https://danshopapi.devworktdmc.com/partner/edit/'+id).subscribe((response) => {
       this.data = response;   
-	  this.b_name=(this.data.length >0)?this.data[0].bname:'';    
-	  this.b_email=(this.data.length >0)?this.data[0].bemail:'';  
-	  this.c_person=(this.data.length >0)?this.data[0].cname:'';  	
-	  this.w_address=(this.data.length >0)?this.data[0].waddress:'';   
-	  this.u_profile=(this.data.length >0)?this.data[0].member_id:'';      
+	  this.b_name=(this.data.length >0)?this.data[0].company_name:'';    
+	  this.b_email=(this.data.length >0)?this.data[0].email1:'';  
+	  this.c_person=(this.data.length >0)?this.data[0].contact_person:'';  	
+	  this.w_address=(this.data.length >0)?this.data[0].address3:'';   
+	  this.u_profile=(this.data.length >0)?this.data[0].instructor_id:'';      
 	  this.postal_addr1=(this.data.length >0)?this.data[0].address1:'';  
 	  this.postal_addr2=(this.data.length >0)?this.data[0].address2:'';  
-	  this.b_city=(this.data.length >0)?this.data[0].city:'';      		
-	  this.province=(this.data.length >0)?this.data[0].province:'';   
-	  this.b_code=(this.data.length >0)?this.data[0].postcode:'';          
-	  this.b_country=(this.data.length >0)?this.data[0].country:'';    		
-	  this.work_tel=(this.data.length >0)?this.data[0].telphone:'';       
-	  this.cell_phone=(this.data.length >0)?this.data[0].cellphone:'';     
+	  this.b_city=(this.data.length >0)?this.data[0].city1:'';      		
+	  this.province=(this.data.length >0)?this.data[0].province1:'';   
+	  this.b_code=(this.data.length >0)?this.data[0].postcode1:'';          
+	  this.b_country=(this.data.length >0)?this.data[0].country1:'';    		
+	  this.work_tel=(this.data.length >0)?this.data[0].telephone1:'';       
+	  this.cell_phone=(this.data.length >0)?this.data[0].cellphone1:'';     
 	  this.fax=(this.data.length >0)?this.data[0].fax:'';     
-	  this.dsp=(this.data.length >0)?parseInt(this.data[0].dsp):'';     
-	  this.hra=(this.data.length >0)?parseInt(this.data[0].hra):'';    
-	  this.level=(this.data.length >0)?this.data[0].level:'';     
-	  this.start_date=(this.data.length >0)?this.formatDate(this.data[0].start_date):'';    
-	  this.lat=(this.data.length >0)?this.data[0].latitude:'';      
-	  this.lng=(this.data.length >0)?this.data[0].longitude:'';    
-	  this.status=(this.data.length >0)?this.data[0].status:'';     
+	  this.dsp=(this.data.length >0)?parseInt(this.data[0].debt):'';     
+	  this.hra=(this.data.length >0)?parseInt(this.data[0].permission):'';    
+	  this.level=(this.data.length >0)?this.data[0].working_as:'';     
+	  this.start_date=(this.data.length >0)?this.formatDate(this.data[0].startdate):'';    		
+	  this.lat=(this.data.length >0)?this.data[0].qualification:'';      
+	  this.lng=(this.data.length >0)?this.data[0].professional:'';    
+	  this.status=(this.data.length >0)?this.data[0].status1:'';     
 	  this.paid=(this.data.length >0)?parseInt(this.data[0].paid):'';         
     });
   }  

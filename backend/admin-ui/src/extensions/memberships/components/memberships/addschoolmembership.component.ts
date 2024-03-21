@@ -1,4 +1,4 @@
-import { SharedModule } from '@vendure/admin-ui/core';
+import { SharedModule } from '@vendure/admin-ui/core';		
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
@@ -44,11 +44,11 @@ export class AddSchoolMembershipComponent implements OnInit {
 	  successMsg:any;
 	  reasons:any;   
 	  sub_reasons:any;	     
-	  data: any; 	  
+	  data: any; 
 	  private apiUrl = 'https://danshopapi.devworktdmc.com/school/add'; // Replace this with your API endpoint
 
 	  constructor(private formbulider: FormBuilder,private http: HttpClient) {  	      		  
-		this.getReasons();            
+		this.getReasons();   									
 	  }
 	  
 	  ngOnInit() {

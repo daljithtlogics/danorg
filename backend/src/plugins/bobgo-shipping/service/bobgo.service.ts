@@ -2,11 +2,12 @@ import { Injectable } from '@nestjs/common';
 import {
   ID,
   Order,
+  OrderLine,
   RequestContext,
-  ProductVariantService,
   TransactionalConnection,
   Logger,
   EntityNotFoundError,
+  EntityHydrator,
 } from '@vendure/core';
 import axios from 'axios';
 
@@ -17,98 +18,41 @@ const HEADERS = {
   'Content-Type': 'application/json',
 };
 
+/*
+  to display product image order items in the Bobgo platform
+  */
+
+// LOCALHOST Base Url
+// const baseURL = 'https://04a2-169-0-105-39.ngrok-free.app/' + 'assets/'; // localhost, hosted online with ngRok
+// const baseURL = 'http://localhost:3000/' + 'assets/';
+
+// LIVE Base Url
+const baseURL = 'https://danshopadmin.devworktdmc.com/' + 'assets/';
+// const baseURL = 'http://157.245.36.128:3000/' + 'assets/';
+
 @Injectable()
 export class BobgoService {
 
   constructor(
-    private productVariantService: ProductVariantService,
     private connection: TransactionalConnection,
+    private entityHydrator: EntityHydrator,
   ){}
 
-  /**
-   * Update the order custom fields with the bobgo id and channel number
-   */
-  public async updateOrderCustomFields(ctx: RequestContext, orderId: ID, customFields: { [key: string]: any }): Promise<Order | undefined> {
-    try {
-      const orderRepository = this.connection.getRepository(ctx, Order);
-      const existingOrder = await orderRepository.findOne({
-        where: { id: orderId }
-      });
-      if (!existingOrder) { throw new EntityNotFoundError('Order', orderId) }
-      
-      // Update the custom fields on the order
-      await orderRepository.update(orderId, {
-        customFields: {
-          ...existingOrder.customFields,
-          ...customFields
-        }
-      });
-
-      // Fetch and return the updated order to verify the changes
-      const updatedOrder = await orderRepository.findOne({
-        where: { id: orderId },
-        relations: [
-          'customer', 
-          'lines', 
-          'lines.productVariant', 
-          'lines.productVariant.assets', 
-          'shippingLines', 
-          'shippingLines.shippingMethod',
-          'shippingLines.shippingMethod.translations', 
-          'payments', 
-        ]
-      });
-
-      return updatedOrder ?? undefined;
-    } catch (error) {
-      const errorMessage = error instanceof Error ? error.message : 'Unknown error with updating custom fields'
-      Logger.error(`Failed to update custom fields for order with ID ${orderId}: ${errorMessage}`);
-      return undefined;
-    }
-  }
+  ////////////////////////////////////////////////////////////////
+  /* ------- CREATE NEW ORDER and UPDATE EXISTING ORDER ------- */
+  ////////////////////////////////////////////////////////////////
 
   /**
    * CREATE ORDER.
    */
   async createOrderInBobgo(ctx: RequestContext, orderId: ID): Promise<any> {
     try {
-      // Fetch the order using getRepository
-      const orderRepository = this.connection.getRepository(ctx, Order);
-      let orderData = await orderRepository.findOne({
-        where: { id: orderId },
-        relations: [
-          'customer',
-          'lines', 
-          'lines.productVariant', 
-          'lines.productVariant.assets', 
-          'lines.productVariant.translations', 
-          'shippingLines',
-          'shippingLines.shippingMethod',
-          'shippingLines.shippingMethod.translations', 
-          'payments'
-        ],
-      });
-  
-      if (!orderData) {
-        console.error("Order not found.");
-        throw new Error(`Order with ID ${orderId} not found.`);
-      }
-  
+      // Use the helper method to fetch order details
+      let orderData = await this.fetchOrderDetails(ctx, orderId);
+
       // Prepare order items for Bobgo, including fetching image URLs
-      const orderItemsWithImages = await Promise.all(
-        orderData.lines.map(async (orderLine) => {
-          const imageUrl = await this.getProductImageUrl(ctx, orderLine.productVariant.id);
-          return {
-            description: orderLine.productVariant.translations[0]?.name,
-            image_url: imageUrl,
-            vendor: 'Danshop',
-            sku: orderLine.productVariant.sku,
-            unit_price: orderLine.unitPriceWithTax / 100, 
-            qty: orderLine.quantity,
-          };
-        })
-      );
-  
+      const orderItemsWithImages = await this.prepareOrderItemsWithImages(ctx, orderData.lines)
+
       // Order payload for Bobgo
       const OrderData = {
         // Customer Information
@@ -131,15 +75,20 @@ export class BobgoService {
       };
   
       // Send the constructed order to Bobgo
-      const response = await axios.post('https://api.sandbox.bobgo.co.za/v2/orders', OrderData, { headers: HEADERS });
+      const response = await axios.post('https://api.sandbox.bobgo.co.za/v2/orders', OrderData, { headers: HEADERS })
+      .catch((error) => {
+        console.error("Error response:", error.response.data);
+        throw error;
+      });
       
       // Extract the Channel Order Number & Bobgo order ID from API response.
       const channel_order_number = response.data.channel_order_number;
       const bobgoOrderId = response.data.id;
-      console.log(
-        'Bobgo Channel Order Number from response - channelOrderNumber:', channel_order_number, 
-        '\nBobgo Order ID from response - bobgoOrderId:', bobgoOrderId);
-      console.log('=================================================================');
+      console.log('BOBGO FIELDS FROM RESPONSE Log:',
+        '\n----------------------------',
+        '\n- Channel Order Number:', channel_order_number, 
+        '\n- Bobgo Order ID:', bobgoOrderId,
+        '\n=================================================================');
 
       // update custom fields
       if(bobgoOrderId && channel_order_number) {
@@ -147,10 +96,13 @@ export class BobgoService {
           bobgoOrderId: bobgoOrderId,
           channel_order_number: channel_order_number
         });
-        console.log('Are they stored in DB? - ', stored?.customFields,
-        '\n=================================================================');
+        console.log(
+          'STORING IN ORDER CUSTOM FIELDS Log:',
+          '\n----------------------------',
+          '\nStored in DB?: ', stored?.customFields,
+          '\n=================================================================');
       } else { 
-          console.error('BobgoOrderID or ChannelOrderNumber not found in response:', response.data);
+        console.error('bobgoOrderID or channelOrderNumber not found in response:', response.data);
       }
 
       return response.data;
@@ -163,29 +115,10 @@ export class BobgoService {
   /**
    * UPDATE ORDER.
    */
-  async updateOrderInBobgo(ctx: RequestContext, storedBobgoID: any, orderId: ID): Promise<any> 
-  {
+  async updateOrderInBobgo(ctx: RequestContext, storedBobgoID: any, orderId: ID): Promise<any> {
     try {
-      const orderRepository = this.connection.getRepository(ctx, Order);
-      let updateOrder = await orderRepository.findOne({
-        where: { id: orderId },
-        relations: [
-          'customer',
-          'lines', 
-          'lines.productVariant', 
-          'lines.productVariant.assets', 
-          'lines.productVariant.translations', 
-          'shippingLines',
-          'shippingLines.shippingMethod',
-          'shippingLines.shippingMethod.translations', 
-          'payments',
-        ],
-      });
-
-      if (!updateOrder) {
-        console.error("Order not found.");
-        throw new Error(`Order with ID ${orderId} not found.`);
-      }
+      // Use the helper method to fetch order details
+      let updateOrder = await this.fetchOrderDetails(ctx, orderId);
 
       const storedBobgoID = (updateOrder.customFields as any).bobgoOrderId;
       console.log("Ready to update Order - BobgoOrderId:", storedBobgoID,
@@ -193,21 +126,10 @@ export class BobgoService {
 
       const endpoint = `https://api.sandbox.bobgo.co.za/v2/orders?id=${storedBobgoID}`;
 
-			const orderItemsWithImages = await Promise.all(
-        updateOrder.lines.map(async (orderLine) => {
-          const imageUrl = await this.getProductImageUrl(ctx, orderLine.productVariant.id);
-          return {
-            description: orderLine.productVariant.translations[0]?.name,
-            image_url: imageUrl,
-            vendor: 'Danshop',
-            sku: orderLine.productVariant.sku,
-            unit_price: orderLine.unitPriceWithTax / 100, 
-            qty: orderLine.quantity,
-          };
-        })
-      );
+      // Prepare order items for Bobgo, including fetching image URLs
+      const orderItemsWithImages = await this.prepareOrderItemsWithImages(ctx, updateOrder.lines)
 
-      // fields to update
+      // Update order payload, fields to update
       const mappedUpdateData = {
         id: storedBobgoID, // Bobgo Order ID stored in DB
 
@@ -228,20 +150,87 @@ export class BobgoService {
 
         // Order Items (array)
         order_items: orderItemsWithImages,
-        };
+      };
 
-      const response = await axios.patch(endpoint, mappedUpdateData, { headers: HEADERS }).catch((error) => {
-        console.error("Error response:", error.response.data);
+      // Send updated fields of the existing order to Bobgo
+      const updatedResponse = await axios.patch(endpoint, mappedUpdateData, { headers: HEADERS })
+      .catch((error) => {
+        console.error("Error in updated order response:", error.updatedResponse.data);
         throw error;
       });
 
-      return response.data;
+      return updatedResponse.data;
     } catch (error) {
+      console.error("Error updating the existing order in Bobgo:", error);
       throw error;
     }
   }
 
-  /*** HELPERS ***/
+  ////////////////////////////////////
+  /* ------- HELPER METHODS ------- */
+  ////////////////////////////////////
+
+  // fetch an order with detailed relations
+  private async fetchOrderDetails(ctx: RequestContext, orderId: ID): Promise<Order> {
+    const orderRepository = this.connection.getRepository(ctx, Order);
+    const order = await orderRepository.findOne({
+      where: { id: orderId },
+      relations: [
+        'customer',
+        'lines', 
+        'lines.productVariant', 
+        'lines.productVariant.assets', 
+        'lines.productVariant.translations', 
+        'shippingLines',
+        'shippingLines.shippingMethod',
+        'shippingLines.shippingMethod.translations', 
+        'payments',
+      ],
+    });
+
+    if (!order) {
+      console.error("Order not found.");
+      throw new Error(`Order with ID ${orderId} not found.`);
+    }
+
+    return order;
+  }
+
+  // Hydrate order lines and prepare items for Bobgo
+  private async prepareOrderItemsWithImages(ctx: RequestContext, orderLines: OrderLine[]): Promise<any[]> {
+    return Promise.all(orderLines.map(async (orderLine) => {
+      await this.entityHydrator.hydrate(ctx, orderLine, {
+        relations: [
+          'featuredAsset',
+          'productVariant',
+          'productVariant.featuredAsset',
+          'productVariant.assets'
+        ]
+      });
+  
+      const image_url_preview = `${baseURL}${orderLine.featuredAsset.preview}`; // Ensure baseURL is correctly formatted, localhost or live
+      const image_url_source = `${baseURL}${orderLine.featuredAsset.source}`;
+  
+      console.log(
+        "Object Image Featured Asset: ", orderLine.featuredAsset,
+        '\nIMAGE URLs COMBINED WITH BASE URL Log:',
+        '\n*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-',
+        '\n- Asset URL preview: ', image_url_preview, 
+        '\n- Asset URL source: ', image_url_source, 
+        '\n=================================================================',
+      );
+
+      // order items array payload
+      return {
+        description: orderLine.productVariant.translations[0]?.name,
+        channel_image_url: image_url_preview,
+        vendor: 'Danshop',
+        sku: orderLine.productVariant.sku,
+        unit_price: orderLine.unitPriceWithTax / 100,
+        qty: orderLine.quantity,
+      };
+    }));
+  }
 
   /* selected shipping cost */
   private getShippingCost(orderData: Order): number {
@@ -283,22 +272,49 @@ export class BobgoService {
     };
   }
 
-  /* Get the product image from Vendure */
-  async getProductImageUrl(ctx: RequestContext, productVariantId: ID): Promise<string | null> {
-    try {
-      const productVariant = await this.productVariantService.findOne(ctx, productVariantId);
+  /////////////////////////////////////////////////////////////////////////////////
+  /* ------- UPDATE ORDER CUSTOM FIELDS WITH BOBGO ID AND CHANNEL NUMBER ------- */
+  /////////////////////////////////////////////////////////////////////////////////
 
-      // Check if productVariant exists and has assets
-      if (productVariant && productVariant.assets && productVariant.assets.length > 0) {
-        return productVariant.assets[0].asset.preview ?? null; // first asset being the main image
-      } else {
-        console.log(`No assets found for product variant ID: ${productVariantId}`,
-        '\n=================================================================');
-        return null;
-      }
+  /**
+   * Update the order custom fields with the bobgo id and channel number
+   */
+  public async updateOrderCustomFields(ctx: RequestContext, orderId: ID, customFields: { [key: string]: any }): Promise<Order | undefined> {
+    try {
+      const orderRepository = this.connection.getRepository(ctx, Order);
+      const existingOrder = await orderRepository.findOne({
+        where: { id: orderId }
+      });
+      if (!existingOrder) { throw new EntityNotFoundError('Order', orderId) }
+      
+      // Update the custom fields on the order
+      await orderRepository.update(orderId, {
+        customFields: {
+          ...existingOrder.customFields,
+          ...customFields
+        }
+      });
+
+      // Fetch and return the updated order to verify the changes
+      const updatedOrder = await orderRepository.findOne({
+        where: { id: orderId },
+        relations: [
+          'customer', 
+          'lines', 
+          'lines.productVariant', 
+          'lines.productVariant.assets', 
+          'shippingLines', 
+          'shippingLines.shippingMethod',
+          'shippingLines.shippingMethod.translations', 
+          'payments', 
+        ]
+      });
+
+      return updatedOrder ?? undefined;
     } catch (error) {
-      console.error('Error fetching product variant image:', error);
-      return null;
+      const errorMessage = error instanceof Error ? error.message : 'Unknown error with updating custom fields'
+      Logger.error(`Failed to update custom fields for order with ID ${orderId}: ${errorMessage}`);
+      return undefined;
     }
   }
 }
